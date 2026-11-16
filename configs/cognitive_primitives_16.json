@@ -1,0 +1,287 @@
+{
+  "schema_version": "2.0.0",
+  "framework_name": "OCCAM-16 Orthogonal Cognitive Primitives Taxonomy",
+  "acronym": "OCCAM (Orthogonal Cognitive Compression via Aligned Mental-models)",
+  "compression_regimes": {
+    "structural_framing": {
+      "primitives": [
+        "META_2_Isomorphic_Mapping",
+        "META_4_Epistemic_Boundary",
+        "INV_2_MDL_Parsimony",
+        "INV_3_Falsification_Check",
+        "REP_1_Causal_Stock_Flow",
+        "REP_2_Bottleneck_Localization",
+        "REP_3_Multi_Order_Tree",
+        "REP_4_Emergent_Topology",
+        "OP_1_Bayesian_Update",
+        "OP_2_Equilibrium_Lookahead",
+        "OP_3_Tail_Risk_Convexity",
+        "OP_4_Marginal_Opportunity"
+      ],
+      "dynamic_lambda_len": 0.18,
+      "target_max_tokens": 220,
+      "description": "High structural mutual information tasks where compact topology framing prunes exponential search branches."
+    },
+    "symbolic_rollout": {
+      "primitives": [
+        "META_1_Backward_Inversion",
+        "META_3_Cybernetic_Backtrack",
+        "INV_1_Axiom_Deconstruction",
+        "INV_4_Dialectical_Synthesis"
+      ],
+      "dynamic_lambda_len": 0.04,
+      "target_max_tokens": 480,
+      "description": "Irreducible multi-step symbolic/algebraic rollouts requiring relaxed rate-distortion length regularization."
+    }
+  },
+  "theoretical_foundations": [
+    "Marr, D. (1982). Vision: A Computational Investigation into the Human Representation and Processing of Visual Information.",
+    "Kargupta et al. (2025). Cognitive Foundations for Reasoning and Their Manifestation in LLMs (arXiv:2511.16660).",
+    "Nelson, T. O., & Narens, L. (1990). Metamemory: A Theoretical Framework and New Findings.",
+    "Rissanen, J. (1978). Modeling by Shortest Data Description (Minimum Description Length, MDL).",
+    "Pearl, J. (2009). Causality: Models, Reasoning, and Inference.",
+    "Kahneman, D., & Stanovich, K. E. (2011). Rationality and the Reflective Mind."
+  ],
+  "primitives": [
+    {
+      "primitive_id": "META_1_Backward_Inversion",
+      "dimension": "D1_Meta_Cognitive_Controls",
+      "name_zh_en": "目标逆向反演 (Backward Goal Inversion)",
+      "mapped_folk_models": ["逆向思考 (Inversion)", "终局倒推"],
+      "academic_citation": "Newell & Simon (1972) Human Problem Solving; Kargupta et al. (2025) arXiv:2511.16660 [Backward Chaining]",
+      "formal_operator_definition": "T_inv(S_goal) = {s in S | exists a in A: P(S_goal | s, a) = 1}, pruning forward branching factor b^d to directed predecessor constraints.",
+      "trigger_signature": "Forward search space exhibits exponential branching, terminal state or failure mode is uniquely constrained, or problem asks for necessary preconditions / invariant winning strategies.",
+      "mandatory_slots": [
+        "[Terminal_Anchor]: Explicitly formalize target state S_goal or catastrophic failure state S_fail.",
+        "[Predecessor_Necessary_Conditions]: Derive strict necessary conditions backwards step-by-step from S_goal to initial state S_0.",
+        "[Forward_Branch_Pruning]: Eliminate forward action candidates violating the inverted necessary conditions."
+      ],
+      "anti_bias_check": "Prohibit blind forward trial-and-error enumeration and sequential forward guessing."
+    },
+    {
+      "primitive_id": "META_2_Isomorphic_Mapping",
+      "dimension": "D1_Meta_Cognitive_Controls",
+      "name_zh_en": "结构同构迁移 (Structural Isomorphism Mapping)",
+      "mapped_folk_models": ["类比迁移思维 (#26)", "抽象与建模思维 (#4)", "对比思维"],
+      "academic_citation": "Gentner, D. (1983) Structure-Mapping: A Theoretical Framework for Analogy; Kargupta et al. (2025) arXiv:2511.16660 [Analogical Mapping & Restructuring]",
+      "formal_operator_definition": "f: G_src(V_s, E_s) -> G_tgt(V_t, E_t) such that (u,v) in E_s <=> (f(u), f(v)) in E_t, stripping surface semantics while preserving relational invariants.",
+      "trigger_signature": "Unfamiliar domain wording, cross-disciplinary scientific mechanism, or complex narrative masking a canonical mathematical/logical structure (e.g., parity, pigeonhole, conservation law).",
+      "mandatory_slots": [
+        "[Surface_Semantics_Stripping]: Strip domain-specific nouns and narrative distractors into abstract entities V.",
+        "[Relational_Isomorphism]: Map relational predicates E_tgt onto a solved canonical structure G_src.",
+        "[Invariant_Transfer]: Transfer the theorem/solution invariant from G_src back to instantiate the target answer."
+      ],
+      "anti_bias_check": "Prohibit superficial feature matching (Surface Analogy Trap) where lexical similarity masks structural divergence."
+    },
+    {
+      "primitive_id": "META_3_Cybernetic_Backtrack",
+      "dimension": "D1_Meta_Cognitive_Controls",
+      "name_zh_en": "控制论闭环纠偏 (Cybernetic Error Correction & Backtracking)",
+      "mapped_folk_models": ["控制论思维 (#27)", "迭代试错/设计思维 (#24)"],
+      "academic_citation": "Wiener, N. (1948) Cybernetics; Nelson & Narens (1990) Metacognitive Monitoring & Control; arXiv:2508.04460 [MERA]",
+      "formal_operator_definition": "e_t = ||C(s_t) - C_ref||; if e_t > tau, trigger Backtrack(s_t -> s_{t-k}) and update policy constraint Pi_{t+1}.",
+      "trigger_signature": "Multi-constraint deduction, spatial/state navigation, or intermediate algebraic state where local steps risk violating global boundary constraints.",
+      "mandatory_slots": [
+        "[State_Checkpoint]: Define verifiable intermediate invariant or coordinate state s_t.",
+        "[Constraint_Residual_Audit]: Test intermediate state against all hard boundary constraints C_ref.",
+        "[Closed_Loop_Correction]: Confirm zero residual or immediately prune invalid state branch without repetitive 'Wait, let me recalculate' loops."
+      ],
+      "anti_bias_check": "Prohibit sunk-cost continuation along a contradicted reasoning path and verbose unguided self-doubt loops."
+    },
+    {
+      "primitive_id": "META_4_Epistemic_Boundary",
+      "dimension": "D1_Meta_Cognitive_Controls",
+      "name_zh_en": "认知边界监控 (Epistemic Boundary Monitoring)",
+      "mapped_folk_models": ["元认知思维 (#1)"],
+      "academic_citation": "Fleming, S. M. (2024) Metacognition; Stanovich (2011) Epistemic Rationality; Kargupta et al. (2025) arXiv:2511.16660 [Self-Awareness & Uncertainty Monitoring]",
+      "formal_operator_definition": "Partition premise set P into {P_entailed, P_independent, P_contradicted} under closed-world vs. open-world epistemic closure.",
+      "trigger_signature": "Formal fallacies, syllogistic traps, underspecified premises, or causal questions where unstated assumptions tempt hallucinated extrapolation.",
+      "mandatory_slots": [
+        "[Explicit_Premise_Inventory]: Enumerate strictly what is given in premise set P.",
+        "[Epistemic_Closure_Boundary]: Separate deductive entailment (P |= q) from plausible real-world presupposition.",
+        "[Decisive_Verdict]: Commit to validity/entailment verdict strictly within the epistemic boundary."
+      ],
+      "anti_bias_check": "Prohibit Belief Bias (accepting logically invalid conclusions because they sound empirically familiar)."
+    },
+    {
+      "primitive_id": "INV_1_Axiom_Deconstruction",
+      "dimension": "D2_Reasoning_Invariants",
+      "name_zh_en": "公理化拆解 (First-Principles Axiom Deconstruction)",
+      "mapped_folk_models": ["第一性原理 (#2)"],
+      "academic_citation": "Aristotle Metaphysics; Newell & Simon (1959); Kargupta et al. (2025) arXiv:2511.16660 [Decomposition & Invariant Extraction]",
+      "formal_operator_definition": "Decompose composite proposition X into minimal orthogonal axiom basis {a_1, ..., a_k} such that X = F(a_1, ..., a_k) and I(a_i; a_j) = 0.",
+      "trigger_signature": "Physical/scientific reasoning, counter-intuitive mechanism analysis, or problems obscured by conventional heuristics and rule-of-thumb analogies.",
+      "mandatory_slots": [
+        "[Heuristic_Assumption_Stripping]: Identify and discard conventional analogies or unverified surface assumptions.",
+        "[Irreducible_Axioms]: State the fundamental physical, mathematical, or logical conservation/axiomatic laws governing the system.",
+        "[Axiomatic_Reconstruction]: Reconstruct the conclusion deductively from the irreducible axioms in minimal steps."
+      ],
+      "anti_bias_check": "Prohibit reasoning by herd analogy ('usually in similar cases...') when fundamental laws directly dictate the outcome."
+    },
+    {
+      "primitive_id": "INV_2_MDL_Parsimony",
+      "dimension": "D2_Reasoning_Invariants",
+      "name_zh_en": "最小描述长度剪枝 (MDL Parsimony & Razor Pruning)",
+      "mapped_folk_models": ["奥卡姆剃刀 (#5)", "汉隆剃刀 (#6)"],
+      "academic_citation": "Rissanen, J. (1978) Minimum Description Length; Grunwald (2007) The MDL Principle",
+      "formal_operator_definition": "H^* = argmin_{H in M} [L(H) + L(D | H)], penalizing ad-hoc auxiliary hypotheses and intentionality/malice attributions.",
+      "trigger_signature": "Competing explanations for an observed anomaly, diagnostic attribution, or social/systemic failure where complex conspiracy or ad-hoc hypotheses compete with structural/random causes.",
+      "mandatory_slots": [
+        "[Candidate_Hypotheses_Complexity]: List competing hypotheses H_i and count required unverified assumptions L(H_i).",
+        "[Razor_Filter]: Prune high-complexity or malice-based hypotheses when a structural/stochastic null hypothesis explains the data D.",
+        "[Minimal_Sufficient_Explanation]: Select H^* minimizing total description length L(H) + L(D|H)."
+      ],
+      "anti_bias_check": "Prohibit Conjunction Fallacy and Teleological/Intentionality Bias (preferring elaborate narrative stories over parsimonious causal explanations)."
+    },
+    {
+      "primitive_id": "INV_3_Falsification_Check",
+      "dimension": "D2_Reasoning_Invariants",
+      "name_zh_en": "证伪与反例检验 (Popperian Falsification & Counterexample Check)",
+      "mapped_folk_models": ["批判性思维 (#3)"],
+      "academic_citation": "Popper, K. (1959) The Logic of Scientific Discovery; Wason (1960) Confirmation Bias & Selection Task",
+      "formal_operator_definition": "To test universal claim forall x: P(x) => Q(x), actively search for witness x_0 in {x | P(x) and not Q(x)} or confounder Z such that P(Y|X,Z) = P(Y|Z).",
+      "trigger_signature": "Causal attribution claims, correlation-vs-causation traps, universal logical deductions, or elimination of multiple-choice distractors.",
+      "mandatory_slots": [
+        "[Fact_vs_Inference_Separation]: Separate observed empirical facts from the proposed causal/universal claim.",
+        "[Counterexample_Confounder_Probe]: Construct the sharpest falsifying condition, boundary case, or confounding variable Z.",
+        "[Surviving_Proposition]: Retain only the claim/option that survives strict falsification."
+      ],
+      "anti_bias_check": "Prohibit Confirmation Bias (seeking only supporting examples while ignoring disconfirming cases or confounders)."
+    },
+    {
+      "primitive_id": "INV_4_Dialectical_Synthesis",
+      "dimension": "D2_Reasoning_Invariants",
+      "name_zh_en": "条件化张力融合与对称不变量 (Dialectical Boundary & Symmetry Invariant)",
+      "mapped_folk_models": ["灰度思维/辩证思维 (#25)", "对称思维 (Symmetry)"],
+      "academic_citation": "Noether (1918) Invariant Variation Problems; Nisbett et al. (2001) Holistic vs. Analytic Cognition",
+      "formal_operator_definition": "Identify symmetry group G leaving system state invariant (g(S)=S) or partition parameter space Theta = Theta_+ U Theta_- where opposing propositions hold conditionally.",
+      "trigger_signature": "Mathematical/logical symmetry problems, dual-aspect trade-offs, or paradoxes where two seemingly contradictory principles hold in different regimes.",
+      "mandatory_slots": [
+        "[Symmetry_Dual_Identification]: Identify the underlying symmetry transformation or dual opposing forces (Thesis vs. Antithesis).",
+        "[Invariant_or_Regime_Boundary]: Extract the conserved invariant quantity or exact threshold separating regimes Theta_+ and Theta_-.",
+        "[Synthesized_Resolution]: Resolve the problem directly via the invariant or regime condition without brute-force expansion."
+      ],
+      "anti_bias_check": "Prohibit binary absolutism (all-or-nothing judgment) and asymmetric brute-force expansion of symmetric structures."
+    },
+    {
+      "primitive_id": "REP_1_Causal_Stock_Flow",
+      "dimension": "D3_Reasoning_Representations",
+      "name_zh_en": "存量流量与因果反馈环 (Causal DAG & Stock-Flow Feedback Loop)",
+      "mapped_folk_models": ["系统思维 (#7)", "反馈循环思维 (#9)"],
+      "academic_citation": "Pearl, J. (2009) Structural Causal Models (SCM); Forrester (1961) System Dynamics; Meadows (2008) Thinking in Systems",
+      "formal_operator_definition": "SCM M = <U, V, F, P(U)> with do-operator P(Y | do(X=x)) and stock equation S(t) = S(0) + int (Inflow - Outflow) dt with feedback polarity +/-.",
+      "trigger_signature": "Observational vs. interventional queries (Ladder of Causation Rung 1/2/3), counterfactual evaluation, or dynamic systems with reinforcing/balancing feedback loops.",
+      "mandatory_slots": [
+        "[Causal_Topology_DAG]: Explicitly map directed causal edges X -> M -> Y and identify confounders Z / colliders C.",
+        "[Do_Calculus_or_Feedback_Polarity]: Apply backdoor/frontdoor adjustment or classify feedback loop polarity (Reinforcing + vs. Balancing -) with delay delta_t.",
+        "[Net_Causal_Effect]: Compute net causal or counterfactual outcome after accounting for structural pathways."
+      ],
+      "anti_bias_check": "Prohibit single-point linear attribution and confounding correlation P(Y|X) with interventional causation P(Y|do(X))."
+    },
+    {
+      "primitive_id": "REP_2_Bottleneck_Localization",
+      "dimension": "D3_Reasoning_Representations",
+      "name_zh_en": "关键路径卡点锁定 (Binding Constraint & Pareto Bottleneck Localization)",
+      "mapped_folk_models": ["约束理论/瓶颈思维 (#13)", "帕累托/幂律思维 (#22)"],
+      "academic_citation": "Goldratt (1984) Theory of Constraints; Ford & Fulkerson (1956) Max-Flow Min-Cut Theorem",
+      "formal_operator_definition": "Throughput Phi(S) = min_{i in CriticalPath} Capacity(v_i); sensitivity dPhi / dCap(v_j) = 0 for all non-binding nodes j != i^*.",
+      "trigger_signature": "Resource allocation, sequential pipeline capacity, multi-condition logical bottlenecks, or identifying the single decisive variable governing system output.",
+      "mandatory_slots": [
+        "[Constraint_Chain_Quantification]: Map sequential or coupled constraints and their capacities/bounds.",
+        "[Binding_Bottleneck_Lock]: Isolate the unique minimum-cut / binding constraint v^* that strictly caps system output or truth value.",
+        "[Non_Bottleneck_Pruning]: Ignore non-binding variables and solve directly around v^*."
+      ],
+      "anti_bias_check": "Prohibit uniform effort allocation (optimizing non-bottleneck components that have zero marginal effect on global throughput)."
+    },
+    {
+      "primitive_id": "REP_3_Multi_Order_Tree",
+      "dimension": "D3_Reasoning_Representations",
+      "name_zh_en": "多阶效应与路径锁定树 (Multi-Order Consequence & Path-Dependence Tree)",
+      "mapped_folk_models": ["二阶思维 (#8)", "路径依赖与锁定思维 (#12)"],
+      "academic_citation": "Arthur, W. B. (1989) Increasing Returns and Path Dependence; Howard (1960) Sequential Decision Processes",
+      "formal_operator_definition": "Evaluate trajectory V(a_0) = r_1(s_1, a_0) + gamma * E[r_2(s_2(a_0), a_1^*)] where early action a_0 restricts reachable state space S_{t>1}.",
+      "trigger_signature": "Policy interventions, sequential state transitions, Cobra Effect traps, or irreversible early choices that constrain downstream options.",
+      "mandatory_slots": [
+        "[First_Order_Immediate_Effect]: State the immediate local consequence of action a_0 at t=1.",
+        "[Second_Order_System_Adaptation]: Trace t=2 delayed feedback, adaptive counter-response, or state-space lock-in.",
+        "[Horizon_Integrated_Verdict]: Evaluate net outcome across the multi-order trajectory rather than t=1 myopic gain."
+      ],
+      "anti_bias_check": "Prohibit Myopic First-Order Thinking (ignoring adaptive counter-responses and irreversible path lock-in)."
+    },
+    {
+      "primitive_id": "REP_4_Emergent_Topology",
+      "dimension": "D3_Reasoning_Representations",
+      "name_zh_en": "网络生态位与宏观涌现拓扑 (Network Topology & Macro-Emergence)",
+      "mapped_folk_models": ["涌现思维 (#10)", "网络与生态位思维 (#11)"],
+      "academic_citation": "Anderson, P. W. (1972) More Is Different; Newman (2010) Networks; Kargupta et al. (2025) arXiv:2511.16660 [Network & Hierarchical Organization]",
+      "formal_operator_definition": "Macro-property P(G) emerges from relational adjacency matrix A_{ij} and local interaction rules phi(v_i, N(v_i)), irreducible to sum_i p(v_i).",
+      "trigger_signature": "Multi-entity ordering, relational graph deduction, ecological/market equilibrium, or collective behavior arising from local pairwise constraints.",
+      "mandatory_slots": [
+        "[Node_Edge_Adjacency_Graph]: Construct relational graph G=(V,E) from pairwise local constraints.",
+        "[Topological_Ordering_or_Centrality]: Compute global topological sort, cycle structure, or degree/bridge invariants.",
+        "[Macro_Emergent_Conclusion]: Read off the global rank/state directly from the assembled topology."
+      ],
+      "anti_bias_check": "Prohibit Reductionist Fallacy (inferring macro-system behavior by summing isolated individual properties without interaction topology)."
+    },
+    {
+      "primitive_id": "OP_1_Bayesian_Update",
+      "dimension": "D4_Epistemic_Decision_Operations",
+      "name_zh_en": "贝叶斯先验—似然动态校准 (Bayesian Prior-Likelihood Posterior Calibration)",
+      "mapped_folk_models": ["贝叶斯更新思维 (#17)", "概率思维与期望值思维 (#16)"],
+      "academic_citation": "Bayes (1763); Kahneman & Tversky (1973) Base-Rate Neglect; Griffiths & Tenenbaum (2006) Optimal Predictions in Everyday Cognition",
+      "formal_operator_definition": "P(H | E) = [P(E | H) * P(H)] / [P(E | H)*P(H) + P(E | not H)*P(not H)]; Posterior Odds = Prior Odds * Likelihood Ratio LR.",
+      "trigger_signature": "Diagnostic testing, conditional probability puzzles, imperfect evidence evaluation, or scenarios prone to base-rate neglect.",
+      "mandatory_slots": [
+        "[Base_Rate_Prior]: Anchor the explicit prior probability P(H) before inspecting specific evidence E.",
+        "[Likelihood_Ratio_Calibration]: Quantify sensitivity P(E|H) and false-positive rate P(E|~H) to form Likelihood Ratio.",
+        "[Posterior_Belief_Update]: Compute exact or directional posterior P(H|E) via Bayes' rule."
+      ],
+      "anti_bias_check": "Prohibit Base-Rate Neglect (equating P(H|E) with P(E|H) while ignoring low prior prevalence P(H))."
+    },
+    {
+      "primitive_id": "OP_2_Equilibrium_Lookahead",
+      "dimension": "D4_Epistemic_Decision_Operations",
+      "name_zh_en": "纳什均衡与激励相容前瞻 (Strategic Equilibrium & Incentive Lookahead)",
+      "mapped_folk_models": ["博弈思维 (#18)", "演化思维 (#19)"],
+      "academic_citation": "von Neumann & Morgenstern (1944); Nash (1950); Maynard Smith (1982) Evolution and the Theory of Games",
+      "formal_operator_definition": "Strategy profile s^* = (s_i^*, s_{-i}^*) is equilibrium iff forall i, s_i: u_i(s_i^*, s_{-i}^*) >= u_i(s_i, s_{-i}^*); solve sequential games via backward induction.",
+      "trigger_signature": "Multi-agent strategic interaction, Prisoner's Dilemma / tragedy of the commons, signaling, or incentive design problems.",
+      "mandatory_slots": [
+        "[Agents_Payoff_Structure]: Identify interacting agents, action spaces, and incentive payoff functions u_i.",
+        "[Best_Response_Dominance]: Eliminate strictly dominated strategies and compute opponent best-response reactions.",
+        "[Equilibrium_Outcome]: Identify the Nash / Subgame-Perfect / Evolutionary Stable equilibrium outcome."
+      ],
+      "anti_bias_check": "Prohibit Single-Agent Egocentric Optimization (assuming other rational agents remain passive when incentives shift)."
+    },
+    {
+      "primitive_id": "OP_3_Tail_Risk_Convexity",
+      "dimension": "D4_Epistemic_Decision_Operations",
+      "name_zh_en": "尾部风险与非对称凸性核算 (Tail-Risk Ergodicity & Antifragile Convexity)",
+      "mapped_folk_models": ["反脆弱思维 (#14)", "冗余与安全边际思维 (#15)", "风险思维 (#23)"],
+      "academic_citation": "Taleb (2012) Antifragile & Convexity Bias (Jensen's Inequality); Peters (2019) Ergodicity Economics; Rockafellar & Uryasev (2000) CVaR",
+      "formal_operator_definition": "By Jensen's inequality, for convex payoff f(x), E[f(X)] >= f(E[X]); impose ruin barrier P(Wealth_t <= 0) = 0 and safety margin buffer delta_safe.",
+      "trigger_signature": "Decision under high uncertainty, asymmetric payoff structures, absorbing ruin barriers (non-ergodic risk), or safety-critical system design.",
+      "mandatory_slots": [
+        "[Tail_Ruin_Exposure]: Audit worst-case left-tail loss CVaR_alpha and check for absorbing ruin states.",
+        "[Convexity_Asymmetry]: Evaluate payoff curvature f''(x) (capped downside vs. convex upside) and required safety buffer.",
+        "[Robust_Antifragile_Choice]: Select strategy guaranteeing survival (zero ruin) and positive convexity under volatility."
+      ],
+      "anti_bias_check": "Prohibit Ensemble-Average Illusion (ignoring absorbing ruin barriers in sequential repeated risks)."
+    },
+    {
+      "primitive_id": "OP_4_Marginal_Opportunity",
+      "dimension": "D4_Epistemic_Decision_Operations",
+      "name_zh_en": "边际效益与机会成本核算 (Marginal Utility & Opportunity Cost Calculus)",
+      "mapped_folk_models": ["机会成本与边际思维 (#20)", "复利与杠杆思维 (#21)"],
+      "academic_citation": "Menger (1871) Marginalism; Coase (1937); Samuelson (1947) Foundations of Economic Analysis",
+      "formal_operator_definition": "Net Economic Value(a_i) = U(a_i) - max_{j != i} U(a_j), with sunk costs C_sunk cancelled out: d[V(a_i) - C_sunk]/da_i = dU/da_i.",
+      "trigger_signature": "Resource trade-offs, sunk-cost fallacy traps, incremental optimization, or long-horizon compounding vs. linear return comparisons.",
+      "mandatory_slots": [
+        "[Sunk_Cost_Expurgation]: Explicitly zero out historical unrecoverable sunk costs C_sunk from the decision equation.",
+        "[Next_Best_Alternative_Benchmark]: Quantify the opportunity cost max_{j != i} U(a_j) of the foregone best alternative.",
+        "[Marginal_Compounding_Verdict]: Compare marginal incremental benefit dU/dx against marginal opportunity cost."
+      ],
+      "anti_bias_check": "Prohibit Sunk Cost Fallacy (continuing a suboptimal option to 'justify' past unrecoverable expenditures)."
+    }
+  ]
+}

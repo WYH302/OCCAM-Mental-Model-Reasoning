@@ -1,0 +1,33 @@
+{
+  "teacher_model": "Qwen/Qwen2.5-7B-Instruct (100% Local Self-Distillation)",
+  "total_seeds": 1600,
+  "verified_occam_pairs": 1570,
+  "direct_zero_hint_solved": 1419,
+  "star_rationalized_solved": 151,
+  "matched_limo_longcot_positives": 1345,
+  "structural_framing_pairs": 1373,
+  "symbolic_rollout_pairs": 197,
+  "avg_tokens_chosen": 232.65,
+  "avg_tokens_rejected": 544.06,
+  "mean_compression_ratio": 0.4276,
+  "primitive_activation_counts": {
+    "INV_4_Dialectical_Synthesis": 730,
+    "META_2_Isomorphic_Mapping": 530,
+    "REP_1_Causal_Stock_Flow": 418,
+    "INV_3_Falsification_Check": 271,
+    "OP_1_Bayesian_Update": 268,
+    "REP_3_Multi_Order_Tree": 201,
+    "META_3_Cybernetic_Backtrack": 151,
+    "META_4_Epistemic_Boundary": 127,
+    "INV_1_Axiom_Deconstruction": 113,
+    "INV_2_MDL_Parsimony": 80,
+    "REP_2_Bottleneck_Localization": 63,
+    "OP_2_Equilibrium_Lookahead": 18,
+    "REP_4_Emergent_Topology": 17,
+    "OP_3_Tail_Risk_Convexity": 12,
+    "OP_4_Marginal_Opportunity": 10,
+    "META_1_Backward_Inversion": 9
+  },
+  "wall_time_sec": 4155.45,
+  "gpu_hours": 1.1543
+}
