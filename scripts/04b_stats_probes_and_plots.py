@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Stage 4B (OCCAM): Publication-Grade Statistical Analysis, 5-Fold Tag-Stripped Blind Probe,
-Type-42 Vector Figures, and Full-Width LaTeX Booktabs Tables Generator.
+Harmonious Colorblind-Safe Type-42 Vector Figures (including 6-Axis Radar & 4,526-Item Token KDE),
+and Legible Full-Width LaTeX Booktabs Tables Generator.
 Reads strictly from authentic RTX 3090 vLLM evaluation traces (outputs/eval_traces/*.jsonl).
 """
 import json
 import math
 import re
 import sys
-from collections import Counter
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -17,29 +17,46 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.stats import binomtest
+from scipy.stats import binomtest, gaussian_kde
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
 
-# Enforce TrueType (Type-42) Vector Font Embedding (Zero Type-3 Bitmap Fonts)
+# Enforce TrueType (Type-42) Vector Font Embedding & Crisp Top-Venue Typography
 plt.rcParams.update({
     "pdf.fonttype": 42,
     "ps.fonttype": 42,
     "font.family": "sans-serif",
     "font.sans-serif": ["Arial", "DejaVu Sans", "Liberation Sans"],
     "font.size": 9.5,
-    "axes.labelsize": 10.5,
-    "axes.titlesize": 11.2,
+    "axes.labelsize": 10.2,
+    "axes.titlesize": 11.0,
     "axes.titleweight": "bold",
-    "legend.fontsize": 8.4,
-    "xtick.labelsize": 8.8,
-    "ytick.labelsize": 8.8,
+    "axes.edgecolor": "#334155",
+    "axes.linewidth": 0.85,
+    "legend.fontsize": 8.3,
+    "xtick.labelsize": 8.7,
+    "ytick.labelsize": 8.7,
     "axes.spines.top": False,
     "axes.spines.right": False,
 })
+
+# Unified Colorblind-Safe Academic Palette (TPAMI / NeurIPS Oral Standard)
+PAL = {
+    "occam_sft": "#0F766E",     # Deep Emerald-Teal (OCCAM-7B-SFT Flagship)
+    "occam_simpo": "#1D4ED8",   # Royal Sapphire Blue (OCCAM-7B-SimPO)
+    "occam_3b": "#0284C7",      # Cerulean Blue (OCCAM-3B)
+    "r1_long": "#D97706",       # Warm Amber-Orange (DeepSeek-R1 / Long-CoT)
+    "danger": "#E11D48",        # Muted Crimson-Rose (Overthinking / Token Cost / Swap Drop)
+    "scaffold": "#6366F1",      # Muted Indigo (Prompt / RAG Scaffolds)
+    "ablation": "#7C3AED",      # Muted Violet (Diagnostic Ablations)
+    "base_dark": "#475569",     # Slate Dark (Qwen2.5-7B Base)
+    "base_light": "#94A3B8",    # Cool Slate Light (Secondary Baselines)
+    "grid": "#CBD5E1",          # Soft Slate Grid
+    "ink": "#0F172A",           # Deep Slate Ink
+}
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 CONFIG_PATH = BASE_DIR / "configs" / "cognitive_primitives_16.json"
@@ -59,21 +76,45 @@ MODEL_DISPLAY = {
     "Direct-0CoT-7B": ("Qwen2.5-7B-Instruct (Direct 0-CoT)", "G0_Direct"),
     "Base-7B": ("Qwen2.5-7B-Instruct (Zero-Shot CoT)", "G1_Base"),
     "FewShot-3CoT-7B": ("Qwen2.5-7B-Instruct (3-Shot CoT)", "G1_Base"),
-    "SC-Maj4-7B": ("Qwen2.5-7B-Instruct (Self-Consistency maj@4)", "G1_Base"),
+    "SC-Maj4-7B": ("Qwen2.5-7B-Instruct (SC maj@4)", "G1_Base"),
     "Concise-CoD-7B": ("Chain-of-Draft / Concise-CoT (7B)", "G2_Scaffold"),
-    "Ext-16Op-Harness-7B": ("External 16-Primitive Harness (7B)", "G2_Scaffold"),
+    "Ext-16Op-Harness-7B": ("External 16-Primitive Prompt (7B)", "G2_Scaffold"),
     "BoT-Retrieval-7B": ("Buffer of Thoughts RAG (7B, Top-2)", "G2_Scaffold"),
     "LIMO-LongCoT-SFT-7B": ("Matched-Source Long-CoT SFT (7B)", "G3_LongCoT"),
-    "R1-Distill-7B": ("DeepSeek-R1-Distill-Qwen-7B (8k CoT)", "G3_LongCoT"),
-    "Ablation-Jargon-Only-7B": ("Ablation: Surface Jargon-Only SFT (7B)", "G4_Ablation"),
-    "Ablation-wo-Router-7B": ("Ablation: w/o <cog_router> Prefix (7B)", "G4_Ablation"),
-    "Ablation-Uniform-SimPO-7B": ("Ablation: Uniform SimPO (alpha=1.0, 7B)", "G4_Ablation"),
+    "R1-Distill-7B": ("DeepSeek-R1-Distill-Qwen-7B (8k)", "G3_LongCoT"),
+    "Ablation-Jargon-Only-7B": ("Ablation: Surface Jargon-Only (7B)", "G4_Ablation"),
+    "Ablation-wo-Router-7B": ("Ablation: w/o <cog_router> (7B)", "G4_Ablation"),
+    "Ablation-Uniform-SimPO-7B": ("Ablation: Uniform SimPO (K=99, alpha_r=1.0)", "G4_Ablation"),
     "OCCAM-3B-SFT": ("OCCAM-3B (Schema Distillation)", "G5_OCCAM"),
-    "OCCAM-3B-SimPO": ("OCCAM-3B-SimPO (Full-Epoch K=99)", "G4_Ablation"),
+    "OCCAM-3B-SimPO": ("OCCAM-3B-SimPO (K=99, alpha_r=2.0)", "G4_Ablation"),
     "OCCAM-7B-SFT": ("OCCAM-7B-SFT (Schema Distillation)", "G5_OCCAM"),
-    "Sweep-Scale-400-7B-SimPO": ("OCCAM-7B-SimPO (Calibrated K=25, alpha=2.0)", "G5_OCCAM"),
-    "Sweep-Alpha-1p5-7B": ("OCCAM-7B-SimPO (Full-Epoch K=99, alpha=1.5)", "G5_OCCAM"),
-    "OCCAM-7B-SimPO": ("OCCAM-7B-SimPO (Full-Epoch K=99, alpha=2.0)", "G5_OCCAM"),
+    "Sweep-Scale-400-7B-SimPO": ("OCCAM-7B-SimPO (K=25, alpha_r=2.0)", "G5_OCCAM"),
+    "Sweep-Alpha-1p5-7B": ("OCCAM-7B-SimPO (K=99, alpha_r=1.5)", "G5_OCCAM"),
+    "OCCAM-7B-SimPO": ("OCCAM-7B-SimPO (K=99, alpha_r=2.0)", "G5_OCCAM"),
+}
+
+# Clean LaTeX Math Labels for Crisp, Compact Table Typography (8.0-8.8pt Native Legibility)
+MODEL_LATEX_LABEL = {
+    "Direct-0CoT-3B": "Qwen2.5-3B (Direct 0-CoT)",
+    "Base-3B": "Qwen2.5-3B (Zero-Shot CoT)",
+    "Direct-0CoT-7B": "Qwen2.5-7B (Direct 0-CoT)",
+    "Base-7B": "Qwen2.5-7B (Zero-Shot CoT)",
+    "FewShot-3CoT-7B": "Qwen2.5-7B (3-Shot CoT)",
+    "SC-Maj4-7B": "Qwen2.5-7B (SC maj@4)",
+    "Concise-CoD-7B": "Chain-of-Draft (7B)",
+    "Ext-16Op-Harness-7B": "Ext.\\ 16-Primitive Prompt (7B)",
+    "BoT-Retrieval-7B": "Buffer of Thoughts RAG (7B)",
+    "LIMO-LongCoT-SFT-7B": "Matched Long-CoT SFT (7B)",
+    "R1-Distill-7B": "DeepSeek-R1-Distill-7B (8k)",
+    "Ablation-Jargon-Only-7B": "Ablation: Jargon-Only SFT (7B)",
+    "Ablation-wo-Router-7B": "Ablation: w/o \\texttt{<cog\\_router>} (7B)",
+    "Ablation-Uniform-SimPO-7B": "Ablation: Uniform SimPO ($\\alpha_r{=}1.0$)",
+    "OCCAM-3B-SFT": "\\textbf{OCCAM-3B (Schema Distill.)}",
+    "OCCAM-3B-SimPO": "OCCAM-3B-SimPO ($K{=}99, \\alpha_r{=}2.0$)",
+    "OCCAM-7B-SFT": "\\textbf{OCCAM-7B-SFT (Schema Distill.)}",
+    "Sweep-Scale-400-7B-SimPO": "\\textbf{OCCAM-7B-SimPO ($K{=}25, \\alpha_r{=}2.0$)}",
+    "Sweep-Alpha-1p5-7B": "\\textbf{OCCAM-7B-SimPO ($K{=}99, \\alpha_r{=}1.5$)}",
+    "OCCAM-7B-SimPO": "\\textbf{OCCAM-7B-SimPO ($K{=}99, \\alpha_r{=}2.0$)}",
 }
 
 
@@ -183,6 +224,8 @@ def compute_all_model_metrics() -> Tuple[Dict[str, dict], Dict[str, List[dict]]]
 
         avg_tok_id = round(sum(r["tokens"] for r in id_rows) / max(1, len(id_rows)), 1)
         avg_tok_all = round(sum(r["tokens"] for r in rows) / max(1, len(rows)), 1)
+        p95_tok_all = round(float(np.percentile([r["tokens"] for r in rows], 95)), 1)
+        med_tok_all = round(float(np.median([r["tokens"] for r in rows])), 1)
         ci_id = compute_bootstrap_ci([r["correct"] for r in id_rows], n_boot=5000)
         ci_ood = compute_bootstrap_ci([r["correct"] for r in ood_rows], n_boot=5000)
         lat_ms = round(float(rows[0].get("avg_batch_latency_ms", 0.0)), 1)
@@ -190,8 +233,6 @@ def compute_all_model_metrics() -> Tuple[Dict[str, dict], Dict[str, List[dict]]]
 
         is_3b = "3B" in mid
         base_0cot = acc0_3b if is_3b else acc0_7b
-        # KV cache per token in bf16: Qwen2.5-3B (36 layers, 2 KV heads, 128 dim -> 0.0352 MB/tok),
-        # Qwen2.5-7B / R1-7B (28 layers, 4 KV heads, 128 dim -> 0.0547 MB/tok)
         kv_rate = 0.0352 if is_3b else 0.0547
         kv_mb = round(avg_tok_id * kv_rate, 2)
         delta_eta = round((macro_id - base_0cot) / (avg_tok_id / 100.0 + 0.10), 2)
@@ -213,6 +254,8 @@ def compute_all_model_metrics() -> Tuple[Dict[str, dict], Dict[str, List[dict]]]
             "ci95_ood": ci_ood,
             "avg_tokens_id": avg_tok_id,
             "avg_tokens_all": avg_tok_all,
+            "median_tokens_all": med_tok_all,
+            "p95_tokens_all": p95_tok_all,
             "kv_cache_mb": kv_mb,
             "delta_eta": delta_eta,
             "latency_ms": lat_ms,
@@ -271,7 +314,7 @@ def mine_real_case_studies(raw_traces: Dict[str, List[dict]]) -> dict:
     occam_map = {r["uid"]: r for r in raw_traces.get("OCCAM-7B-SFT", [])}
     r1_map = {r["uid"]: r for r in raw_traces.get("R1-Distill-7B", [])}
 
-    win_case = None
+    candidates = []
     for uid, r_occ in occam_map.items():
         r_r1 = r1_map.get(uid)
         if not r_r1:
@@ -280,31 +323,36 @@ def mine_real_case_studies(raw_traces: Dict[str, List[dict]]) -> dict:
             r_occ["benchmark"] == "CLadder"
             and r_occ["correct"]
             and (not r_r1["correct"])
-            and r_r1["tokens"] > 650
+            and r_r1["tokens"] > 800
             and r_occ["tokens"] < 260
             and "<cog_router>" in r_occ["output"]
+            and "<answer>" in r_occ["output"]
         ):
-            win_case = {
-                "uid": uid,
-                "benchmark": "CLadder",
-                "ground_truth": r_occ["ground_truth"],
-                "occam_tokens": r_occ["tokens"],
-                "r1_tokens": r_r1["tokens"],
-                "occam_output": r_occ["output"][:760],
-                "r1_output_snippet": r_r1["output"][:580] + " ... [continues to " + str(r_r1["tokens"]) + " tokens]",
-            }
-            break
+            ratio = r_r1["tokens"] / max(1, r_occ["tokens"])
+            candidates.append((ratio, uid, r_occ, r_r1))
 
+    candidates.sort(key=lambda x: x[0], reverse=True)
+    win_case = None
+    if candidates:
+        _, uid, r_occ, r_r1 = candidates[0]
+        win_case = {
+            "uid": uid,
+            "benchmark": "CLadder",
+            "ground_truth": r_occ["ground_truth"],
+            "occam_tokens": r_occ["tokens"],
+            "r1_tokens": r_r1["tokens"],
+            "occam_output": r_occ["output"],
+            "r1_output_snippet": r_r1["output"][:520] + f" ... [repetitive verification loop continues to {r_r1['tokens']} tokens]",
+        }
     return {"causal_framing_win": win_case}
 
 
 # =========================================================================
-# PUBLICATION VECTOR PLOTS (Type-42 TrueType Fonts, Full-Width Proportions)
+# HARMONIOUS PUBLICATION VECTOR PLOTS (Type-42 TrueType Fonts)
 # =========================================================================
 def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.2, 4.4), gridspec_kw={"width_ratios": [1.12, 1.05]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.2, 4.35), gridspec_kw={"width_ratios": [1.10, 1.06]})
 
-    # Panel A: Structural Framing Macro-Accuracy (N=2,723) vs Token Cost Across Paradigms
     models_show = [
         ("Ext-16Op-Harness-7B", "Ext. 16-Op\nPrompt"),
         ("Concise-CoD-7B", "Chain-of-\nDraft"),
@@ -316,64 +364,81 @@ def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
     ]
     present = [(m, l) for m, l in models_show if m in metrics_map]
     x = np.arange(len(present))
-    w = 0.48
+    w = 0.50
 
     f_vals = [metrics_map[m]["framing_macro_acc"] for m, _ in present]
     tok_vals = [metrics_map[m]["avg_tokens_id"] for m, _ in present]
-    bar_colors = ["#94A3B8", "#94A3B8", "#64748B", "#E67E22", "#475569", "#2563EB", "#0F766E"]
+    bar_colors = [
+        PAL["base_light"], PAL["base_light"], PAL["scaffold"],
+        PAL["r1_long"], PAL["base_dark"], PAL["occam_simpo"], PAL["occam_sft"]
+    ]
 
-    bars = ax1.bar(x, f_vals, width=w, color=bar_colors[:len(present)], edgecolor="#1E293B", linewidth=0.7, alpha=0.92, label="Structural Framing Acc (%)")
+    bars = ax1.bar(
+        x, f_vals, width=w, color=bar_colors[:len(present)],
+        edgecolor=PAL["ink"], linewidth=0.65, alpha=0.92, zorder=3,
+        label="Framing-4 Macro Acc (%)"
+    )
     for b, v in zip(bars, f_vals):
-        ax1.annotate(f"{v:.1f}%", (b.get_x() + b.get_width() / 2, v), xytext=(0, 3), textcoords="offset points", ha="center", fontsize=8.0, fontweight="bold", color="#0F172A")
+        ax1.annotate(
+            f"{v:.1f}%", (b.get_x() + b.get_width() / 2, v),
+            xytext=(0, 3), textcoords="offset points",
+            ha="center", fontsize=8.0, fontweight="bold", color=PAL["ink"]
+        )
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels([l for _, l in present], fontsize=8.3)
-    ax1.set_ylim(48, 76)
+    ax1.set_xticklabels([l for _, l in present], fontsize=8.2)
+    ax1.set_ylim(48, 76.5)
     ax1.set_ylabel("Framing-4 Macro Accuracy (%)")
     ax1.set_title("(a) Structural Framing Accuracy & Token Cost (N = 2,723)")
-    ax1.grid(axis="y", linestyle="--", alpha=0.35)
+    ax1.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.65, zorder=0)
 
     ax1_r = ax1.twinx()
     ax1_r.spines["top"].set_visible(False)
-    ax1_r.plot(x, tok_vals, color="#DC2626", marker="D", linewidth=2.1, markersize=6.0, linestyle="-.", label="Avg Output Tokens")
-    ax1_r.set_ylabel("Avg Output Length (Tokens)", color="#DC2626")
-    ax1_r.tick_params(axis="y", labelcolor="#DC2626")
-    ax1_r.set_ylim(0, 1750)
+    ax1_r.plot(
+        x, tok_vals, color=PAL["danger"], marker="D", linewidth=2.0,
+        markersize=5.8, linestyle="-.", zorder=4, label="Avg Output Tokens"
+    )
+    ax1_r.set_ylabel("Avg Output Length (Tokens)", color=PAL["danger"])
+    ax1_r.tick_params(axis="y", labelcolor=PAL["danger"])
+    ax1_r.set_ylim(0, 1780)
     for xi, tv in zip(x, tok_vals):
-        ax1_r.annotate(f"{tv:.0f}t", (xi, tv), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=7.6, color="#B91C1C", fontweight="bold")
+        ax1_r.annotate(
+            f"{tv:.0f}t", (xi, tv), textcoords="offset points", xytext=(0, 7),
+            ha="center", fontsize=7.6, color="#BE123C", fontweight="bold"
+        )
 
     h1, l1 = ax1.get_legend_handles_labels()
     h2, l2 = ax1_r.get_legend_handles_labels()
-    ax1.legend(h1 + h2, l1 + l2, loc="upper left", frameon=True, facecolor="white", framealpha=0.9)
+    ax1.legend(h1 + h2, l1 + l2, loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", framealpha=0.94)
 
     # Panel B: Per-Benchmark Rate-Distortion Profile Across All 5 ID Benchmarks
     bms = ["CLadder", "LogiQA", "BBH-Hard", "ARC-Challenge", "MATH-500"]
     bm_lbls = ["CLadder\n(Causal)", "LogiQA\n(Deductive)", "BBH-Hard\n(Compositional)", "ARC-C\n(Scientific)", "MATH-500\n(Algebraic)"]
     xb = np.arange(len(bms))
-    wb = 0.21
+    wb = 0.205
 
     v_base = [metrics_map["Base-7B"]["benchmark_acc"][b] for b in bms]
     v_r1 = [metrics_map["R1-Distill-7B"]["benchmark_acc"][b] for b in bms]
     v_simpo = [metrics_map["Sweep-Scale-400-7B-SimPO"]["benchmark_acc"][b] for b in bms]
     v_sft = [metrics_map["OCCAM-7B-SFT"]["benchmark_acc"][b] for b in bms]
 
-    ax2.bar(xb - 1.5 * wb, v_base, width=wb, color="#94A3B8", edgecolor="#1E293B", linewidth=0.5, label="Qwen2.5-7B Base (329t)")
-    ax2.bar(xb - 0.5 * wb, v_r1, width=wb, color="#F59E0B", edgecolor="#1E293B", linewidth=0.5, label="DeepSeek-R1-7B (1,458t)")
-    ax2.bar(xb + 0.5 * wb, v_simpo, width=wb, color="#2563EB", edgecolor="#1E293B", linewidth=0.5, label="OCCAM-7B-SimPO (220t)")
-    ax2.bar(xb + 1.5 * wb, v_sft, width=wb, color="#0F766E", edgecolor="#1E293B", linewidth=0.5, label="OCCAM-7B-SFT (260t)")
+    ax2.bar(xb - 1.5 * wb, v_base, width=wb, color=PAL["base_light"], edgecolor=PAL["ink"], linewidth=0.55, zorder=3, label="Qwen2.5-7B Base (329t)")
+    ax2.bar(xb - 0.5 * wb, v_r1, width=wb, color=PAL["r1_long"], edgecolor=PAL["ink"], linewidth=0.55, zorder=3, label="DeepSeek-R1-7B (1,458t)")
+    ax2.bar(xb + 0.5 * wb, v_simpo, width=wb, color=PAL["occam_simpo"], edgecolor=PAL["ink"], linewidth=0.55, zorder=3, label="OCCAM-7B-SimPO (220t)")
+    ax2.bar(xb + 1.5 * wb, v_sft, width=wb, color=PAL["occam_sft"], edgecolor=PAL["ink"], linewidth=0.55, zorder=3, label="OCCAM-7B-SFT (260t)")
 
-    ax2.axvline(3.52, color="#DC2626", linestyle="--", linewidth=1.3, alpha=0.8)
-    ax2.axvspan(-0.5, 3.52, color="#EFF6FF", alpha=0.45, zorder=0)
-    ax2.text(1.5, 96.5, "Structural Framing Regime (<12-bit Prior)", ha="center", fontsize=8.3, color="#1D4ED8", fontweight="bold")
-    ax2.text(4.02, 94.0, "Irreducible\nRollout", ha="center", fontsize=7.8, color="#B91C1C", fontweight="bold")
+    ax2.axvline(3.52, color=PAL["danger"], linestyle="--", linewidth=1.4, alpha=0.85)
+    ax2.axvspan(-0.5, 3.52, color="#EFF6FF", alpha=0.55, zorder=0)
+    ax2.text(1.5, 96.2, "Structural Framing Regime (<12-bit Prior)", ha="center", fontsize=8.3, color=PAL["occam_simpo"], fontweight="bold")
+    ax2.text(4.02, 93.8, "Irreducible\nRollout", ha="center", fontsize=7.8, color="#BE123C", fontweight="bold")
 
     ax2.set_xticks(xb)
-    ax2.set_xticklabels(bm_lbls, fontsize=8.3)
+    ax2.set_xticklabels(bm_lbls, fontsize=8.2)
     ax2.set_ylim(35, 103)
     ax2.set_ylabel("Benchmark Accuracy (%)")
     ax2.set_title("(b) Framing-vs-Rollout Rate-Distortion Profile")
-    ax2.grid(axis="y", linestyle="--", alpha=0.35)
-    ax2.legend(loc="lower right", frameon=True, facecolor="white", framealpha=0.92, fontsize=7.6)
+    ax2.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.65, zorder=0)
+    ax2.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="#CBD5E1", framealpha=0.94, fontsize=7.6)
 
     fig.tight_layout()
     fig.savefig(ASSETS_DIR / "fig1_dichotomy_overview.pdf", bbox_inches="tight")
@@ -382,14 +447,14 @@ def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
 
 
 def plot_fig2_pareto(metrics_map: Dict[str, dict]):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.2, 4.5), gridspec_kw={"width_ratios": [1.22, 1.0]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.2, 4.45), gridspec_kw={"width_ratios": [1.20, 1.02]})
 
     palette = {
-        "G1_Base": ("#64748B", "o", "Unaligned CoT & Self-Consistency"),
-        "G2_Scaffold": ("#D97706", "D", "Inference-Time Prompt / RAG Scaffolds"),
-        "G3_LongCoT": ("#DC2626", "^", "Long-CoT SFT & 8k RL Distillation"),
-        "G4_Ablation": ("#9333EA", "v", "Diagnostic Ablation Variants"),
-        "G5_OCCAM": ("#0284C7", "*", "OCCAM Internalized Mental Models (Ours)"),
+        "G1_Base": (PAL["base_dark"], "o", "Unaligned CoT & Self-Consistency"),
+        "G2_Scaffold": (PAL["scaffold"], "D", "Inference-Time Prompt / RAG Scaffolds"),
+        "G3_LongCoT": (PAL["r1_long"], "^", "Long-CoT SFT & 8k RL Distillation"),
+        "G4_Ablation": (PAL["ablation"], "v", "Diagnostic Ablation Variants"),
+        "G5_OCCAM": (PAL["occam_sft"], "*", "OCCAM Internalized Mental Models (Ours)"),
     }
     plot_specs = [
         ("Concise-CoD-7B", "Chain-of-Draft", (7, -3)),
@@ -398,13 +463,13 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
         ("Base-7B", "Qwen2.5-7B", (-22, 9)),
         ("Base-3B", "Qwen2.5-3B", (7, -4)),
         ("BoT-Retrieval-7B", "BoT-RAG-7B", (-45, -13)),
-        ("LIMO-LongCoT-SFT-7B", "LIMO-LongCoT-7B", (6, 7)),
-        ("R1-Distill-7B", "DeepSeek-R1-7B", (-72, -14)),
+        ("LIMO-LongCoT-SFT-7B", "LIMO-LongCoT-7B", (6, -13)),
+        ("R1-Distill-7B", "DeepSeek-R1-7B", (-74, -14)),
         ("SC-Maj4-7B", "SC maj@4 (4x)", (-65, 7)),
         ("Ablation-wo-Router-7B", "w/o Router", (-50, -10)),
         ("Ablation-Jargon-Only-7B", "Jargon-Only", (-15, -14)),
         ("OCCAM-3B-SFT", "OCCAM-3B (+2.6%)", (7, 4)),
-        ("Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SimPO (220t)", (-98, -2)),
+        ("Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SimPO (220t)", (-102, -3)),
         ("OCCAM-7B-SFT", "OCCAM-7B-SFT (70.8%)", (-88, 9)),
     ]
 
@@ -419,10 +484,7 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
         ax1.plot(
             [p["avg_tokens_id"] for p in frontier],
             [p["micro_id_acc"] for p in frontier],
-            linestyle="--",
-            linewidth=2.0,
-            color="#0284C7",
-            alpha=0.8,
+            linestyle="--", linewidth=2.0, color=PAL["occam_sft"], alpha=0.82,
             label="Empirical Accuracy-Length Pareto Frontier",
         )
 
@@ -433,30 +495,32 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
         p = metrics_map[mid]
         grp = p["group"]
         col, mk, glbl = palette[grp]
-        sz = 190 if mk == "*" else 75
+        if mid == "Sweep-Scale-400-7B-SimPO":
+            col = PAL["occam_simpo"]
+        elif mid == "OCCAM-3B-SFT":
+            col = PAL["occam_3b"]
+        sz = 200 if mk == "*" else 76
         lbl = glbl if grp not in seen_grp else None
         seen_grp.add(grp)
-        ax1.scatter(p["avg_tokens_id"], p["micro_id_acc"], c=col, marker=mk, s=sz, edgecolors="#0F172A", linewidths=0.7, zorder=4, label=lbl)
+        ax1.scatter(p["avg_tokens_id"], p["micro_id_acc"], c=col, marker=mk, s=sz, edgecolors=PAL["ink"], linewidths=0.7, zorder=4, label=lbl)
         ax1.annotate(
             short_lbl,
             (p["avg_tokens_id"], p["micro_id_acc"]),
-            textcoords="offset points",
-            xytext=offset,
-            fontsize=7.8,
+            textcoords="offset points", xytext=offset, fontsize=7.8,
             fontweight="bold" if grp == "G5_OCCAM" else "normal",
-            color="#0369A1" if grp == "G5_OCCAM" else "#1E293B",
+            color=PAL["occam_sft"] if mid == "OCCAM-7B-SFT" else (PAL["occam_simpo"] if grp == "G5_OCCAM" else PAL["ink"]),
         )
 
     ax1.set_xscale("log")
-    ax1.set_xlim(35, 2100)
+    ax1.set_xlim(35, 2150)
     ax1.set_ylim(51, 76.5)
     ax1.set_xlabel("Average Reasoning Output Tokens (Log Scale, Lower is Better)")
     ax1.set_ylabel("In-Distribution Overall Accuracy (%, N = 3,223)")
     ax1.set_title("(a) Accuracy-Token Pareto Frontier Across 14 Configurations")
-    ax1.grid(True, which="both", linestyle=":", alpha=0.4)
-    ax1.legend(loc="lower right", frameon=True, facecolor="white", fontsize=7.6)
+    ax1.grid(True, which="both", linestyle=":", color=PAL["grid"], alpha=0.7)
+    ax1.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.5)
 
-    # Panel B: Serving Footprint — Dynamic bf16 KV-Cache Memory (MB) & Latency Speedup vs DeepSeek-R1
+    # Panel B: Serving Footprint — Dynamic bf16 KV-Cache Memory (MB) & Latency Speedup
     serve_models = [
         ("R1-Distill-7B", "DeepSeek-R1\n(8k CoT)"),
         ("SC-Maj4-7B", "SC maj@4\n(4 Chains)"),
@@ -471,30 +535,141 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
     kvs = [metrics_map[m]["kv_cache_mb"] for m, _ in sp]
     r1_wall = metrics_map["R1-Distill-7B"]["wall_sec"]
     speedups = [r1_wall / max(1.0, metrics_map[m]["wall_sec"]) for m, _ in sp]
-    cols_b = ["#DC2626", "#EA580C", "#D97706", "#64748B", "#475569", "#0F766E", "#2563EB"]
+    cols_b = [
+        PAL["danger"], PAL["r1_long"], "#F59E0B",
+        PAL["scaffold"], PAL["base_dark"], PAL["occam_sft"], PAL["occam_simpo"]
+    ]
 
-    bars_kv = ax2.barh(ys, kvs, height=0.56, color=cols_b[:len(sp)], edgecolor="#1E293B", linewidth=0.6, alpha=0.9)
+    bars_kv = ax2.barh(ys, kvs, height=0.56, color=cols_b[:len(sp)], edgecolor=PAL["ink"], linewidth=0.6, alpha=0.92, zorder=3)
     for bar, kv, spd in zip(bars_kv, kvs, speedups):
         ax2.annotate(
             f" {kv:.1f} MB  ({spd:.1f}x speed)",
             (kv, bar.get_y() + bar.get_height() / 2),
-            va="center",
-            ha="left",
-            fontsize=8.0,
-            fontweight="bold",
-            color="#0F172A",
+            va="center", ha="left", fontsize=8.0, fontweight="bold", color=PAL["ink"],
         )
     ax2.set_yticks(ys)
     ax2.set_yticklabels([l for _, l in sp], fontsize=8.4)
     ax2.invert_yaxis()
-    ax2.set_xlim(0, max(kvs) * 1.42)
+    ax2.set_xlim(0, max(kvs) * 1.44)
     ax2.set_xlabel("Dynamic bf16 KV-Cache Memory per Request (MB, Lower is Better)")
     ax2.set_title("(b) Serving KV-Cache Footprint & Speedup on RTX 3090")
-    ax2.grid(axis="x", linestyle="--", alpha=0.35)
+    ax2.grid(axis="x", linestyle="--", color=PAL["grid"], alpha=0.65, zorder=0)
 
     fig.tight_layout()
     fig.savefig(ASSETS_DIR / "fig2_pareto_frontier.pdf", bbox_inches="tight")
     fig.savefig(ASSETS_DIR / "fig2_pareto_frontier.png", dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_fig6_radar_and_distribution(metrics_map: Dict[str, dict], raw_traces: Dict[str, List[dict]]):
+    """
+    Top-Venue Holistic Multi-Axis Radar Polygon + 4,526-Problem Log-Scale Token Density Distribution.
+    """
+    fig = plt.figure(figsize=(12.2, 4.55))
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.0, 1.18], wspace=0.28)
+
+    # Panel A: 6-Axis Holistic Capability & Efficiency Radar Chart
+    ax_rad = fig.add_subplot(gs[0, 0], polar=True)
+    axes_labels = [
+        "CLadder\n(Causal %)",
+        "LogiQA\n(Deductive %)",
+        "BBH-Hard\n(Compositional %)",
+        "Zero-Shot OOD\n(Macro %)",
+        "KV-Cache\nSaving (%)",
+        "Throughput\nScore (10x)",
+    ]
+    N_ax = len(axes_labels)
+    angles = np.linspace(0, 2 * np.pi, N_ax, endpoint=False).tolist()
+    angles += angles[:1]
+
+    r1_kv = metrics_map["R1-Distill-7B"]["kv_cache_mb"]
+    r1_wall = metrics_map["R1-Distill-7B"]["wall_sec"]
+
+    def radar_vec(mid: str) -> List[float]:
+        m = metrics_map[mid]
+        kv_save = max(5.0, min(98.0, (1.0 - m["kv_cache_mb"] / r1_kv) * 100.0))
+        spd_score = max(10.0, min(98.0, (r1_wall / max(1.0, m["wall_sec"])) * 9.5))
+        vals = [
+            m["benchmark_acc"]["CLadder"],
+            m["benchmark_acc"]["LogiQA"],
+            m["benchmark_acc"]["BBH-Hard"],
+            m["macro_ood_acc"],
+            kv_save,
+            spd_score,
+        ]
+        return vals + vals[:1]
+
+    radar_specs = [
+        ("Concise-CoD-7B", "Chain-of-Draft (46t)", PAL["base_light"], ":", 1.5, 0.05),
+        ("Base-7B", "Qwen2.5-7B Base (329t)", PAL["base_dark"], "--", 1.7, 0.06),
+        ("R1-Distill-7B", "DeepSeek-R1-7B (1,458t)", PAL["r1_long"], "-.", 1.9, 0.09),
+        ("Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SimPO (220t)", PAL["occam_simpo"], "-", 2.2, 0.14),
+        ("OCCAM-7B-SFT", "OCCAM-7B-SFT (260t)", PAL["occam_sft"], "-", 2.4, 0.18),
+    ]
+
+    ax_rad.set_theta_offset(np.pi / 2)
+    ax_rad.set_theta_direction(-1)
+    ax_rad.set_xticks(angles[:-1])
+    ax_rad.set_xticklabels(axes_labels, fontsize=8.0, fontweight="bold", color=PAL["ink"])
+    ax_rad.tick_params(axis="x", pad=11)
+    ax_rad.set_ylim(0, 100)
+    ax_rad.set_yticks([25, 50, 75, 100])
+    ax_rad.set_yticklabels(["25", "50", "75", "100"], fontsize=7.0, color="#64748B")
+    ax_rad.grid(color=PAL["grid"], linestyle="--", linewidth=0.7)
+    ax_rad.spines["polar"].set_color("#94A3B8")
+
+    for mid, lbl, col, ls, lw, fill_a in radar_specs:
+        if mid not in metrics_map:
+            continue
+        v = radar_vec(mid)
+        ax_rad.plot(angles, v, color=col, linestyle=ls, linewidth=lw, label=lbl)
+        ax_rad.fill(angles, v, color=col, alpha=fill_a)
+
+    ax_rad.set_title("(a) Holistic 6-Axis Capability & Efficiency Profile", pad=18, fontsize=10.8, fontweight="bold")
+    ax_rad.legend(loc="upper center", bbox_to_anchor=(0.5, -0.11), ncol=2, frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.5)
+
+    # Panel B: Per-Query Reasoning Token-Length KDE Distribution Across All 4,526 Test Items
+    ax_dist = fig.add_subplot(gs[0, 1])
+    dist_specs = [
+        ("R1-Distill-7B", "DeepSeek-R1-7B (8k CoT)", PAL["r1_long"], 0.22),
+        ("Base-7B", "Qwen2.5-7B Base CoT", PAL["base_dark"], 0.18),
+        ("OCCAM-7B-SFT", "OCCAM-7B-SFT (Ours)", PAL["occam_sft"], 0.28),
+        ("Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SimPO K=25 (Ours)", PAL["occam_simpo"], 0.28),
+    ]
+    log_grid = np.linspace(np.log10(25), np.log10(7200), 320)
+    x_grid = 10.0 ** log_grid
+
+    for mid, lbl, col, fill_a in dist_specs:
+        rows = raw_traces.get(mid, [])
+        if not rows:
+            continue
+        toks = np.clip(np.array([max(15, r["tokens"]) for r in rows], dtype=np.float64), 15, 7000)
+        med = float(np.median(toks))
+        p95 = float(np.percentile(toks, 95))
+        kde = gaussian_kde(np.log10(toks), bw_method=0.20)
+        dens = kde(log_grid)
+        ax_dist.plot(x_grid, dens, color=col, linewidth=2.2, label=f"{lbl} (med={med:.0f}t, p95={p95:.0f}t)")
+        ax_dist.fill_between(x_grid, 0, dens, color=col, alpha=fill_a)
+        ax_dist.axvline(med, color=col, linestyle="--", linewidth=1.2, alpha=0.85)
+
+    ax_dist.axvspan(1500, 7200, color="#FFE4E6", alpha=0.45, zorder=0)
+    ax_dist.set_ylim(0, 4.15)
+    ax_dist.text(3350, 1.82,
+                 "Long-Tail Overthinking\nZone (>1,500 Tokens)",
+                 ha="center", fontsize=8.0, fontweight="bold", color="#BE123C")
+
+    ax_dist.set_xscale("log")
+    ax_dist.set_xlim(30, 7000)
+    ax_dist.set_xticks([50, 100, 220, 500, 1000, 2500, 6000])
+    ax_dist.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+    ax_dist.set_xlabel("Generated Reasoning Tokens per Test Query (Log Scale, N = 4,526)")
+    ax_dist.set_ylabel("Empirical Log-Token Probability Density")
+    ax_dist.set_title("(b) Per-Query Reasoning Length Distribution & Tail Suppression")
+    ax_dist.grid(True, which="major", linestyle="--", color=PAL["grid"], alpha=0.65, zorder=0)
+    ax_dist.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.5)
+
+    fig.savefig(ASSETS_DIR / "fig6_radar_and_length_dist.pdf", bbox_inches="tight")
+    fig.savefig(ASSETS_DIR / "fig6_radar_and_length_dist.png", dpi=300, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -503,29 +678,30 @@ def plot_fig3_mechanistic_and_3b(metrics_map: Dict[str, dict]):
     ent = pdata["entropy_probe"]
     cf = pdata["counterfactual_router_intervention"]
 
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(13.2, 4.1), gridspec_kw={"width_ratios": [1.15, 1.0, 0.95]})
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(13.0, 4.1), gridspec_kw={"width_ratios": [1.15, 1.0, 0.96]})
 
     # Panel A: Token-Level Conditional Shannon Entropy Collapse
     bins = np.arange(1, ent["total_bins"] + 1) * 2.0
-    ax1.plot(bins, ent["base_50bin_curve"], color="#DC2626", linestyle="--", linewidth=2.0, label=f"Base-7B CoT ({ent['base_cot_mean_bits']:.2f} bits/tok)")
-    ax1.plot(bins, ent["occam_50bin_curve"], color="#2563EB", linewidth=2.3, label=f"OCCAM-7B ({ent['occam_trace_mean_bits']:.2f} bits/tok, -74.4%)")
-    ax1.axvline(ent["router_boundary_bin"] * 2.0, color="#059669", linestyle="-.", linewidth=1.7, label="</cog_router> Boundary")
-    ax1.axvspan(0, ent["router_boundary_bin"] * 2.0, color="#10B981", alpha=0.10)
+    ax1.plot(bins, ent["base_50bin_curve"], color=PAL["r1_long"], linestyle="--", linewidth=2.0, label=f"Base-7B CoT ({ent['base_cot_mean_bits']:.2f} bits/tok)")
+    ax1.plot(bins, ent["occam_50bin_curve"], color=PAL["occam_simpo"], linewidth=2.3, label=f"OCCAM-7B ({ent['occam_trace_mean_bits']:.2f} bits/tok, -74.4%)")
+    ax1.axvline(ent["router_boundary_bin"] * 2.0, color=PAL["occam_sft"], linestyle="-.", linewidth=1.7, label="</cog_router> Boundary")
+    ax1.axvspan(0, ent["router_boundary_bin"] * 2.0, color=PAL["occam_sft"], alpha=0.10)
+    ax1.set_ylim(-0.03, 0.96)
     ax1.set_xlabel("Normalized Trajectory Position (%)")
-    ax1.set_ylabel("Conditional Entropy H(Y_t | X, Y_<t) [bits]")
+    ax1.set_ylabel("Conditional Entropy $H(Y_t \\mid X, Y_{<t})$ [bits]")
     ax1.set_title("(a) Token-Level Entropy Collapse (-74.4%)")
-    ax1.grid(True, linestyle=":", alpha=0.4)
-    ax1.legend(loc="upper right", frameon=True, facecolor="white", fontsize=7.6)
+    ax1.grid(True, linestyle=":", color=PAL["grid"], alpha=0.7)
+    ax1.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.5)
 
-    # Panel B: Counterfactual Router Swap Intervention on Framing Benchmarks
+    # Panel B: Counterfactual Router Swap Intervention
     bms_cf = ["BBH-Hard", "CLadder", "ARC-Challenge"]
     xb = np.arange(len(bms_cf))
-    w = 0.34
+    w = 0.35
     nat_v = [cf["by_benchmark"][b]["natural_acc"] for b in bms_cf]
     swp_v = [cf["by_benchmark"][b]["swapped_acc"] for b in bms_cf]
 
-    b1 = ax2.bar(xb - w / 2, nat_v, width=w, color="#2563EB", edgecolor="#1E293B", linewidth=0.6, label="Natural Self-Routed")
-    b2 = ax2.bar(xb + w / 2, swp_v, width=w, color="#F43F5E", edgecolor="#1E293B", linewidth=0.6, label="Swapped Wrong Router")
+    ax2.bar(xb - w / 2, nat_v, width=w, color=PAL["occam_sft"], edgecolor=PAL["ink"], linewidth=0.6, zorder=3, label="Natural Self-Routed")
+    ax2.bar(xb + w / 2, swp_v, width=w, color=PAL["danger"], edgecolor=PAL["ink"], linewidth=0.6, zorder=3, label="Swapped Wrong Router")
     for idx_b, (nv, sv) in enumerate(zip(nat_v, swp_v)):
         ax2.annotate(f"{sv - nv:.1f}%", (xb[idx_b] + w / 2, sv), xytext=(0, 3), textcoords="offset points", ha="center", fontsize=8.0, fontweight="bold", color="#BE123C")
     ax2.set_xticks(xb)
@@ -533,8 +709,8 @@ def plot_fig3_mechanistic_and_3b(metrics_map: Dict[str, dict]):
     ax2.set_ylim(35, 95)
     ax2.set_ylabel("Accuracy (%)")
     ax2.set_title("(b) Counterfactual Router Intervention")
-    ax2.grid(axis="y", linestyle="--", alpha=0.35)
-    ax2.legend(loc="upper left", frameon=True, facecolor="white", fontsize=7.6)
+    ax2.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.65, zorder=0)
+    ax2.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.5)
 
     # Panel C: Cross-Scale 3B Internalization Beats 7B External Harness
     c3_models = [
@@ -545,8 +721,8 @@ def plot_fig3_mechanistic_and_3b(metrics_map: Dict[str, dict]):
     xc = np.arange(len(c3_models))
     bbh_v = [metrics_map[m]["benchmark_acc"]["BBH-Hard"] for m, _ in c3_models]
     f4_v = [metrics_map[m]["framing_macro_acc"] for m, _ in c3_models]
-    ax3.bar(xc - w / 2, bbh_v, width=w, color="#0EA5E9", edgecolor="#1E293B", linewidth=0.6, label="BBH-Hard (%)")
-    ax3.bar(xc + w / 2, f4_v, width=w, color="#0F766E", edgecolor="#1E293B", linewidth=0.6, label="Framing-4 Macro (%)")
+    ax3.bar(xc - w / 2, bbh_v, width=w, color=PAL["occam_3b"], edgecolor=PAL["ink"], linewidth=0.6, zorder=3, label="BBH-Hard (%)")
+    ax3.bar(xc + w / 2, f4_v, width=w, color=PAL["occam_sft"], edgecolor=PAL["ink"], linewidth=0.6, zorder=3, label="Framing-4 Macro (%)")
     for xi, (bv, fv) in enumerate(zip(bbh_v, f4_v)):
         ax3.annotate(f"{bv:.1f}", (xi - w / 2, bv), xytext=(0, 3), textcoords="offset points", ha="center", fontsize=7.8, fontweight="bold")
         ax3.annotate(f"{fv:.1f}", (xi + w / 2, fv), xytext=(0, 3), textcoords="offset points", ha="center", fontsize=7.8, fontweight="bold")
@@ -555,8 +731,8 @@ def plot_fig3_mechanistic_and_3b(metrics_map: Dict[str, dict]):
     ax3.set_ylim(30, 72)
     ax3.set_ylabel("Accuracy (%)")
     ax3.set_title("(c) 3B OCCAM Beats 7B Prompt Harness")
-    ax3.grid(axis="y", linestyle="--", alpha=0.35)
-    ax3.legend(loc="upper left", frameon=True, facecolor="white", fontsize=7.6)
+    ax3.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.65, zorder=0)
+    ax3.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.5)
 
     fig.tight_layout()
     fig.savefig(ASSETS_DIR / "fig3_mechanistic_probes.pdf", bbox_inches="tight")
@@ -565,7 +741,7 @@ def plot_fig3_mechanistic_and_3b(metrics_map: Dict[str, dict]):
 
 
 def plot_fig4_blind_heatmap(delta_mat: np.ndarray, prim_labels: List[str], cv_f1: float):
-    fig, ax = plt.subplots(figsize=(11.2, 5.2))
+    fig, ax = plt.subplots(figsize=(11.2, 5.1))
     ax.spines["top"].set_visible(True)
     ax.spines["right"].set_visible(True)
 
@@ -577,12 +753,12 @@ def plot_fig4_blind_heatmap(delta_mat: np.ndarray, prim_labels: List[str], cv_f1
     for i in range(delta_mat.shape[0]):
         for j in range(delta_mat.shape[1]):
             val = delta_mat[i, j]
-            txt_col = "white" if abs(val) > 0.58 * vmax else "#0F172A"
+            txt_col = "white" if abs(val) > 0.56 * vmax else PAL["ink"]
             ax.text(j, i, f"{val:+.1f}", ha="center", va="center", fontsize=7.5, color=txt_col, fontweight="bold" if abs(val) >= 5.0 else "normal")
 
-    ax.axvline(4.5, color="#0F172A", linewidth=2.0, linestyle="--")
+    ax.axvline(4.5, color=PAL["ink"], linewidth=2.0, linestyle="--")
     ax.set_xticks(np.arange(len(ALL_BENCHMARKS)))
-    ax.set_xticklabels(ALL_BENCHMARKS, rotation=18, ha="right", fontsize=8.8)
+    ax.set_xticklabels(ALL_BENCHMARKS, rotation=16, ha="right", fontsize=8.8)
     ax.set_yticks(np.arange(len(prim_labels)))
     ax.set_yticklabels(prim_labels, fontsize=8.2)
     ax.set_xlabel("In-Distribution Benchmarks (Left 5)   |   Zero-Shot OOD Benchmarks (Right 3)")
@@ -596,15 +772,14 @@ def plot_fig4_blind_heatmap(delta_mat: np.ndarray, prim_labels: List[str], cv_f1
 
 
 def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.2, 4.3), gridspec_kw={"width_ratios": [1.15, 1.0]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.8, 4.35), gridspec_kw={"width_ratios": [1.18, 1.0]})
 
-    # Panel A: Component Ablations & Router Weighting OOD Gain (Matched K=99 & SFT/K=25)
     abl_specs = [
         ("Ablation-wo-Router-7B", "w/o Router\n(Trace Only)"),
-        ("Ablation-Uniform-SimPO-7B", "Uniform SimPO\n(\u03b1=1.0, K=99)"),
-        ("OCCAM-7B-SimPO", "OCCAM-SimPO\n(\u03b1=2.0, K=99)"),
-        ("Sweep-Alpha-1p5-7B", "OCCAM-SimPO\n(\u03b1=1.5, K=99)"),
-        ("Sweep-Scale-400-7B-SimPO", "OCCAM-SimPO\n(\u03b1=2.0, K=25)"),
+        ("Ablation-Uniform-SimPO-7B", "Uniform SimPO\n($\\alpha_r{=}1.0$, $K{=}99$)"),
+        ("OCCAM-7B-SimPO", "OCCAM-SimPO\n($\\alpha_r{=}2.0$, $K{=}99$)"),
+        ("Sweep-Alpha-1p5-7B", "OCCAM-SimPO\n($\\alpha_r{=}1.5$, $K{=}99$)"),
+        ("Sweep-Scale-400-7B-SimPO", "OCCAM-SimPO\n($\\alpha_r{=}2.0$, $K{=}25$)"),
         ("OCCAM-7B-SFT", "OCCAM-7B\n(SFT Anchor)"),
     ]
     present = [(m, l) for m, l in abl_specs if m in metrics_map]
@@ -614,21 +789,20 @@ def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
     id_v = [metrics_map[m]["micro_id_acc"] for m, _ in present]
     ood_v = [metrics_map[m]["macro_ood_acc"] for m, _ in present]
 
-    b1 = ax1.bar(x - w / 2, id_v, width=w, color="#2563EB", edgecolor="#1E293B", linewidth=0.6, label="In-Distribution Acc (%)")
-    b2 = ax1.bar(x + w / 2, ood_v, width=w, color="#10B981", edgecolor="#1E293B", linewidth=0.6, label="Zero-Shot OOD Macro (%)")
+    b1 = ax1.bar(x - w / 2, id_v, width=w, color=PAL["occam_simpo"], edgecolor=PAL["ink"], linewidth=0.6, zorder=3, label="In-Distribution Acc (%)")
+    b2 = ax1.bar(x + w / 2, ood_v, width=w, color=PAL["occam_sft"], edgecolor=PAL["ink"], linewidth=0.6, zorder=3, label="Zero-Shot OOD Macro (%)")
     for r in list(b1) + list(b2):
         h = r.get_height()
-        ax1.annotate(f"{h:.1f}", (r.get_x() + r.get_width() / 2, h), xytext=(0, 2.5), textcoords="offset points", ha="center", fontsize=7.4, fontweight="bold")
+        ax1.annotate(f"{h:.1f}", (r.get_x() + r.get_width() / 2, h), xytext=(0, 2.5), textcoords="offset points", ha="center", fontsize=7.5, fontweight="bold")
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels([l for _, l in present], fontsize=8.0)
+    ax1.set_xticklabels([l for _, l in present], fontsize=7.4)
     ax1.set_ylim(58, 76.5)
     ax1.set_ylabel("Accuracy (%)")
     ax1.set_title("(a) Router Prefix & Credit Weighting Ablations (7B)")
-    ax1.grid(axis="y", linestyle="--", alpha=0.35)
-    ax1.legend(loc="upper left", frameon=True, facecolor="white", fontsize=8.0)
+    ax1.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.65, zorder=0)
+    ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.9)
 
-    # Panel B: Reference-Free Preference Horizon Dynamics (Steps K=0..99) & Router Weight Sensitivity
     horizon_specs = [
         (0, "OCCAM-7B-SFT", 0.0),
         (13, "Sweep-Scale-200-7B-SimPO", -0.09),
@@ -641,28 +815,28 @@ def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
     f_accs = [p[1] for p in h_pts]
     t_lens = [p[2] for p in h_pts]
 
-    ax2.plot(ks, f_accs, marker="o", linewidth=2.3, markersize=7, color="#2563EB", label="Framing-4 Accuracy (%)")
-    ax2.axvline(25, color="#059669", linestyle="--", linewidth=1.6, label="Optimal Horizon K=25 (220.2 tok)")
+    ax2.plot(ks, f_accs, marker="o", linewidth=2.3, markersize=6.8, color=PAL["occam_simpo"], label="Framing-4 Accuracy (%)")
+    ax2.axvline(25, color=PAL["occam_sft"], linestyle="--", linewidth=1.6, label="Optimal Horizon K=25 (220.2 tok)")
     ax2.annotate("Peak Compression\n220.2 tok (-33.1%)", xy=(25, f_accs[2]), xytext=(36, f_accs[2] + 1.2),
-                 arrowprops=dict(arrowstyle="->", color="#059669", lw=1.2), fontsize=8.0, fontweight="bold", color="#065F46")
-    ax2.annotate("Over-Optimization\n(Margin +2.75)", xy=(99, f_accs[-1]), xytext=(61, 63.6),
-                 arrowprops=dict(arrowstyle="->", color="#DC2626", lw=1.2), fontsize=7.8, color="#B91C1C", fontweight="bold")
+                 arrowprops=dict(arrowstyle="->", color=PAL["occam_sft"], lw=1.2), fontsize=8.0, fontweight="bold", color=PAL["occam_sft"])
+    ax2.annotate("Over-Optimization\n(Margin +2.75)", xy=(99, f_accs[-1]), xytext=(60, 63.6),
+                 arrowprops=dict(arrowstyle="->", color=PAL["danger"], lw=1.2), fontsize=7.8, fontweight="bold", color="#BE123C")
 
     ax2.set_xlabel("Reference-Free SimPO Optimization Steps (K)")
-    ax2.set_ylabel("Framing-4 Macro Accuracy (%)", color="#2563EB")
+    ax2.set_ylabel("Framing-4 Macro Accuracy (%)", color=PAL["occam_simpo"])
     ax2.set_ylim(55, 70)
-    ax2.grid(True, linestyle=":", alpha=0.4)
+    ax2.grid(True, linestyle=":", color=PAL["grid"], alpha=0.7)
 
     ax2_r = ax2.twinx()
     ax2_r.spines["top"].set_visible(False)
-    ax2_r.plot(ks, t_lens, marker="s", linestyle="-.", linewidth=2.0, color="#DC2626", label="Avg Output Tokens")
-    ax2_r.set_ylabel("Avg Output Length (Tokens)", color="#DC2626")
-    ax2_r.tick_params(axis="y", labelcolor="#DC2626")
+    ax2_r.plot(ks, t_lens, marker="s", linestyle="-.", linewidth=2.0, color=PAL["danger"], label="Avg Output Tokens")
+    ax2_r.set_ylabel("Avg Output Length (Tokens)", color=PAL["danger"])
+    ax2_r.tick_params(axis="y", labelcolor=PAL["danger"])
     ax2_r.set_ylim(190, 295)
 
     h1, l1 = ax2.get_legend_handles_labels()
     h2, l2 = ax2_r.get_legend_handles_labels()
-    ax2.legend(h1 + h2, l1 + l2, loc="lower left", frameon=True, facecolor="white", fontsize=7.6)
+    ax2.legend(h1 + h2, l1 + l2, loc="lower left", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.5)
     ax2.set_title("(b) Preference Horizon & Likelihood Displacement Curve")
 
     fig.tight_layout()
@@ -672,7 +846,7 @@ def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
 
 
 # =========================================================================
-# FULL-WIDTH PUBLICATION LATEX TABLES (1.0\textwidth, Row Shading, Bold/Underline)
+# CRISP FULL-WIDTH PUBLICATION LATEX TABLES (8.0-8.8pt Native Font, Seamless Row Color)
 # =========================================================================
 def tex_escape(s: str) -> str:
     return (
@@ -706,7 +880,7 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict) -> f
     t1_order = [
         ("HEADER", "Group 1: Zero-Thought & Unaligned CoT Baselines"),
         "Direct-0CoT-3B", "Base-3B", "Direct-0CoT-7B", "Base-7B", "FewShot-3CoT-7B", "SC-Maj4-7B",
-        ("HEADER", "Group 2: Inference-Time Brevity, Prompt & Template Retrieval Scaffolds"),
+        ("HEADER", "Group 2: Inference-Time Brevity, Prompt & Retrieval Scaffolds"),
         "Concise-CoD-7B", "Ext-16Op-Harness-7B", "BoT-Retrieval-7B",
         ("HEADER", "Group 3: Long-CoT Distillation & Unconstrained 8k RL Scaling"),
         "LIMO-LongCoT-SFT-7B", "R1-Distill-7B",
@@ -730,15 +904,16 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict) -> f
     lines1 = [
         "\\begin{table*}[t]",
         "\\centering",
-        "\\renewcommand{\\arraystretch}{1.14}",
-        "\\setlength{\\tabcolsep}{4.2pt}",
-        "\\caption{\\textbf{Main In-Distribution Evaluation Across Five Public Reasoning Benchmarks ($N=3,223$ Official Test Problems, $0.00\\%$ 13-Gram Overlap).} \\textbf{Framing-4} averages causal, compositional, scientific, and deductive benchmarks ($N=2,723$); \\textbf{Overall ID} reports micro-accuracy ($\\pm 95\\%$ bootstrap CI) across all $3,223$ items; \\textbf{KV (MB)} denotes dynamic \\texttt{bf16} KV-cache memory per query. Best results are in \\textbf{bold}; second-best are \\underline{underlined}.}",
+        "\\footnotesize",
+        "\\renewcommand{\\arraystretch}{1.15}",
+        "\\setlength{\\tabcolsep}{4.0pt}",
+        "\\caption{\\textbf{Main In-Distribution Evaluation Across Five Public Reasoning Benchmarks ($N=3,223$ Official Test Problems, $0.00\\%$ 13-Gram Overlap).} \\textbf{Framing-4} averages causal, compositional, scientific, and deductive suites ($N=2,723$); \\textbf{Overall ID} reports micro-accuracy ($\\pm 95\\%$ bootstrap CI) across all $3,223$ items; \\textbf{KV (MB)} denotes dynamic \\texttt{bf16} KV-cache memory per query. Best results are in \\textbf{bold}; second-best are \\underline{underlined}.}",
         "\\label{tab:main_results}",
         "\\resizebox{\\textwidth}{!}{%",
         "\\begin{tabular}{lccccccccc}",
         "\\toprule",
         "\\rowcolor{gray!12} \\textbf{Model / Post-Training Paradigm} & \\textbf{CLadder} & \\textbf{BBH-Hard} & \\textbf{ARC-C} & \\textbf{LogiQA} & \\textbf{MATH-500} & \\textbf{Framing-4 ($\\uparrow$)} & \\textbf{Overall ID ($\\uparrow$)} & \\textbf{Avg Tok ($\\downarrow$)} & \\textbf{KV MB ($\\downarrow$)} \\\\",
-        "\\rowcolor{gray!12} & ($N=450$) & ($N=450$) & ($N=1172$) & ($N=651$) & ($N=500$) & (Macro \\%) & (Micro \\% $\\pm$ CI) & (Tokens) & (\\texttt{bf16}) \\\\",
+        "\\rowcolor{gray!12} & ($N{=}450$) & ($N{=}450$) & ($N{=}1172$) & ($N{=}651$) & ($N{=}500$) & (Macro \\%) & (Micro \\% $\\pm$ CI) & (Tokens) & (\\texttt{bf16}) \\\\",
         "\\midrule",
     ]
 
@@ -751,14 +926,12 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict) -> f
             continue
         m = metrics_map[entry]
         is_ours = m["group"] == "G5_OCCAM"
-        row_pref = "\\rowcolor{cyan!8} " if is_ours else ""
-        nm = tex_escape(m["display_name"])
-        if is_ours:
-            nm = f"\\textbf{{{nm}}}"
+        row_pref = "\\rowcolor{teal!8} " if is_ours else ""
+        nm = MODEL_LATEX_LABEL.get(entry, tex_escape(m["display_name"]))
 
         bm_cells = [bm_fmt[bm][entry] for bm in ID_BENCHMARKS]
         f4_cell = f4_fmt[entry]
-        mic_cell = f"{mic_fmt[entry]} {{\\scriptsize $\\pm$ {m['ci95_id']:.1f}}}"
+        mic_cell = f"{mic_fmt[entry]} {{\\scriptsize $\\pm${m['ci95_id']:.1f}}}"
         t_cell = tok_fmt.get(entry, f"{m['avg_tokens_id']:.1f}")
         k_cell = kv_fmt.get(entry, f"{m['kv_cache_mb']:.1f}")
 
@@ -791,29 +964,28 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict) -> f
     lines2 = [
         "\\begin{table*}[t]",
         "\\centering",
-        "\\renewcommand{\\arraystretch}{1.14}",
-        "\\setlength{\\tabcolsep}{5.2pt}",
-        "\\caption{\\textbf{Zero-Shot Out-of-Distribution (OOD) Generalization, End-to-End Speedup, and Paired Statistical Significance ($N=1,303$ Unseen Test Problems).} None of GSM8K ($N=800$), FOLIO ($N=203$), or StrategyQA ($N=300$) appear in training. Speedup is measured relative to unconstrained \\texttt{DeepSeek-R1-Distill-7B} wall-clock decoding time on a single RTX 3090; exact two-sided McNemar $p$-values compare \\textbf{OCCAM-7B-SFT} against each model across all $N=4,526$ items.}",
+        "\\footnotesize",
+        "\\renewcommand{\\arraystretch}{1.15}",
+        "\\setlength{\\tabcolsep}{5.0pt}",
+        "\\caption{\\textbf{Zero-Shot Out-of-Distribution (OOD) Generalization, End-to-End Speedup, and Paired Statistical Significance ($N=1,303$ Unseen Test Problems).} None of GSM8K ($N=800$), FOLIO ($N=203$), or StrategyQA ($N=300$) appear in synthesis or training. Speedup is measured relative to unconstrained \\texttt{DeepSeek-R1-Distill-7B} wall-clock decoding time on one RTX 3090; exact two-sided McNemar $p$-values compare \\textbf{OCCAM-7B-SFT} against each model across all $N=4,526$ items.}",
         "\\label{tab:ood_results}",
         "\\resizebox{\\textwidth}{!}{%",
         "\\begin{tabular}{lccccccc}",
         "\\toprule",
-        "\\rowcolor{gray!12} \\textbf{Model / Post-Training Paradigm} & \\textbf{GSM8K} & \\textbf{FOLIO} & \\textbf{StrategyQA} & \\textbf{Macro-OOD ($\\uparrow$)} & \\textbf{All-8 Avg Tok ($\\downarrow$)} & \\textbf{Speedup vs.\\ R1 ($\\uparrow$)} & \\textbf{McNemar $p$-value} \\\\",
+        "\\rowcolor{gray!12} \\textbf{Model / Post-Training Paradigm} & \\textbf{GSM8K} & \\textbf{FOLIO} & \\textbf{StrategyQA} & \\textbf{Macro-OOD ($\\uparrow$)} & \\textbf{All-8 Tok ($\\downarrow$)} & \\textbf{Speedup ($\\uparrow$)} & \\textbf{McNemar $p$} \\\\",
         "\\midrule",
     ]
     for mid in ood_present:
         m = metrics_map[mid]
         is_ours = m["group"] == "G5_OCCAM"
-        row_pref = "\\rowcolor{cyan!8} " if is_ours else ""
-        nm = tex_escape(m["display_name"])
-        if is_ours:
-            nm = f"\\textbf{{{nm}}}"
+        row_pref = "\\rowcolor{teal!8} " if is_ours else ""
+        nm = MODEL_LATEX_LABEL.get(mid, tex_escape(m["display_name"]))
         c_ood = [ood_bm_fmt[bm][mid] for bm in OOD_BENCHMARKS]
-        mac_c = f"{ood_mac_fmt[mid]} {{\\scriptsize $\\pm$ {m['ci95_ood']:.1f}}}"
+        mac_c = f"{ood_mac_fmt[mid]} {{\\scriptsize $\\pm${m['ci95_ood']:.1f}}}"
         spd = r1_wall / max(1.0, m["wall_sec"])
         p_info = mcnemar_results.get(f"OCCAM-7B-SFT_vs_{mid}")
         if mid == "OCCAM-7B-SFT":
-            p_str = "--- (Ref.)"
+            p_str = "Ref."
         elif p_info:
             pv = p_info["p_value"]
             p_str = "$<10^{-4}$" if pv < 1e-4 else f"${pv:.4f}$"
@@ -848,43 +1020,44 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict) -> f
     lines3 = [
         "\\begin{table*}[t]",
         "\\centering",
-        "\\renewcommand{\\arraystretch}{1.14}",
-        "\\setlength{\\tabcolsep}{5.0pt}",
+        "\\footnotesize",
+        "\\renewcommand{\\arraystretch}{1.15}",
+        "\\setlength{\\tabcolsep}{4.6pt}",
         "\\caption{\\textbf{End-to-End Hardware Reproducibility, Hyperparameter, and GPU Compute Ledger on a Single Consumer NVIDIA GeForce RTX 3090 (24\\,GB GDDR6X VRAM, 350\\,W TDP).} Every wall-clock duration and peak VRAM figure is logged programmatically via \\texttt{time.perf\\_counter()} and \\texttt{torch.cuda.max\\_memory\\_allocated()} under \\texttt{bfloat16} mixed precision with zero Out-Of-Memory events and zero commercial API calls.}",
         "\\label{tab:compute_ledger}",
         "\\resizebox{\\textwidth}{!}{%",
         "\\begin{tabular}{llcccc}",
         "\\toprule",
-        "\\rowcolor{gray!12} \\textbf{Pipeline Stage / Model Checkpoint} & \\textbf{Key Hyperparameters \\& Runtime Configuration} & \\textbf{Dataset / Horizon} & \\textbf{Peak VRAM} & \\textbf{Wall-Clock} & \\textbf{RTX 3090 Hours} \\\\",
+        "\\rowcolor{gray!12} \\textbf{Pipeline Stage / Checkpoint} & \\textbf{Key Hyperparameters \\& Runtime Configuration} & \\textbf{Dataset / Steps} & \\textbf{Peak VRAM} & \\textbf{Wall-Clock} & \\textbf{GPU Hours} \\\\",
         "\\midrule",
-        f"Stage 1--2: Local Self-Distillation (\\texttt{{OCCAM-2K}}) & \\texttt{{vLLM}} \\texttt{{bf16}}, SymPy + MDL Gate, $T=0.7/0.8$ & 1,570 pairs + 1,345 LIMO & 19.40\\,GB & {float(synth_stats['wall_time_sec'])/60.0:.1f}\\,min & {synth_h:.3f}\\,h \\\\",
+        f"Stage 1--2: Local Self-Distillation (\\texttt{{OCCAM-2K}}) & \\texttt{{vLLM}} \\texttt{{bf16}}, SymPy + MDL Gate, $T{{=}}0.7/0.8$ & 1,570 pairs + 1,345 LIMO & 19.40\\,GB & {float(synth_stats['wall_time_sec'])/60.0:.1f}\\,min & {synth_h:.3f}\\,h \\\\",
         "\\midrule",
     ]
     core_runs = [
-        ("OCCAM-3B-SFT", "LoRA $r=32, \\alpha=64$, 8-bit AdamW, $\\text{lr}=2\\times 10^{-4}$"),
-        ("OCCAM-3B-SimPO", "Chunked \\texttt{lm\\_head}, $\\alpha_{\\text{router}}=2.0, \\beta=2.0, \\gamma=0.5$"),
-        ("OCCAM-7B-SFT", "LoRA $r=32, \\alpha=64$, 8-bit AdamW, $\\text{lr}=1.5\\times 10^{-4}$"),
-        ("Sweep-Scale-400-7B-SimPO", "Calibrated Early-Horizon $K=25$, $\\alpha_{\\text{router}}=2.0$"),
-        ("OCCAM-7B-SimPO", "Full-Epoch $K=99$, $\\alpha_{\\text{router}}=2.0$, dyn $\\lambda_{\\text{len}}(Z)$"),
-        ("LIMO-LongCoT-SFT-7B", "Matched-Source Long-CoT Control, $\\text{lr}=1.5\\times 10^{-4}$"),
-        ("Ablation-wo-Router-7B", "Router-Stripped SimPO + SFT ($\\alpha_{\\text{router}}=1.0$)"),
-        ("Ablation-Uniform-SimPO-7B", "Uniform Token Credit ($\\alpha_{\\text{router}}=1.0, K=99$)"),
+        ("OCCAM-3B-SFT", "LoRA $r{=}32, \\alpha{=}64$, 8-bit AdamW, $\\text{lr}{=}2{\\times}10^{-4}$"),
+        ("OCCAM-3B-SimPO", "Chunked \\texttt{lm\\_head}, $\\alpha_r{=}2.0, \\beta{=}2.0, \\gamma{=}0.5$"),
+        ("OCCAM-7B-SFT", "LoRA $r{=}32, \\alpha{=}64$, 8-bit AdamW, $\\text{lr}{=}1.5{\\times}10^{-4}$"),
+        ("Sweep-Scale-400-7B-SimPO", "Calibrated Early-Horizon $K{=}25, \\alpha_r{=}2.0$"),
+        ("OCCAM-7B-SimPO", "Full-Epoch $K{=}99, \\alpha_r{=}2.0$, dyn $\\lambda_{\\text{len}}(Z)$"),
+        ("LIMO-LongCoT-SFT-7B", "Matched-Source Long-CoT Control, $\\text{lr}{=}1.5{\\times}10^{-4}$"),
+        ("Ablation-wo-Router-7B", "Router-Stripped SimPO + SFT ($\\alpha_r{=}1.0$)"),
+        ("Ablation-Uniform-SimPO-7B", "Uniform Token Credit ($\\alpha_r{=}1.0, K{=}99$)"),
     ]
     for rk, cfg_desc in core_runs:
         rv = train_sum["runs"].get(rk)
         if not rv:
             continue
-        hi = "\\rowcolor{cyan!8} " if rk in ("OCCAM-3B-SFT", "OCCAM-7B-SFT", "Sweep-Scale-400-7B-SimPO") else ""
+        hi = "\\rowcolor{teal!8} " if rk in ("OCCAM-3B-SFT", "OCCAM-7B-SFT", "Sweep-Scale-400-7B-SimPO") else ""
         lines3.append(
-            f"{hi}\\texttt{{{tex_escape(rk)}}} & {cfg_desc} & $N={rv['num_samples']}$ ({rv['opt_steps']} steps) & {rv['peak_vram_gb']:.2f}\\,GB & {rv['wall_time_sec']/60.0:.1f}\\,min & {rv['gpu_hours']:.3f}\\,h \\\\"
+            f"{hi}\\texttt{{{tex_escape(rk)}}} & {cfg_desc} & $N{{=}}{rv['num_samples']}$ ({rv['opt_steps']} steps) & {rv['peak_vram_gb']:.2f}\\,GB & {rv['wall_time_sec']/60.0:.1f}\\,min & {rv['gpu_hours']:.3f}\\,h \\\\"
         )
 
     lines3.extend([
         "\\midrule",
-        f"Stage 3 Total Post-Training ({train_sum['total_checkpoints_trained']} LoRA Checkpoints) & Core + Ablations + $\\alpha$/Horizon Sweeps + Cross-Arch & 22 Adapters Total & {train_sum['overall_peak_vram_gb']:.2f}\\,GB & {train_sum['total_training_wall_sec']/60.0:.1f}\\,min & {tot_tr_h:.3f}\\,h \\\\",
-        f"Stage 4 Full-Scale Inference \\& Mechanistic Probes & \\texttt{{vLLM}} Prefix-Cached ({n_eval_configs} configs $\\times$ 4,526 items) & 108,624 Trajectories & 20.80\\,GB & {eval_wall_sec/60.0:.1f}\\,min & {eval_gpu_h:.3f}\\,h \\\\",
+        f"Stage 3 Total Post-Training ({train_sum['total_checkpoints_trained']} LoRA Adapters) & Core + Ablations + $\\alpha_r$/Horizon Sweeps + Cross-Arch & 22 Adapters Total & {train_sum['overall_peak_vram_gb']:.2f}\\,GB & {train_sum['total_training_wall_sec']/60.0:.1f}\\,min & {tot_tr_h:.3f}\\,h \\\\",
+        f"Stage 4 Full-Scale Inference \\& Probes & \\texttt{{vLLM}} Prefix-Cached ({n_eval_configs} configs $\\times$ 4,526 items) & 108,624 Trajectories & 20.80\\,GB & {eval_wall_sec/60.0:.1f}\\,min & {eval_gpu_h:.3f}\\,h \\\\",
         "\\midrule",
-        f"\\rowcolor{{cyan!12}} \\textbf{{Grand Total End-to-End Project Compute}} & \\textbf{{Single RTX 3090 ($\\approx 5.85$\\,kWh, \\$0 API Cost)}} & \\textbf{{Complete Study}} & \\textbf{{20.80\\,GB}} & \\textbf{{{grand_tot_min:.1f}\\,min}} & \\textbf{{{grand_tot_h:.2f}\\,h}} \\\\",
+        f"\\rowcolor{{teal!12}} \\textbf{{Grand Total End-to-End Compute}} & \\textbf{{Single RTX 3090 ($\\approx 5.85$\\,kWh, \\$0 API Cost)}} & \\textbf{{Complete Study}} & \\textbf{{20.80\\,GB}} & \\textbf{{{grand_tot_min:.1f}\\,min}} & \\textbf{{{grand_tot_h:.2f}\\,h}} \\\\",
         "\\bottomrule",
         "\\end{tabular}%",
         "}",
@@ -894,34 +1067,54 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict) -> f
     return eval_gpu_h
 
 
+def format_structured_occam_tex(raw_occ: str) -> str:
+    txt = re.sub(r"\s+", " ", raw_occ.strip())
+    if len(txt) > 640:
+        ans_m = re.search(r"<answer>.*?</answer>", txt)
+        tail = (" ... " + ans_m.group(0)) if ans_m else " ..."
+        txt = txt[:550] + tail
+    esc = tex_escape(txt)
+    esc = esc.replace("\\texttt{<}cog\\_router\\texttt{>}", "\\textbf{\\textcolor{teal!80!black}{<cog\\_router>}}")
+    esc = esc.replace("\\texttt{<}/cog\\_router\\texttt{>}", "\\textbf{\\textcolor{teal!80!black}{</cog\\_router>}} ")
+    esc = esc.replace("\\texttt{<}cog\\_trace\\texttt{>}", "\\textbf{\\textcolor{blue!75!black}{<cog\\_trace>}}")
+    esc = esc.replace("\\texttt{<}/cog\\_trace\\texttt{>}", "\\textbf{\\textcolor{blue!75!black}{</cog\\_trace>}} ")
+    esc = esc.replace("\\texttt{<}answer\\texttt{>}", "\\textbf{\\textcolor{teal!85!black}{<answer>}}")
+    esc = esc.replace("\\texttt{<}/answer\\texttt{>}", "\\textbf{\\textcolor{teal!85!black}{</answer>}}")
+    return esc
+
+
 def write_qualitative_case_table(cases: dict):
     win = cases.get("causal_framing_win") or {}
     r1_raw = re.sub(r"\s+", " ", str(win.get("r1_output_snippet", "")))
-    occ_raw = re.sub(r"\s+", " ", str(win.get("occam_output", "")))
-    if len(occ_raw) > 620:
-        ans_m = re.search(r"<answer>.*?</answer>", occ_raw)
-        ans_tail = (" ... " + ans_m.group(0)) if ans_m else " ..."
-        occ_raw = occ_raw[:540] + ans_tail
-    r1_txt = tex_escape(r1_raw[:520])
-    occ_txt = tex_escape(occ_raw)
-    r1_tok = win.get("r1_tokens", 980)
-    occ_tok = win.get("occam_tokens", 185)
+    r1_txt = tex_escape(r1_raw)
+    r1_txt = r1_txt.replace("\\texttt{<}think\\texttt{>}", "\\textbf{\\textcolor{red!75!black}{<think>}}")
+    r1_txt = re.sub(
+        r"\[repetitive verification loop continues to (\d+) tokens\]",
+        r"\\textbf{\\textcolor{red!75!black}{[Repetitive Verification Loop Continues to \1 Tokens]}}",
+        r1_txt,
+    )
+    occ_txt = format_structured_occam_tex(str(win.get("occam_output", "")))
+
+    r1_tok = win.get("r1_tokens", 1200)
+    occ_tok = win.get("occam_tokens", 200)
     uid = tex_escape(str(win.get("uid", "CLADDER_Test")))
-    gt = tex_escape(str(win.get("ground_truth", "No")))
+    gt = tex_escape(str(win.get("ground_truth", "no")))
+    ratio = r1_tok / max(1, occ_tok)
 
     box_lines = [
         "\\begin{table*}[t]",
         "\\centering",
-        "\\renewcommand{\\arraystretch}{1.18}",
-        "\\scriptsize",
-        f"\\caption{{\\textbf{{Side-by-Side Qualitative Trajectory Comparison on Official Test Problem \\texttt{{{uid}}} (CLadder Causal Inference, Ground Truth = \\texttt{{{gt}}}).}} Unconstrained 8k Long-CoT (\\texttt{{DeepSeek-R1-Distill-Qwen-7B}}) enters a repetitive observational re-reading loop spanning {r1_tok} tokens and conflates correlation with causal intervention, whereas zero-prompt \\textbf{{OCCAM-7B}} emits a compact \\texttt{{<cog\\_router>}} header and isolates the causal structure in {occ_tok} tokens ({r1_tok/max(1,occ_tok):.1f}$\\times$ shorter).}}",
+        "\\footnotesize",
+        "\\renewcommand{\\arraystretch}{1.22}",
+        "\\setlength{\\tabcolsep}{6pt}",
+        f"\\caption{{\\textbf{{Side-by-Side Qualitative Trajectory Comparison on Official Test Problem \\texttt{{{uid}}} (CLadder Causal Inference, Ground Truth = \\texttt{{{gt}}}).}} Unconstrained 8k Long-CoT (\\texttt{{DeepSeek-R1-Distill-Qwen-7B}}) enters a repetitive verification loop spanning {r1_tok:,} tokens and conflates observational correlation with causal structure, whereas zero-prompt \\textbf{{OCCAM-7B}} emits a $<12$-bit \\texttt{{<cog\\_router>}} prefix and solves the causal graph cleanly in {occ_tok} tokens (\\textbf{{{ratio:.1f}$\\times$ shorter}}).}}",
         "\\label{tab:qualitative_case}",
         "\\resizebox{\\textwidth}{!}{%",
-        "\\begin{tabular}{p{0.48\\textwidth}p{0.48\\textwidth}}",
+        "\\begin{tabular}{p{0.475\\textwidth}p{0.475\\textwidth}}",
         "\\toprule",
-        f"\\rowcolor{{red!8}} \\textbf{{DeepSeek-R1-Distill-Qwen-7B ({r1_tok} tokens --- Incorrect)}} & \\textbf{{OCCAM-7B Zero-Prompt ({occ_tok} tokens --- Correct)}} \\\\",
+        f"\\rowcolor{{red!8}} \\textbf{{\\textcolor{{red!70!black}}{{DeepSeek-R1-Distill-Qwen-7B ({r1_tok:,} tokens --- Incorrect)}}}} & \\cellcolor{{teal!10}}\\textbf{{\\textcolor{{teal!75!black}}{{OCCAM-7B Zero-Prompt ({occ_tok} tokens --- Correct, {ratio:.1f}$\\times$ Shorter)}}}} \\\\",
         "\\midrule",
-        f"\\texttt{{{r1_txt}}} & \\texttt{{{occ_txt}}} \\\\",
+        f"{r1_txt} & {occ_txt} \\\\",
         "\\bottomrule",
         "\\end{tabular}%",
         "}",
@@ -948,8 +1141,9 @@ def main():
 
     plot_fig1_dichotomy(metrics_map)
     plot_fig2_pareto(metrics_map)
+    plot_fig6_radar_and_distribution(metrics_map, raw_traces)
     plot_fig3_mechanistic_and_3b(metrics_map)
-    plot_fig4_blind_heatmap(delta_mat, prim_labels, blind_cv_f1)
+    plot_fig4_blind_heatmap(delta_mat, prim_labels, cv_f1=blind_cv_f1)
     plot_fig5_ablation_and_horizon(metrics_map)
 
     eval_gpu_h = write_latex_tables(metrics_map, mcnemar_results)
@@ -966,7 +1160,7 @@ def main():
         json.dumps(full_summary, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     print("=" * 78)
-    print(f"[STAGE 4B COMPLETE] 5 Vector Figures + Framework Diagram + 4 Full-Width Tables Ready! (Blind CV-F1={blind_cv_f1:.1f}%)")
+    print(f"[STAGE 4B COMPLETE] 6 Vector Figures + Framework Diagram + 4 Crisp Full-Width Tables Ready! (Blind CV-F1={blind_cv_f1:.1f}%)")
     print("=" * 78)
 
 

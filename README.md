@@ -51,6 +51,10 @@ In this exploratory study, we investigate a simple question: **Can compile-time 
 </p>
 
 <p align="center">
+  <img src="assets/fig6_radar_and_length_dist.png" width="100%" alt="Holistic 6-Axis Capability Radar and Per-Query Token Distribution"/>
+</p>
+
+<p align="center">
   <img src="assets/fig3_mechanistic_probes.png" width="100%" alt="Mechanistic Entropy Collapse and Router Intervention"/>
 </p>
 
