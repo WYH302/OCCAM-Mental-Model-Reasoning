@@ -518,18 +518,18 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
     plot_specs = [
         ("Concise-CoD-7B", "Chain-of-Draft", (6, -3)),
         ("R1-Budget200-7B", "R1-Budget200", (6, 2)),
-        ("FewShot-3CoT-7B", "3-Shot CoT", (6, -10)),
-        ("Ext-16Op-Harness-7B", "Ext-16Op", (6, -5)),
-        ("Base-7B", "Qwen2.5-7B", (-26, 7)),
-        ("Base-3B", "Qwen2.5-3B", (6, -4)),
-        ("BoT-Retrieval-7B", "BoT-RAG", (-40, -12)),
-        ("LIMO-LongCoT-SFT-7B", "LIMO-SFT", (6, -11)),
-        ("R1-Distill-7B", "DeepSeek-R1 (8k)", (-78, -13)),
-        ("SC-Maj4-7B", "SC maj@4", (-52, 6)),
-        ("Ablation-wo-Router-7B", "w/o Router", (-48, -10)),
-        ("OCCAM-3B-SFT", "OCCAM-3B", (6, 4)),
-        ("Sweep-Scale-400-7B-SimPO", "OCCAM-SimPO", (-76, -3)),
-        ("OCCAM-7B-SFT", "OCCAM-SFT", (-62, 8)),
+        ("FewShot-3CoT-7B", "3-Shot CoT", (-52, -12)),
+        ("Ext-16Op-Harness-7B", "Ext-16Op", (7, -4)),
+        ("Base-7B", "Qwen2.5-7B", (-26, 8)),
+        ("Base-3B", "Qwen2.5-3B", (7, -4)),
+        ("BoT-Retrieval-7B", "BoT-RAG", (7, -10)),
+        ("LIMO-LongCoT-SFT-7B", "LIMO-SFT", (7, -10)),
+        ("R1-Distill-7B", "DeepSeek-R1 (8k)", (-78, -14)),
+        ("SC-Maj4-7B", "SC maj@4", (-52, 7)),
+        ("Ablation-wo-Router-7B", "w/o Router", (-50, -9)),
+        ("OCCAM-3B-SFT", "OCCAM-3B", (7, 4)),
+        ("Sweep-Scale-400-7B-SimPO", "OCCAM-SimPO", (-78, -2)),
+        ("OCCAM-7B-SFT", "OCCAM-SFT", (-64, 9)),
         ("OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-Adapt", (-98, 7)),
         ("OCCAM-R1-7B-Adaptive", "OCCAM-R1-Adaptive", (-102, 6)),
     ]
@@ -621,8 +621,8 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
 
 
 def plot_fig6_radar_and_distribution(metrics_map: Dict[str, dict], raw_traces: Dict[str, List[dict]]):
-    fig = plt.figure(figsize=(12.0, 4.10), layout="none")
-    gs = fig.add_gridspec(1, 2, left=0.055, right=0.985, bottom=0.13, top=0.71, width_ratios=[0.95, 1.25], wspace=0.24)
+    fig = plt.figure(figsize=(12.0, 4.35), layout="none")
+    gs = fig.add_gridspec(1, 2, left=0.055, right=0.985, bottom=0.14, top=0.69, width_ratios=[0.95, 1.25], wspace=0.25)
 
     ax_rad = fig.add_subplot(gs[0, 0], polar=True)
     axes_labels = [
@@ -686,10 +686,10 @@ def plot_fig6_radar_and_distribution(metrics_map: Dict[str, dict], raw_traces: D
         handles_top.append(ln)
         labels_top.append(lbl)
 
-    ax_rad.set_title("(a) Holistic 6-Axis Capability & Efficiency Profile", pad=11, fontsize=10.3, fontweight="bold", loc="center")
+    ax_rad.set_title("(a) Holistic 6-Axis Capability & Efficiency Profile", y=1.18, fontsize=10.3, fontweight="bold", loc="center")
 
     fig.legend(
-        handles_top, labels_top, loc="upper center", bbox_to_anchor=(0.50, 0.99),
+        handles_top, labels_top, loc="upper center", bbox_to_anchor=(0.50, 0.985),
         ncol=5, frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=7.8,
         columnspacing=1.1, handlelength=2.1
     )
@@ -878,7 +878,7 @@ def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
     ax2.axvline(25, color=PAL["occam_sft"], linestyle="--", linewidth=1.35, label="Optimal Horizon (K=25)")
     ax2.set_xlabel("Reference-Free SimPO Steps (K)")
     ax2.set_ylabel("Framing-4 Macro Accuracy (%)", color=PAL["occam_simpo"])
-    ax2.set_ylim(58, 70)
+    ax2.set_ylim(54.5, 69.5)
     ax2.grid(True, linestyle=":", color=PAL["grid"], alpha=0.55)
 
     ax2_r = ax2.twinx()
@@ -890,7 +890,7 @@ def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
 
     h1, l1 = ax2.get_legend_handles_labels()
     h2, l2 = ax2_r.get_legend_handles_labels()
-    ax2.legend(h1 + h2, l1 + l2, loc="lower left", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.2, framealpha=0.95)
+    ax2.legend(h1 + h2, l1 + l2, loc="lower right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.2, framealpha=0.95)
     ax2.set_title("(b) Preference Horizon & Likelihood Displacement", loc="center")
 
     save_locked_canvas(fig, "fig5_ablation_and_horizon")
