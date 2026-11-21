@@ -522,9 +522,9 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
         ("Ext-16Op-Harness-7B", "Ext-16Op", (7, -4)),
         ("Base-7B", "Qwen2.5-7B", (-26, 8)),
         ("Base-3B", "Qwen2.5-3B", (7, -4)),
-        ("BoT-Retrieval-7B", "BoT-RAG", (7, -10)),
-        ("LIMO-LongCoT-SFT-7B", "LIMO-SFT", (7, -10)),
-        ("R1-Distill-7B", "DeepSeek-R1 (8k)", (-78, -14)),
+        ("BoT-Retrieval-7B", "BoT-RAG", (-34, -14)),
+        ("LIMO-LongCoT-SFT-7B", "LIMO-SFT", (7, -11)),
+        ("R1-Distill-7B", "DeepSeek-R1 (8k)", (-72, -16)),
         ("SC-Maj4-7B", "SC maj@4", (-52, 7)),
         ("Ablation-wo-Router-7B", "w/o Router", (-50, -9)),
         ("OCCAM-3B-SFT", "OCCAM-3B", (7, 4)),
@@ -621,120 +621,119 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
 
 
 def plot_fig6_radar_and_distribution(metrics_map: Dict[str, dict], raw_traces: Dict[str, List[dict]]):
-    fig = plt.figure(figsize=(12.0, 4.35), layout="none")
-    gs = fig.add_gridspec(1, 2, left=0.055, right=0.985, bottom=0.14, top=0.69, width_ratios=[0.95, 1.25], wspace=0.25)
+    with plt.rc_context({"figure.constrained_layout.use": False}):
+        fig = plt.figure(figsize=(12.0, 4.50))
+        ax_rad = fig.add_axes([0.04, 0.12, 0.36, 0.60], polar=True)
+        ax_dist = fig.add_axes([0.50, 0.14, 0.48, 0.64])
 
-    ax_rad = fig.add_subplot(gs[0, 0], polar=True)
-    axes_labels = [
-        "CLadder\n(Causal %)",
-        "LogiQA\n(Deductive %)",
-        "BBH-Hard\n(Comp. %)",
-        "Zero-Shot OOD\n(Macro %)",
-        "KV-Cache\nSaving (%)",
-        "Throughput\nScore",
-    ]
-    N_ax = len(axes_labels)
-    angles = np.linspace(0, 2 * np.pi, N_ax, endpoint=False).tolist()
-    angles += angles[:1]
-
-    r1_kv = metrics_map["R1-Distill-7B"]["kv_cache_mb"]
-    r1_wall = metrics_map["R1-Distill-7B"]["wall_sec"]
-
-    def radar_vec(mid: str) -> List[float]:
-        m = metrics_map[mid]
-        kv_save = max(5.0, min(98.0, (1.0 - m["kv_cache_mb"] / r1_kv) * 100.0))
-        spd_score = max(10.0, min(98.0, (r1_wall / max(1.0, m["wall_sec"])) * 9.5))
-        vals = [
-            m["benchmark_acc"]["CLadder"],
-            m["benchmark_acc"]["LogiQA"],
-            m["benchmark_acc"]["BBH-Hard"],
-            m["macro_ood_acc"],
-            kv_save,
-            spd_score,
+        axes_labels = [
+            "CLadder\n(Causal %)",
+            "LogiQA\n(Deductive %)",
+            "BBH-Hard\n(Comp. %)",
+            "Zero-Shot OOD\n(Macro %)",
+            "KV-Cache\nSaving (%)",
+            "Throughput\nScore",
         ]
-        return vals + vals[:1]
+        N_ax = len(axes_labels)
+        angles = np.linspace(0, 2 * np.pi, N_ax, endpoint=False).tolist()
+        angles += angles[:1]
 
-    flagship = select_flagship_id(metrics_map)
-    second_occ = "OCCAM-Qwen-7B-Adaptive" if "OCCAM-Qwen-7B-Adaptive" in metrics_map else "Sweep-Scale-400-7B-SimPO"
+        r1_kv = metrics_map["R1-Distill-7B"]["kv_cache_mb"]
+        r1_wall = metrics_map["R1-Distill-7B"]["wall_sec"]
 
-    radar_specs = [
-        ("Concise-CoD-7B", "Chain-of-Draft", PAL["base_light"], ":", 1.4, 0.04),
-        ("Base-7B", "Qwen2.5-7B Base", PAL["base_dark"], "--", 1.5, 0.05),
-        ("R1-Distill-7B", "DeepSeek-R1-7B (8k)", PAL["r1_long"], "-.", 1.65, 0.08),
-        (second_occ, f"{'OCCAM-Qwen-Adapt' if second_occ=='OCCAM-Qwen-7B-Adaptive' else 'OCCAM-7B-SimPO'}", PAL["occam_simpo"], "-", 1.75, 0.12),
-        (flagship, f"{'OCCAM-R1-Adaptive (Ours)' if 'R1' in flagship else 'OCCAM-7B-SFT (Ours)'}", PAL["occam_r1"], "-", 1.95, 0.18),
-    ]
+        def radar_vec(mid: str) -> List[float]:
+            m = metrics_map[mid]
+            kv_save = max(5.0, min(98.0, (1.0 - m["kv_cache_mb"] / r1_kv) * 100.0))
+            spd_score = max(10.0, min(98.0, (r1_wall / max(1.0, m["wall_sec"])) * 9.5))
+            vals = [
+                m["benchmark_acc"]["CLadder"],
+                m["benchmark_acc"]["LogiQA"],
+                m["benchmark_acc"]["BBH-Hard"],
+                m["macro_ood_acc"],
+                kv_save,
+                spd_score,
+            ]
+            return vals + vals[:1]
 
-    ax_rad.set_theta_offset(np.pi / 2)
-    ax_rad.set_theta_direction(-1)
-    ax_rad.set_xticks(angles[:-1])
-    ax_rad.set_xticklabels(axes_labels, fontsize=7.9, fontweight="bold", color=PAL["ink"])
-    ax_rad.tick_params(axis="x", pad=9)
-    ax_rad.set_ylim(0, 100)
-    ax_rad.set_yticks([25, 50, 75, 100])
-    ax_rad.set_yticklabels(["25", "50", "75", "100"], fontsize=6.6, color="#64748B")
-    ax_rad.grid(color=PAL["grid"], linestyle="--", linewidth=0.65)
-    ax_rad.spines["polar"].set_color("#94A3B8")
+        flagship = select_flagship_id(metrics_map)
+        second_occ = "OCCAM-Qwen-7B-Adaptive" if "OCCAM-Qwen-7B-Adaptive" in metrics_map else "Sweep-Scale-400-7B-SimPO"
 
-    handles_top, labels_top = [], []
-    for mid, lbl, col, ls, lw, fill_a in radar_specs:
-        if mid not in metrics_map:
-            continue
-        v = radar_vec(mid)
-        (ln,) = ax_rad.plot(angles, v, color=col, linestyle=ls, linewidth=lw, label=lbl)
-        ax_rad.fill(angles, v, color=col, alpha=fill_a)
-        handles_top.append(ln)
-        labels_top.append(lbl)
+        radar_specs = [
+            ("Concise-CoD-7B", "Chain-of-Draft", PAL["base_light"], ":", 1.4, 0.04),
+            ("Base-7B", "Qwen2.5-7B Base", PAL["base_dark"], "--", 1.5, 0.05),
+            ("R1-Distill-7B", "DeepSeek-R1-7B (8k)", PAL["r1_long"], "-.", 1.65, 0.08),
+            (second_occ, f"{'OCCAM-Qwen-Adapt' if second_occ=='OCCAM-Qwen-7B-Adaptive' else 'OCCAM-7B-SimPO'}", PAL["occam_simpo"], "-", 1.75, 0.12),
+            (flagship, f"{'OCCAM-R1-Adaptive (Ours)' if 'R1' in flagship else 'OCCAM-7B-SFT (Ours)'}", PAL["occam_r1"], "-", 1.95, 0.18),
+        ]
 
-    ax_rad.set_title("(a) Holistic 6-Axis Capability & Efficiency Profile", y=1.18, fontsize=10.3, fontweight="bold", loc="center")
+        ax_rad.set_theta_offset(np.pi / 2)
+        ax_rad.set_theta_direction(-1)
+        ax_rad.set_xticks(angles[:-1])
+        ax_rad.set_xticklabels(axes_labels, fontsize=7.9, fontweight="bold", color=PAL["ink"])
+        ax_rad.tick_params(axis="x", pad=8)
+        ax_rad.set_ylim(0, 100)
+        ax_rad.set_yticks([25, 50, 75, 100])
+        ax_rad.set_yticklabels(["25", "50", "75", "100"], fontsize=6.6, color="#64748B")
+        ax_rad.grid(color=PAL["grid"], linestyle="--", linewidth=0.65)
+        ax_rad.spines["polar"].set_color("#94A3B8")
 
-    fig.legend(
-        handles_top, labels_top, loc="upper center", bbox_to_anchor=(0.50, 0.985),
-        ncol=5, frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=7.8,
-        columnspacing=1.1, handlelength=2.1
-    )
+        handles_top, labels_top = [], []
+        for mid, lbl, col, ls, lw, fill_a in radar_specs:
+            if mid not in metrics_map:
+                continue
+            v = radar_vec(mid)
+            (ln,) = ax_rad.plot(angles, v, color=col, linestyle=ls, linewidth=lw, label=lbl)
+            ax_rad.fill(angles, v, color=col, alpha=fill_a)
+            handles_top.append(ln)
+            labels_top.append(lbl)
 
-    # Panel B: Per-Query Token Distribution
-    ax_dist = fig.add_subplot(gs[0, 1])
-    dist_cands = [
-        ("R1-Distill-7B", "DeepSeek-R1-7B", PAL["r1_long"], 0.18),
-        ("Base-7B", "Qwen2.5-7B Base", PAL["base_dark"], 0.15),
-        (flagship, "OCCAM-R1-Adaptive" if "R1" in flagship else "OCCAM-7B-SFT", PAL["occam_r1"], 0.24),
-        ("Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SimPO (K=25)", PAL["occam_simpo"], 0.22),
-    ]
-    log_grid = np.linspace(np.log10(25), np.log10(7200), 320)
-    x_grid = 10.0 ** log_grid
+        # Unified top legend + cleanly separated aligned subtitles (mathematically zero overlap!)
+        fig.legend(
+            handles_top, labels_top, loc="upper center", bbox_to_anchor=(0.50, 0.99),
+            ncol=5, frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=7.8,
+            columnspacing=1.1, handlelength=2.1
+        )
+        fig.text(0.22, 0.865, "(a) Holistic 6-Axis Capability & Efficiency Profile", ha="center", va="center", fontsize=10.2, fontweight="bold", color=PAL["ink"])
+        fig.text(0.74, 0.865, "(b) Per-Query Reasoning Length Distribution", ha="center", va="center", fontsize=10.2, fontweight="bold", color=PAL["ink"])
 
-    seen_d = set()
-    for mid, lbl, col, fill_a in dist_cands:
-        if mid in seen_d:
-            continue
-        seen_d.add(mid)
-        rows = raw_traces.get(mid, [])
-        if not rows:
-            continue
-        toks = np.clip(np.array([max(15, r["tokens"]) for r in rows], dtype=np.float64), 15, 7000)
-        med = float(np.median(toks))
-        p95 = float(np.percentile(toks, 95))
-        kde = gaussian_kde(np.log10(toks), bw_method=0.20)
-        dens = kde(log_grid)
-        ax_dist.plot(x_grid, dens, color=col, linewidth=1.70, label=f"{lbl} (med={med:.0f}t, p95={p95:.0f}t)")
-        ax_dist.fill_between(x_grid, 0, dens, color=col, alpha=fill_a)
-        ax_dist.axvline(med, color=col, linestyle="--", linewidth=1.0, alpha=0.80)
+        dist_cands = [
+            ("R1-Distill-7B", "DeepSeek-R1-7B", PAL["r1_long"], 0.18),
+            ("Base-7B", "Qwen2.5-7B Base", PAL["base_dark"], 0.15),
+            (flagship, "OCCAM-R1-Adaptive" if "R1" in flagship else "OCCAM-7B-SFT", PAL["occam_r1"], 0.24),
+            ("Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SimPO (K=25)", PAL["occam_simpo"], 0.22),
+        ]
+        log_grid = np.linspace(np.log10(25), np.log10(7200), 320)
+        x_grid = 10.0 ** log_grid
 
-    ax_dist.axvspan(1500, 7200, color="#FFE4E6", alpha=0.40, zorder=0)
-    ax_dist.set_ylim(0, 4.15)
-    ax_dist.set_xscale("log")
-    ax_dist.set_xlim(30, 7000)
-    ax_dist.set_xticks([50, 100, 220, 500, 1000, 2500, 6000])
-    ax_dist.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
-    ax_dist.set_xlabel("Generated Tokens per Query (Log Scale, N = 4,526)")
-    ax_dist.set_ylabel("Log-Token Probability Density")
-    ax_dist.set_title("(b) Per-Query Reasoning Length Distribution", pad=8, fontsize=10.3, fontweight="bold", loc="center")
-    ax_dist.grid(True, which="major", linestyle="--", color=PAL["grid"], alpha=0.55, zorder=0)
-    ax_dist.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.2, framealpha=0.95)
+        seen_d = set()
+        for mid, lbl, col, fill_a in dist_cands:
+            if mid in seen_d:
+                continue
+            seen_d.add(mid)
+            rows = raw_traces.get(mid, [])
+            if not rows:
+                continue
+            toks = np.clip(np.array([max(15, r["tokens"]) for r in rows], dtype=np.float64), 15, 7000)
+            med = float(np.median(toks))
+            p95 = float(np.percentile(toks, 95))
+            kde = gaussian_kde(np.log10(toks), bw_method=0.20)
+            dens = kde(log_grid)
+            ax_dist.plot(x_grid, dens, color=col, linewidth=1.70, label=f"{lbl} (med={med:.0f}t, p95={p95:.0f}t)")
+            ax_dist.fill_between(x_grid, 0, dens, color=col, alpha=fill_a)
+            ax_dist.axvline(med, color=col, linestyle="--", linewidth=1.0, alpha=0.80)
 
-    save_locked_canvas(fig, "fig6_radar_and_length_dist")
+        ax_dist.axvspan(1500, 7200, color="#FFE4E6", alpha=0.40, zorder=0)
+        ax_dist.set_ylim(0, 4.15)
+        ax_dist.set_xscale("log")
+        ax_dist.set_xlim(30, 7000)
+        ax_dist.set_xticks([50, 100, 220, 500, 1000, 2500, 6000])
+        ax_dist.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+        ax_dist.set_xlabel("Generated Tokens per Query (Log Scale, N = 4,526)")
+        ax_dist.set_ylabel("Log-Token Probability Density")
+        ax_dist.grid(True, which="major", linestyle="--", color=PAL["grid"], alpha=0.55, zorder=0)
+        ax_dist.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.2, framealpha=0.95)
+
+        save_locked_canvas(fig, "fig6_radar_and_length_dist")
 
 
 def plot_fig3_mechanistic_and_3b(metrics_map: Dict[str, dict]):
