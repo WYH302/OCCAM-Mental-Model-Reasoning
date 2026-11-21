@@ -41,6 +41,7 @@ In this exploratory study, we investigate a simple question: **Can compile-time 
 | `Chain-of-Draft / Concise-CoT` (7B) | 60.82% | 62.40% | 46.9 | 2.6 MB | 26.8x |
 | `External 16-Primitive Prompt` (7B) | 57.41% | 65.56% | 291.7 | 16.0 MB | 4.9x |
 | `Buffer of Thoughts RAG` (7B, Top-2) | 63.59% | 70.40% | 429.5 | 23.5 MB | 4.9x |
+| `DeepSeek-R1-Distill-Qwen-7B` (Budget 200t Cap) | 39.93% | 39.71% | 185.4 | 10.1 MB | 11.4x |
 | `DeepSeek-R1-Distill-Qwen-7B` (8k CoT) | 64.99% | 70.56% | 1,457.8 | 79.7 MB | 1.0x |
 | `Qwen2.5-7B-Instruct` (Zero-Shot CoT) | 65.48% | 71.86% | 329.3 | 18.0 MB | 6.9x |
 | **`OCCAM-7B-SimPO` (Calibrated `K=25`)** | **65.91%** | **70.09%** | **220.2** (`-84.9%` vs. R1) | **12.0 MB** | **10.0x** |

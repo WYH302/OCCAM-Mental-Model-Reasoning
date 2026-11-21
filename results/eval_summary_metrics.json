@@ -1,4 +1,5 @@
 {
+  "flagship_id": "OCCAM-7B-SFT",
   "models": {
     "Direct-0CoT-3B": {
       "model_id": "Direct-0CoT-3B",
@@ -30,6 +31,7 @@
       "macro_ood_acc": 39.1,
       "micro_id_acc": 52.44,
       "micro_ood_acc": 29.7,
+      "micro_all_acc": 45.89,
       "ci95_id": 1.74,
       "ci95_ood": 2.49,
       "avg_tokens_id": 7.0,
@@ -71,6 +73,7 @@
       "macro_ood_acc": 70.19,
       "micro_id_acc": 59.88,
       "micro_ood_acc": 76.75,
+      "micro_all_acc": 64.74,
       "ci95_id": 1.69,
       "ci95_ood": 2.3,
       "avg_tokens_id": 360.3,
@@ -112,6 +115,7 @@
       "macro_ood_acc": 47.93,
       "micro_id_acc": 59.82,
       "micro_ood_acc": 35.61,
+      "micro_all_acc": 52.85,
       "ci95_id": 1.71,
       "ci95_ood": 2.57,
       "avg_tokens_id": 6.9,
@@ -153,6 +157,7 @@
       "macro_ood_acc": 76.84,
       "micro_id_acc": 71.86,
       "micro_ood_acc": 82.96,
+      "micro_all_acc": 75.06,
       "ci95_id": 1.54,
       "ci95_ood": 2.07,
       "avg_tokens_id": 329.3,
@@ -194,6 +199,7 @@
       "macro_ood_acc": 78.22,
       "micro_id_acc": 68.88,
       "micro_ood_acc": 83.96,
+      "micro_all_acc": 73.22,
       "ci95_id": 1.57,
       "ci95_ood": 1.96,
       "avg_tokens_id": 231.4,
@@ -235,6 +241,7 @@
       "macro_ood_acc": 76.74,
       "micro_id_acc": 73.22,
       "micro_ood_acc": 83.81,
+      "micro_all_acc": 76.27,
       "ci95_id": 1.51,
       "ci95_ood": 2.0,
       "avg_tokens_id": 1307.6,
@@ -276,6 +283,7 @@
       "macro_ood_acc": 58.68,
       "micro_id_acc": 62.4,
       "micro_ood_acc": 58.1,
+      "micro_all_acc": 61.16,
       "ci95_id": 1.68,
       "ci95_ood": 2.69,
       "avg_tokens_id": 46.9,
@@ -317,6 +325,7 @@
       "macro_ood_acc": 67.6,
       "micro_id_acc": 65.56,
       "micro_ood_acc": 75.44,
+      "micro_all_acc": 68.4,
       "ci95_id": 1.6,
       "ci95_ood": 2.3,
       "avg_tokens_id": 291.7,
@@ -358,6 +367,7 @@
       "macro_ood_acc": 72.27,
       "micro_id_acc": 70.4,
       "micro_ood_acc": 79.74,
+      "micro_all_acc": 73.09,
       "ci95_id": 1.57,
       "ci95_ood": 2.19,
       "avg_tokens_id": 429.5,
@@ -399,6 +409,7 @@
       "macro_ood_acc": 75.42,
       "micro_id_acc": 72.17,
       "micro_ood_acc": 82.04,
+      "micro_all_acc": 75.01,
       "ci95_id": 1.52,
       "ci95_ood": 2.03,
       "avg_tokens_id": 504.9,
@@ -409,6 +420,48 @@
       "delta_eta": 3.19,
       "latency_ms": 297.8,
       "wall_sec": 1347.8
+    },
+    "R1-Budget200-7B": {
+      "model_id": "R1-Budget200-7B",
+      "display_name": "DeepSeek-R1-Distill-7B (Budget 200t)",
+      "group": "G3_LongCoT",
+      "benchmark_acc": {
+        "CLadder": 46.0,
+        "BBH-Hard": 32.67,
+        "ARC-Challenge": 50.17,
+        "LogiQA": 30.88,
+        "MATH-500": 27.4,
+        "GSM8K": 62.62,
+        "FOLIO": 54.19,
+        "StrategyQA": 50.0
+      },
+      "benchmark_tokens": {
+        "CLadder": 183.8,
+        "BBH-Hard": 185.9,
+        "ARC-Challenge": 184.8,
+        "LogiQA": 185.2,
+        "MATH-500": 188.2,
+        "GSM8K": 185.5,
+        "FOLIO": 183.9,
+        "StrategyQA": 182.3
+      },
+      "framing_macro_acc": 39.93,
+      "framing_micro_acc": 41.98,
+      "macro_id_acc": 37.42,
+      "macro_ood_acc": 55.6,
+      "micro_id_acc": 39.71,
+      "micro_ood_acc": 58.4,
+      "micro_all_acc": 45.1,
+      "ci95_id": 1.66,
+      "ci95_ood": 2.61,
+      "avg_tokens_id": 185.4,
+      "avg_tokens_all": 185.2,
+      "median_tokens_all": 184.0,
+      "p95_tokens_all": 200.0,
+      "kv_cache_mb": 10.14,
+      "delta_eta": -7.35,
+      "latency_ms": 919.9,
+      "wall_sec": 4163.3
     },
     "R1-Distill-7B": {
       "model_id": "R1-Distill-7B",
@@ -440,6 +493,7 @@
       "macro_ood_acc": 76.3,
       "micro_id_acc": 70.56,
       "micro_ood_acc": 82.66,
+      "micro_all_acc": 74.04,
       "ci95_id": 1.58,
       "ci95_ood": 2.03,
       "avg_tokens_id": 1457.8,
@@ -481,6 +535,7 @@
       "macro_ood_acc": 74.71,
       "micro_id_acc": 69.19,
       "micro_ood_acc": 81.5,
+      "micro_all_acc": 72.74,
       "ci95_id": 1.58,
       "ci95_ood": 2.11,
       "avg_tokens_id": 539.6,
@@ -522,6 +577,7 @@
       "macro_ood_acc": 67.79,
       "micro_id_acc": 64.85,
       "micro_ood_acc": 75.83,
+      "micro_all_acc": 68.01,
       "ci95_id": 1.63,
       "ci95_ood": 2.3,
       "avg_tokens_id": 221.2,
@@ -563,6 +619,7 @@
       "macro_ood_acc": 65.18,
       "micro_id_acc": 65.72,
       "micro_ood_acc": 73.37,
+      "micro_all_acc": 67.92,
       "ci95_id": 1.66,
       "ci95_ood": 2.42,
       "avg_tokens_id": 271.3,
@@ -604,6 +661,7 @@
       "macro_ood_acc": 63.39,
       "micro_id_acc": 62.43,
       "micro_ood_acc": 69.61,
+      "micro_all_acc": 64.49,
       "ci95_id": 1.68,
       "ci95_ood": 2.49,
       "avg_tokens_id": 257.3,
@@ -614,47 +672,6 @@
       "delta_eta": 4.81,
       "latency_ms": 87.0,
       "wall_sec": 393.5
-    },
-    "OCCAM-3B-SimPO": {
-      "model_id": "OCCAM-3B-SimPO",
-      "display_name": "OCCAM-3B-SimPO (K=99, alpha_r=2.0)",
-      "group": "G4_Ablation",
-      "benchmark_acc": {
-        "CLadder": 46.67,
-        "BBH-Hard": 51.56,
-        "ARC-Challenge": 66.81,
-        "LogiQA": 39.48,
-        "MATH-500": 49.4,
-        "GSM8K": 75.5,
-        "FOLIO": 54.68,
-        "StrategyQA": 31.0
-      },
-      "benchmark_tokens": {
-        "CLadder": 319.8,
-        "BBH-Hard": 263.9,
-        "ARC-Challenge": 278.0,
-        "LogiQA": 313.8,
-        "MATH-500": 334.7,
-        "GSM8K": 185.5,
-        "FOLIO": 263.6,
-        "StrategyQA": 385.4
-      },
-      "framing_macro_acc": 51.13,
-      "framing_micro_acc": 54.43,
-      "macro_id_acc": 50.78,
-      "macro_ood_acc": 53.73,
-      "micro_id_acc": 53.65,
-      "micro_ood_acc": 62.01,
-      "ci95_id": 1.69,
-      "ci95_ood": 2.61,
-      "avg_tokens_id": 297.9,
-      "avg_tokens_all": 282.3,
-      "median_tokens_all": 226.0,
-      "p95_tokens_all": 640.0,
-      "kv_cache_mb": 10.49,
-      "delta_eta": 1.79,
-      "latency_ms": 96.6,
-      "wall_sec": 437.1
     },
     "OCCAM-7B-SFT": {
       "model_id": "OCCAM-7B-SFT",
@@ -686,6 +703,7 @@
       "macro_ood_acc": 70.69,
       "micro_id_acc": 70.83,
       "micro_ood_acc": 77.9,
+      "micro_all_acc": 72.87,
       "ci95_id": 1.6,
       "ci95_ood": 2.3,
       "avg_tokens_id": 260.3,
@@ -727,6 +745,7 @@
       "macro_ood_acc": 68.55,
       "micro_id_acc": 70.09,
       "micro_ood_acc": 75.9,
+      "micro_all_acc": 71.76,
       "ci95_id": 1.57,
       "ci95_ood": 2.34,
       "avg_tokens_id": 220.2,
@@ -768,6 +787,7 @@
       "macro_ood_acc": 68.11,
       "micro_id_acc": 67.89,
       "micro_ood_acc": 75.21,
+      "micro_all_acc": 70.0,
       "ci95_id": 1.64,
       "ci95_ood": 2.3,
       "avg_tokens_id": 262.6,
@@ -809,6 +829,7 @@
       "macro_ood_acc": 66.45,
       "micro_id_acc": 67.67,
       "micro_ood_acc": 74.29,
+      "micro_all_acc": 69.58,
       "ci95_id": 1.61,
       "ci95_ood": 2.34,
       "avg_tokens_id": 260.8,
@@ -850,6 +871,7 @@
       "macro_ood_acc": 66.22,
       "micro_id_acc": 67.02,
       "micro_ood_acc": 73.98,
+      "micro_all_acc": 69.02,
       "ci95_id": 1.64,
       "ci95_ood": 2.42,
       "avg_tokens_id": 267.6,
@@ -891,6 +913,7 @@
       "macro_ood_acc": 66.71,
       "micro_id_acc": 68.01,
       "micro_ood_acc": 74.29,
+      "micro_all_acc": 69.82,
       "ci95_id": 1.6,
       "ci95_ood": 2.38,
       "avg_tokens_id": 261.0,
@@ -932,6 +955,7 @@
       "macro_ood_acc": 72.6,
       "micro_id_acc": 68.54,
       "micro_ood_acc": 78.82,
+      "micro_all_acc": 71.5,
       "ci95_id": 1.58,
       "ci95_ood": 2.23,
       "avg_tokens_id": 234.5,
@@ -973,6 +997,7 @@
       "macro_ood_acc": 68.83,
       "micro_id_acc": 63.3,
       "micro_ood_acc": 75.98,
+      "micro_all_acc": 66.95,
       "ci95_id": 1.66,
       "ci95_ood": 2.34,
       "avg_tokens_id": 255.3,
@@ -983,6 +1008,48 @@
       "delta_eta": 2.88,
       "latency_ms": 146.7,
       "wall_sec": 663.9
+    },
+    "OCCAM-3B-SimPO": {
+      "model_id": "OCCAM-3B-SimPO",
+      "display_name": "OCCAM-3B-SimPO",
+      "group": "Sweep",
+      "benchmark_acc": {
+        "CLadder": 46.67,
+        "BBH-Hard": 51.56,
+        "ARC-Challenge": 66.81,
+        "LogiQA": 39.48,
+        "MATH-500": 49.4,
+        "GSM8K": 75.5,
+        "FOLIO": 54.68,
+        "StrategyQA": 31.0
+      },
+      "benchmark_tokens": {
+        "CLadder": 319.8,
+        "BBH-Hard": 263.9,
+        "ARC-Challenge": 278.0,
+        "LogiQA": 313.8,
+        "MATH-500": 334.7,
+        "GSM8K": 185.5,
+        "FOLIO": 263.6,
+        "StrategyQA": 385.4
+      },
+      "framing_macro_acc": 51.13,
+      "framing_micro_acc": 54.43,
+      "macro_id_acc": 50.78,
+      "macro_ood_acc": 53.73,
+      "micro_id_acc": 53.65,
+      "micro_ood_acc": 62.01,
+      "micro_all_acc": 56.05,
+      "ci95_id": 1.69,
+      "ci95_ood": 2.61,
+      "avg_tokens_id": 297.9,
+      "avg_tokens_all": 282.3,
+      "median_tokens_all": 226.0,
+      "p95_tokens_all": 640.0,
+      "kv_cache_mb": 10.49,
+      "delta_eta": 1.79,
+      "latency_ms": 96.6,
+      "wall_sec": 437.1
     }
   },
   "mcnemar_tests": {
@@ -1166,6 +1233,24 @@
       "chi2_cc": 15.96,
       "p_value": 5.714635683054461e-05
     },
+    "OCCAM-7B-SFT_vs_R1-Budget200-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1613,
+      "b_only_correct_n01": 356,
+      "both_correct_n11": 1685,
+      "both_wrong_n00": 872,
+      "chi2_cc": 801.186,
+      "p_value": 1.544681084161207e-190
+    },
+    "OCCAM-7B-SFT_vs_R1-Budget200-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 382,
+      "b_only_correct_n01": 128,
+      "both_correct_n11": 633,
+      "both_wrong_n00": 160,
+      "chi2_cc": 125.508,
+      "p_value": 2.242516819134208e-30
+    },
     "OCCAM-7B-SFT_vs_R1-Distill-7B": {
       "n_shared": 4526,
       "a_only_correct_n10": 578,
@@ -1255,24 +1340,6 @@
       "both_wrong_n00": 221,
       "chi2_cc": 47.31,
       "p_value": 2.624009744005345e-12
-    },
-    "OCCAM-7B-SFT_vs_OCCAM-3B-SimPO": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 1059,
-      "b_only_correct_n01": 298,
-      "both_correct_n11": 2239,
-      "both_wrong_n00": 930,
-      "chi2_cc": 425.645,
-      "p_value": 3.9218670058536277e-100
-    },
-    "OCCAM-7B-SFT_vs_OCCAM-3B-SimPO_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 265,
-      "b_only_correct_n01": 58,
-      "both_correct_n11": 750,
-      "both_wrong_n00": 230,
-      "chi2_cc": 131.381,
-      "p_value": 9.32021118005131e-33
     },
     "OCCAM-7B-SFT_vs_Sweep-Scale-400-7B-SimPO": {
       "n_shared": 4526,
@@ -1399,6 +1466,24 @@
       "both_wrong_n00": 221,
       "chi2_cc": 3.623,
       "p_value": 0.05665599683377127
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1059,
+      "b_only_correct_n01": 298,
+      "both_correct_n11": 2239,
+      "both_wrong_n00": 930,
+      "chi2_cc": 425.645,
+      "p_value": 3.9218670058536277e-100
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 265,
+      "b_only_correct_n01": 58,
+      "both_correct_n11": 750,
+      "both_wrong_n00": 230,
+      "chi2_cc": 131.381,
+      "p_value": 9.32021118005131e-33
     },
     "Sweep-Scale-400-7B-SimPO_vs_Direct-0CoT-3B": {
       "n_shared": 4526,
@@ -1580,6 +1665,24 @@
       "chi2_cc": 35.062,
       "p_value": 1.709931687466516e-09
     },
+    "Sweep-Scale-400-7B-SimPO_vs_R1-Budget200-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1579,
+      "b_only_correct_n01": 372,
+      "both_correct_n11": 1669,
+      "both_wrong_n00": 906,
+      "chi2_cc": 745.482,
+      "p_value": 1.879371041553066e-176
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_R1-Budget200-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 387,
+      "b_only_correct_n01": 159,
+      "both_correct_n11": 602,
+      "both_wrong_n00": 155,
+      "chi2_cc": 94.375,
+      "p_value": 6.045580228381664e-23
+    },
     "Sweep-Scale-400-7B-SimPO_vs_R1-Distill-7B": {
       "n_shared": 4526,
       "a_only_correct_n10": 569,
@@ -1669,24 +1772,6 @@
       "both_wrong_n00": 243,
       "chi2_cc": 29.29,
       "p_value": 4.452740785077111e-08
-    },
-    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SimPO": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 1031,
-      "b_only_correct_n01": 320,
-      "both_correct_n11": 2217,
-      "both_wrong_n00": 958,
-      "chi2_cc": 373.131,
-      "p_value": 2.3711589492402514e-87
-    },
-    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SimPO_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 241,
-      "b_only_correct_n01": 60,
-      "both_correct_n11": 748,
-      "both_wrong_n00": 254,
-      "chi2_cc": 107.641,
-      "p_value": 7.355246061852392e-27
     },
     "Sweep-Scale-400-7B-SimPO_vs_OCCAM-7B-SFT": {
       "n_shared": 4526,
@@ -1814,426 +1899,34 @@
       "chi2_cc": 0.0,
       "p_value": 1.0
     },
-    "OCCAM-7B-SimPO_vs_Direct-0CoT-3B": {
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SimPO": {
       "n_shared": 4526,
-      "a_only_correct_n10": 1498,
-      "b_only_correct_n01": 426,
-      "both_correct_n11": 1651,
-      "both_wrong_n00": 951,
-      "chi2_cc": 596.175,
-      "p_value": 2.344990451339079e-139
+      "a_only_correct_n10": 1031,
+      "b_only_correct_n01": 320,
+      "both_correct_n11": 2217,
+      "both_wrong_n00": 958,
+      "chi2_cc": 373.131,
+      "p_value": 2.3711589492402514e-87
     },
-    "OCCAM-7B-SimPO_vs_Direct-0CoT-3B_OOD": {
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SimPO_OOD": {
       "n_shared": 1303,
-      "a_only_correct_n10": 662,
-      "b_only_correct_n01": 81,
-      "both_correct_n11": 306,
+      "a_only_correct_n10": 241,
+      "b_only_correct_n01": 60,
+      "both_correct_n11": 748,
       "both_wrong_n00": 254,
-      "chi2_cc": 452.759,
-      "p_value": 3.2577012582150196e-114
-    },
-    "OCCAM-7B-SimPO_vs_Base-3B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 738,
-      "b_only_correct_n01": 519,
-      "both_correct_n11": 2411,
-      "both_wrong_n00": 858,
-      "chi2_cc": 37.807,
-      "p_value": 7.095326159710632e-10
-    },
-    "OCCAM-7B-SimPO_vs_Base-3B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 112,
-      "b_only_correct_n01": 144,
-      "both_correct_n11": 856,
-      "both_wrong_n00": 191,
-      "chi2_cc": 3.754,
-      "p_value": 0.05247167333214291
-    },
-    "OCCAM-7B-SimPO_vs_Direct-0CoT-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 1221,
-      "b_only_correct_n01": 464,
-      "both_correct_n11": 1928,
-      "both_wrong_n00": 913,
-      "chi2_cc": 339.191,
-      "p_value": 1.9345858153668189e-78
-    },
-    "OCCAM-7B-SimPO_vs_Direct-0CoT-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 599,
-      "b_only_correct_n01": 95,
-      "both_correct_n11": 369,
-      "both_wrong_n00": 240,
-      "chi2_cc": 364.566,
-      "p_value": 2.789816862459508e-90
-    },
-    "OCCAM-7B-SimPO_vs_Base-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 338,
-      "b_only_correct_n01": 586,
-      "both_correct_n11": 2811,
-      "both_wrong_n00": 791,
-      "chi2_cc": 66.027,
-      "p_value": 2.967740028218915e-16
-    },
-    "OCCAM-7B-SimPO_vs_Base-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 47,
-      "b_only_correct_n01": 160,
-      "both_correct_n11": 921,
-      "both_wrong_n00": 175,
-      "chi2_cc": 60.599,
-      "p_value": 1.2996577613713652e-15
-    },
-    "OCCAM-7B-SimPO_vs_FewShot-3CoT-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 418,
-      "b_only_correct_n01": 583,
-      "both_correct_n11": 2731,
-      "both_wrong_n00": 794,
-      "chi2_cc": 26.869,
-      "p_value": 2.0492100946481186e-07
-    },
-    "OCCAM-7B-SimPO_vs_FewShot-3CoT-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 45,
-      "b_only_correct_n01": 171,
-      "both_correct_n11": 923,
-      "both_wrong_n00": 164,
-      "chi2_cc": 72.338,
-      "p_value": 1.7302110380365936e-18
-    },
-    "OCCAM-7B-SimPO_vs_SC-Maj4-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 304,
-      "b_only_correct_n01": 607,
-      "both_correct_n11": 2845,
-      "both_wrong_n00": 770,
-      "chi2_cc": 100.114,
-      "p_value": 5.511658186262553e-24
-    },
-    "OCCAM-7B-SimPO_vs_SC-Maj4-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 35,
-      "b_only_correct_n01": 159,
-      "both_correct_n11": 933,
-      "both_wrong_n00": 176,
-      "chi2_cc": 77.985,
-      "p_value": 4.439051687229638e-20
-    },
-    "OCCAM-7B-SimPO_vs_Concise-CoD-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 824,
-      "b_only_correct_n01": 443,
-      "both_correct_n11": 2325,
-      "both_wrong_n00": 934,
-      "chi2_cc": 113.97,
-      "p_value": 5.4521726334861585e-27
-    },
-    "OCCAM-7B-SimPO_vs_Concise-CoD-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 305,
-      "b_only_correct_n01": 94,
-      "both_correct_n11": 663,
-      "both_wrong_n00": 241,
-      "chi2_cc": 110.526,
-      "p_value": 4.2002453246035326e-27
-    },
-    "OCCAM-7B-SimPO_vs_Ext-16Op-Harness-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 537,
-      "b_only_correct_n01": 484,
-      "both_correct_n11": 2612,
-      "both_wrong_n00": 893,
-      "chi2_cc": 2.648,
-      "p_value": 0.10360874808931671
-    },
-    "OCCAM-7B-SimPO_vs_Ext-16Op-Harness-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 93,
-      "b_only_correct_n01": 108,
-      "both_correct_n11": 875,
-      "both_wrong_n00": 227,
-      "chi2_cc": 0.975,
-      "p_value": 0.3234117938996337
-    },
-    "OCCAM-7B-SimPO_vs_BoT-Retrieval-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 435,
-      "b_only_correct_n01": 594,
-      "both_correct_n11": 2714,
-      "both_wrong_n00": 783,
-      "chi2_cc": 24.26,
-      "p_value": 8.021326529311567e-07
-    },
-    "OCCAM-7B-SimPO_vs_BoT-Retrieval-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 83,
-      "b_only_correct_n01": 154,
-      "both_correct_n11": 885,
-      "both_wrong_n00": 181,
-      "chi2_cc": 20.675,
-      "p_value": 4.661267805702715e-06
-    },
-    "OCCAM-7B-SimPO_vs_LIMO-LongCoT-SFT-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 343,
-      "b_only_correct_n01": 589,
-      "both_correct_n11": 2806,
-      "both_wrong_n00": 788,
-      "chi2_cc": 64.405,
-      "p_value": 6.920553418646067e-16
-    },
-    "OCCAM-7B-SimPO_vs_LIMO-LongCoT-SFT-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 54,
-      "b_only_correct_n01": 155,
-      "both_correct_n11": 914,
-      "both_wrong_n00": 180,
-      "chi2_cc": 47.847,
-      "p_value": 1.6834367554503965e-12
-    },
-    "OCCAM-7B-SimPO_vs_R1-Distill-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 545,
-      "b_only_correct_n01": 747,
-      "both_correct_n11": 2604,
-      "both_wrong_n00": 630,
-      "chi2_cc": 31.27,
-      "p_value": 2.1069271656119895e-08
-    },
-    "OCCAM-7B-SimPO_vs_R1-Distill-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 89,
-      "b_only_correct_n01": 198,
-      "both_correct_n11": 879,
-      "both_wrong_n00": 137,
-      "chi2_cc": 40.641,
-      "p_value": 1.1004742656667875e-10
-    },
-    "OCCAM-7B-SimPO_vs_Ablation-Jargon-Only-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 426,
-      "b_only_correct_n01": 569,
-      "both_correct_n11": 2723,
-      "both_wrong_n00": 808,
-      "chi2_cc": 20.265,
-      "p_value": 6.512771467136801e-06
-    },
-    "OCCAM-7B-SimPO_vs_Ablation-Jargon-Only-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 65,
-      "b_only_correct_n01": 159,
-      "both_correct_n11": 903,
-      "both_wrong_n00": 176,
-      "chi2_cc": 38.612,
-      "p_value": 2.8502631991312344e-10
-    },
-    "OCCAM-7B-SimPO_vs_Ablation-wo-Router-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 510,
-      "b_only_correct_n01": 439,
-      "both_correct_n11": 2639,
-      "both_wrong_n00": 938,
-      "chi2_cc": 5.163,
-      "p_value": 0.023018446940312062
-    },
-    "OCCAM-7B-SimPO_vs_Ablation-wo-Router-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 86,
-      "b_only_correct_n01": 106,
-      "both_correct_n11": 882,
-      "both_wrong_n00": 229,
-      "chi2_cc": 1.88,
-      "p_value": 0.17014785959635745
-    },
-    "OCCAM-7B-SimPO_vs_Ablation-Uniform-SimPO-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 345,
-      "b_only_correct_n01": 270,
-      "both_correct_n11": 2804,
-      "both_wrong_n00": 1107,
-      "chi2_cc": 8.904,
-      "p_value": 0.00281563559422861
-    },
-    "OCCAM-7B-SimPO_vs_Ablation-Uniform-SimPO-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 74,
-      "b_only_correct_n01": 62,
-      "both_correct_n11": 894,
-      "both_wrong_n00": 273,
-      "chi2_cc": 0.89,
-      "p_value": 0.3455925658608849
-    },
-    "OCCAM-7B-SimPO_vs_OCCAM-3B-SFT": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 680,
-      "b_only_correct_n01": 450,
-      "both_correct_n11": 2469,
-      "both_wrong_n00": 927,
-      "chi2_cc": 46.408,
-      "p_value": 8.172155469045709e-12
-    },
-    "OCCAM-7B-SimPO_vs_OCCAM-3B-SFT_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 166,
-      "b_only_correct_n01": 105,
-      "both_correct_n11": 802,
-      "both_wrong_n00": 230,
-      "chi2_cc": 13.284,
-      "p_value": 0.0002534414231360158
-    },
-    "OCCAM-7B-SimPO_vs_OCCAM-3B-SimPO": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 996,
-      "b_only_correct_n01": 384,
-      "both_correct_n11": 2153,
-      "both_wrong_n00": 993,
-      "chi2_cc": 270.522,
-      "p_value": 7.134443934226658e-63
-    },
-    "OCCAM-7B-SimPO_vs_OCCAM-3B-SimPO_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 244,
-      "b_only_correct_n01": 84,
-      "both_correct_n11": 724,
-      "both_wrong_n00": 251,
-      "chi2_cc": 77.076,
-      "p_value": 3.092377081096197e-19
-    },
-    "OCCAM-7B-SimPO_vs_OCCAM-7B-SFT": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 331,
-      "b_only_correct_n01": 480,
-      "both_correct_n11": 2818,
-      "both_wrong_n00": 897,
-      "chi2_cc": 27.009,
-      "p_value": 1.8778322758089182e-07
-    },
-    "OCCAM-7B-SimPO_vs_OCCAM-7B-SFT_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 72,
-      "b_only_correct_n01": 119,
-      "both_correct_n11": 896,
-      "both_wrong_n00": 216,
-      "chi2_cc": 11.079,
-      "p_value": 0.0008276083957788162
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Scale-400-7B-SimPO": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 368,
-      "b_only_correct_n01": 467,
-      "both_correct_n11": 2781,
-      "both_wrong_n00": 910,
-      "chi2_cc": 11.502,
-      "p_value": 0.0006862809422677724
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Scale-400-7B-SimPO_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 85,
-      "b_only_correct_n01": 106,
-      "both_correct_n11": 883,
-      "both_wrong_n00": 229,
-      "chi2_cc": 2.094,
-      "p_value": 0.14766209721852724
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Alpha-1p5-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 280,
-      "b_only_correct_n01": 299,
-      "both_correct_n11": 2869,
-      "both_wrong_n00": 1078,
-      "chi2_cc": 0.56,
-      "p_value": 0.4544560644697024
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Alpha-1p5-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 60,
-      "b_only_correct_n01": 72,
-      "both_correct_n11": 908,
-      "both_wrong_n00": 263,
-      "chi2_cc": 0.917,
-      "p_value": 0.33838023893982494
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Alpha-0p5-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 315,
-      "b_only_correct_n01": 290,
-      "both_correct_n11": 2834,
-      "both_wrong_n00": 1087,
-      "chi2_cc": 0.952,
-      "p_value": 0.3291972814496414
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Alpha-0p5-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 70,
-      "b_only_correct_n01": 66,
-      "both_correct_n11": 898,
-      "both_wrong_n00": 269,
-      "chi2_cc": 0.066,
-      "p_value": 0.7971023348689007
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Alpha-3p0-7B": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 279,
-      "b_only_correct_n01": 290,
-      "both_correct_n11": 2870,
-      "both_wrong_n00": 1087,
-      "chi2_cc": 0.176,
-      "p_value": 0.6750911322841325
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Alpha-3p0-7B_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 64,
-      "b_only_correct_n01": 64,
-      "both_correct_n11": 904,
-      "both_wrong_n00": 271,
-      "chi2_cc": 0.008,
-      "p_value": 1.0
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Scale-200-7B-SimPO": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 423,
-      "b_only_correct_n01": 510,
-      "both_correct_n11": 2726,
-      "both_wrong_n00": 867,
-      "chi2_cc": 7.927,
-      "p_value": 0.004843517754048888
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Scale-200-7B-SimPO_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 72,
-      "b_only_correct_n01": 131,
-      "both_correct_n11": 896,
-      "both_wrong_n00": 204,
-      "chi2_cc": 16.571,
-      "p_value": 4.1741384823469896e-05
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Scale-800-7B-SimPO": {
-      "n_shared": 4526,
-      "a_only_correct_n10": 520,
-      "b_only_correct_n01": 401,
-      "both_correct_n11": 2629,
-      "both_wrong_n00": 976,
-      "chi2_cc": 15.118,
-      "p_value": 9.891875504773892e-05
-    },
-    "OCCAM-7B-SimPO_vs_Sweep-Scale-800-7B-SimPO_OOD": {
-      "n_shared": 1303,
-      "a_only_correct_n10": 83,
-      "b_only_correct_n01": 105,
-      "both_correct_n11": 885,
-      "both_wrong_n00": 230,
-      "chi2_cc": 2.346,
-      "p_value": 0.12540008404533773
+      "chi2_cc": 107.641,
+      "p_value": 7.355246061852392e-27
     }
   },
-  "blind_probe_cv_f1_pct": 51.5,
-  "eval_gpu_hours": 6.5127,
+  "blind_probe_cv_f1_pct": 51.47,
+  "eval_gpu_hours": 8.3083,
+  "total_training_gpu_hours_incl_v2": 9.8104,
+  "n_eval_configs": 27,
+  "n_adapters_total": 24,
   "case_studies": {
     "causal_framing_win": {
       "uid": "CLADDER_647",
+      "model_used": "OCCAM-7B-SFT",
       "benchmark": "CLadder",
       "ground_truth": "Yes",
       "occam_tokens": 212,

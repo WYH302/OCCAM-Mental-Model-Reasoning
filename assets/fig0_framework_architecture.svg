@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1152.0" height="504.0" viewBox="0 0 1152.0 504.0">
+  <defs>
+    <filter id="cardShadow" x="-4%" y="-4%" width="110%" height="112%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2.5" flood-color="#94A3B8" flood-opacity="0.28"/>
+    </filter>
+    <marker id="arr_0" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#0F766E"/></marker>
+    <marker id="arr_1" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1D4ED8"/></marker>
+    <marker id="arr_2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1E293B"/></marker>
+    <marker id="arr_3" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#D97706"/></marker>
+    <marker id="arr_4" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#E11D48"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1152.0" height="504.0" fill="#FFFFFF"/>
+  <rect x="11.52" y="43.20" width="297.60" height="447.36" rx="10.56" ry="10.56" fill="#FFF1F2" stroke="#F43F5E" stroke-width="1.55" filter="url(#cardShadow)"/>
+  <rect x="339.84" y="43.20" width="401.28" height="447.36" rx="10.56" ry="10.56" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.55" filter="url(#cardShadow)"/>
+  <rect x="771.84" y="43.20" width="368.64" height="447.36" rx="10.56" ry="10.56" fill="#F0FDFA" stroke="#14B8A6" stroke-width="1.55" filter="url(#cardShadow)"/>
+  <rect x="353.28" y="98.88" width="374.40" height="119.04" rx="7.68" ry="7.68" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.21" filter="url(#cardShadow)"/>
+  <rect x="353.28" y="240.96" width="374.40" height="97.92" rx="7.68" ry="7.68" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.21" filter="url(#cardShadow)"/>
+  <rect x="11.52" y="43.20" width="297.60" height="46.08" rx="8.64" ry="8.64" fill="#E11D48" stroke="#E11D48" stroke-width="1.15"/>
+  <text x="160.32" y="70.23" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="11.73" font-weight="bold" fill="#FFFFFF" text-anchor="middle">(a) Bottleneck: Long-CoT Overthinking</text>
+  <rect x="44.16" y="102.72" width="232.32" height="42.24" rx="6.72" ry="6.72" fill="#FFFFFF" stroke="#FDA4AF" stroke-width="1.15"/>
+  <text x="160.32" y="118.93" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.66" font-weight="bold" fill="#0F172A" text-anchor="middle">Input Query x</text>
+  <text x="160.32" y="136.39" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.06" font-weight="normal" fill="#334155" text-anchor="middle">Causal / Deductive / Math Problem</text>
+  <rect x="24.96" y="168.00" width="270.72" height="140.16" rx="7.68" ry="7.68" fill="#FFFFFF" stroke="#FB7185" stroke-width="1.38" stroke-dasharray="6,4"/>
+  <rect x="24.96" y="333.12" width="130.56" height="63.36" rx="6.72" ry="6.72" fill="#E11D48" stroke="#BE123C" stroke-width="1.03"/>
+  <text x="90.24" y="359.76" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.26" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Heavy KV-Cache</text>
+  <text x="90.24" y="377.09" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.06" font-weight="normal" fill="#FFE4E6" text-anchor="middle">79.7 MB / query</text>
+  <rect x="165.12" y="333.12" width="130.56" height="63.36" rx="6.72" ry="6.72" fill="#E11D48" stroke="#BE123C" stroke-width="1.03"/>
+  <text x="230.40" y="359.76" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.26" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Framing Collapse</text>
+  <text x="230.40" y="377.09" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.06" font-weight="normal" fill="#FFE4E6" text-anchor="middle">-12.6% ARC-C</text>
+  <rect x="24.96" y="408.00" width="270.72" height="71.04" rx="6.72" ry="6.72" fill="#FFFFFF" stroke="#FDA4AF" stroke-width="1.15"/>
+  <text x="160.32" y="432.71" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.13" font-weight="bold" fill="#9F1239" text-anchor="middle">Rate-Distortion Dichotomy (Prop. 1)</text>
+  <text x="160.32" y="450.14" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.93" font-weight="normal" fill="#334155" text-anchor="middle">Naive 200t budget cap crashes R1 (-30.9%).</text>
+  <text x="160.32" y="461.22" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.93" font-weight="normal" fill="#334155" text-anchor="middle">Compression must adapt to task regime!</text>
+  <rect x="339.84" y="43.20" width="401.28" height="46.08" rx="8.64" ry="8.64" fill="#1D4ED8" stroke="#1D4ED8" stroke-width="1.15"/>
+  <text x="540.48" y="70.14" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="11.46" font-weight="bold" fill="#FFFFFF" text-anchor="middle">(b) Compile-Time Internalization (Single 24 GB GPU)</text>
+  <rect x="353.28" y="361.92" width="374.40" height="117.12" rx="7.68" ry="7.68" fill="#FFFFFF" stroke="#1D4ED8" stroke-width="1.55" filter="url(#cardShadow)"/>
+  <text x="363.84" y="398.28" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.26" font-weight="bold" fill="#1D4ED8" text-anchor="start">Stage 2: Strip-Prompt Anchored LoRA + OCCAM-SimPO</text>
+  <text x="363.84" y="416.22" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="normal" fill="#1E293B" text-anchor="start">• Strip M16 prompt -&gt; Native &lt;think&gt;-aligned SFT (0 prompt cost)</text>
+  <text x="363.84" y="427.21" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="normal" fill="#1E293B" text-anchor="start">• Router credit weighting (alpha_r &gt; 1 on &lt;cog_router&gt; span)</text>
+  <text x="363.84" y="438.20" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="normal" fill="#1E293B" text-anchor="start">• Dynamic penalty lambda_len(Z) + calibrated horizon K = 25</text>
+  <text x="363.84" y="449.19" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="normal" fill="#1E293B" text-anchor="start">• 256-tok chunked lm_head: &lt;=17.8 GB peak bf16 VRAM</text>
+  <rect x="771.84" y="43.20" width="368.64" height="46.08" rx="8.64" ry="8.64" fill="#0F766E" stroke="#0F766E" stroke-width="1.15"/>
+  <text x="956.16" y="70.14" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="11.46" font-weight="bold" fill="#FFFFFF" text-anchor="middle">(c) Zero-Prompt Regime-Adaptive Inference</text>
+  <rect x="812.16" y="102.72" width="288.00" height="42.24" rx="6.72" ry="6.72" fill="#FFFFFF" stroke="#5EEAD4" stroke-width="1.15"/>
+  <text x="956.16" y="118.95" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.33" font-weight="bold" fill="#0F172A" text-anchor="middle">Bare Test Query x (Zero System Prompt)</text>
+  <text x="956.16" y="136.11" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="normal" fill="#334155" text-anchor="middle">No External Schema • No Benchmark Tag</text>
+  <rect x="785.28" y="168.00" width="341.76" height="80.64" rx="7.68" ry="7.68" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.55" filter="url(#cardShadow)"/>
+  <text x="956.16" y="197.62" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.20" font-weight="bold" fill="#0F766E" text-anchor="middle">Phase 1: Internalized &lt;cog_router&gt; (&lt;12 bits, ~55t)</text>
+  <text x="956.16" y="215.01" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="normal" fill="#1E293B" text-anchor="middle">[Topology] • [Bias Pruned] • [Primitives P_i -&gt; P_j]</text>
+  <text x="956.16" y="226.00" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="normal" fill="#1E293B" text-anchor="middle">Autoregressive [Execution_Regime] Gate (1 GPU Engine)</text>
+  <rect x="785.28" y="281.28" width="165.12" height="120.96" rx="7.68" ry="7.68" fill="#0F766E" stroke="#115E59" stroke-width="1.26" filter="url(#cardShadow)"/>
+  <text x="867.84" y="314.00" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.86" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Regime I:</text>
+  <text x="867.84" y="326.23" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.86" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Structural Framing</text>
+  <text x="867.84" y="343.96" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#CCFBF1" text-anchor="middle">OCCAM LoRA Active</text>
+  <text x="867.84" y="354.62" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#CCFBF1" text-anchor="middle">Prefix-Cached &lt;cog_trace&gt;</text>
+  <text x="867.84" y="365.28" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#CCFBF1" text-anchor="middle">~200t • -74% Entropy</text>
+  <text x="867.84" y="375.94" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#CCFBF1" text-anchor="middle">Cures Overthinking</text>
+  <rect x="961.92" y="281.28" width="165.12" height="120.96" rx="7.68" ry="7.68" fill="#D97706" stroke="#B45309" stroke-width="1.26" filter="url(#cardShadow)"/>
+  <text x="1044.48" y="314.00" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.86" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Regime II:</text>
+  <text x="1044.48" y="326.23" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.86" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Symbolic Rollout</text>
+  <text x="1044.48" y="343.96" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#FEF3C7" text-anchor="middle">LoRA Disengaged (0 VRAM)</text>
+  <text x="1044.48" y="354.62" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#FEF3C7" text-anchor="middle">Native Backbone Rollout</text>
+  <text x="1044.48" y="365.28" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#FEF3C7" text-anchor="middle">Respects Fano Floor</text>
+  <text x="1044.48" y="375.94" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.60" font-weight="normal" fill="#FEF3C7" text-anchor="middle">Preserves Elite Math</text>
+  <rect x="362.88" y="123.84" width="173.76" height="40.32" rx="4.80" ry="4.80" fill="#E0F2FE" stroke="#0284C7" stroke-width="0.98"/>
+  <text x="449.76" y="139.13" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="bold" fill="#0F172A" text-anchor="middle">D1 Meta-Control (rlPFC/dACC)</text>
+  <text x="449.76" y="155.06" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.06" font-weight="normal" fill="#334155" text-anchor="middle">Inversion, Isomorphism, Backtrack</text>
+  <rect x="544.32" y="123.84" width="173.76" height="40.32" rx="4.80" ry="4.80" fill="#EDE9FE" stroke="#7C3AED" stroke-width="0.98"/>
+  <text x="631.20" y="139.13" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="bold" fill="#0F172A" text-anchor="middle">D2 Invariants (Friston MDL/IPS)</text>
+  <text x="631.20" y="155.06" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.06" font-weight="normal" fill="#334155" text-anchor="middle">Axioms, MDL Razor, Falsification</text>
+  <rect x="362.88" y="169.92" width="173.76" height="40.32" rx="4.80" ry="4.80" fill="#CCFBF1" stroke="#0D9488" stroke-width="0.98"/>
+  <text x="449.76" y="185.21" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="bold" fill="#0F172A" text-anchor="middle">D3 Representations (OFC-Hipp.)</text>
+  <text x="449.76" y="201.14" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.06" font-weight="normal" fill="#334155" text-anchor="middle">Causal DAG, Min-Cut, Graph Rank</text>
+  <rect x="544.32" y="169.92" width="173.76" height="40.32" rx="4.80" ry="4.80" fill="#FEF3C7" stroke="#D97706" stroke-width="0.98"/>
+  <text x="631.20" y="185.21" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.86" font-weight="bold" fill="#0F172A" text-anchor="middle">D4 Strategic Ops (mPFC-TPJ)</text>
+  <text x="631.20" y="201.14" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.06" font-weight="normal" fill="#334155" text-anchor="middle">Bayes, Blotto/Nash, Convexity</text>
+  <rect x="362.88" y="269.76" width="167.04" height="59.52" rx="5.76" ry="5.76" fill="#CCFBF1" stroke="#0F766E" stroke-width="1.09"/>
+  <text x="446.40" y="289.31" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.33" font-weight="bold" fill="#0F766E" text-anchor="middle">Verified Chosen y+ (233t)</text>
+  <text x="446.40" y="305.82" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.26" font-weight="normal" fill="#134E4A" text-anchor="middle">&lt;cog_router&gt; + &lt;cog_trace&gt;</text>
+  <text x="446.40" y="316.07" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.26" font-weight="normal" fill="#134E4A" text-anchor="middle">Regime Tag • 0.00% Overlap</text>
+  <rect x="551.04" y="269.76" width="167.04" height="59.52" rx="5.76" ry="5.76" fill="#FEF3C7" stroke="#D97706" stroke-width="1.09"/>
+  <text x="634.56" y="289.31" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.33" font-weight="bold" fill="#B45309" text-anchor="middle">Verbose Negative y- (544t)</text>
+  <text x="634.56" y="305.82" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.26" font-weight="normal" fill="#78350F" text-anchor="middle">Unstructured CoT Rollouts</text>
+  <text x="634.56" y="316.07" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="8.26" font-weight="normal" fill="#78350F" text-anchor="middle">1,570 Verified Pairs</text>
+  <rect x="785.28" y="431.04" width="341.76" height="48.00" rx="7.68" ry="7.68" fill="#0F172A" stroke="#0F172A" stroke-width="1.15"/>
+  <text x="956.16" y="450.18" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.93" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Verified Final &lt;answer&gt;</text>
+  <text x="956.16" y="467.78" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.13" font-weight="normal" fill="#E2E8F0" text-anchor="middle">Surpasses SOTA Accuracy + Cuts Tokens &amp; KV-Cache</text>
+  <polyline points="203.3,220.6 206.9,217.6 209.6,214.9 211.2,212.7 211.7,211.1 211.4,210.3 210.1,210.3 208.0,211.3 205.2,213.2 201.9,215.9 198.1,219.4 193.9,223.4 189.6,227.9 185.2,232.5 180.9,237.2 176.7,241.6 172.8,245.7 169.3,249.2 166.1,252.0 163.5,254.0 161.3,255.2 159.5,255.6 158.2,255.2 157.4,254.1 156.8,252.6 156.6,250.7 156.6,248.6 156.7,246.6 156.8,244.8 156.8,243.4 156.7,242.6 156.4,242.5 155.8,243.1 154.8,244.4 153.4,246.5 151.6,249.2 149.4,252.4 146.8,256.0 143.9,259.7 140.6,263.4 137.1,266.9 133.5,270.0 129.9,272.5 126.4,274.2 123.1,275.1 120.1,275.0 117.7,274.0 115.8,272.1 114.6,269.5 114.1,266.1 114.6,262.3 115.9,258.1 118.2,253.8 121.5,249.6 125.7,245.7 130.8,242.3 136.8,239.5 143.4,237.4 150.7,236.1 158.5,235.5 166.6,235.7 174.9,236.6 183.1,238.0 191.2,239.7 198.9,241.6 206.0,243.5 212.4,245.2 218.0,246.5 222.5,247.2 226.0,247.3 228.3,246.6 229.3,245.2 229.0,242.9 227.5,240.0 224.7,236.4 220.7,232.4 215.7,228.2 209.6,223.8 202.8,219.6 195.2,215.8 187.1,212.5 178.6,209.8 170.0,208.0 161.4,207.1 153.0,207.1 145.0,208.0 137.5,209.8 130.7,212.3 124.7,215.3 119.6,218.8 115.4,222.5 112.3,226.2 110.2,229.6 109.1,232.7 109.0,235.3 109.8,237.2 111.5,238.4 113.9,238.8 117.0,238.5 120.6,237.5 124.6,236.0 128.9,234.2 133.2,232.1 137.6,230.0 141.9,228.1 145.9,226.6 149.6,225.7 153.0,225.4 155.9,225.8 158.3,227.1 160.3,229.3 161.8,232.2 162.9,235.8 163.6,239.9 164.0,244.5 164.1,249.2 164.0,253.8 163.9,258.3 163.8,262.3 163.8,265.7 164.0,268.3 164.5,270.1 165.3,271.0 166.5,271.0 168.1,270.2 170.1,268.6 172.5,266.3 175.3,263.6 178.4,260.6 181.8,257.6 185.3,254.6 188.9,252.0 192.5,249.9 195.9,248.4 199.1,247.6 201.8,247.4 204.0,248.1 205.6,249.3 206.4,251.2 206.4,253.4 205.5,255.9 203.7,258.4 200.9,260.7 197.1,262.8 192.5,264.3 186.9,265.1 180.6,265.1 173.6,264.3 166.1,262.6 158.1,260.0 149.9,256.7 141.6,252.7 133.5,248.3 125.6,243.5 118.1,238.7 111.3,234.0 105.3,229.6 100.3,225.7 96.2,222.4 93.4,220.0 91.7,218.4 91.3,217.6 92.2,217.8 94.4,218.6 97.8,220.2 102.3,222.2 107.9,224.5 114.3,227.0 121.6,229.4 129.5,231.5 137.8,233.2 146.3,234.3 155.0,234.8 163.5,234.5 171.7,233.5 179.5,231.8 186.6,229.5 193.1,226.8 198.6,223.8 203.3,220.6" fill="none" stroke="#1E293B" stroke-width="1.32" stroke-opacity="0.82"/>
+  <line x1="160.32" y1="144.96" x2="160.32" y2="166.08" stroke="#E11D48" stroke-width="1.94" marker-end="url(#arr_4)"/>
+  <line x1="97.92" y1="308.16" x2="97.92" y2="331.20" stroke="#E11D48" stroke-width="1.81" marker-end="url(#arr_4)"/>
+  <line x1="222.72" y1="308.16" x2="222.72" y2="331.20" stroke="#E11D48" stroke-width="1.81" marker-end="url(#arr_4)"/>
+  <line x1="540.48" y1="217.92" x2="540.48" y2="239.04" stroke="#1D4ED8" stroke-width="2.06" marker-end="url(#arr_1)"/>
+  <line x1="540.48" y1="338.88" x2="540.48" y2="360.00" stroke="#1D4ED8" stroke-width="2.06" marker-end="url(#arr_1)"/>
+  <line x1="956.16" y1="144.96" x2="956.16" y2="166.08" stroke="#0F766E" stroke-width="1.94" marker-end="url(#arr_0)"/>
+  <line x1="881.28" y1="248.64" x2="867.84" y2="279.36" stroke="#0F766E" stroke-width="2.12" marker-end="url(#arr_0)"/>
+  <line x1="1031.04" y1="248.64" x2="1044.48" y2="279.36" stroke="#D97706" stroke-width="2.12" marker-end="url(#arr_3)"/>
+  <line x1="867.84" y1="402.24" x2="915.84" y2="429.12" stroke="#0F766E" stroke-width="2.12" marker-end="url(#arr_0)"/>
+  <line x1="1044.48" y1="402.24" x2="996.48" y2="429.12" stroke="#D97706" stroke-width="2.12" marker-end="url(#arr_3)"/>
+  <line x1="309.12" y1="265.92" x2="339.84" y2="265.92" stroke="#1E293B" stroke-width="2.62" marker-end="url(#arr_2)"/>
+  <line x1="741.12" y1="265.92" x2="771.84" y2="265.92" stroke="#0F766E" stroke-width="2.62" marker-end="url(#arr_0)"/>
+  <text x="576.00" y="27.25" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="15.20" font-weight="bold" font-style="normal" fill="#0F172A" text-anchor="middle">OCCAM: Regime-Adaptive Mental-Model Cognitive Compression for Language Models</text>
+  <text x="160.32" y="188.72" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="10.13" font-weight="bold" font-style="normal" fill="#BE123C" text-anchor="middle">&quot;Wait, let me re-check...&quot; (1,458 tokens)</text>
+  <text x="160.32" y="294.01" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.20" font-weight="normal" font-style="italic" fill="#475569" text-anchor="middle">Repetitive self-doubt loops (p95 = 5,821t)</text>
+  <text x="540.48" y="115.61" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.66" font-weight="bold" font-style="normal" fill="#1E40AF" text-anchor="middle">Canonical Basis M16 (Nobel/Turing &amp; PFC-Hippocampal Brain Taxonomy)</text>
+  <text x="540.48" y="257.78" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.93" font-weight="bold" font-style="normal" fill="#1E3A8A" text-anchor="middle">Stage 1: Local Self-Distillation &amp; SymPy Gate (OCCAM-2K, $0 API)</text>
+  <text x="540.48" y="302.83" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.73" font-weight="bold" font-style="normal" fill="#475569" text-anchor="middle">vs.</text>
+  <text x="324.48" y="248.02" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.46" font-weight="bold" font-style="normal" fill="#1E293B" text-anchor="middle">Solve</text>
+  <text x="756.48" y="248.02" font-family="Comic Sans MS, Comic Neue, cursive, sans-serif" font-size="9.46" font-weight="bold" font-style="normal" fill="#0F766E" text-anchor="middle">Deploy</text>
+</svg>
