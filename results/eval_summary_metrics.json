@@ -1,5 +1,5 @@
 {
-  "flagship_id": "OCCAM-7B-SFT",
+  "flagship_id": "OCCAM-Router-7B",
   "models": {
     "Direct-0CoT-3B": {
       "model_id": "Direct-0CoT-3B",
@@ -633,7 +633,7 @@
     },
     "OCCAM-3B-SFT": {
       "model_id": "OCCAM-3B-SFT",
-      "display_name": "OCCAM-3B (Schema Distillation)",
+      "display_name": "OCCAM-3B-SFT (Schema Distillation)",
       "group": "G5_OCCAM",
       "benchmark_acc": {
         "CLadder": 46.89,
@@ -672,6 +672,90 @@
       "delta_eta": 4.81,
       "latency_ms": 87.0,
       "wall_sec": 393.5
+    },
+    "OCCAM-3B-v2-Direct": {
+      "model_id": "OCCAM-3B-v2-Direct",
+      "display_name": "OCCAM-3B-v2 (Direct Mental-Model)",
+      "group": "G5_OCCAM",
+      "benchmark_acc": {
+        "CLadder": 48.67,
+        "BBH-Hard": 57.56,
+        "ARC-Challenge": 81.4,
+        "LogiQA": 45.16,
+        "MATH-500": 59.2,
+        "GSM8K": 80.38,
+        "FOLIO": 60.1,
+        "StrategyQA": 59.33
+      },
+      "benchmark_tokens": {
+        "CLadder": 355.3,
+        "BBH-Hard": 217.1,
+        "ARC-Challenge": 203.1,
+        "LogiQA": 281.2,
+        "MATH-500": 437.4,
+        "GSM8K": 194.3,
+        "FOLIO": 241.4,
+        "StrategyQA": 166.9
+      },
+      "framing_macro_acc": 58.2,
+      "framing_micro_acc": 63.39,
+      "macro_id_acc": 58.4,
+      "macro_ood_acc": 66.6,
+      "micro_id_acc": 62.74,
+      "micro_ood_acc": 72.37,
+      "micro_all_acc": 65.51,
+      "ci95_id": 1.68,
+      "ci95_ood": 2.46,
+      "avg_tokens_id": 278.4,
+      "avg_tokens_all": 254.5,
+      "median_tokens_all": 213.0,
+      "p95_tokens_all": 518.8,
+      "kv_cache_mb": 9.8,
+      "delta_eta": 4.55,
+      "latency_ms": 81.5,
+      "wall_sec": 368.7
+    },
+    "OCCAM-3B-Adaptive": {
+      "model_id": "OCCAM-3B-Adaptive",
+      "display_name": "OCCAM-3B-Adaptive (Regime-Gated)",
+      "group": "G5_OCCAM",
+      "benchmark_acc": {
+        "CLadder": 50.0,
+        "BBH-Hard": 53.33,
+        "ARC-Challenge": 81.48,
+        "LogiQA": 44.09,
+        "MATH-500": 63.2,
+        "GSM8K": 85.25,
+        "FOLIO": 64.04,
+        "StrategyQA": 57.67
+      },
+      "benchmark_tokens": {
+        "CLadder": 332.7,
+        "BBH-Hard": 239.9,
+        "ARC-Challenge": 200.7,
+        "LogiQA": 279.0,
+        "MATH-500": 595.4,
+        "GSM8K": 329.9,
+        "FOLIO": 250.6,
+        "StrategyQA": 171.6
+      },
+      "framing_macro_acc": 57.23,
+      "framing_micro_acc": 62.69,
+      "macro_id_acc": 58.42,
+      "macro_ood_acc": 68.99,
+      "micro_id_acc": 62.77,
+      "micro_ood_acc": 75.59,
+      "micro_all_acc": 66.46,
+      "ci95_id": 1.64,
+      "ci95_ood": 2.38,
+      "avg_tokens_id": 301.7,
+      "avg_tokens_all": 295.7,
+      "median_tokens_all": 250.0,
+      "p95_tokens_all": 649.0,
+      "kv_cache_mb": 10.62,
+      "delta_eta": 4.22,
+      "latency_ms": 110.4,
+      "wall_sec": 499.6
     },
     "OCCAM-7B-SFT": {
       "model_id": "OCCAM-7B-SFT",
@@ -840,6 +924,216 @@
       "delta_eta": 4.32,
       "latency_ms": 154.2,
       "wall_sec": 697.7
+    },
+    "OCCAM-Qwen-7B-v2-Direct": {
+      "model_id": "OCCAM-Qwen-7B-v2-Direct",
+      "display_name": "OCCAM-Qwen-7B-v2 (Direct Mental-Model)",
+      "group": "G5_OCCAM",
+      "benchmark_acc": {
+        "CLadder": 52.44,
+        "BBH-Hard": 69.56,
+        "ARC-Challenge": 89.25,
+        "LogiQA": 57.14,
+        "MATH-500": 68.6,
+        "GSM8K": 87.75,
+        "FOLIO": 68.47,
+        "StrategyQA": 56.33
+      },
+      "benchmark_tokens": {
+        "CLadder": 318.0,
+        "BBH-Hard": 219.5,
+        "ARC-Challenge": 199.2,
+        "LogiQA": 278.8,
+        "MATH-500": 378.3,
+        "GSM8K": 194.8,
+        "FOLIO": 288.3,
+        "StrategyQA": 180.8
+      },
+      "framing_macro_acc": 67.1,
+      "framing_micro_acc": 72.24,
+      "macro_id_acc": 67.4,
+      "macro_ood_acc": 70.85,
+      "micro_id_acc": 71.67,
+      "micro_ood_acc": 77.51,
+      "micro_all_acc": 73.35,
+      "ci95_id": 1.57,
+      "ci95_ood": 2.26,
+      "avg_tokens_id": 262.5,
+      "avg_tokens_all": 246.3,
+      "median_tokens_all": 210.0,
+      "p95_tokens_all": 479.0,
+      "kv_cache_mb": 14.36,
+      "delta_eta": 5.73,
+      "latency_ms": 135.9,
+      "wall_sec": 615.0
+    },
+    "OCCAM-Qwen-7B-Adaptive": {
+      "model_id": "OCCAM-Qwen-7B-Adaptive",
+      "display_name": "OCCAM-Qwen-7B-Adaptive (Single-7B Gated)",
+      "group": "G5_OCCAM",
+      "benchmark_acc": {
+        "CLadder": 53.11,
+        "BBH-Hard": 69.11,
+        "ARC-Challenge": 88.82,
+        "LogiQA": 55.45,
+        "MATH-500": 73.0,
+        "GSM8K": 91.0,
+        "FOLIO": 69.46,
+        "StrategyQA": 57.0
+      },
+      "benchmark_tokens": {
+        "CLadder": 307.6,
+        "BBH-Hard": 246.7,
+        "ARC-Challenge": 196.9,
+        "LogiQA": 274.5,
+        "MATH-500": 577.6,
+        "GSM8K": 317.7,
+        "FOLIO": 284.5,
+        "StrategyQA": 176.2
+      },
+      "framing_macro_acc": 66.62,
+      "framing_micro_acc": 71.69,
+      "macro_id_acc": 67.9,
+      "macro_ood_acc": 72.49,
+      "micro_id_acc": 71.89,
+      "micro_ood_acc": 79.82,
+      "micro_all_acc": 74.17,
+      "ci95_id": 1.57,
+      "ci95_ood": 2.23,
+      "avg_tokens_id": 294.0,
+      "avg_tokens_all": 290.0,
+      "median_tokens_all": 248.0,
+      "p95_tokens_all": 604.0,
+      "kv_cache_mb": 16.08,
+      "delta_eta": 5.3,
+      "latency_ms": 193.3,
+      "wall_sec": 875.0
+    },
+    "OCCAM-R1-7B-v2-Direct": {
+      "model_id": "OCCAM-R1-7B-v2-Direct",
+      "display_name": "OCCAM-R1-7B-v2 (Direct Mental-Model)",
+      "group": "G5_OCCAM",
+      "benchmark_acc": {
+        "CLadder": 52.22,
+        "BBH-Hard": 69.11,
+        "ARC-Challenge": 76.37,
+        "LogiQA": 39.63,
+        "MATH-500": 71.4,
+        "GSM8K": 86.88,
+        "FOLIO": 65.02,
+        "StrategyQA": 53.0
+      },
+      "benchmark_tokens": {
+        "CLadder": 301.8,
+        "BBH-Hard": 235.7,
+        "ARC-Challenge": 220.1,
+        "LogiQA": 306.5,
+        "MATH-500": 411.2,
+        "GSM8K": 212.6,
+        "FOLIO": 289.5,
+        "StrategyQA": 201.0
+      },
+      "framing_macro_acc": 59.33,
+      "framing_micro_acc": 62.39,
+      "macro_id_acc": 61.75,
+      "macro_ood_acc": 68.3,
+      "micro_id_acc": 63.79,
+      "micro_ood_acc": 75.67,
+      "micro_all_acc": 67.21,
+      "ci95_id": 1.68,
+      "ci95_ood": 2.34,
+      "avg_tokens_id": 280.8,
+      "avg_tokens_all": 263.8,
+      "median_tokens_all": 221.0,
+      "p95_tokens_all": 488.8,
+      "kv_cache_mb": 15.36,
+      "delta_eta": 3.43,
+      "latency_ms": 1731.4,
+      "wall_sec": 7836.3
+    },
+    "OCCAM-R1-7B-Adaptive": {
+      "model_id": "OCCAM-R1-7B-Adaptive",
+      "display_name": "OCCAM-R1-7B-Adaptive (Single-R1 Gated)",
+      "group": "G5_OCCAM",
+      "benchmark_acc": {
+        "CLadder": 52.44,
+        "BBH-Hard": 70.0,
+        "ARC-Challenge": 77.65,
+        "LogiQA": 38.1,
+        "MATH-500": 86.2,
+        "GSM8K": 92.75,
+        "FOLIO": 65.02,
+        "StrategyQA": 50.67
+      },
+      "benchmark_tokens": {
+        "CLadder": 292.6,
+        "BBH-Hard": 983.1,
+        "ARC-Challenge": 226.3,
+        "LogiQA": 298.7,
+        "MATH-500": 2782.3,
+        "GSM8K": 1155.8,
+        "FOLIO": 402.3,
+        "StrategyQA": 287.2
+      },
+      "framing_macro_acc": 59.55,
+      "framing_micro_acc": 62.76,
+      "macro_id_acc": 64.88,
+      "macro_ood_acc": 69.48,
+      "micro_id_acc": 66.4,
+      "micro_ood_acc": 78.74,
+      "micro_all_acc": 69.95,
+      "ci95_id": 1.63,
+      "ci95_ood": 2.23,
+      "avg_tokens_id": 752.4,
+      "avg_tokens_all": 777.1,
+      "median_tokens_all": 288.0,
+      "p95_tokens_all": 3208.2,
+      "kv_cache_mb": 41.16,
+      "delta_eta": 1.72,
+      "latency_ms": 656.0,
+      "wall_sec": 2969.0
+    },
+    "OCCAM-Router-7B": {
+      "model_id": "OCCAM-Router-7B",
+      "display_name": "OCCAM-Router-7B (7B-Active Adaptive)",
+      "group": "G5_OCCAM",
+      "benchmark_acc": {
+        "CLadder": 53.11,
+        "BBH-Hard": 74.22,
+        "ARC-Challenge": 88.82,
+        "LogiQA": 55.45,
+        "MATH-500": 87.4,
+        "GSM8K": 91.75,
+        "FOLIO": 69.46,
+        "StrategyQA": 56.67
+      },
+      "benchmark_tokens": {
+        "CLadder": 307.6,
+        "BBH-Hard": 706.9,
+        "ARC-Challenge": 210.0,
+        "LogiQA": 284.7,
+        "MATH-500": 2730.3,
+        "GSM8K": 1205.6,
+        "FOLIO": 304.0,
+        "StrategyQA": 176.8
+      },
+      "framing_macro_acc": 67.9,
+      "framing_micro_acc": 72.53,
+      "macro_id_acc": 71.8,
+      "macro_ood_acc": 72.63,
+      "micro_id_acc": 74.84,
+      "micro_ood_acc": 80.2,
+      "micro_all_acc": 76.38,
+      "ci95_id": 1.54,
+      "ci95_ood": 2.15,
+      "avg_tokens_id": 699.1,
+      "avg_tokens_all": 736.3,
+      "median_tokens_all": 267.0,
+      "p95_tokens_all": 3109.8,
+      "kv_cache_mb": 38.24,
+      "delta_eta": 2.82,
+      "latency_ms": 636.8,
+      "wall_sec": 2882.0
     },
     "Sweep-Alpha-0p5-7B": {
       "model_id": "Sweep-Alpha-0p5-7B",
@@ -1053,6 +1347,3354 @@
     }
   },
   "mcnemar_tests": {
+    "OCCAM-Router-7B_vs_Direct-0CoT-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1692,
+      "b_only_correct_n01": 312,
+      "both_correct_n11": 1765,
+      "both_wrong_n00": 757,
+      "chi2_cc": 948.923,
+      "p_value": 7.747207706605107e-229
+    },
+    "OCCAM-Router-7B_vs_Direct-0CoT-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 994,
+      "b_only_correct_n01": 272,
+      "both_correct_n11": 1418,
+      "both_wrong_n00": 539,
+      "chi2_cc": 410.617,
+      "p_value": 7.04249072301834e-97
+    },
+    "OCCAM-Router-7B_vs_Direct-0CoT-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 698,
+      "b_only_correct_n01": 40,
+      "both_correct_n11": 347,
+      "both_wrong_n00": 218,
+      "chi2_cc": 584.89,
+      "p_value": 3.233152786415387e-156
+    },
+    "OCCAM-Router-7B_vs_Base-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 870,
+      "b_only_correct_n01": 343,
+      "both_correct_n11": 2587,
+      "both_wrong_n00": 726,
+      "chi2_cc": 228.092,
+      "p_value": 3.2294505871653726e-53
+    },
+    "OCCAM-Router-7B_vs_Base-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 741,
+      "b_only_correct_n01": 259,
+      "both_correct_n11": 1671,
+      "both_wrong_n00": 552,
+      "chi2_cc": 231.361,
+      "p_value": 2.168283482541167e-54
+    },
+    "OCCAM-Router-7B_vs_Base-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 129,
+      "b_only_correct_n01": 84,
+      "both_correct_n11": 916,
+      "both_wrong_n00": 174,
+      "chi2_cc": 9.089,
+      "p_value": 0.0024902882810814487
+    },
+    "OCCAM-Router-7B_vs_Direct-0CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1384,
+      "b_only_correct_n01": 319,
+      "both_correct_n11": 2073,
+      "both_wrong_n00": 750,
+      "chi2_cc": 664.766,
+      "p_value": 7.436954211508354e-158
+    },
+    "OCCAM-Router-7B_vs_Direct-0CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 752,
+      "b_only_correct_n01": 268,
+      "both_correct_n11": 1660,
+      "both_wrong_n00": 543,
+      "chi2_cc": 228.715,
+      "p_value": 1.0231639146972842e-53
+    },
+    "OCCAM-Router-7B_vs_Direct-0CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 632,
+      "b_only_correct_n01": 51,
+      "both_correct_n11": 413,
+      "both_wrong_n00": 207,
+      "chi2_cc": 492.533,
+      "p_value": 1.850480420212349e-128
+    },
+    "OCCAM-Router-7B_vs_Base-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 428,
+      "b_only_correct_n01": 368,
+      "both_correct_n11": 3029,
+      "both_wrong_n00": 701,
+      "chi2_cc": 4.373,
+      "p_value": 0.03644395143539026
+    },
+    "OCCAM-Router-7B_vs_Base-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 369,
+      "b_only_correct_n01": 273,
+      "both_correct_n11": 2043,
+      "both_wrong_n00": 538,
+      "chi2_cc": 14.058,
+      "p_value": 0.0001728187015819378
+    },
+    "OCCAM-Router-7B_vs_Base-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 59,
+      "b_only_correct_n01": 95,
+      "both_correct_n11": 986,
+      "both_wrong_n00": 163,
+      "chi2_cc": 7.955,
+      "p_value": 0.004637497006711573
+    },
+    "OCCAM-Router-7B_vs_FewShot-3CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 517,
+      "b_only_correct_n01": 374,
+      "both_correct_n11": 2940,
+      "both_wrong_n00": 695,
+      "chi2_cc": 22.631,
+      "p_value": 1.8708897734903586e-06
+    },
+    "OCCAM-Router-7B_vs_FewShot-3CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 453,
+      "b_only_correct_n01": 261,
+      "both_correct_n11": 1959,
+      "both_wrong_n00": 550,
+      "chi2_cc": 51.094,
+      "p_value": 6.436284432537697e-13
+    },
+    "OCCAM-Router-7B_vs_FewShot-3CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 64,
+      "b_only_correct_n01": 113,
+      "both_correct_n11": 981,
+      "both_wrong_n00": 145,
+      "chi2_cc": 13.017,
+      "p_value": 0.0002846600434175853
+    },
+    "OCCAM-Router-7B_vs_SC-Maj4-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 395,
+      "b_only_correct_n01": 390,
+      "both_correct_n11": 3062,
+      "both_wrong_n00": 679,
+      "chi2_cc": 0.02,
+      "p_value": 0.886486641305777
+    },
+    "OCCAM-Router-7B_vs_SC-Maj4-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 343,
+      "b_only_correct_n01": 291,
+      "both_correct_n11": 2069,
+      "both_wrong_n00": 520,
+      "chi2_cc": 4.103,
+      "p_value": 0.04273443356256593
+    },
+    "OCCAM-Router-7B_vs_SC-Maj4-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 52,
+      "b_only_correct_n01": 99,
+      "both_correct_n11": 993,
+      "both_wrong_n00": 159,
+      "chi2_cc": 14.013,
+      "p_value": 0.00016242916039308189
+    },
+    "OCCAM-Router-7B_vs_Concise-CoD-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1014,
+      "b_only_correct_n01": 325,
+      "both_correct_n11": 2443,
+      "both_wrong_n00": 744,
+      "chi2_cc": 353.506,
+      "p_value": 1.1720012127727384e-82
+    },
+    "OCCAM-Router-7B_vs_Concise-CoD-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 672,
+      "b_only_correct_n01": 271,
+      "both_correct_n11": 1740,
+      "both_wrong_n00": 540,
+      "chi2_cc": 169.671,
+      "p_value": 5.598508414230052e-40
+    },
+    "OCCAM-Router-7B_vs_Concise-CoD-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 342,
+      "b_only_correct_n01": 54,
+      "both_correct_n11": 703,
+      "both_wrong_n00": 204,
+      "chi2_cc": 208.003,
+      "p_value": 2.717645660664448e-52
+    },
+    "OCCAM-Router-7B_vs_Ext-16Op-Harness-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 656,
+      "b_only_correct_n01": 295,
+      "both_correct_n11": 2801,
+      "both_wrong_n00": 774,
+      "chi2_cc": 136.278,
+      "p_value": 3.0812557415959084e-32
+    },
+    "OCCAM-Router-7B_vs_Ext-16Op-Harness-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 543,
+      "b_only_correct_n01": 244,
+      "both_correct_n11": 1869,
+      "both_wrong_n00": 567,
+      "chi2_cc": 112.839,
+      "p_value": 5.591884663726263e-27
+    },
+    "OCCAM-Router-7B_vs_Ext-16Op-Harness-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 113,
+      "b_only_correct_n01": 51,
+      "both_correct_n11": 932,
+      "both_wrong_n00": 207,
+      "chi2_cc": 22.689,
+      "p_value": 1.4455361416996027e-06
+    },
+    "OCCAM-Router-7B_vs_BoT-Retrieval-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 526,
+      "b_only_correct_n01": 377,
+      "both_correct_n11": 2931,
+      "both_wrong_n00": 692,
+      "chi2_cc": 24.257,
+      "p_value": 7.982032435971443e-07
+    },
+    "OCCAM-Router-7B_vs_BoT-Retrieval-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 432,
+      "b_only_correct_n01": 289,
+      "both_correct_n11": 1980,
+      "both_wrong_n00": 522,
+      "chi2_cc": 27.967,
+      "p_value": 1.1262683017298999e-07
+    },
+    "OCCAM-Router-7B_vs_BoT-Retrieval-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 94,
+      "b_only_correct_n01": 88,
+      "both_correct_n11": 951,
+      "both_wrong_n00": 170,
+      "chi2_cc": 0.137,
+      "p_value": 0.711027171025957
+    },
+    "OCCAM-Router-7B_vs_LIMO-LongCoT-SFT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 439,
+      "b_only_correct_n01": 377,
+      "both_correct_n11": 3018,
+      "both_wrong_n00": 692,
+      "chi2_cc": 4.56,
+      "p_value": 0.03266272209102792
+    },
+    "OCCAM-Router-7B_vs_LIMO-LongCoT-SFT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 371,
+      "b_only_correct_n01": 285,
+      "both_correct_n11": 2041,
+      "both_wrong_n00": 526,
+      "chi2_cc": 11.014,
+      "p_value": 0.0008907419156910515
+    },
+    "OCCAM-Router-7B_vs_LIMO-LongCoT-SFT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 68,
+      "b_only_correct_n01": 92,
+      "both_correct_n11": 977,
+      "both_wrong_n00": 166,
+      "chi2_cc": 3.306,
+      "p_value": 0.06868229204120632
+    },
+    "OCCAM-Router-7B_vs_R1-Budget200-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1765,
+      "b_only_correct_n01": 349,
+      "both_correct_n11": 1692,
+      "both_wrong_n00": 720,
+      "chi2_cc": 947.126,
+      "p_value": 5.118793571020882e-227
+    },
+    "OCCAM-Router-7B_vs_R1-Budget200-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 1343,
+      "b_only_correct_n01": 211,
+      "both_correct_n11": 1069,
+      "both_wrong_n00": 600,
+      "chi2_cc": 823.141,
+      "p_value": 1.348895624177605e-201
+    },
+    "OCCAM-Router-7B_vs_R1-Budget200-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 422,
+      "b_only_correct_n01": 138,
+      "both_correct_n11": 623,
+      "both_wrong_n00": 120,
+      "chi2_cc": 143.016,
+      "p_value": 1.9365099707967604e-34
+    },
+    "OCCAM-Router-7B_vs_R1-Distill-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 570,
+      "b_only_correct_n01": 464,
+      "both_correct_n11": 2887,
+      "both_wrong_n00": 605,
+      "chi2_cc": 10.662,
+      "p_value": 0.0010834982281479795
+    },
+    "OCCAM-Router-7B_vs_R1-Distill-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 487,
+      "b_only_correct_n01": 349,
+      "both_correct_n11": 1925,
+      "both_wrong_n00": 462,
+      "chi2_cc": 22.451,
+      "p_value": 2.049559200852279e-06
+    },
+    "OCCAM-Router-7B_vs_R1-Distill-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 83,
+      "b_only_correct_n01": 115,
+      "both_correct_n11": 962,
+      "both_wrong_n00": 143,
+      "chi2_cc": 4.854,
+      "p_value": 0.027336775277083673
+    },
+    "OCCAM-Router-7B_vs_Ablation-Jargon-Only-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 521,
+      "b_only_correct_n01": 356,
+      "both_correct_n11": 2936,
+      "both_wrong_n00": 713,
+      "chi2_cc": 30.668,
+      "p_value": 2.7968685918338102e-08
+    },
+    "OCCAM-Router-7B_vs_Ablation-Jargon-Only-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 443,
+      "b_only_correct_n01": 261,
+      "both_correct_n11": 1969,
+      "both_wrong_n00": 550,
+      "chi2_cc": 46.536,
+      "p_value": 6.916452215625933e-12
+    },
+    "OCCAM-Router-7B_vs_Ablation-Jargon-Only-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 78,
+      "b_only_correct_n01": 95,
+      "both_correct_n11": 967,
+      "both_wrong_n00": 163,
+      "chi2_cc": 1.48,
+      "p_value": 0.22370496818590435
+    },
+    "OCCAM-Router-7B_vs_Ablation-wo-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 706,
+      "b_only_correct_n01": 327,
+      "both_correct_n11": 2751,
+      "both_wrong_n00": 742,
+      "chi2_cc": 138.319,
+      "p_value": 1.2128991010179717e-32
+    },
+    "OCCAM-Router-7B_vs_Ablation-wo-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 577,
+      "b_only_correct_n01": 255,
+      "both_correct_n11": 1835,
+      "both_wrong_n00": 556,
+      "chi2_cc": 123.847,
+      "p_value": 1.7728486970016383e-29
+    },
+    "OCCAM-Router-7B_vs_Ablation-wo-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 129,
+      "b_only_correct_n01": 72,
+      "both_correct_n11": 916,
+      "both_wrong_n00": 186,
+      "chi2_cc": 15.602,
+      "p_value": 7.051394532266105e-05
+    },
+    "OCCAM-Router-7B_vs_Ablation-Uniform-SimPO-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 684,
+      "b_only_correct_n01": 301,
+      "both_correct_n11": 2773,
+      "both_wrong_n00": 768,
+      "chi2_cc": 148.146,
+      "p_value": 6.09634168332826e-35
+    },
+    "OCCAM-Router-7B_vs_Ablation-Uniform-SimPO-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 525,
+      "b_only_correct_n01": 231,
+      "both_correct_n11": 1887,
+      "both_wrong_n00": 580,
+      "chi2_cc": 113.557,
+      "p_value": 3.584922860860557e-27
+    },
+    "OCCAM-Router-7B_vs_Ablation-Uniform-SimPO-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 159,
+      "b_only_correct_n01": 70,
+      "both_correct_n11": 886,
+      "both_wrong_n00": 188,
+      "chi2_cc": 33.817,
+      "p_value": 3.893441120500723e-09
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 836,
+      "b_only_correct_n01": 298,
+      "both_correct_n11": 2621,
+      "both_wrong_n00": 771,
+      "chi2_cc": 254.294,
+      "p_value": 1.598585237989863e-59
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 643,
+      "b_only_correct_n01": 243,
+      "both_correct_n11": 1769,
+      "both_wrong_n00": 568,
+      "chi2_cc": 179.685,
+      "p_value": 2.0661245628593677e-42
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 193,
+      "b_only_correct_n01": 55,
+      "both_correct_n11": 852,
+      "both_wrong_n00": 203,
+      "chi2_cc": 75.681,
+      "p_value": 3.6713938167893283e-19
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 838,
+      "b_only_correct_n01": 346,
+      "both_correct_n11": 2619,
+      "both_wrong_n00": 723,
+      "chi2_cc": 203.616,
+      "p_value": 1.4705339200175318e-47
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 664,
+      "b_only_correct_n01": 274,
+      "both_correct_n11": 1748,
+      "both_wrong_n00": 537,
+      "chi2_cc": 161.323,
+      "p_value": 4.834659022074332e-38
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 174,
+      "b_only_correct_n01": 72,
+      "both_correct_n11": 871,
+      "both_wrong_n00": 186,
+      "chi2_cc": 41.467,
+      "p_value": 6.417069392430344e-11
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 777,
+      "b_only_correct_n01": 328,
+      "both_correct_n11": 2680,
+      "both_wrong_n00": 741,
+      "chi2_cc": 181.633,
+      "p_value": 1.48098675141299e-42
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 642,
+      "b_only_correct_n01": 253,
+      "both_correct_n11": 1770,
+      "both_wrong_n00": 558,
+      "chi2_cc": 168.206,
+      "p_value": 1.0502950799627645e-39
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 135,
+      "b_only_correct_n01": 75,
+      "both_correct_n11": 910,
+      "both_wrong_n00": 183,
+      "chi2_cc": 16.576,
+      "p_value": 4.179986758487622e-05
+    },
+    "OCCAM-Router-7B_vs_OCCAM-7B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 484,
+      "b_only_correct_n01": 325,
+      "both_correct_n11": 2973,
+      "both_wrong_n00": 744,
+      "chi2_cc": 30.858,
+      "p_value": 2.5138504206034834e-08
+    },
+    "OCCAM-Router-7B_vs_OCCAM-7B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 380,
+      "b_only_correct_n01": 251,
+      "both_correct_n11": 2032,
+      "both_wrong_n00": 560,
+      "chi2_cc": 25.965,
+      "p_value": 3.176621974705151e-07
+    },
+    "OCCAM-Router-7B_vs_OCCAM-7B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 104,
+      "b_only_correct_n01": 74,
+      "both_correct_n11": 941,
+      "both_wrong_n00": 184,
+      "chi2_cc": 4.725,
+      "p_value": 0.029445975067516537
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-400-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 511,
+      "b_only_correct_n01": 302,
+      "both_correct_n11": 2946,
+      "both_wrong_n00": 767,
+      "chi2_cc": 53.215,
+      "p_value": 2.2192954912269356e-13
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-400-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 402,
+      "b_only_correct_n01": 249,
+      "both_correct_n11": 2010,
+      "both_wrong_n00": 562,
+      "chi2_cc": 35.49,
+      "p_value": 2.174777112111926e-09
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-400-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 109,
+      "b_only_correct_n01": 53,
+      "both_correct_n11": 936,
+      "both_wrong_n00": 205,
+      "chi2_cc": 18.673,
+      "p_value": 1.2874323447942696e-05
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-1p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 615,
+      "b_only_correct_n01": 326,
+      "both_correct_n11": 2842,
+      "both_wrong_n00": 743,
+      "chi2_cc": 88.145,
+      "p_value": 2.9765707421996577e-21
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-1p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 474,
+      "b_only_correct_n01": 250,
+      "both_correct_n11": 1938,
+      "both_wrong_n00": 561,
+      "chi2_cc": 68.686,
+      "p_value": 6.564562541149837e-17
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-1p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 141,
+      "b_only_correct_n01": 76,
+      "both_correct_n11": 904,
+      "both_wrong_n00": 182,
+      "chi2_cc": 18.876,
+      "p_value": 1.2120558953712172e-05
+    },
+    "OCCAM-Router-7B_vs_OCCAM-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 613,
+      "b_only_correct_n01": 305,
+      "both_correct_n11": 2844,
+      "both_wrong_n00": 764,
+      "chi2_cc": 102.668,
+      "p_value": 1.4549647384156284e-24
+    },
+    "OCCAM-Router-7B_vs_OCCAM-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 466,
+      "b_only_correct_n01": 235,
+      "both_correct_n11": 1946,
+      "both_wrong_n00": 576,
+      "chi2_cc": 75.464,
+      "p_value": 1.8343649511917743e-18
+    },
+    "OCCAM-Router-7B_vs_OCCAM-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 147,
+      "b_only_correct_n01": 70,
+      "both_correct_n11": 898,
+      "both_wrong_n00": 188,
+      "chi2_cc": 26.618,
+      "p_value": 1.8644089901351888e-07
+    },
+    "OCCAM-Router-7B_vs_OCCAM-Qwen-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 329,
+      "b_only_correct_n01": 192,
+      "both_correct_n11": 3128,
+      "both_wrong_n00": 877,
+      "chi2_cc": 35.501,
+      "p_value": 2.072936799841149e-09
+    },
+    "OCCAM-Router-7B_vs_OCCAM-Qwen-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 243,
+      "b_only_correct_n01": 141,
+      "both_correct_n11": 2169,
+      "both_wrong_n00": 670,
+      "chi2_cc": 26.565,
+      "p_value": 2.1779464585801842e-07
+    },
+    "OCCAM-Router-7B_vs_OCCAM-Qwen-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 86,
+      "b_only_correct_n01": 51,
+      "both_correct_n11": 959,
+      "both_wrong_n00": 207,
+      "chi2_cc": 8.438,
+      "p_value": 0.003519993287441271
+    },
+    "OCCAM-Router-7B_vs_OCCAM-Qwen-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 158,
+      "b_only_correct_n01": 58,
+      "both_correct_n11": 3299,
+      "both_wrong_n00": 1011,
+      "chi2_cc": 45.375,
+      "p_value": 6.826787223184798e-12
+    },
+    "OCCAM-Router-7B_vs_OCCAM-Qwen-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 118,
+      "b_only_correct_n01": 23,
+      "both_correct_n11": 2294,
+      "both_wrong_n00": 788,
+      "chi2_cc": 62.667,
+      "p_value": 1.3899721832972424e-16
+    },
+    "OCCAM-Router-7B_vs_OCCAM-Qwen-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 40,
+      "b_only_correct_n01": 35,
+      "both_correct_n11": 1005,
+      "both_wrong_n00": 223,
+      "chi2_cc": 0.213,
+      "p_value": 0.6444639138942256
+    },
+    "OCCAM-Router-7B_vs_OCCAM-R1-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 764,
+      "b_only_correct_n01": 349,
+      "both_correct_n11": 2693,
+      "both_wrong_n00": 720,
+      "chi2_cc": 153.995,
+      "p_value": 3.5379952735507334e-36
+    },
+    "OCCAM-Router-7B_vs_OCCAM-R1-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 635,
+      "b_only_correct_n01": 279,
+      "both_correct_n11": 1777,
+      "both_wrong_n00": 532,
+      "chi2_cc": 137.883,
+      "p_value": 1.2191108373560602e-32
+    },
+    "OCCAM-Router-7B_vs_OCCAM-R1-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 129,
+      "b_only_correct_n01": 70,
+      "both_correct_n11": 916,
+      "both_wrong_n00": 188,
+      "chi2_cc": 16.905,
+      "p_value": 3.476510321015569e-05
+    },
+    "OCCAM-Router-7B_vs_OCCAM-R1-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 647,
+      "b_only_correct_n01": 356,
+      "both_correct_n11": 2810,
+      "both_wrong_n00": 713,
+      "chi2_cc": 83.848,
+      "p_value": 2.9190478032967564e-20
+    },
+    "OCCAM-Router-7B_vs_OCCAM-R1-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 552,
+      "b_only_correct_n01": 280,
+      "both_correct_n11": 1860,
+      "both_wrong_n00": 531,
+      "chi2_cc": 88.27,
+      "p_value": 2.5264437575455257e-21
+    },
+    "OCCAM-Router-7B_vs_OCCAM-R1-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 95,
+      "b_only_correct_n01": 76,
+      "both_correct_n11": 950,
+      "both_wrong_n00": 182,
+      "chi2_cc": 1.895,
+      "p_value": 0.16848371748885774
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-0p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 648,
+      "b_only_correct_n01": 315,
+      "both_correct_n11": 2809,
+      "both_wrong_n00": 754,
+      "chi2_cc": 114.459,
+      "p_value": 3.1419269503605694e-27
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-0p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 490,
+      "b_only_correct_n01": 238,
+      "both_correct_n11": 1922,
+      "both_wrong_n00": 573,
+      "chi2_cc": 86.54,
+      "p_value": 5.56532062919889e-21
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-0p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 158,
+      "b_only_correct_n01": 77,
+      "both_correct_n11": 887,
+      "both_wrong_n00": 181,
+      "chi2_cc": 27.234,
+      "p_value": 1.3691946157476619e-07
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-3p0-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 618,
+      "b_only_correct_n01": 321,
+      "both_correct_n11": 2839,
+      "both_wrong_n00": 748,
+      "chi2_cc": 93.308,
+      "p_value": 2.0016209225743904e-22
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-3p0-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 474,
+      "b_only_correct_n01": 254,
+      "both_correct_n11": 1938,
+      "both_wrong_n00": 557,
+      "chi2_cc": 65.88,
+      "p_value": 2.8615872672636414e-16
+    },
+    "OCCAM-Router-7B_vs_Sweep-Alpha-3p0-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 144,
+      "b_only_correct_n01": 67,
+      "both_correct_n11": 901,
+      "both_wrong_n00": 191,
+      "chi2_cc": 27.374,
+      "p_value": 1.227902217167448e-07
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-200-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 528,
+      "b_only_correct_n01": 307,
+      "both_correct_n11": 2929,
+      "both_wrong_n00": 762,
+      "chi2_cc": 57.964,
+      "p_value": 1.891174748028616e-14
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-200-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 428,
+      "b_only_correct_n01": 225,
+      "both_correct_n11": 1984,
+      "both_wrong_n00": 586,
+      "chi2_cc": 62.487,
+      "p_value": 1.597735785335988e-15
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-200-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 100,
+      "b_only_correct_n01": 82,
+      "both_correct_n11": 945,
+      "both_wrong_n00": 176,
+      "chi2_cc": 1.588,
+      "p_value": 0.20750339701863765
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-800-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 699,
+      "b_only_correct_n01": 272,
+      "both_correct_n11": 2758,
+      "both_wrong_n00": 797,
+      "chi2_cc": 186.896,
+      "p_value": 5.835923941467954e-44
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-800-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 585,
+      "b_only_correct_n01": 213,
+      "both_correct_n11": 1827,
+      "both_wrong_n00": 598,
+      "chi2_cc": 172.482,
+      "p_value": 7.00837651019273e-41
+    },
+    "OCCAM-Router-7B_vs_Sweep-Scale-800-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 114,
+      "b_only_correct_n01": 59,
+      "both_correct_n11": 931,
+      "both_wrong_n00": 199,
+      "chi2_cc": 16.855,
+      "p_value": 3.502537923663624e-05
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1202,
+      "b_only_correct_n01": 282,
+      "both_correct_n11": 2255,
+      "both_wrong_n00": 787,
+      "chi2_cc": 569.111,
+      "p_value": 3.178714911214119e-135
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 911,
+      "b_only_correct_n01": 228,
+      "both_correct_n11": 1501,
+      "both_wrong_n00": 583,
+      "chi2_cc": 408.362,
+      "p_value": 4.70928273809904e-97
+    },
+    "OCCAM-Router-7B_vs_OCCAM-3B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 291,
+      "b_only_correct_n01": 54,
+      "both_correct_n11": 754,
+      "both_wrong_n00": 204,
+      "chi2_cc": 161.438,
+      "p_value": 2.043886711481207e-40
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Direct-0CoT-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1597,
+      "b_only_correct_n01": 317,
+      "both_correct_n11": 1760,
+      "both_wrong_n00": 852,
+      "chi2_cc": 854.671,
+      "p_value": 5.473311563785792e-205
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Direct-0CoT-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 905,
+      "b_only_correct_n01": 278,
+      "both_correct_n11": 1412,
+      "both_wrong_n00": 628,
+      "chi2_cc": 331.256,
+      "p_value": 8.086649137151328e-78
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Direct-0CoT-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 692,
+      "b_only_correct_n01": 39,
+      "both_correct_n11": 348,
+      "both_wrong_n00": 224,
+      "chi2_cc": 581.538,
+      "p_value": 1.6152331022857248e-155
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Base-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 778,
+      "b_only_correct_n01": 351,
+      "both_correct_n11": 2579,
+      "both_wrong_n00": 818,
+      "chi2_cc": 160.74,
+      "p_value": 1.0294464234341999e-37
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Base-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 661,
+      "b_only_correct_n01": 274,
+      "both_correct_n11": 1656,
+      "both_wrong_n00": 632,
+      "chi2_cc": 159.354,
+      "p_value": 1.3744866284605436e-37
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Base-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 117,
+      "b_only_correct_n01": 77,
+      "both_correct_n11": 923,
+      "both_wrong_n00": 186,
+      "chi2_cc": 7.84,
+      "p_value": 0.004979102414443122
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Direct-0CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1293,
+      "b_only_correct_n01": 328,
+      "both_correct_n11": 2064,
+      "both_wrong_n00": 841,
+      "chi2_cc": 573.286,
+      "p_value": 2.540252126786e-135
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Direct-0CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 665,
+      "b_only_correct_n01": 276,
+      "both_correct_n11": 1652,
+      "both_wrong_n00": 630,
+      "chi2_cc": 159.983,
+      "p_value": 9.984930845651879e-38
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Direct-0CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 628,
+      "b_only_correct_n01": 52,
+      "both_correct_n11": 412,
+      "both_wrong_n00": 211,
+      "chi2_cc": 486.213,
+      "p_value": 1.421503477713099e-126
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Base-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 304,
+      "b_only_correct_n01": 344,
+      "both_correct_n11": 3053,
+      "both_wrong_n00": 825,
+      "chi2_cc": 2.347,
+      "p_value": 0.12544098991547004
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Base-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 272,
+      "b_only_correct_n01": 271,
+      "both_correct_n11": 2045,
+      "both_wrong_n00": 635,
+      "chi2_cc": 0.0,
+      "p_value": 1.0
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Base-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 32,
+      "b_only_correct_n01": 73,
+      "both_correct_n11": 1008,
+      "both_wrong_n00": 190,
+      "chi2_cc": 15.238,
+      "p_value": 7.808423662658282e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_FewShot-3CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 419,
+      "b_only_correct_n01": 376,
+      "both_correct_n11": 2938,
+      "both_wrong_n00": 793,
+      "chi2_cc": 2.219,
+      "p_value": 0.1362829399088008
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_FewShot-3CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 371,
+      "b_only_correct_n01": 274,
+      "both_correct_n11": 1946,
+      "both_wrong_n00": 632,
+      "chi2_cc": 14.288,
+      "p_value": 0.000152760530295857
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_FewShot-3CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 48,
+      "b_only_correct_n01": 102,
+      "both_correct_n11": 992,
+      "both_wrong_n00": 161,
+      "chi2_cc": 18.727,
+      "p_value": 1.2305573559865684e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_SC-Maj4-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 305,
+      "b_only_correct_n01": 400,
+      "both_correct_n11": 3052,
+      "both_wrong_n00": 769,
+      "chi2_cc": 12.533,
+      "p_value": 0.0003924607978195156
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_SC-Maj4-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 264,
+      "b_only_correct_n01": 307,
+      "both_correct_n11": 2053,
+      "both_wrong_n00": 599,
+      "chi2_cc": 3.089,
+      "p_value": 0.07871657902475139
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_SC-Maj4-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 41,
+      "b_only_correct_n01": 93,
+      "both_correct_n11": 999,
+      "both_wrong_n00": 170,
+      "chi2_cc": 19.41,
+      "p_value": 8.233374857241955e-06
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Concise-CoD-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 914,
+      "b_only_correct_n01": 325,
+      "both_correct_n11": 2443,
+      "both_wrong_n00": 844,
+      "chi2_cc": 279.051,
+      "p_value": 3.751741999001641e-65
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Concise-CoD-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 590,
+      "b_only_correct_n01": 284,
+      "both_correct_n11": 1727,
+      "both_wrong_n00": 622,
+      "chi2_cc": 106.436,
+      "p_value": 1.8997778872470684e-25
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Concise-CoD-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 324,
+      "b_only_correct_n01": 41,
+      "both_correct_n11": 716,
+      "both_wrong_n00": 222,
+      "chi2_cc": 217.874,
+      "p_value": 9.9786581856134e-56
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ext-16Op-Harness-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 558,
+      "b_only_correct_n01": 297,
+      "both_correct_n11": 2799,
+      "both_wrong_n00": 872,
+      "chi2_cc": 79.064,
+      "p_value": 3.1933203884249725e-19
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ext-16Op-Harness-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 457,
+      "b_only_correct_n01": 253,
+      "both_correct_n11": 1860,
+      "both_wrong_n00": 653,
+      "chi2_cc": 58.041,
+      "p_value": 1.7062433536923123e-14
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ext-16Op-Harness-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 101,
+      "b_only_correct_n01": 44,
+      "both_correct_n11": 939,
+      "both_wrong_n00": 219,
+      "chi2_cc": 21.628,
+      "p_value": 2.4905956200295874e-06
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_BoT-Retrieval-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 427,
+      "b_only_correct_n01": 378,
+      "both_correct_n11": 2930,
+      "both_wrong_n00": 791,
+      "chi2_cc": 2.862,
+      "p_value": 0.09062614527224187
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_BoT-Retrieval-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 351,
+      "b_only_correct_n01": 303,
+      "both_correct_n11": 1966,
+      "both_wrong_n00": 603,
+      "chi2_cc": 3.378,
+      "p_value": 0.06600305652670202
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_BoT-Retrieval-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 76,
+      "b_only_correct_n01": 75,
+      "both_correct_n11": 964,
+      "both_wrong_n00": 188,
+      "chi2_cc": 0.0,
+      "p_value": 1.0
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_LIMO-LongCoT-SFT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 357,
+      "b_only_correct_n01": 395,
+      "both_correct_n11": 3000,
+      "both_wrong_n00": 774,
+      "chi2_cc": 1.82,
+      "p_value": 0.1772169589309646
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_LIMO-LongCoT-SFT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 301,
+      "b_only_correct_n01": 310,
+      "both_correct_n11": 2016,
+      "both_wrong_n00": 596,
+      "chi2_cc": 0.105,
+      "p_value": 0.7462365451976981
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_LIMO-LongCoT-SFT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 56,
+      "b_only_correct_n01": 85,
+      "both_correct_n11": 984,
+      "both_wrong_n00": 178,
+      "chi2_cc": 5.56,
+      "p_value": 0.01805614505270095
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_R1-Budget200-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1668,
+      "b_only_correct_n01": 352,
+      "both_correct_n11": 1689,
+      "both_wrong_n00": 817,
+      "chi2_cc": 856.052,
+      "p_value": 3.1336916094369417e-204
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_R1-Budget200-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 1254,
+      "b_only_correct_n01": 217,
+      "both_correct_n11": 1063,
+      "both_wrong_n00": 689,
+      "chi2_cc": 729.637,
+      "p_value": 2.073890693293276e-177
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_R1-Budget200-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 414,
+      "b_only_correct_n01": 135,
+      "both_correct_n11": 626,
+      "both_wrong_n00": 128,
+      "chi2_cc": 140.772,
+      "p_value": 6.226402284648752e-34
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_R1-Distill-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 585,
+      "b_only_correct_n01": 579,
+      "both_correct_n11": 2772,
+      "both_wrong_n00": 590,
+      "chi2_cc": 0.021,
+      "p_value": 0.8834932872171589
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_R1-Distill-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 487,
+      "b_only_correct_n01": 444,
+      "both_correct_n11": 1830,
+      "both_wrong_n00": 462,
+      "chi2_cc": 1.895,
+      "p_value": 0.1686345384312128
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_R1-Distill-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 98,
+      "b_only_correct_n01": 135,
+      "both_correct_n11": 942,
+      "both_wrong_n00": 128,
+      "chi2_cc": 5.562,
+      "p_value": 0.018161092075719226
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-Jargon-Only-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 434,
+      "b_only_correct_n01": 369,
+      "both_correct_n11": 2923,
+      "both_wrong_n00": 800,
+      "chi2_cc": 5.101,
+      "p_value": 0.023853910209479107
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-Jargon-Only-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 367,
+      "b_only_correct_n01": 280,
+      "both_correct_n11": 1950,
+      "both_wrong_n00": 626,
+      "chi2_cc": 11.431,
+      "p_value": 0.0007102789810217013
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-Jargon-Only-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 67,
+      "b_only_correct_n01": 89,
+      "both_correct_n11": 973,
+      "both_wrong_n00": 174,
+      "chi2_cc": 2.827,
+      "p_value": 0.09237684581860015
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-wo-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 627,
+      "b_only_correct_n01": 348,
+      "both_correct_n11": 2730,
+      "both_wrong_n00": 821,
+      "chi2_cc": 79.266,
+      "p_value": 3.116918402582887e-19
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-wo-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 511,
+      "b_only_correct_n01": 284,
+      "both_correct_n11": 1806,
+      "both_wrong_n00": 622,
+      "chi2_cc": 64.247,
+      "p_value": 7.021392229267494e-16
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-wo-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 116,
+      "b_only_correct_n01": 64,
+      "both_correct_n11": 924,
+      "both_wrong_n00": 199,
+      "chi2_cc": 14.45,
+      "p_value": 0.00013040123297739846
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-Uniform-SimPO-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 609,
+      "b_only_correct_n01": 326,
+      "both_correct_n11": 2748,
+      "both_wrong_n00": 843,
+      "chi2_cc": 85.052,
+      "p_value": 1.488116889387506e-20
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-Uniform-SimPO-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 463,
+      "b_only_correct_n01": 264,
+      "both_correct_n11": 1854,
+      "both_wrong_n00": 642,
+      "chi2_cc": 53.926,
+      "p_value": 1.4771313928422588e-13
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Ablation-Uniform-SimPO-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 146,
+      "b_only_correct_n01": 62,
+      "both_correct_n11": 894,
+      "both_wrong_n00": 201,
+      "chi2_cc": 33.12,
+      "p_value": 5.420655344195606e-09
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 757,
+      "b_only_correct_n01": 319,
+      "both_correct_n11": 2600,
+      "both_wrong_n00": 850,
+      "chi2_cc": 177.48,
+      "p_value": 1.2571700689470667e-41
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 575,
+      "b_only_correct_n01": 270,
+      "both_correct_n11": 1742,
+      "both_wrong_n00": 636,
+      "chi2_cc": 109.368,
+      "p_value": 3.881056663266741e-26
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 182,
+      "b_only_correct_n01": 49,
+      "both_correct_n11": 858,
+      "both_wrong_n00": 214,
+      "chi2_cc": 75.429,
+      "p_value": 3.5120904409441447e-19
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 756,
+      "b_only_correct_n01": 364,
+      "both_correct_n11": 2601,
+      "both_wrong_n00": 805,
+      "chi2_cc": 136.501,
+      "p_value": 3.606190600649138e-32
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 590,
+      "b_only_correct_n01": 295,
+      "both_correct_n11": 1727,
+      "both_wrong_n00": 611,
+      "chi2_cc": 97.668,
+      "p_value": 1.9326809684470563e-23
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 166,
+      "b_only_correct_n01": 69,
+      "both_correct_n11": 874,
+      "both_wrong_n00": 194,
+      "chi2_cc": 39.217,
+      "p_value": 2.114114393413343e-10
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 695,
+      "b_only_correct_n01": 346,
+      "both_correct_n11": 2662,
+      "both_wrong_n00": 823,
+      "chi2_cc": 116.334,
+      "p_value": 1.2911409683313876e-27
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 569,
+      "b_only_correct_n01": 275,
+      "both_correct_n11": 1748,
+      "both_wrong_n00": 631,
+      "chi2_cc": 101.717,
+      "p_value": 2.1884929323734092e-24
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 126,
+      "b_only_correct_n01": 71,
+      "both_correct_n11": 914,
+      "both_wrong_n00": 192,
+      "chi2_cc": 14.802,
+      "p_value": 0.00010864105561866937
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-7B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 409,
+      "b_only_correct_n01": 350,
+      "both_correct_n11": 2948,
+      "both_wrong_n00": 819,
+      "chi2_cc": 4.432,
+      "p_value": 0.035199023939745916
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-7B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 318,
+      "b_only_correct_n01": 284,
+      "both_correct_n11": 1999,
+      "both_wrong_n00": 622,
+      "chi2_cc": 1.809,
+      "p_value": 0.17858325758052496
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-7B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 91,
+      "b_only_correct_n01": 66,
+      "both_correct_n11": 949,
+      "both_wrong_n00": 197,
+      "chi2_cc": 3.669,
+      "p_value": 0.05509346886796192
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-400-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 435,
+      "b_only_correct_n01": 326,
+      "both_correct_n11": 2922,
+      "both_wrong_n00": 843,
+      "chi2_cc": 15.327,
+      "p_value": 8.811485432661412e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-400-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 336,
+      "b_only_correct_n01": 278,
+      "both_correct_n11": 1981,
+      "both_wrong_n00": 628,
+      "chi2_cc": 5.292,
+      "p_value": 0.021353428388715918
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-400-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 99,
+      "b_only_correct_n01": 48,
+      "both_correct_n11": 941,
+      "both_wrong_n00": 215,
+      "chi2_cc": 17.007,
+      "p_value": 3.14075582123878e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-1p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 544,
+      "b_only_correct_n01": 355,
+      "both_correct_n11": 2813,
+      "both_wrong_n00": 814,
+      "chi2_cc": 39.315,
+      "p_value": 3.1183108073869235e-10
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-1p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 418,
+      "b_only_correct_n01": 289,
+      "both_correct_n11": 1899,
+      "both_wrong_n00": 617,
+      "chi2_cc": 23.174,
+      "p_value": 1.3883574300500957e-06
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-1p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 126,
+      "b_only_correct_n01": 66,
+      "both_correct_n11": 914,
+      "both_wrong_n00": 197,
+      "chi2_cc": 18.13,
+      "p_value": 1.7807035577043167e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 543,
+      "b_only_correct_n01": 335,
+      "both_correct_n11": 2814,
+      "both_wrong_n00": 834,
+      "chi2_cc": 48.803,
+      "p_value": 2.2464647856897686e-12
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 407,
+      "b_only_correct_n01": 271,
+      "both_correct_n11": 1910,
+      "both_wrong_n00": 635,
+      "chi2_cc": 26.881,
+      "p_value": 1.9781726338407447e-07
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 136,
+      "b_only_correct_n01": 64,
+      "both_correct_n11": 904,
+      "both_wrong_n00": 199,
+      "chi2_cc": 25.205,
+      "p_value": 3.904467779916415e-07
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-Qwen-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 252,
+      "b_only_correct_n01": 215,
+      "both_correct_n11": 3105,
+      "both_wrong_n00": 954,
+      "chi2_cc": 2.775,
+      "p_value": 0.09563188780495327
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-Qwen-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 181,
+      "b_only_correct_n01": 174,
+      "both_correct_n11": 2136,
+      "both_wrong_n00": 732,
+      "chi2_cc": 0.101,
+      "p_value": 0.7501971174077529
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-Qwen-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 71,
+      "b_only_correct_n01": 41,
+      "both_correct_n11": 969,
+      "both_wrong_n00": 222,
+      "chi2_cc": 7.509,
+      "p_value": 0.005890172980413245
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-R1-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 717,
+      "b_only_correct_n01": 402,
+      "both_correct_n11": 2640,
+      "both_wrong_n00": 767,
+      "chi2_cc": 88.111,
+      "p_value": 3.40688224006773e-21
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-R1-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 592,
+      "b_only_correct_n01": 331,
+      "both_correct_n11": 1725,
+      "both_wrong_n00": 575,
+      "chi2_cc": 73.239,
+      "p_value": 6.964744393996862e-18
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-R1-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 125,
+      "b_only_correct_n01": 71,
+      "both_correct_n11": 915,
+      "both_wrong_n00": 192,
+      "chi2_cc": 14.332,
+      "p_value": 0.0001402315017482847
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-R1-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 652,
+      "b_only_correct_n01": 461,
+      "both_correct_n11": 2705,
+      "both_wrong_n00": 708,
+      "chi2_cc": 32.435,
+      "p_value": 1.1383666147435575e-08
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-R1-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 547,
+      "b_only_correct_n01": 370,
+      "both_correct_n11": 1770,
+      "both_wrong_n00": 536,
+      "chi2_cc": 33.78,
+      "p_value": 5.556703469985973e-09
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-R1-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 105,
+      "b_only_correct_n01": 91,
+      "both_correct_n11": 935,
+      "both_wrong_n00": 172,
+      "chi2_cc": 0.862,
+      "p_value": 0.35314085510666426
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 58,
+      "b_only_correct_n01": 158,
+      "both_correct_n11": 3299,
+      "both_wrong_n00": 1011,
+      "chi2_cc": 45.375,
+      "p_value": 6.826787223184798e-12
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 23,
+      "b_only_correct_n01": 118,
+      "both_correct_n11": 2294,
+      "both_wrong_n00": 788,
+      "chi2_cc": 62.667,
+      "p_value": 1.3899721832972424e-16
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 35,
+      "b_only_correct_n01": 40,
+      "both_correct_n11": 1005,
+      "both_wrong_n00": 223,
+      "chi2_cc": 0.213,
+      "p_value": 0.6444639138942256
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-0p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 580,
+      "b_only_correct_n01": 347,
+      "both_correct_n11": 2777,
+      "both_wrong_n00": 822,
+      "chi2_cc": 58.063,
+      "p_value": 1.8610914773389325e-14
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-0p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 435,
+      "b_only_correct_n01": 278,
+      "both_correct_n11": 1882,
+      "both_wrong_n00": 628,
+      "chi2_cc": 34.132,
+      "p_value": 4.484028890441413e-09
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-0p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 145,
+      "b_only_correct_n01": 69,
+      "both_correct_n11": 895,
+      "both_wrong_n00": 194,
+      "chi2_cc": 26.285,
+      "p_value": 2.2216389986412637e-07
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-3p0-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 543,
+      "b_only_correct_n01": 346,
+      "both_correct_n11": 2814,
+      "both_wrong_n00": 823,
+      "chi2_cc": 43.213,
+      "p_value": 4.1085834001033785e-11
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-3p0-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 414,
+      "b_only_correct_n01": 289,
+      "both_correct_n11": 1903,
+      "both_wrong_n00": 617,
+      "chi2_cc": 21.872,
+      "p_value": 2.7527984169322706e-06
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Alpha-3p0-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 129,
+      "b_only_correct_n01": 57,
+      "both_correct_n11": 911,
+      "both_wrong_n00": 206,
+      "chi2_cc": 27.102,
+      "p_value": 1.3618611239957785e-07
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-200-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 458,
+      "b_only_correct_n01": 337,
+      "both_correct_n11": 2899,
+      "both_wrong_n00": 832,
+      "chi2_cc": 18.113,
+      "p_value": 2.0110586915968668e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-200-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 367,
+      "b_only_correct_n01": 259,
+      "both_correct_n11": 1950,
+      "both_wrong_n00": 647,
+      "chi2_cc": 18.289,
+      "p_value": 1.814871691678524e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-200-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 91,
+      "b_only_correct_n01": 78,
+      "both_correct_n11": 949,
+      "both_wrong_n00": 185,
+      "chi2_cc": 0.852,
+      "p_value": 0.35600412650468427
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-800-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 621,
+      "b_only_correct_n01": 294,
+      "both_correct_n11": 2736,
+      "both_wrong_n00": 875,
+      "chi2_cc": 116.149,
+      "p_value": 1.20740724992679e-27
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-800-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 521,
+      "b_only_correct_n01": 244,
+      "both_correct_n11": 1796,
+      "both_wrong_n00": 662,
+      "chi2_cc": 99.576,
+      "p_value": 6.034379088785265e-24
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_Sweep-Scale-800-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 100,
+      "b_only_correct_n01": 50,
+      "both_correct_n11": 940,
+      "both_wrong_n00": 213,
+      "chi2_cc": 16.007,
+      "p_value": 5.4475331033925474e-05
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1110,
+      "b_only_correct_n01": 290,
+      "both_correct_n11": 2247,
+      "both_wrong_n00": 879,
+      "chi2_cc": 479.115,
+      "p_value": 3.850160953141139e-113
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 832,
+      "b_only_correct_n01": 244,
+      "both_correct_n11": 1485,
+      "both_wrong_n00": 662,
+      "chi2_cc": 320.231,
+      "p_value": 1.4793576390268652e-75
+    },
+    "OCCAM-Qwen-7B-Adaptive_vs_OCCAM-3B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 278,
+      "b_only_correct_n01": 46,
+      "both_correct_n11": 762,
+      "both_wrong_n00": 217,
+      "chi2_cc": 164.694,
+      "p_value": 1.356388562871287e-41
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Direct-0CoT-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1556,
+      "b_only_correct_n01": 313,
+      "both_correct_n11": 1764,
+      "both_wrong_n00": 893,
+      "chi2_cc": 825.342,
+      "p_value": 8.543383222877902e-198
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Direct-0CoT-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 895,
+      "b_only_correct_n01": 275,
+      "both_correct_n11": 1415,
+      "both_wrong_n00": 638,
+      "chi2_cc": 327.488,
+      "p_value": 5.934512327845602e-77
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Direct-0CoT-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 661,
+      "b_only_correct_n01": 38,
+      "both_correct_n11": 349,
+      "both_wrong_n00": 255,
+      "chi2_cc": 553.482,
+      "p_value": 6.815489811774166e-148
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Base-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 789,
+      "b_only_correct_n01": 399,
+      "both_correct_n11": 2531,
+      "both_wrong_n00": 807,
+      "chi2_cc": 127.375,
+      "p_value": 4.6811494497919456e-30
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Base-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 680,
+      "b_only_correct_n01": 300,
+      "both_correct_n11": 1630,
+      "both_wrong_n00": 613,
+      "chi2_cc": 146.572,
+      "p_value": 1.3908336387092942e-34
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Base-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 109,
+      "b_only_correct_n01": 99,
+      "both_correct_n11": 901,
+      "both_wrong_n00": 194,
+      "chi2_cc": 0.389,
+      "p_value": 0.5327042213056797
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Direct-0CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1255,
+      "b_only_correct_n01": 327,
+      "both_correct_n11": 2065,
+      "both_wrong_n00": 879,
+      "chi2_cc": 543.192,
+      "p_value": 4.850699974089309e-128
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Direct-0CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 655,
+      "b_only_correct_n01": 273,
+      "both_correct_n11": 1655,
+      "both_wrong_n00": 640,
+      "chi2_cc": 156.423,
+      "p_value": 6.459146910844573e-37
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Direct-0CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 600,
+      "b_only_correct_n01": 54,
+      "both_correct_n11": 410,
+      "both_wrong_n00": 239,
+      "chi2_cc": 454.167,
+      "p_value": 1.4750288006458427e-117
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Base-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 375,
+      "b_only_correct_n01": 452,
+      "both_correct_n11": 2945,
+      "both_wrong_n00": 754,
+      "chi2_cc": 6.984,
+      "p_value": 0.008184139002171957
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Base-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 326,
+      "b_only_correct_n01": 332,
+      "both_correct_n11": 1984,
+      "both_wrong_n00": 581,
+      "chi2_cc": 0.038,
+      "p_value": 0.8454739804189653
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Base-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 49,
+      "b_only_correct_n01": 120,
+      "both_correct_n11": 961,
+      "both_wrong_n00": 173,
+      "chi2_cc": 28.994,
+      "p_value": 4.655226075935665e-08
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_FewShot-3CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 457,
+      "b_only_correct_n01": 451,
+      "both_correct_n11": 2863,
+      "both_wrong_n00": 755,
+      "chi2_cc": 0.028,
+      "p_value": 0.8682230600859571
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_FewShot-3CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 401,
+      "b_only_correct_n01": 311,
+      "both_correct_n11": 1909,
+      "both_wrong_n00": 602,
+      "chi2_cc": 11.125,
+      "p_value": 0.000839623212430019
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_FewShot-3CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 56,
+      "b_only_correct_n01": 140,
+      "both_correct_n11": 954,
+      "both_wrong_n00": 153,
+      "chi2_cc": 35.148,
+      "p_value": 1.7356518340911166e-09
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_SC-Maj4-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 326,
+      "b_only_correct_n01": 458,
+      "both_correct_n11": 2994,
+      "both_wrong_n00": 748,
+      "chi2_cc": 21.889,
+      "p_value": 2.744551813531199e-06
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_SC-Maj4-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 283,
+      "b_only_correct_n01": 333,
+      "both_correct_n11": 2027,
+      "both_wrong_n00": 580,
+      "chi2_cc": 3.898,
+      "p_value": 0.048263433912217074
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_SC-Maj4-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 43,
+      "b_only_correct_n01": 125,
+      "both_correct_n11": 967,
+      "both_wrong_n00": 168,
+      "chi2_cc": 39.054,
+      "p_value": 1.7881252801764334e-10
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Concise-CoD-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 893,
+      "b_only_correct_n01": 341,
+      "both_correct_n11": 2427,
+      "both_wrong_n00": 865,
+      "chi2_cc": 246.03,
+      "p_value": 2.217811495735874e-57
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Concise-CoD-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 582,
+      "b_only_correct_n01": 283,
+      "both_correct_n11": 1728,
+      "both_wrong_n00": 630,
+      "chi2_cc": 102.664,
+      "p_value": 1.3669852002746015e-24
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Concise-CoD-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 311,
+      "b_only_correct_n01": 58,
+      "both_correct_n11": 699,
+      "both_wrong_n00": 235,
+      "chi2_cc": 172.098,
+      "p_value": 5.90117191798872e-43
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ext-16Op-Harness-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 566,
+      "b_only_correct_n01": 342,
+      "both_correct_n11": 2754,
+      "both_wrong_n00": 864,
+      "chi2_cc": 54.768,
+      "p_value": 1.0233517500656215e-13
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ext-16Op-Harness-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 476,
+      "b_only_correct_n01": 279,
+      "both_correct_n11": 1834,
+      "both_wrong_n00": 634,
+      "chi2_cc": 50.882,
+      "p_value": 7.314065616835788e-13
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ext-16Op-Harness-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 90,
+      "b_only_correct_n01": 63,
+      "both_correct_n11": 920,
+      "both_wrong_n00": 230,
+      "chi2_cc": 4.418,
+      "p_value": 0.035211020179808955
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_BoT-Retrieval-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 462,
+      "b_only_correct_n01": 450,
+      "both_correct_n11": 2858,
+      "both_wrong_n00": 756,
+      "chi2_cc": 0.133,
+      "p_value": 0.7156956162021407
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_BoT-Retrieval-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 383,
+      "b_only_correct_n01": 342,
+      "both_correct_n11": 1927,
+      "both_wrong_n00": 571,
+      "chi2_cc": 2.207,
+      "p_value": 0.13734030078374165
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_BoT-Retrieval-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 79,
+      "b_only_correct_n01": 108,
+      "both_correct_n11": 931,
+      "both_wrong_n00": 185,
+      "chi2_cc": 4.193,
+      "p_value": 0.04031615260317751
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_LIMO-LongCoT-SFT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 376,
+      "b_only_correct_n01": 451,
+      "both_correct_n11": 2944,
+      "both_wrong_n00": 755,
+      "chi2_cc": 6.622,
+      "p_value": 0.010032887317382704
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_LIMO-LongCoT-SFT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 319,
+      "b_only_correct_n01": 335,
+      "both_correct_n11": 1991,
+      "both_wrong_n00": 578,
+      "chi2_cc": 0.344,
+      "p_value": 0.557541427474789
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_LIMO-LongCoT-SFT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 57,
+      "b_only_correct_n01": 116,
+      "both_correct_n11": 953,
+      "both_wrong_n00": 177,
+      "chi2_cc": 19.445,
+      "p_value": 8.56602328323451e-06
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_R1-Budget200-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1653,
+      "b_only_correct_n01": 374,
+      "both_correct_n11": 1667,
+      "both_wrong_n00": 832,
+      "chi2_cc": 805.764,
+      "p_value": 3.285787909747136e-191
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_R1-Budget200-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 1253,
+      "b_only_correct_n01": 223,
+      "both_correct_n11": 1057,
+      "both_wrong_n00": 690,
+      "chi2_cc": 717.372,
+      "p_value": 4.950331030766085e-174
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_R1-Budget200-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 400,
+      "b_only_correct_n01": 151,
+      "both_correct_n11": 610,
+      "both_wrong_n00": 142,
+      "chi2_cc": 111.623,
+      "p_value": 5.533693967471811e-27
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_R1-Distill-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 591,
+      "b_only_correct_n01": 622,
+      "both_correct_n11": 2729,
+      "both_wrong_n00": 584,
+      "chi2_cc": 0.742,
+      "p_value": 0.3890415237979482
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_R1-Distill-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 496,
+      "b_only_correct_n01": 460,
+      "both_correct_n11": 1814,
+      "both_wrong_n00": 453,
+      "chi2_cc": 1.281,
+      "p_value": 0.2576308418198681
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_R1-Distill-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 95,
+      "b_only_correct_n01": 162,
+      "both_correct_n11": 915,
+      "both_wrong_n00": 131,
+      "chi2_cc": 16.949,
+      "p_value": 3.491531139393729e-05
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-Jargon-Only-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 453,
+      "b_only_correct_n01": 425,
+      "both_correct_n11": 2867,
+      "both_wrong_n00": 781,
+      "chi2_cc": 0.83,
+      "p_value": 0.3621947176025821
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-Jargon-Only-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 387,
+      "b_only_correct_n01": 307,
+      "both_correct_n11": 1923,
+      "both_wrong_n00": 606,
+      "chi2_cc": 8.993,
+      "p_value": 0.0026848509885728476
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-Jargon-Only-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 66,
+      "b_only_correct_n01": 118,
+      "both_correct_n11": 944,
+      "both_wrong_n00": 175,
+      "chi2_cc": 14.136,
+      "p_value": 0.00015508545345345272
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-wo-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 611,
+      "b_only_correct_n01": 369,
+      "both_correct_n11": 2709,
+      "both_wrong_n00": 837,
+      "chi2_cc": 59.266,
+      "p_value": 1.0142020214948213e-14
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-wo-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 506,
+      "b_only_correct_n01": 286,
+      "both_correct_n11": 1804,
+      "both_wrong_n00": 627,
+      "chi2_cc": 60.557,
+      "p_value": 4.8021228966794986e-15
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-wo-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 105,
+      "b_only_correct_n01": 83,
+      "both_correct_n11": 905,
+      "both_wrong_n00": 210,
+      "chi2_cc": 2.346,
+      "p_value": 0.12540008404533773
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-Uniform-SimPO-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 579,
+      "b_only_correct_n01": 333,
+      "both_correct_n11": 2741,
+      "both_wrong_n00": 873,
+      "chi2_cc": 65.817,
+      "p_value": 3.2923346638347e-16
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-Uniform-SimPO-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 449,
+      "b_only_correct_n01": 257,
+      "both_correct_n11": 1861,
+      "both_wrong_n00": 656,
+      "chi2_cc": 51.673,
+      "p_value": 4.739961855523277e-13
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Ablation-Uniform-SimPO-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 130,
+      "b_only_correct_n01": 76,
+      "both_correct_n11": 880,
+      "both_wrong_n00": 217,
+      "chi2_cc": 13.636,
+      "p_value": 0.00020560691138247247
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 735,
+      "b_only_correct_n01": 334,
+      "both_correct_n11": 2585,
+      "both_wrong_n00": 872,
+      "chi2_cc": 149.673,
+      "p_value": 3.208083732452967e-35
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 576,
+      "b_only_correct_n01": 278,
+      "both_correct_n11": 1734,
+      "both_wrong_n00": 635,
+      "chi2_cc": 103.289,
+      "p_value": 9.692599418482754e-25
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 159,
+      "b_only_correct_n01": 56,
+      "both_correct_n11": 851,
+      "both_wrong_n00": 237,
+      "chi2_cc": 48.391,
+      "p_value": 1.2853356553962123e-12
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 744,
+      "b_only_correct_n01": 389,
+      "both_correct_n11": 2576,
+      "both_wrong_n00": 817,
+      "chi2_cc": 110.605,
+      "p_value": 2.829780546274793e-26
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 597,
+      "b_only_correct_n01": 309,
+      "both_correct_n11": 1713,
+      "both_wrong_n00": 604,
+      "chi2_cc": 90.915,
+      "p_value": 6.791418526717863e-22
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 147,
+      "b_only_correct_n01": 80,
+      "both_correct_n11": 863,
+      "both_wrong_n00": 213,
+      "chi2_cc": 19.189,
+      "p_value": 1.0300913869162671e-05
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 696,
+      "b_only_correct_n01": 384,
+      "both_correct_n11": 2624,
+      "both_wrong_n00": 822,
+      "chi2_cc": 89.556,
+      "p_value": 1.5712033524888212e-21
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 582,
+      "b_only_correct_n01": 295,
+      "both_correct_n11": 1728,
+      "both_wrong_n00": 618,
+      "chi2_cc": 93.268,
+      "p_value": 1.925765600850188e-22
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 114,
+      "b_only_correct_n01": 89,
+      "both_correct_n11": 896,
+      "both_wrong_n00": 204,
+      "chi2_cc": 2.837,
+      "p_value": 0.09184530038378139
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-7B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 378,
+      "b_only_correct_n01": 356,
+      "both_correct_n11": 2942,
+      "both_wrong_n00": 850,
+      "chi2_cc": 0.601,
+      "p_value": 0.4382871638935971
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-7B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 307,
+      "b_only_correct_n01": 280,
+      "both_correct_n11": 2003,
+      "both_wrong_n00": 633,
+      "chi2_cc": 1.152,
+      "p_value": 0.28320039814230274
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-7B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 71,
+      "b_only_correct_n01": 76,
+      "both_correct_n11": 939,
+      "both_wrong_n00": 217,
+      "chi2_cc": 0.109,
+      "p_value": 0.741591942446161
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-400-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 389,
+      "b_only_correct_n01": 317,
+      "both_correct_n11": 2931,
+      "both_wrong_n00": 889,
+      "chi2_cc": 7.14,
+      "p_value": 0.0074938209634827085
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-400-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 314,
+      "b_only_correct_n01": 263,
+      "both_correct_n11": 1996,
+      "both_wrong_n00": 650,
+      "chi2_cc": 4.333,
+      "p_value": 0.03729395905650842
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-400-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 75,
+      "b_only_correct_n01": 54,
+      "both_correct_n11": 935,
+      "both_wrong_n00": 239,
+      "chi2_cc": 3.101,
+      "p_value": 0.07784940675335571
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-1p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 518,
+      "b_only_correct_n01": 366,
+      "both_correct_n11": 2802,
+      "both_wrong_n00": 840,
+      "chi2_cc": 25.793,
+      "p_value": 3.5678837908621165e-07
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-1p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 405,
+      "b_only_correct_n01": 283,
+      "both_correct_n11": 1905,
+      "both_wrong_n00": 630,
+      "chi2_cc": 21.281,
+      "p_value": 3.7542658219267068e-06
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-1p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 113,
+      "b_only_correct_n01": 83,
+      "both_correct_n11": 897,
+      "both_wrong_n00": 210,
+      "chi2_cc": 4.291,
+      "p_value": 0.03804721517537189
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 522,
+      "b_only_correct_n01": 351,
+      "both_correct_n11": 2798,
+      "both_wrong_n00": 855,
+      "chi2_cc": 33.104,
+      "p_value": 7.856585229250214e-09
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 401,
+      "b_only_correct_n01": 272,
+      "both_correct_n11": 1909,
+      "both_wrong_n00": 641,
+      "chi2_cc": 24.345,
+      "p_value": 7.479152840415284e-07
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 121,
+      "b_only_correct_n01": 79,
+      "both_correct_n11": 889,
+      "both_wrong_n00": 214,
+      "chi2_cc": 8.405,
+      "p_value": 0.0036349479525299576
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-Qwen-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 215,
+      "b_only_correct_n01": 252,
+      "both_correct_n11": 3105,
+      "both_wrong_n00": 954,
+      "chi2_cc": 2.775,
+      "p_value": 0.09563188780495327
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-Qwen-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 174,
+      "b_only_correct_n01": 181,
+      "both_correct_n11": 2136,
+      "both_wrong_n00": 732,
+      "chi2_cc": 0.101,
+      "p_value": 0.7501971174077529
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-Qwen-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 41,
+      "b_only_correct_n01": 71,
+      "both_correct_n11": 969,
+      "both_wrong_n00": 222,
+      "chi2_cc": 7.509,
+      "p_value": 0.005890172980413245
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-R1-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 726,
+      "b_only_correct_n01": 448,
+      "both_correct_n11": 2594,
+      "both_wrong_n00": 758,
+      "chi2_cc": 65.357,
+      "p_value": 4.58357717003933e-16
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-R1-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 604,
+      "b_only_correct_n01": 350,
+      "both_correct_n11": 1706,
+      "both_wrong_n00": 563,
+      "chi2_cc": 67.095,
+      "p_value": 1.7262595851023652e-16
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-R1-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 122,
+      "b_only_correct_n01": 98,
+      "both_correct_n11": 888,
+      "both_wrong_n00": 195,
+      "chi2_cc": 2.405,
+      "p_value": 0.12078552644297023
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-R1-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 671,
+      "b_only_correct_n01": 517,
+      "both_correct_n11": 2649,
+      "both_wrong_n00": 689,
+      "chi2_cc": 19.705,
+      "p_value": 8.795748115915711e-06
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-R1-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 571,
+      "b_only_correct_n01": 401,
+      "both_correct_n11": 1739,
+      "both_wrong_n00": 512,
+      "chi2_cc": 29.384,
+      "p_value": 5.510003625091205e-08
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-R1-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 100,
+      "b_only_correct_n01": 116,
+      "both_correct_n11": 910,
+      "both_wrong_n00": 177,
+      "chi2_cc": 1.042,
+      "p_value": 0.3074274987279482
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 192,
+      "b_only_correct_n01": 329,
+      "both_correct_n11": 3128,
+      "both_wrong_n00": 877,
+      "chi2_cc": 35.501,
+      "p_value": 2.072936799841149e-09
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 141,
+      "b_only_correct_n01": 243,
+      "both_correct_n11": 2169,
+      "both_wrong_n00": 670,
+      "chi2_cc": 26.565,
+      "p_value": 2.1779464585801842e-07
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 51,
+      "b_only_correct_n01": 86,
+      "both_correct_n11": 959,
+      "both_wrong_n00": 207,
+      "chi2_cc": 8.438,
+      "p_value": 0.003519993287441271
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-0p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 554,
+      "b_only_correct_n01": 358,
+      "both_correct_n11": 2766,
+      "both_wrong_n00": 848,
+      "chi2_cc": 41.694,
+      "p_value": 9.080878633587937e-11
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-0p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 422,
+      "b_only_correct_n01": 272,
+      "both_correct_n11": 1888,
+      "both_wrong_n00": 641,
+      "chi2_cc": 31.99,
+      "p_value": 1.3678288933486787e-08
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-0p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 132,
+      "b_only_correct_n01": 86,
+      "both_correct_n11": 878,
+      "both_wrong_n00": 207,
+      "chi2_cc": 9.289,
+      "p_value": 0.0022312398001911103
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-3p0-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 504,
+      "b_only_correct_n01": 344,
+      "both_correct_n11": 2816,
+      "both_wrong_n00": 862,
+      "chi2_cc": 29.812,
+      "p_value": 4.356820455181238e-08
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-3p0-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 393,
+      "b_only_correct_n01": 275,
+      "both_correct_n11": 1917,
+      "both_wrong_n00": 638,
+      "chi2_cc": 20.493,
+      "p_value": 5.679085014797685e-06
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Alpha-3p0-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 111,
+      "b_only_correct_n01": 69,
+      "both_correct_n11": 899,
+      "both_wrong_n00": 224,
+      "chi2_cc": 9.339,
+      "p_value": 0.00215510755253042
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-200-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 430,
+      "b_only_correct_n01": 346,
+      "both_correct_n11": 2890,
+      "both_wrong_n00": 860,
+      "chi2_cc": 8.878,
+      "p_value": 0.002863185196343929
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-200-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 348,
+      "b_only_correct_n01": 247,
+      "both_correct_n11": 1962,
+      "both_wrong_n00": 666,
+      "chi2_cc": 16.807,
+      "p_value": 3.9777201283482336e-05
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-200-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 82,
+      "b_only_correct_n01": 99,
+      "both_correct_n11": 928,
+      "both_wrong_n00": 194,
+      "chi2_cc": 1.414,
+      "p_value": 0.2342451908352397
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-800-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 598,
+      "b_only_correct_n01": 308,
+      "both_correct_n11": 2722,
+      "both_wrong_n00": 898,
+      "chi2_cc": 92.187,
+      "p_value": 3.4913333229694284e-22
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-800-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 513,
+      "b_only_correct_n01": 243,
+      "both_correct_n11": 1797,
+      "both_wrong_n00": 670,
+      "chi2_cc": 95.716,
+      "p_value": 4.574781760557722e-23
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_Sweep-Scale-800-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 85,
+      "b_only_correct_n01": 65,
+      "both_correct_n11": 925,
+      "both_wrong_n00": 228,
+      "chi2_cc": 2.407,
+      "p_value": 0.1205291697094882
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1101,
+      "b_only_correct_n01": 318,
+      "both_correct_n11": 2219,
+      "both_wrong_n00": 888,
+      "chi2_cc": 430.954,
+      "p_value": 3.759012109690829e-101
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 843,
+      "b_only_correct_n01": 262,
+      "both_correct_n11": 1467,
+      "both_wrong_n00": 651,
+      "chi2_cc": 304.434,
+      "p_value": 1.3242805807524258e-71
+    },
+    "OCCAM-Qwen-7B-v2-Direct_vs_OCCAM-3B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 258,
+      "b_only_correct_n01": 56,
+      "both_correct_n11": 752,
+      "both_wrong_n00": 237,
+      "chi2_cc": 128.666,
+      "p_value": 3.8994936297223017e-32
+    },
+    "OCCAM-3B-Adaptive_vs_Direct-0CoT-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1300,
+      "b_only_correct_n01": 369,
+      "both_correct_n11": 1708,
+      "both_wrong_n00": 1149,
+      "chi2_cc": 518.214,
+      "p_value": 2.0829604953985557e-121
+    },
+    "OCCAM-3B-Adaptive_vs_Direct-0CoT-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 656,
+      "b_only_correct_n01": 323,
+      "both_correct_n11": 1367,
+      "both_wrong_n00": 877,
+      "chi2_cc": 112.588,
+      "p_value": 8.56428182814213e-27
+    },
+    "OCCAM-3B-Adaptive_vs_Direct-0CoT-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 644,
+      "b_only_correct_n01": 46,
+      "both_correct_n11": 341,
+      "both_wrong_n00": 272,
+      "chi2_cc": 516.535,
+      "p_value": 6.3480830771471125e-136
+    },
+    "OCCAM-3B-Adaptive_vs_Base-3B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 536,
+      "b_only_correct_n01": 458,
+      "both_correct_n11": 2472,
+      "both_wrong_n00": 1060,
+      "chi2_cc": 5.965,
+      "p_value": 0.014553218205519428
+    },
+    "OCCAM-3B-Adaptive_vs_Base-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 467,
+      "b_only_correct_n01": 374,
+      "both_correct_n11": 1556,
+      "both_wrong_n00": 826,
+      "chi2_cc": 10.064,
+      "p_value": 0.0014969438131281123
+    },
+    "OCCAM-3B-Adaptive_vs_Base-3B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 69,
+      "b_only_correct_n01": 84,
+      "both_correct_n11": 916,
+      "both_wrong_n00": 234,
+      "chi2_cc": 1.281,
+      "p_value": 0.2576337765467225
+    },
+    "OCCAM-3B-Adaptive_vs_Direct-0CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1120,
+      "b_only_correct_n01": 504,
+      "both_correct_n11": 1888,
+      "both_wrong_n00": 1014,
+      "chi2_cc": 232.897,
+      "p_value": 7.238345951382094e-54
+    },
+    "OCCAM-3B-Adaptive_vs_Direct-0CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 527,
+      "b_only_correct_n01": 432,
+      "both_correct_n11": 1496,
+      "both_wrong_n00": 768,
+      "chi2_cc": 9.214,
+      "p_value": 0.0023847640437800553
+    },
+    "OCCAM-3B-Adaptive_vs_Direct-0CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 593,
+      "b_only_correct_n01": 72,
+      "both_correct_n11": 392,
+      "both_wrong_n00": 246,
+      "chi2_cc": 406.617,
+      "p_value": 7.865209972936122e-103
+    },
+    "OCCAM-3B-Adaptive_vs_Base-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 328,
+      "b_only_correct_n01": 717,
+      "both_correct_n11": 2680,
+      "both_wrong_n00": 801,
+      "chi2_cc": 144.061,
+      "p_value": 5.966489146013268e-34
+    },
+    "OCCAM-3B-Adaptive_vs_Base-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 267,
+      "b_only_correct_n01": 560,
+      "both_correct_n11": 1756,
+      "both_wrong_n00": 640,
+      "chi2_cc": 103.1,
+      "p_value": 1.031146701363817e-24
+    },
+    "OCCAM-3B-Adaptive_vs_Base-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 61,
+      "b_only_correct_n01": 157,
+      "both_correct_n11": 924,
+      "both_wrong_n00": 161,
+      "chi2_cc": 41.399,
+      "p_value": 6.105481167981043e-11
+    },
+    "OCCAM-3B-Adaptive_vs_FewShot-3CoT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 416,
+      "b_only_correct_n01": 722,
+      "both_correct_n11": 2592,
+      "both_wrong_n00": 796,
+      "chi2_cc": 81.744,
+      "p_value": 9.359254052199582e-20
+    },
+    "OCCAM-3B-Adaptive_vs_FewShot-3CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 346,
+      "b_only_correct_n01": 543,
+      "both_correct_n11": 1677,
+      "both_wrong_n00": 657,
+      "chi2_cc": 43.213,
+      "p_value": 4.1085834001033785e-11
+    },
+    "OCCAM-3B-Adaptive_vs_FewShot-3CoT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 70,
+      "b_only_correct_n01": 179,
+      "both_correct_n11": 915,
+      "both_wrong_n00": 139,
+      "chi2_cc": 46.843,
+      "p_value": 3.4727890021488973e-12
+    },
+    "OCCAM-3B-Adaptive_vs_SC-Maj4-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 293,
+      "b_only_correct_n01": 737,
+      "both_correct_n11": 2715,
+      "both_wrong_n00": 781,
+      "chi2_cc": 190.533,
+      "p_value": 1.0128838560283602e-44
+    },
+    "OCCAM-3B-Adaptive_vs_SC-Maj4-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 248,
+      "b_only_correct_n01": 585,
+      "both_correct_n11": 1775,
+      "both_wrong_n00": 615,
+      "chi2_cc": 135.529,
+      "p_value": 3.532330094849828e-32
+    },
+    "OCCAM-3B-Adaptive_vs_SC-Maj4-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 45,
+      "b_only_correct_n01": 152,
+      "both_correct_n11": 940,
+      "both_wrong_n00": 166,
+      "chi2_cc": 57.036,
+      "p_value": 8.956372819028327e-15
+    },
+    "OCCAM-3B-Adaptive_vs_Concise-CoD-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 757,
+      "b_only_correct_n01": 517,
+      "both_correct_n11": 2251,
+      "both_wrong_n00": 1001,
+      "chi2_cc": 44.836,
+      "p_value": 1.8753444146427574e-11
+    },
+    "OCCAM-3B-Adaptive_vs_Concise-CoD-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 449,
+      "b_only_correct_n01": 437,
+      "both_correct_n11": 1574,
+      "both_wrong_n00": 763,
+      "chi2_cc": 0.137,
+      "p_value": 0.7117385596250884
+    },
+    "OCCAM-3B-Adaptive_vs_Concise-CoD-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 308,
+      "b_only_correct_n01": 80,
+      "both_correct_n11": 677,
+      "both_wrong_n00": 238,
+      "chi2_cc": 132.807,
+      "p_value": 1.1901909340790427e-32
+    },
+    "OCCAM-3B-Adaptive_vs_Ext-16Op-Harness-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 466,
+      "b_only_correct_n01": 554,
+      "both_correct_n11": 2542,
+      "both_wrong_n00": 964,
+      "chi2_cc": 7.421,
+      "p_value": 0.0064202575712594525
+    },
+    "OCCAM-3B-Adaptive_vs_Ext-16Op-Harness-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 365,
+      "b_only_correct_n01": 455,
+      "both_correct_n11": 1658,
+      "both_wrong_n00": 745,
+      "chi2_cc": 9.66,
+      "p_value": 0.0018660554252214357
+    },
+    "OCCAM-3B-Adaptive_vs_Ext-16Op-Harness-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 101,
+      "b_only_correct_n01": 99,
+      "both_correct_n11": 884,
+      "both_wrong_n00": 219,
+      "chi2_cc": 0.005,
+      "p_value": 0.9436515209907431
+    },
+    "OCCAM-3B-Adaptive_vs_BoT-Retrieval-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 383,
+      "b_only_correct_n01": 683,
+      "both_correct_n11": 2625,
+      "both_wrong_n00": 835,
+      "chi2_cc": 83.866,
+      "p_value": 3.001523428633952e-20
+    },
+    "OCCAM-3B-Adaptive_vs_BoT-Retrieval-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 306,
+      "b_only_correct_n01": 552,
+      "both_correct_n11": 1717,
+      "both_wrong_n00": 648,
+      "chi2_cc": 69.959,
+      "p_value": 3.704309533801719e-17
+    },
+    "OCCAM-3B-Adaptive_vs_BoT-Retrieval-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 77,
+      "b_only_correct_n01": 131,
+      "both_correct_n11": 908,
+      "both_wrong_n00": 187,
+      "chi2_cc": 13.505,
+      "p_value": 0.0002209757455021262
+    },
+    "OCCAM-3B-Adaptive_vs_LIMO-LongCoT-SFT-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 327,
+      "b_only_correct_n01": 714,
+      "both_correct_n11": 2681,
+      "both_wrong_n00": 804,
+      "chi2_cc": 143.128,
+      "p_value": 9.702564169418108e-34
+    },
+    "OCCAM-3B-Adaptive_vs_LIMO-LongCoT-SFT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 267,
+      "b_only_correct_n01": 570,
+      "both_correct_n11": 1756,
+      "both_wrong_n00": 630,
+      "chi2_cc": 108.965,
+      "p_value": 4.740746673226299e-26
+    },
+    "OCCAM-3B-Adaptive_vs_LIMO-LongCoT-SFT-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 60,
+      "b_only_correct_n01": 144,
+      "both_correct_n11": 925,
+      "both_wrong_n00": 174,
+      "chi2_cc": 33.77,
+      "p_value": 3.768685467174407e-09
+    },
+    "OCCAM-3B-Adaptive_vs_R1-Budget200-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 1463,
+      "b_only_correct_n01": 496,
+      "both_correct_n11": 1545,
+      "both_wrong_n00": 1022,
+      "chi2_cc": 476.343,
+      "p_value": 2.9054455914697337e-110
+    },
+    "OCCAM-3B-Adaptive_vs_R1-Budget200-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 1080,
+      "b_only_correct_n01": 337,
+      "both_correct_n11": 943,
+      "both_wrong_n00": 863,
+      "chi2_cc": 388.542,
+      "p_value": 7.612593591606348e-91
+    },
+    "OCCAM-3B-Adaptive_vs_R1-Budget200-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 383,
+      "b_only_correct_n01": 159,
+      "both_correct_n11": 602,
+      "both_wrong_n00": 159,
+      "chi2_cc": 91.751,
+      "p_value": 2.4476188189506605e-22
+    },
+    "OCCAM-3B-Adaptive_vs_R1-Distill-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 502,
+      "b_only_correct_n01": 845,
+      "both_correct_n11": 2506,
+      "both_wrong_n00": 673,
+      "chi2_cc": 86.833,
+      "p_value": 7.316104415741191e-21
+    },
+    "OCCAM-3B-Adaptive_vs_R1-Distill-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 408,
+      "b_only_correct_n01": 659,
+      "both_correct_n11": 1615,
+      "both_wrong_n00": 541,
+      "chi2_cc": 58.575,
+      "p_value": 1.487827862682037e-14
+    },
+    "OCCAM-3B-Adaptive_vs_R1-Distill-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 94,
+      "b_only_correct_n01": 186,
+      "both_correct_n11": 891,
+      "both_wrong_n00": 132,
+      "chi2_cc": 29.575,
+      "p_value": 4.101941737930214e-08
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-Jargon-Only-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 394,
+      "b_only_correct_n01": 678,
+      "both_correct_n11": 2614,
+      "both_wrong_n00": 840,
+      "chi2_cc": 74.71,
+      "p_value": 3.489648751151444e-18
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-Jargon-Only-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 319,
+      "b_only_correct_n01": 526,
+      "both_correct_n11": 1704,
+      "both_wrong_n00": 674,
+      "chi2_cc": 50.22,
+      "p_value": 1.0654649906129065e-12
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-Jargon-Only-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 75,
+      "b_only_correct_n01": 152,
+      "both_correct_n11": 910,
+      "both_wrong_n00": 166,
+      "chi2_cc": 25.445,
+      "p_value": 3.5522364079368707e-07
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-wo-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 556,
+      "b_only_correct_n01": 626,
+      "both_correct_n11": 2452,
+      "both_wrong_n00": 892,
+      "chi2_cc": 4.028,
+      "p_value": 0.04470747100421773
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-wo-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 450,
+      "b_only_correct_n01": 517,
+      "both_correct_n11": 1573,
+      "both_wrong_n00": 683,
+      "chi2_cc": 4.505,
+      "p_value": 0.033748921542269134
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-wo-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 106,
+      "b_only_correct_n01": 109,
+      "both_correct_n11": 879,
+      "both_wrong_n00": 209,
+      "chi2_cc": 0.019,
+      "p_value": 0.8915472602462468
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-Uniform-SimPO-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 580,
+      "b_only_correct_n01": 646,
+      "both_correct_n11": 2428,
+      "both_wrong_n00": 872,
+      "chi2_cc": 3.446,
+      "p_value": 0.06335467692155773
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-Uniform-SimPO-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 423,
+      "b_only_correct_n01": 518,
+      "both_correct_n11": 1600,
+      "both_wrong_n00": 682,
+      "chi2_cc": 9.39,
+      "p_value": 0.002165103070011648
+    },
+    "OCCAM-3B-Adaptive_vs_Ablation-Uniform-SimPO-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 157,
+      "b_only_correct_n01": 128,
+      "both_correct_n11": 828,
+      "both_wrong_n00": 190,
+      "chi2_cc": 2.751,
+      "p_value": 0.09702976670086468
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 558,
+      "b_only_correct_n01": 469,
+      "both_correct_n11": 2450,
+      "both_wrong_n00": 1049,
+      "chi2_cc": 7.54,
+      "p_value": 0.006006221204199698
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 399,
+      "b_only_correct_n01": 388,
+      "both_correct_n11": 1624,
+      "both_wrong_n00": 812,
+      "chi2_cc": 0.127,
+      "p_value": 0.7215197005225138
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 159,
+      "b_only_correct_n01": 81,
+      "both_correct_n11": 826,
+      "both_wrong_n00": 237,
+      "chi2_cc": 24.704,
+      "p_value": 5.363140998314985e-07
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 340,
+      "b_only_correct_n01": 297,
+      "both_correct_n11": 2668,
+      "both_wrong_n00": 1221,
+      "chi2_cc": 2.769,
+      "p_value": 0.09601535021053127
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 228,
+      "b_only_correct_n01": 227,
+      "both_correct_n11": 1795,
+      "both_wrong_n00": 973,
+      "chi2_cc": 0.0,
+      "p_value": 1.0
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 112,
+      "b_only_correct_n01": 70,
+      "both_correct_n11": 873,
+      "both_wrong_n00": 248,
+      "chi2_cc": 9.236,
+      "p_value": 0.002282364179276689
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-7B-SFT": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 400,
+      "b_only_correct_n01": 690,
+      "both_correct_n11": 2608,
+      "both_wrong_n00": 828,
+      "chi2_cc": 76.625,
+      "p_value": 1.302746934165096e-18
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-7B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 301,
+      "b_only_correct_n01": 561,
+      "both_correct_n11": 1722,
+      "both_wrong_n00": 639,
+      "chi2_cc": 77.82,
+      "p_value": 6.148342443574207e-19
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-7B-SFT_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 99,
+      "b_only_correct_n01": 129,
+      "both_correct_n11": 886,
+      "both_wrong_n00": 189,
+      "chi2_cc": 3.689,
+      "p_value": 0.05454699427031421
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-400-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 426,
+      "b_only_correct_n01": 666,
+      "both_correct_n11": 2582,
+      "both_wrong_n00": 852,
+      "chi2_cc": 52.309,
+      "p_value": 3.8341941784135074e-13
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-400-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 319,
+      "b_only_correct_n01": 555,
+      "both_correct_n11": 1704,
+      "both_wrong_n00": 645,
+      "chi2_cc": 63.186,
+      "p_value": 1.2707399775539096e-15
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-400-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 107,
+      "b_only_correct_n01": 111,
+      "both_correct_n11": 878,
+      "both_wrong_n00": 207,
+      "chi2_cc": 0.041,
+      "p_value": 0.8390485361819623
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-1p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 507,
+      "b_only_correct_n01": 667,
+      "both_correct_n11": 2501,
+      "both_wrong_n00": 851,
+      "chi2_cc": 21.534,
+      "p_value": 3.3632284191371e-06
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-1p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 373,
+      "b_only_correct_n01": 538,
+      "both_correct_n11": 1650,
+      "both_wrong_n00": 662,
+      "chi2_cc": 29.524,
+      "p_value": 5.096563258923181e-08
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-1p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 134,
+      "b_only_correct_n01": 129,
+      "both_correct_n11": 851,
+      "both_wrong_n00": 189,
+      "chi2_cc": 0.061,
+      "p_value": 0.805235806479569
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 497,
+      "b_only_correct_n01": 638,
+      "both_correct_n11": 2511,
+      "both_wrong_n00": 880,
+      "chi2_cc": 17.269,
+      "p_value": 3.1747316977682484e-05
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 362,
+      "b_only_correct_n01": 520,
+      "both_correct_n11": 1661,
+      "both_wrong_n00": 680,
+      "chi2_cc": 27.947,
+      "p_value": 1.1575145151765189e-07
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 135,
+      "b_only_correct_n01": 118,
+      "both_correct_n11": 850,
+      "both_wrong_n00": 200,
+      "chi2_cc": 1.012,
+      "p_value": 0.3144571282634183
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Qwen-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 384,
+      "b_only_correct_n01": 696,
+      "both_correct_n11": 2624,
+      "both_wrong_n00": 822,
+      "chi2_cc": 89.556,
+      "p_value": 1.5712033524888212e-21
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Qwen-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 295,
+      "b_only_correct_n01": 582,
+      "both_correct_n11": 1728,
+      "both_wrong_n00": 618,
+      "chi2_cc": 93.268,
+      "p_value": 1.925765600850188e-22
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Qwen-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 89,
+      "b_only_correct_n01": 114,
+      "both_correct_n11": 896,
+      "both_wrong_n00": 204,
+      "chi2_cc": 2.837,
+      "p_value": 0.09184530038378139
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Qwen-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 346,
+      "b_only_correct_n01": 695,
+      "both_correct_n11": 2662,
+      "both_wrong_n00": 823,
+      "chi2_cc": 116.334,
+      "p_value": 1.2911409683313876e-27
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Qwen-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 275,
+      "b_only_correct_n01": 569,
+      "both_correct_n11": 1748,
+      "both_wrong_n00": 631,
+      "chi2_cc": 101.717,
+      "p_value": 2.1884929323734092e-24
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Qwen-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 71,
+      "b_only_correct_n01": 126,
+      "both_correct_n11": 914,
+      "both_wrong_n00": 192,
+      "chi2_cc": 14.802,
+      "p_value": 0.00010864105561866937
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-R1-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 576,
+      "b_only_correct_n01": 610,
+      "both_correct_n11": 2432,
+      "both_wrong_n00": 908,
+      "chi2_cc": 0.918,
+      "p_value": 0.33794756950717786
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-R1-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 456,
+      "b_only_correct_n01": 489,
+      "both_correct_n11": 1567,
+      "both_wrong_n00": 711,
+      "chi2_cc": 1.084,
+      "p_value": 0.29789057198584273
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-R1-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 120,
+      "b_only_correct_n01": 121,
+      "both_correct_n11": 865,
+      "both_wrong_n00": 197,
+      "chi2_cc": 0.0,
+      "p_value": 1.0
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-R1-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 529,
+      "b_only_correct_n01": 687,
+      "both_correct_n11": 2479,
+      "both_wrong_n00": 831,
+      "chi2_cc": 20.271,
+      "p_value": 6.535969018621133e-06
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-R1-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 420,
+      "b_only_correct_n01": 537,
+      "both_correct_n11": 1603,
+      "both_wrong_n00": 663,
+      "chi2_cc": 14.061,
+      "p_value": 0.00017401073083371695
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-R1-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 109,
+      "b_only_correct_n01": 150,
+      "both_correct_n11": 876,
+      "both_wrong_n00": 168,
+      "chi2_cc": 6.178,
+      "p_value": 0.012786774269086244
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 328,
+      "b_only_correct_n01": 777,
+      "both_correct_n11": 2680,
+      "both_wrong_n00": 741,
+      "chi2_cc": 181.633,
+      "p_value": 1.48098675141299e-42
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 253,
+      "b_only_correct_n01": 642,
+      "both_correct_n11": 1770,
+      "both_wrong_n00": 558,
+      "chi2_cc": 168.206,
+      "p_value": 1.0502950799627645e-39
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 75,
+      "b_only_correct_n01": 135,
+      "both_correct_n11": 910,
+      "both_wrong_n00": 183,
+      "chi2_cc": 16.576,
+      "p_value": 4.179986758487622e-05
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-0p5-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 542,
+      "b_only_correct_n01": 658,
+      "both_correct_n11": 2466,
+      "both_wrong_n00": 860,
+      "chi2_cc": 11.021,
+      "p_value": 0.0008934847327969667
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-0p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 391,
+      "b_only_correct_n01": 528,
+      "both_correct_n11": 1632,
+      "both_wrong_n00": 672,
+      "chi2_cc": 20.126,
+      "p_value": 6.987500455514783e-06
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-0p5-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 151,
+      "b_only_correct_n01": 130,
+      "both_correct_n11": 834,
+      "both_wrong_n00": 188,
+      "chi2_cc": 1.423,
+      "p_value": 0.23277206168513825
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-3p0-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 493,
+      "b_only_correct_n01": 645,
+      "both_correct_n11": 2515,
+      "both_wrong_n00": 873,
+      "chi2_cc": 20.036,
+      "p_value": 7.37937466157994e-06
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-3p0-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 356,
+      "b_only_correct_n01": 525,
+      "both_correct_n11": 1667,
+      "both_wrong_n00": 675,
+      "chi2_cc": 32.036,
+      "p_value": 1.3715570460667826e-08
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Alpha-3p0-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 137,
+      "b_only_correct_n01": 120,
+      "both_correct_n11": 848,
+      "both_wrong_n00": 198,
+      "chi2_cc": 0.996,
+      "p_value": 0.3182552709992646
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-200-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 456,
+      "b_only_correct_n01": 684,
+      "both_correct_n11": 2552,
+      "both_wrong_n00": 834,
+      "chi2_cc": 45.201,
+      "p_value": 1.5281676649011824e-11
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-200-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 360,
+      "b_only_correct_n01": 546,
+      "both_correct_n11": 1663,
+      "both_wrong_n00": 654,
+      "chi2_cc": 37.776,
+      "p_value": 6.945568650573954e-10
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-200-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 96,
+      "b_only_correct_n01": 138,
+      "both_correct_n11": 889,
+      "both_wrong_n00": 180,
+      "chi2_cc": 7.184,
+      "p_value": 0.007226549188423531
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-800-7B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 579,
+      "b_only_correct_n01": 601,
+      "both_correct_n11": 2429,
+      "both_wrong_n00": 917,
+      "chi2_cc": 0.374,
+      "p_value": 0.5409966598064783
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-800-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 473,
+      "b_only_correct_n01": 490,
+      "both_correct_n11": 1550,
+      "both_wrong_n00": 710,
+      "chi2_cc": 0.266,
+      "p_value": 0.6061617743224064
+    },
+    "OCCAM-3B-Adaptive_vs_Sweep-Scale-800-7B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 106,
+      "b_only_correct_n01": 111,
+      "both_correct_n11": 879,
+      "both_wrong_n00": 207,
+      "chi2_cc": 0.074,
+      "p_value": 0.786052322485778
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-SimPO": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 873,
+      "b_only_correct_n01": 402,
+      "both_correct_n11": 2135,
+      "both_wrong_n00": 1116,
+      "chi2_cc": 173.255,
+      "p_value": 1.804462739539127e-40
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 623,
+      "b_only_correct_n01": 329,
+      "both_correct_n11": 1400,
+      "both_wrong_n00": 871,
+      "chi2_cc": 90.178,
+      "p_value": 1.0387916399738925e-21
+    },
+    "OCCAM-3B-Adaptive_vs_OCCAM-3B-SimPO_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 250,
+      "b_only_correct_n01": 73,
+      "both_correct_n11": 735,
+      "both_wrong_n00": 245,
+      "chi2_cc": 95.901,
+      "p_value": 8.045159104017963e-24
+    },
     "OCCAM-7B-SFT_vs_Direct-0CoT-3B": {
       "n_shared": 4526,
       "a_only_correct_n10": 1554,
@@ -1061,6 +4703,15 @@
       "both_wrong_n00": 895,
       "chi2_cc": 788.765,
       "p_value": 4.3298732289588455e-188
+    },
+    "OCCAM-7B-SFT_vs_Direct-0CoT-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 877,
+      "b_only_correct_n01": 284,
+      "both_correct_n11": 1406,
+      "both_wrong_n00": 656,
+      "chi2_cc": 301.864,
+      "p_value": 8.445776067152775e-71
     },
     "OCCAM-7B-SFT_vs_Direct-0CoT-3B_OOD": {
       "n_shared": 1303,
@@ -1080,6 +4731,15 @@
       "chi2_cc": 112.054,
       "p_value": 1.4073244046870966e-26
     },
+    "OCCAM-7B-SFT_vs_Base-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 664,
+      "b_only_correct_n01": 311,
+      "both_correct_n11": 1619,
+      "both_wrong_n00": 629,
+      "chi2_cc": 127.081,
+      "p_value": 4.152241569736686e-30
+    },
     "OCCAM-7B-SFT_vs_Base-3B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 121,
@@ -1097,6 +4757,15 @@
       "both_wrong_n00": 875,
       "chi2_cc": 508.08,
       "p_value": 3.4622764583330577e-119
+    },
+    "OCCAM-7B-SFT_vs_Direct-0CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 644,
+      "b_only_correct_n01": 289,
+      "both_correct_n11": 1639,
+      "both_wrong_n00": 651,
+      "chi2_cc": 134.315,
+      "p_value": 8.417108168512383e-32
     },
     "OCCAM-7B-SFT_vs_Direct-0CoT-7B_OOD": {
       "n_shared": 1303,
@@ -1116,6 +4785,15 @@
       "chi2_cc": 11.842,
       "p_value": 0.0005708492764611274
     },
+    "OCCAM-7B-SFT_vs_Base-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 308,
+      "b_only_correct_n01": 341,
+      "both_correct_n11": 1975,
+      "both_wrong_n00": 599,
+      "chi2_cc": 1.578,
+      "p_value": 0.209042435620834
+    },
     "OCCAM-7B-SFT_vs_Base-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 48,
@@ -1133,6 +4811,15 @@
       "both_wrong_n00": 767,
       "chi2_cc": 0.248,
       "p_value": 0.6182676092448225
+    },
+    "OCCAM-7B-SFT_vs_FewShot-3CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 396,
+      "b_only_correct_n01": 333,
+      "both_correct_n11": 1887,
+      "both_wrong_n00": 607,
+      "chi2_cc": 5.273,
+      "p_value": 0.021594789685710273
     },
     "OCCAM-7B-SFT_vs_FewShot-3CoT-7B_OOD": {
       "n_shared": 1303,
@@ -1152,6 +4839,15 @@
       "chi2_cc": 29.782,
       "p_value": 4.3945513930186266e-08
     },
+    "OCCAM-7B-SFT_vs_SC-Maj4-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 277,
+      "b_only_correct_n01": 354,
+      "both_correct_n11": 2006,
+      "both_wrong_n00": 586,
+      "chi2_cc": 9.154,
+      "p_value": 0.002455376863906851
+    },
     "OCCAM-7B-SFT_vs_SC-Maj4-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 39,
@@ -1169,6 +4865,15 @@
       "both_wrong_n00": 881,
       "chi2_cc": 228.628,
       "p_value": 2.5146815607924734e-53
+    },
+    "OCCAM-7B-SFT_vs_Concise-CoD-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 554,
+      "b_only_correct_n01": 282,
+      "both_correct_n11": 1729,
+      "both_wrong_n00": 658,
+      "chi2_cc": 87.848,
+      "p_value": 3.1655662610796185e-21
     },
     "OCCAM-7B-SFT_vs_Concise-CoD-7B_OOD": {
       "n_shared": 1303,
@@ -1188,6 +4893,15 @@
       "chi2_cc": 44.494,
       "p_value": 2.119735793429762e-11
     },
+    "OCCAM-7B-SFT_vs_Ext-16Op-Harness-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 452,
+      "b_only_correct_n01": 282,
+      "both_correct_n11": 1831,
+      "both_wrong_n00": 658,
+      "chi2_cc": 38.911,
+      "p_value": 3.7215403567829894e-10
+    },
     "OCCAM-7B-SFT_vs_Ext-16Op-Harness-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 103,
@@ -1205,6 +4919,15 @@
       "both_wrong_n00": 780,
       "chi2_cc": 0.091,
       "p_value": 0.7623966783476448
+    },
+    "OCCAM-7B-SFT_vs_BoT-Retrieval-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 355,
+      "b_only_correct_n01": 341,
+      "both_correct_n11": 1928,
+      "both_wrong_n00": 599,
+      "chi2_cc": 0.243,
+      "p_value": 0.6222111993632627
     },
     "OCCAM-7B-SFT_vs_BoT-Retrieval-7B_OOD": {
       "n_shared": 1303,
@@ -1224,6 +4947,15 @@
       "chi2_cc": 10.729,
       "p_value": 0.001043296643409091
     },
+    "OCCAM-7B-SFT_vs_LIMO-LongCoT-SFT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 320,
+      "b_only_correct_n01": 363,
+      "both_correct_n11": 1963,
+      "both_wrong_n00": 577,
+      "chi2_cc": 2.583,
+      "p_value": 0.10796757446754474
+    },
     "OCCAM-7B-SFT_vs_LIMO-LongCoT-SFT-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 61,
@@ -1241,6 +4973,15 @@
       "both_wrong_n00": 872,
       "chi2_cc": 801.186,
       "p_value": 1.544681084161207e-190
+    },
+    "OCCAM-7B-SFT_vs_R1-Budget200-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 1231,
+      "b_only_correct_n01": 228,
+      "both_correct_n11": 1052,
+      "both_wrong_n00": 712,
+      "chi2_cc": 688.145,
+      "p_value": 1.9300471783954603e-166
     },
     "OCCAM-7B-SFT_vs_R1-Budget200-7B_OOD": {
       "n_shared": 1303,
@@ -1260,6 +5001,15 @@
       "chi2_cc": 2.237,
       "p_value": 0.13474737469390513
     },
+    "OCCAM-7B-SFT_vs_R1-Distill-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 479,
+      "b_only_correct_n01": 470,
+      "both_correct_n11": 1804,
+      "both_wrong_n00": 470,
+      "chi2_cc": 0.067,
+      "p_value": 0.795118575709738
+    },
     "OCCAM-7B-SFT_vs_R1-Distill-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 99,
@@ -1277,6 +5027,15 @@
       "both_wrong_n00": 806,
       "chi2_cc": 0.029,
       "p_value": 0.8638445957781864
+    },
+    "OCCAM-7B-SFT_vs_Ablation-Jargon-Only-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 367,
+      "b_only_correct_n01": 314,
+      "both_correct_n11": 1916,
+      "both_wrong_n00": 626,
+      "chi2_cc": 3.971,
+      "p_value": 0.04622096112691612
     },
     "OCCAM-7B-SFT_vs_Ablation-Jargon-Only-7B_OOD": {
       "n_shared": 1303,
@@ -1296,6 +5055,15 @@
       "chi2_cc": 49.546,
       "p_value": 1.561649381753498e-12
     },
+    "OCCAM-7B-SFT_vs_Ablation-wo-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 492,
+      "b_only_correct_n01": 299,
+      "both_correct_n11": 1791,
+      "both_wrong_n00": 641,
+      "chi2_cc": 46.604,
+      "p_value": 6.873942902789991e-12
+    },
     "OCCAM-7B-SFT_vs_Ablation-wo-Router-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 102,
@@ -1313,6 +5081,15 @@
       "both_wrong_n00": 882,
       "chi2_cc": 54.289,
       "p_value": 1.3151187181348047e-13
+    },
+    "OCCAM-7B-SFT_vs_Ablation-Uniform-SimPO-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 434,
+      "b_only_correct_n01": 269,
+      "both_correct_n11": 1849,
+      "both_wrong_n00": 671,
+      "chi2_cc": 38.259,
+      "p_value": 5.190057531939188e-10
     },
     "OCCAM-7B-SFT_vs_Ablation-Uniform-SimPO-7B_OOD": {
       "n_shared": 1303,
@@ -1332,6 +5109,15 @@
       "chi2_cc": 134.163,
       "p_value": 1.1404816157920045e-31
     },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 547,
+      "b_only_correct_n01": 276,
+      "both_correct_n11": 1736,
+      "both_wrong_n00": 664,
+      "chi2_cc": 88.578,
+      "p_value": 2.1295536262202543e-21
+    },
     "OCCAM-7B-SFT_vs_OCCAM-3B-SFT_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 175,
@@ -1341,6 +5127,60 @@
       "chi2_cc": 47.31,
       "p_value": 2.624009744005345e-12
     },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 733,
+      "b_only_correct_n01": 400,
+      "both_correct_n11": 2565,
+      "both_wrong_n00": 828,
+      "chi2_cc": 97.285,
+      "p_value": 2.9192099367504177e-23
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 573,
+      "b_only_correct_n01": 312,
+      "both_correct_n11": 1710,
+      "both_wrong_n00": 628,
+      "chi2_cc": 76.384,
+      "p_value": 1.3219051673587648e-18
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 160,
+      "b_only_correct_n01": 88,
+      "both_correct_n11": 855,
+      "both_wrong_n00": 200,
+      "chi2_cc": 20.327,
+      "p_value": 5.6605225819861335e-06
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 690,
+      "b_only_correct_n01": 400,
+      "both_correct_n11": 2608,
+      "both_wrong_n00": 828,
+      "chi2_cc": 76.625,
+      "p_value": 1.302746934165096e-18
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 561,
+      "b_only_correct_n01": 301,
+      "both_correct_n11": 1722,
+      "both_wrong_n00": 639,
+      "chi2_cc": 77.82,
+      "p_value": 6.148342443574207e-19
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 129,
+      "b_only_correct_n01": 99,
+      "both_correct_n11": 886,
+      "both_wrong_n00": 189,
+      "chi2_cc": 3.689,
+      "p_value": 0.05454699427031421
+    },
     "OCCAM-7B-SFT_vs_Sweep-Scale-400-7B-SimPO": {
       "n_shared": 4526,
       "a_only_correct_n10": 387,
@@ -1349,6 +5189,15 @@
       "both_wrong_n00": 891,
       "chi2_cc": 3.316,
       "p_value": 0.06852227956509054
+    },
+    "OCCAM-7B-SFT_vs_Sweep-Scale-400-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 296,
+      "b_only_correct_n01": 272,
+      "both_correct_n11": 1987,
+      "both_wrong_n00": 668,
+      "chi2_cc": 0.931,
+      "p_value": 0.33452051596004134
     },
     "OCCAM-7B-SFT_vs_Sweep-Scale-400-7B-SimPO_OOD": {
       "n_shared": 1303,
@@ -1368,6 +5217,15 @@
       "chi2_cc": 19.216,
       "p_value": 1.1265181040582926e-05
     },
+    "OCCAM-7B-SFT_vs_Sweep-Alpha-1p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 380,
+      "b_only_correct_n01": 285,
+      "both_correct_n11": 1903,
+      "both_wrong_n00": 655,
+      "chi2_cc": 13.287,
+      "p_value": 0.0002614073945809799
+    },
     "OCCAM-7B-SFT_vs_Sweep-Alpha-1p5-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 118,
@@ -1386,6 +5244,15 @@
       "chi2_cc": 27.009,
       "p_value": 1.8778322758089182e-07
     },
+    "OCCAM-7B-SFT_vs_OCCAM-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 361,
+      "b_only_correct_n01": 259,
+      "both_correct_n11": 1922,
+      "both_wrong_n00": 681,
+      "chi2_cc": 16.453,
+      "p_value": 4.808100114781764e-05
+    },
     "OCCAM-7B-SFT_vs_OCCAM-7B-SimPO_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 119,
@@ -1395,6 +5262,141 @@
       "chi2_cc": 11.079,
       "p_value": 0.0008276083957788162
     },
+    "OCCAM-7B-SFT_vs_OCCAM-Qwen-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 356,
+      "b_only_correct_n01": 378,
+      "both_correct_n11": 2942,
+      "both_wrong_n00": 850,
+      "chi2_cc": 0.601,
+      "p_value": 0.4382871638935971
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Qwen-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 280,
+      "b_only_correct_n01": 307,
+      "both_correct_n11": 2003,
+      "both_wrong_n00": 633,
+      "chi2_cc": 1.152,
+      "p_value": 0.28320039814230274
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Qwen-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 76,
+      "b_only_correct_n01": 71,
+      "both_correct_n11": 939,
+      "both_wrong_n00": 217,
+      "chi2_cc": 0.109,
+      "p_value": 0.741591942446161
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Qwen-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 350,
+      "b_only_correct_n01": 409,
+      "both_correct_n11": 2948,
+      "both_wrong_n00": 819,
+      "chi2_cc": 4.432,
+      "p_value": 0.035199023939745916
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Qwen-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 284,
+      "b_only_correct_n01": 318,
+      "both_correct_n11": 1999,
+      "both_wrong_n00": 622,
+      "chi2_cc": 1.809,
+      "p_value": 0.17858325758052496
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Qwen-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 66,
+      "b_only_correct_n01": 91,
+      "both_correct_n11": 949,
+      "both_wrong_n00": 197,
+      "chi2_cc": 3.669,
+      "p_value": 0.05509346886796192
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-R1-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 685,
+      "b_only_correct_n01": 429,
+      "both_correct_n11": 2613,
+      "both_wrong_n00": 799,
+      "chi2_cc": 58.371,
+      "p_value": 1.6736719704550882e-14
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-R1-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 560,
+      "b_only_correct_n01": 333,
+      "both_correct_n11": 1723,
+      "both_wrong_n00": 607,
+      "chi2_cc": 57.196,
+      "p_value": 2.884323073243636e-14
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-R1-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 125,
+      "b_only_correct_n01": 96,
+      "both_correct_n11": 890,
+      "both_wrong_n00": 192,
+      "chi2_cc": 3.548,
+      "p_value": 0.059389295301670975
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-R1-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 647,
+      "b_only_correct_n01": 515,
+      "both_correct_n11": 2651,
+      "both_wrong_n00": 713,
+      "chi2_cc": 14.769,
+      "p_value": 0.00011967396708697442
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-R1-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 538,
+      "b_only_correct_n01": 395,
+      "both_correct_n11": 1745,
+      "both_wrong_n00": 545,
+      "chi2_cc": 21.612,
+      "p_value": 3.2006869073007756e-06
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-R1-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 109,
+      "b_only_correct_n01": 120,
+      "both_correct_n11": 906,
+      "both_wrong_n00": 168,
+      "chi2_cc": 0.437,
+      "p_value": 0.5088165223269415
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 325,
+      "b_only_correct_n01": 484,
+      "both_correct_n11": 2973,
+      "both_wrong_n00": 744,
+      "chi2_cc": 30.858,
+      "p_value": 2.5138504206034834e-08
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 251,
+      "b_only_correct_n01": 380,
+      "both_correct_n11": 2032,
+      "both_wrong_n00": 560,
+      "chi2_cc": 25.965,
+      "p_value": 3.176621974705151e-07
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 74,
+      "b_only_correct_n01": 104,
+      "both_correct_n11": 941,
+      "both_wrong_n00": 184,
+      "chi2_cc": 4.725,
+      "p_value": 0.029445975067516537
+    },
     "OCCAM-7B-SFT_vs_Sweep-Alpha-0p5-7B": {
       "n_shared": 4526,
       "a_only_correct_n10": 535,
@@ -1403,6 +5405,15 @@
       "both_wrong_n00": 867,
       "chi2_cc": 33.403,
       "p_value": 6.743897120950725e-09
+    },
+    "OCCAM-7B-SFT_vs_Sweep-Alpha-0p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 399,
+      "b_only_correct_n01": 276,
+      "both_correct_n11": 1884,
+      "both_wrong_n00": 664,
+      "chi2_cc": 22.05,
+      "p_value": 2.4999709154378117e-06
     },
     "OCCAM-7B-SFT_vs_Sweep-Alpha-0p5-7B_OOD": {
       "n_shared": 1303,
@@ -1422,6 +5433,15 @@
       "chi2_cc": 22.778,
       "p_value": 1.7249272694022832e-06
     },
+    "OCCAM-7B-SFT_vs_Sweep-Alpha-3p0-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 368,
+      "b_only_correct_n01": 277,
+      "both_correct_n11": 1915,
+      "both_wrong_n00": 663,
+      "chi2_cc": 12.558,
+      "p_value": 0.00038658577536882047
+    },
     "OCCAM-7B-SFT_vs_Sweep-Alpha-3p0-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 113,
@@ -1439,6 +5459,15 @@
       "both_wrong_n00": 856,
       "chi2_cc": 4.617,
       "p_value": 0.03159967927017795
+    },
+    "OCCAM-7B-SFT_vs_Sweep-Scale-200-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 346,
+      "b_only_correct_n01": 272,
+      "both_correct_n11": 1937,
+      "both_wrong_n00": 668,
+      "chi2_cc": 8.623,
+      "p_value": 0.0032871673852822776
     },
     "OCCAM-7B-SFT_vs_Sweep-Scale-200-7B-SimPO_OOD": {
       "n_shared": 1303,
@@ -1458,6 +5487,15 @@
       "chi2_cc": 78.86,
       "p_value": 3.681988385012841e-19
     },
+    "OCCAM-7B-SFT_vs_Sweep-Scale-800-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 494,
+      "b_only_correct_n01": 251,
+      "both_correct_n11": 1789,
+      "both_wrong_n00": 689,
+      "chi2_cc": 78.609,
+      "p_value": 3.677512687575019e-19
+    },
     "OCCAM-7B-SFT_vs_Sweep-Scale-800-7B-SimPO_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 92,
@@ -1475,6 +5513,15 @@
       "both_wrong_n00": 930,
       "chi2_cc": 425.645,
       "p_value": 3.9218670058536277e-100
+    },
+    "OCCAM-7B-SFT_vs_OCCAM-3B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 794,
+      "b_only_correct_n01": 240,
+      "both_correct_n11": 1489,
+      "both_wrong_n00": 700,
+      "chi2_cc": 295.753,
+      "p_value": 9.24071260023866e-70
     },
     "OCCAM-7B-SFT_vs_OCCAM-3B-SimPO_OOD": {
       "n_shared": 1303,
@@ -1494,6 +5541,15 @@
       "chi2_cc": 726.207,
       "p_value": 4.6106094721992716e-172
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Direct-0CoT-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 880,
+      "b_only_correct_n01": 311,
+      "both_correct_n11": 1379,
+      "both_wrong_n00": 653,
+      "chi2_cc": 270.885,
+      "p_value": 2.5156037146131087e-63
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Direct-0CoT-3B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 648,
@@ -1511,6 +5567,15 @@
       "both_wrong_n00": 836,
       "chi2_cc": 83.601,
       "p_value": 3.6772193614740955e-20
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_Base-3B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 653,
+      "b_only_correct_n01": 324,
+      "both_correct_n11": 1606,
+      "both_wrong_n00": 640,
+      "chi2_cc": 110.117,
+      "p_value": 3.1260637896545686e-26
     },
     "Sweep-Scale-400-7B-SimPO_vs_Base-3B_OOD": {
       "n_shared": 1303,
@@ -1530,6 +5595,15 @@
       "chi2_cc": 458.61,
       "p_value": 3.596268640682663e-107
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Direct-0CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 634,
+      "b_only_correct_n01": 303,
+      "both_correct_n11": 1625,
+      "both_wrong_n00": 661,
+      "chi2_cc": 116.222,
+      "p_value": 1.1995069029095263e-27
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Direct-0CoT-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 591,
@@ -1547,6 +5621,15 @@
       "both_wrong_n00": 766,
       "chi2_cc": 25.033,
       "p_value": 5.306513459909703e-07
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_Base-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 317,
+      "b_only_correct_n01": 374,
+      "both_correct_n11": 1942,
+      "both_wrong_n00": 590,
+      "chi2_cc": 4.538,
+      "p_value": 0.03306844642230134
     },
     "Sweep-Scale-400-7B-SimPO_vs_Base-7B_OOD": {
       "n_shared": 1303,
@@ -1566,6 +5649,15 @@
       "chi2_cc": 4.582,
       "p_value": 0.03224540626899419
     },
+    "Sweep-Scale-400-7B-SimPO_vs_FewShot-3CoT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 381,
+      "b_only_correct_n01": 342,
+      "both_correct_n11": 1878,
+      "both_wrong_n00": 622,
+      "chi2_cc": 1.997,
+      "p_value": 0.15753886811052192
+    },
     "Sweep-Scale-400-7B-SimPO_vs_FewShot-3CoT-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 47,
@@ -1583,6 +5675,15 @@
       "both_wrong_n00": 763,
       "chi2_cc": 49.89,
       "p_value": 1.2575849537880035e-12
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_SC-Maj4-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 280,
+      "b_only_correct_n01": 381,
+      "both_correct_n11": 1979,
+      "both_wrong_n00": 583,
+      "chi2_cc": 15.129,
+      "p_value": 9.757864465167723e-05
     },
     "Sweep-Scale-400-7B-SimPO_vs_SC-Maj4-7B_OOD": {
       "n_shared": 1303,
@@ -1602,6 +5703,15 @@
       "chi2_cc": 194.442,
       "p_value": 1.9474594371077432e-45
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Concise-CoD-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 534,
+      "b_only_correct_n01": 286,
+      "both_correct_n11": 1725,
+      "both_wrong_n00": 678,
+      "chi2_cc": 74.401,
+      "p_value": 3.5560984821857064e-18
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Concise-CoD-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 296,
@@ -1619,6 +5729,15 @@
       "both_wrong_n00": 890,
       "chi2_cc": 24.57,
       "p_value": 6.785269435362345e-07
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_Ext-16Op-Harness-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 460,
+      "b_only_correct_n01": 314,
+      "both_correct_n11": 1799,
+      "both_wrong_n00": 650,
+      "chi2_cc": 27.164,
+      "p_value": 1.7247940808471382e-07
     },
     "Sweep-Scale-400-7B-SimPO_vs_Ext-16Op-Harness-7B_OOD": {
       "n_shared": 1303,
@@ -1638,6 +5757,15 @@
       "chi2_cc": 3.92,
       "p_value": 0.047652584717704574
     },
+    "Sweep-Scale-400-7B-SimPO_vs_BoT-Retrieval-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 352,
+      "b_only_correct_n01": 362,
+      "both_correct_n11": 1907,
+      "both_wrong_n00": 602,
+      "chi2_cc": 0.113,
+      "p_value": 0.7362815417611832
+    },
     "Sweep-Scale-400-7B-SimPO_vs_BoT-Retrieval-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 62,
@@ -1655,6 +5783,15 @@
       "both_wrong_n00": 746,
       "chi2_cc": 23.245,
       "p_value": 1.3572495183564922e-06
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_LIMO-LongCoT-SFT-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 336,
+      "b_only_correct_n01": 403,
+      "both_correct_n11": 1923,
+      "both_wrong_n00": 561,
+      "chi2_cc": 5.894,
+      "p_value": 0.01513248205199982
     },
     "Sweep-Scale-400-7B-SimPO_vs_LIMO-LongCoT-SFT-7B_OOD": {
       "n_shared": 1303,
@@ -1674,6 +5811,15 @@
       "chi2_cc": 745.482,
       "p_value": 1.879371041553066e-176
     },
+    "Sweep-Scale-400-7B-SimPO_vs_R1-Budget200-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 1192,
+      "b_only_correct_n01": 213,
+      "both_correct_n11": 1067,
+      "both_wrong_n00": 751,
+      "chi2_cc": 680.772,
+      "p_value": 3.3924760378605806e-165
+    },
     "Sweep-Scale-400-7B-SimPO_vs_R1-Budget200-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 387,
@@ -1691,6 +5837,15 @@
       "both_wrong_n00": 606,
       "chi2_cc": 8.384,
       "p_value": 0.0037689739551280653
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_R1-Distill-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 480,
+      "b_only_correct_n01": 495,
+      "both_correct_n11": 1779,
+      "both_wrong_n00": 469,
+      "chi2_cc": 0.201,
+      "p_value": 0.6539163835022137
     },
     "Sweep-Scale-400-7B-SimPO_vs_R1-Distill-7B_OOD": {
       "n_shared": 1303,
@@ -1710,6 +5865,15 @@
       "chi2_cc": 2.027,
       "p_value": 0.15444476568796497
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Ablation-Jargon-Only-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 371,
+      "b_only_correct_n01": 342,
+      "both_correct_n11": 1888,
+      "both_wrong_n00": 622,
+      "chi2_cc": 1.1,
+      "p_value": 0.29435294115266214
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Ablation-Jargon-Only-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 63,
@@ -1727,6 +5891,15 @@
       "both_wrong_n00": 879,
       "chi2_cc": 29.505,
       "p_value": 5.170527081051321e-08
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_Ablation-wo-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 478,
+      "b_only_correct_n01": 309,
+      "both_correct_n11": 1781,
+      "both_wrong_n00": 655,
+      "chi2_cc": 35.863,
+      "p_value": 1.8434561812274042e-09
     },
     "Sweep-Scale-400-7B-SimPO_vs_Ablation-wo-Router-7B_OOD": {
       "n_shared": 1303,
@@ -1746,6 +5919,15 @@
       "chi2_cc": 33.329,
       "p_value": 7.0118391740976574e-09
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Ablation-Uniform-SimPO-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 414,
+      "b_only_correct_n01": 273,
+      "both_correct_n11": 1845,
+      "both_wrong_n00": 691,
+      "chi2_cc": 28.53,
+      "p_value": 8.347884248600663e-08
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Ablation-Uniform-SimPO-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 122,
@@ -1764,6 +5946,15 @@
       "chi2_cc": 101.59,
       "p_value": 2.933866665082695e-24
     },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 541,
+      "b_only_correct_n01": 294,
+      "both_correct_n11": 1718,
+      "both_wrong_n00": 670,
+      "chi2_cc": 72.474,
+      "p_value": 9.832104984578108e-18
+    },
     "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SFT_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 153,
@@ -1773,6 +5964,60 @@
       "chi2_cc": 29.29,
       "p_value": 4.452740785077111e-08
     },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 699,
+      "b_only_correct_n01": 416,
+      "both_correct_n11": 2549,
+      "both_wrong_n00": 862,
+      "chi2_cc": 71.322,
+      "p_value": 2.0543780761268887e-17
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 559,
+      "b_only_correct_n01": 322,
+      "both_correct_n11": 1700,
+      "both_wrong_n00": 642,
+      "chi2_cc": 63.219,
+      "p_value": 1.253405525259442e-15
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 140,
+      "b_only_correct_n01": 94,
+      "both_correct_n11": 849,
+      "both_wrong_n00": 220,
+      "chi2_cc": 8.654,
+      "p_value": 0.003179106908349209
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 666,
+      "b_only_correct_n01": 426,
+      "both_correct_n11": 2582,
+      "both_wrong_n00": 852,
+      "chi2_cc": 52.309,
+      "p_value": 3.8341941784135074e-13
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 555,
+      "b_only_correct_n01": 319,
+      "both_correct_n11": 1704,
+      "both_wrong_n00": 645,
+      "chi2_cc": 63.186,
+      "p_value": 1.2707399775539096e-15
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 111,
+      "b_only_correct_n01": 107,
+      "both_correct_n11": 878,
+      "both_wrong_n00": 207,
+      "chi2_cc": 0.041,
+      "p_value": 0.8390485361819623
+    },
     "Sweep-Scale-400-7B-SimPO_vs_OCCAM-7B-SFT": {
       "n_shared": 4526,
       "a_only_correct_n10": 337,
@@ -1781,6 +6026,15 @@
       "both_wrong_n00": 891,
       "chi2_cc": 3.316,
       "p_value": 0.06852227956509054
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-7B-SFT_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 272,
+      "b_only_correct_n01": 296,
+      "both_correct_n11": 1987,
+      "both_wrong_n00": 668,
+      "chi2_cc": 0.931,
+      "p_value": 0.33452051596004134
     },
     "Sweep-Scale-400-7B-SimPO_vs_OCCAM-7B-SFT_OOD": {
       "n_shared": 1303,
@@ -1800,6 +6054,15 @@
       "chi2_cc": 6.997,
       "p_value": 0.008130509456946164
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Sweep-Alpha-1p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 378,
+      "b_only_correct_n01": 307,
+      "both_correct_n11": 1881,
+      "both_wrong_n00": 657,
+      "chi2_cc": 7.153,
+      "p_value": 0.0074379603659731446
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Sweep-Alpha-1p5-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 108,
@@ -1818,6 +6081,15 @@
       "chi2_cc": 11.502,
       "p_value": 0.0006862809422677724
     },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 361,
+      "b_only_correct_n01": 283,
+      "both_correct_n11": 1898,
+      "both_wrong_n00": 681,
+      "chi2_cc": 9.207,
+      "p_value": 0.002385781982124971
+    },
     "Sweep-Scale-400-7B-SimPO_vs_OCCAM-7B-SimPO_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 106,
@@ -1827,6 +6099,141 @@
       "chi2_cc": 2.094,
       "p_value": 0.14766209721852724
     },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Qwen-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 317,
+      "b_only_correct_n01": 389,
+      "both_correct_n11": 2931,
+      "both_wrong_n00": 889,
+      "chi2_cc": 7.14,
+      "p_value": 0.0074938209634827085
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Qwen-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 263,
+      "b_only_correct_n01": 314,
+      "both_correct_n11": 1996,
+      "both_wrong_n00": 650,
+      "chi2_cc": 4.333,
+      "p_value": 0.03729395905650842
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Qwen-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 54,
+      "b_only_correct_n01": 75,
+      "both_correct_n11": 935,
+      "both_wrong_n00": 239,
+      "chi2_cc": 3.101,
+      "p_value": 0.07784940675335571
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Qwen-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 326,
+      "b_only_correct_n01": 435,
+      "both_correct_n11": 2922,
+      "both_wrong_n00": 843,
+      "chi2_cc": 15.327,
+      "p_value": 8.811485432661412e-05
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Qwen-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 278,
+      "b_only_correct_n01": 336,
+      "both_correct_n11": 1981,
+      "both_wrong_n00": 628,
+      "chi2_cc": 5.292,
+      "p_value": 0.021353428388715918
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Qwen-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 48,
+      "b_only_correct_n01": 99,
+      "both_correct_n11": 941,
+      "both_wrong_n00": 215,
+      "chi2_cc": 17.007,
+      "p_value": 3.14075582123878e-05
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-R1-7B-v2-Direct": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 679,
+      "b_only_correct_n01": 473,
+      "both_correct_n11": 2569,
+      "both_wrong_n00": 805,
+      "chi2_cc": 36.48,
+      "p_value": 1.3993687188218109e-09
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-R1-7B-v2-Direct_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 567,
+      "b_only_correct_n01": 364,
+      "both_correct_n11": 1692,
+      "both_wrong_n00": 600,
+      "chi2_cc": 43.828,
+      "p_value": 3.009545716810454e-11
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-R1-7B-v2-Direct_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 112,
+      "b_only_correct_n01": 109,
+      "both_correct_n11": 877,
+      "both_wrong_n00": 205,
+      "chi2_cc": 0.018,
+      "p_value": 0.8930195300850196
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-R1-7B-Adaptive": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 637,
+      "b_only_correct_n01": 555,
+      "both_correct_n11": 2611,
+      "both_wrong_n00": 723,
+      "chi2_cc": 5.504,
+      "p_value": 0.018933286836530273
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-R1-7B-Adaptive_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 540,
+      "b_only_correct_n01": 421,
+      "both_correct_n11": 1719,
+      "both_wrong_n00": 543,
+      "chi2_cc": 14.489,
+      "p_value": 0.0001384458523286879
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-R1-7B-Adaptive_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 97,
+      "b_only_correct_n01": 134,
+      "both_correct_n11": 892,
+      "both_wrong_n00": 180,
+      "chi2_cc": 5.61,
+      "p_value": 0.017663498395802377
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Router-7B": {
+      "n_shared": 4526,
+      "a_only_correct_n10": 302,
+      "b_only_correct_n01": 511,
+      "both_correct_n11": 2946,
+      "both_wrong_n00": 767,
+      "chi2_cc": 53.215,
+      "p_value": 2.2192954912269356e-13
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Router-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 249,
+      "b_only_correct_n01": 402,
+      "both_correct_n11": 2010,
+      "both_wrong_n00": 562,
+      "chi2_cc": 35.49,
+      "p_value": 2.174777112111926e-09
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-Router-7B_OOD": {
+      "n_shared": 1303,
+      "a_only_correct_n10": 53,
+      "b_only_correct_n01": 109,
+      "both_correct_n11": 936,
+      "both_wrong_n00": 205,
+      "chi2_cc": 18.673,
+      "p_value": 1.2874323447942696e-05
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Sweep-Alpha-0p5-7B": {
       "n_shared": 4526,
       "a_only_correct_n10": 509,
@@ -1835,6 +6242,15 @@
       "both_wrong_n00": 893,
       "chi2_cc": 16.923,
       "p_value": 3.790644595881759e-05
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_Sweep-Alpha-0p5-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 390,
+      "b_only_correct_n01": 291,
+      "both_correct_n11": 1869,
+      "both_wrong_n00": 673,
+      "chi2_cc": 14.103,
+      "p_value": 0.00016894145301711997
     },
     "Sweep-Scale-400-7B-SimPO_vs_Sweep-Alpha-0p5-7B_OOD": {
       "n_shared": 1303,
@@ -1854,6 +6270,15 @@
       "chi2_cc": 9.163,
       "p_value": 0.002448615097541574
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Sweep-Alpha-3p0-7B_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 356,
+      "b_only_correct_n01": 289,
+      "both_correct_n11": 1903,
+      "both_wrong_n00": 675,
+      "chi2_cc": 6.753,
+      "p_value": 0.009303751217383185
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Sweep-Alpha-3p0-7B_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 101,
@@ -1871,6 +6296,15 @@
       "both_wrong_n00": 885,
       "chi2_cc": 0.152,
       "p_value": 0.6970089645888355
+    },
+    "Sweep-Scale-400-7B-SimPO_vs_Sweep-Scale-200-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 324,
+      "b_only_correct_n01": 274,
+      "both_correct_n11": 1935,
+      "both_wrong_n00": 690,
+      "chi2_cc": 4.015,
+      "p_value": 0.04500555900731018
     },
     "Sweep-Scale-400-7B-SimPO_vs_Sweep-Scale-200-7B-SimPO_OOD": {
       "n_shared": 1303,
@@ -1890,6 +6324,15 @@
       "chi2_cc": 56.058,
       "p_value": 5.1081232914753224e-14
     },
+    "Sweep-Scale-400-7B-SimPO_vs_Sweep-Scale-800-7B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 458,
+      "b_only_correct_n01": 239,
+      "both_correct_n11": 1801,
+      "both_wrong_n00": 725,
+      "chi2_cc": 68.184,
+      "p_value": 8.353101236068306e-17
+    },
     "Sweep-Scale-400-7B-SimPO_vs_Sweep-Scale-800-7B-SimPO_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 71,
@@ -1908,6 +6351,15 @@
       "chi2_cc": 373.131,
       "p_value": 2.3711589492402514e-87
     },
+    "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SimPO_ID": {
+      "n_shared": 3223,
+      "a_only_correct_n10": 790,
+      "b_only_correct_n01": 260,
+      "both_correct_n11": 1469,
+      "both_wrong_n00": 704,
+      "chi2_cc": 266.515,
+      "p_value": 1.1951855177336121e-62
+    },
     "Sweep-Scale-400-7B-SimPO_vs_OCCAM-3B-SimPO_OOD": {
       "n_shared": 1303,
       "a_only_correct_n10": 241,
@@ -1918,20 +6370,74 @@
       "p_value": 7.355246061852392e-27
     }
   },
+  "routing_summary": {
+    "OCCAM-Router-7B": {
+      "xml_compliance_pct": 100.0,
+      "symbolic_rate_by_benchmark": {
+        "CLadder": 0.0,
+        "BBH-Hard": 35.56,
+        "ARC-Challenge": 2.39,
+        "LogiQA": 0.31,
+        "MATH-500": 99.0,
+        "GSM8K": 100.0,
+        "FOLIO": 0.49,
+        "StrategyQA": 0.67
+      }
+    },
+    "OCCAM-Qwen-7B-Adaptive": {
+      "xml_compliance_pct": 100.0,
+      "symbolic_rate_by_benchmark": {
+        "CLadder": 0.0,
+        "BBH-Hard": 35.56,
+        "ARC-Challenge": 2.39,
+        "LogiQA": 0.31,
+        "MATH-500": 99.0,
+        "GSM8K": 100.0,
+        "FOLIO": 0.49,
+        "StrategyQA": 0.67
+      }
+    },
+    "OCCAM-3B-Adaptive": {
+      "xml_compliance_pct": 99.89,
+      "symbolic_rate_by_benchmark": {
+        "CLadder": 0.0,
+        "BBH-Hard": 22.0,
+        "ARC-Challenge": 0.34,
+        "LogiQA": 0.46,
+        "MATH-500": 98.2,
+        "GSM8K": 98.25,
+        "FOLIO": 6.9,
+        "StrategyQA": 5.67
+      }
+    },
+    "OCCAM-R1-7B-Adaptive": {
+      "xml_compliance_pct": 100.0,
+      "symbolic_rate_by_benchmark": {
+        "CLadder": 0.0,
+        "BBH-Hard": 42.0,
+        "ARC-Challenge": 2.05,
+        "LogiQA": 0.0,
+        "MATH-500": 100.0,
+        "GSM8K": 99.12,
+        "FOLIO": 4.43,
+        "StrategyQA": 21.33
+      }
+    }
+  },
   "blind_probe_cv_f1_pct": 51.47,
-  "eval_gpu_hours": 8.3083,
-  "total_training_gpu_hours_incl_v2": 9.8104,
-  "n_eval_configs": 27,
-  "n_adapters_total": 24,
+  "eval_gpu_hours": 12.7654,
+  "total_training_gpu_hours_incl_v2": 10.3991,
+  "n_eval_configs": 34,
+  "n_adapters_total": 26,
   "case_studies": {
     "causal_framing_win": {
       "uid": "CLADDER_647",
-      "model_used": "OCCAM-7B-SFT",
+      "model_used": "OCCAM-Router-7B",
       "benchmark": "CLadder",
       "ground_truth": "Yes",
-      "occam_tokens": 212,
+      "occam_tokens": 215,
       "r1_tokens": 6144,
-      "occam_output": "<cog_router>\n[Problem_Topology]: Bayesian_Update\n[Bias_Pruned]: Base-Rate_Neglect\n[Activated_Primitives]: OP_1_Bayesian_Update -> INV_4_Dialectical_Synthesis\n</cog_router>\n<cog_trace>\nGiven the probabilities:\n- P(Wet|Dry) = 0.47\n- P(Wet|Rainy) = 0.53\n\nWe need to determine if the season directly affects the probability of wet ground. Using Bayesian update, we can see that the probability of wet ground changes based on the season. This indicates a direct effect of season on the ground's wetness, as the base rate (overall probability of wet ground) is influenced by the season.\n\nThe dialectical synthesis here is that the season directly influences the ground's wetness through its effect on the sprinkler and weather, which in turn affects the ground. This is a direct causal relationship, not an indirect one.\n</cog_trace>\n<answer>Yes</answer>",
+      "occam_output": "<cog_router>\n[Problem_Topology]: Causal Bayesian Network with given probabilities.\n[Bias_Pruned]: Base-Rate Neglect\n[Activated_Primitives]: REP_1_Causal_Bayes_Network -> INV_4_Dialectical_Synthesis\n[Execution_Regime]: Structural_Framing\n</cog_router>\n<cog_trace>\nGiven the probabilities:\n- P(Wet_Ground | Dry_Season) = 0.47\n- P(Wet_Ground | Rainy_Season) = 0.53\n\nWe need to determine if the probability of wet ground is higher in the rainy season than in the dry season. This is a direct comparison of the given probabilities.\n\nP(Wet_Ground | Rainy_Season) = 0.53\nP(Wet_Ground | Dry_Season) = 0.47\n\nSince 0.53 > 0.47, the probability of wet ground is indeed higher in the rainy season.\n</cog_trace>\n<answer>Yes</answer>",
       "r1_output_snippet": "Okay, so I'm trying to figure out whether the ground is wet or dry based on the season and some other factors. Let me break this down step by step.\n\nFirst, the problem mentions that there's a dry season and a rainy season. Each season affects the probability of the ground being wet. In the dry season, the probability is 47%, and in the rainy season, it's 53%. So, the ground is more likely to be wet in the rainier season, which makes sense.\n\nBut then there are two other factors: the sprinkler and the weather. The pr ... [repetitive verification loop continues to 6144 tokens]"
     }
   }

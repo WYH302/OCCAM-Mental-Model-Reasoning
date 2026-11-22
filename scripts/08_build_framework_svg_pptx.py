@@ -599,7 +599,7 @@ def build_occam_architecture() -> DiagramBuilder:
         10.02, 1.06, 1.72, 1.26,
         fill="#D97706", edge="#B45309", lw=1.1, rad=0.08, shadow=True,
         title="Regime II:\nSymbolic Rollout",
-        body="LoRA Disengaged (0 VRAM)\nNative Backbone Rollout\nRespects Fano Floor\nPreserves Elite Math",
+        body="Uncompressed Rollout\n(Base / R1 Specialist)\nRespects Fano Floor\n87.4% MATH-500",
         title_color="#FFFFFF", body_color="#FEF3C7", title_pt=7.4, body_pt=6.45, zorder=3,
     )
 
@@ -610,9 +610,9 @@ def build_occam_architecture() -> DiagramBuilder:
     db.add_box(
         8.18, 0.26, 3.56, 0.50,
         fill="#0F172A", edge="#0F172A", lw=1.0, rad=0.08,
-        title="Verified Final <answer>",
-        body="Surpasses SOTA Accuracy + Cuts Tokens & KV-Cache",
-        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=8.2, body_pt=6.85, zorder=4,
+        title="Verified Final <answer>  (#1 SOTA on 7B-Active)",
+        body="74.8% ID • 67.9% Fr4 • 76.4% All-8 • 2.1x-6.6x Fewer Tokens",
+        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=7.8, body_pt=6.7, zorder=4,
     )
 
     # Inter-Panel Connecting Arrows
