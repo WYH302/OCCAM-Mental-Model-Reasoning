@@ -1100,28 +1100,27 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         "\\begin{table*}[t]",
         "\\centering",
         "\\occamtabfont",
-        "\\renewcommand{\\arraystretch}{1.14}",
+        "\\renewcommand{\\arraystretch}{1.04}",
         "\\setlength{\\tabcolsep}{\\occamtabsep}",
-        "\\caption{\\textbf{End-to-End Hardware Reproducibility, Hyperparameter, and GPU Compute Ledger on a Single Consumer NVIDIA GeForce RTX 3090 (24\\,GB GDDR6X VRAM, 350\\,W TDP).} Every duration and peak VRAM metric is programmatically logged via \\texttt{time.perf\\_counter()} and \\texttt{torch.cuda.max\\_memory\\_allocated()} under \\texttt{bfloat16} mixed precision with zero OOM errors and \\$0 commercial API expenditure.}",
+        "\\caption{\\textbf{End-to-End Hardware Reproducibility, Model Complexity (Params / FLOPs / Throughput), and RTX 3090 Compute Ledger (24\\,GB GDDR6X VRAM, 350\\,W TDP).} Every training duration and peak VRAM is programmatically logged via \\texttt{time.perf\\_counter()} and \\texttt{torch.cuda.max\\_memory\\_allocated()} under \\texttt{bf16} (\\$0 API cost). Inference compute uses $2N_{\\text{act}}(L_{\\text{in}} + L_{\\text{out}})$ with $L_{\\text{in}} \\approx 90$ tokens; QPS denotes measured queries/second across all $N=4,526$ items.}",
         "\\label{tab:compute_ledger}",
         "\\begin{tabularx}{\\textwidth}{l L c c c c}",
         "\\toprule",
-        "\\rowcolor{gray!12} \\textbf{Pipeline Stage / Adapter} & \\textbf{Key Hyperparameters \\& Configuration} & \\textbf{Scale / Steps} & \\textbf{VRAM} & \\textbf{Time} & \\textbf{GPU h} \\\\",
+        "\\rowcolor{gray!12} \\textbf{Pipeline Stage / Model} & \\textbf{Configuration / Complexity Profile} & \\textbf{Scale / Params} & \\textbf{VRAM / FLOPs} & \\textbf{Time / QPS} & \\textbf{GPU h / Eff.} \\\\",
         "\\midrule",
+        "\\rowcolor{gray!6} \\multicolumn{6}{l}{\\textit{\\textbf{Part A: Compile-Time Training \\& Evaluation Compute Ledger (Single RTX 3090)}}} \\\\",
         f"Stage 1: Self-Distillation & \\texttt{{vLLM}} \\texttt{{bf16}}, SymPy + MDL Gate, $T{{=}}0.7/0.8$ & 1,570 pairs & 19.40\\,GB & {float(synth_stats['wall_time_sec'])/60.0:.1f}\\,m & {synth_h:.3f}\\,h \\\\",
-        "\\midrule",
     ]
     all_runs = dict(train_sum["runs"])
     all_runs.update(sota_up.get("train_runs", {}))
     core_runs = [
-        ("OCCAM-3B-v2-SFT", "Regime-Tagged LoRA $r{=}16, \\alpha{=}16$, 8-bit AdamW, $\\text{lr}{=}8{\\times}10^{-5}$"),
-        ("OCCAM-7B-SFT", "Schema LoRA $r{=}32, \\alpha{=}64$, 8-bit AdamW, $\\text{lr}{=}1.5{\\times}10^{-4}$"),
-        ("Sweep-Scale-400-7B-SimPO", "Calibrated Early-Horizon $K{=}25, \\alpha_r{=}2.0$, chunked \\texttt{lm\\_head}"),
-        ("OCCAM-Qwen-7B-v2-SFT", "Regime-Tagged Router LoRA $r{=}16, \\alpha{=}16, \\text{lr}{=}6{\\times}10^{-5}$"),
-        ("OCCAM-R1-7B-v2-SFT", "Native \\texttt{<think>}-Aligned LoRA $r{=}32, \\alpha{=}32, \\text{lr}{=}8{\\times}10^{-5}$"),
-        ("OCCAM-R1-7B-v2-SimPO-K25", "Native \\texttt{<think>} Calib.\\ SimPO $K{=}25, \\alpha_r{=}2.0, \\eta_{\\text{nll}}{=}0.25$"),
-        ("LIMO-LongCoT-SFT-7B", "Matched-Source Unstructured Long-CoT Control"),
-        ("Ablation-Uniform-SimPO-7B", "Uniform Token Credit Control ($\\alpha_r{=}1.0, K{=}99$)"),
+        ("OCCAM-3B-v2-SFT", "LoRA $r{=}16$ (14.97M, 0.48\\%), 8-bit AdamW, $\\text{lr}{=}8{\\times}10^{-5}$"),
+        ("OCCAM-7B-SFT", "LoRA $r{=}32$ (80.74M, 1.05\\%), 8-bit AdamW, $\\text{lr}{=}1.5{\\times}10^{-4}$"),
+        ("Sweep-Scale-400-7B-SimPO", "Calib.\\ SimPO $K{=}25, \\alpha_r{=}2.0$, chunked \\texttt{lm\\_head}"),
+        ("OCCAM-Qwen-7B-v2-SFT", "Router LoRA $r{=}16$ (40.37M, 0.53\\%), $\\text{lr}{=}6{\\times}10^{-5}$"),
+        ("OCCAM-R1-7B-v2-SFT", "Native \\texttt{<think>} LoRA $r{=}32$ (80.74M), $\\text{lr}{=}8{\\times}10^{-5}$"),
+        ("OCCAM-R1-7B-v2-SimPO-K25", "Native \\texttt{<think>} SimPO $K{=}25, \\alpha_r{=}2.0, \\eta_{\\text{nll}}{=}0.25$"),
+        ("LIMO-LongCoT-SFT-7B", "Matched-Source Unstructured Long-CoT Control ($r{=}32$)"),
     ]
     for rk, cfg_desc in core_runs:
         rv = all_runs.get(rk)
@@ -1134,11 +1133,36 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         )
 
     lines3.extend([
-        "\\midrule",
         f"Stage 2 Total ({n_adapters_total} Adapters) & Core + Regime-Adaptive + Ablations + Sweeps & {n_adapters_total} Adapters & {train_sum['overall_peak_vram_gb']:.2f}\\,GB & {tot_tr_sec/60.0:.1f}\\,m & {tot_tr_h:.3f}\\,h \\\\",
-        f"Stage 3 Eval \\& Probes & \\texttt{{vLLM}} Prefix-Cached ({n_eval_configs} configs $\\times$ 4,526 items) & {n_eval_configs * 4526:,} traces & 20.80\\,GB & {eval_wall_sec/60.0:.1f}\\,m & {eval_gpu_h:.3f}\\,h \\\\",
+        f"Stage 3 Eval \\& Probes & \\texttt{{vLLM}} Prefix-Cached ({n_eval_configs} configs $\\times$ 4,526) & {n_eval_configs * 4526:,} traces & 20.80\\,GB & {eval_wall_sec/60.0:.1f}\\,m & {eval_gpu_h:.3f}\\,h \\\\",
+        f"\\rowcolor{{teal!12}} \\textbf{{Grand Total Compute}} & \\textbf{{Single RTX 3090 ($\\approx {kwh_est:.2f}$\\,kWh, \\$0 API)}} & \\textbf{{Full Study}} & \\textbf{{20.80\\,GB}} & \\textbf{{{grand_tot_min:.1f}\\,m}} & \\textbf{{{grand_tot_h:.2f}\\,h}} \\\\",
         "\\midrule",
-        f"\\rowcolor{{teal!12}} \\textbf{{Grand Total Compute}} & \\textbf{{Single RTX 3090 ($\\approx {kwh_est:.2f}$\\,kWh, \\$0 API Cost)}} & \\textbf{{Full Study}} & \\textbf{{20.80\\,GB}} & \\textbf{{{grand_tot_min:.1f}\\,m}} & \\textbf{{{grand_tot_h:.2f}\\,h}} \\\\",
+        "\\rowcolor{gray!6} \\multicolumn{6}{l}{\\textit{\\textbf{Part B: Inference Footprint (Active Params, FLOPs/Query, and Measured Single-GPU Throughput)}}} \\\\",
+    ])
+
+    r1_m = metrics_map["R1-Distill-7B"]
+    r1_tflops = 2.0 * 7.62 * (90.2 + r1_m["avg_tokens_all"]) / 1000.0
+    inf_rows = [
+        ("R1-Distill-7B", "DeepSeek-R1-7B (8k)", "Unconstrained 8k Long-CoT Baseline", "7.62B act.", 7.62, 1.0, False),
+        ("SC-Maj4-7B", "Qwen2.5-7B (SC maj@4)", "4-Chain Self-Consistency Voting", "7.62B ($4\\times$)", 7.62, 4.0, False),
+        ("OCCAM-Router-7B", "\\textbf{OCCAM-Router-7B}", "Zero-Prompt Regime Router (\\#1 SOTA)", "7.62B act.", 7.62, 1.0, True),
+        ("OCCAM-Qwen-7B-v2-Direct", "\\textbf{OCCAM-Qwen-v2}", "Single-Backbone Direct (\\#1 LogiQA)", "7.62B + 0.5\\%", 7.62, 1.0, True),
+        ("Sweep-Scale-400-7B-SimPO", "\\textbf{OCCAM-SimPO ($K{=}25$)}", "Single-Backbone Calibrated SimPO", "7.62B + 1.1\\%", 7.62, 1.0, True),
+        ("OCCAM-3B-Adaptive", "\\textbf{OCCAM-3B-Adaptive}", "Single-3B Gated (+2.9\\% ID vs.\\ Base)", "3.09B + 0.5\\%", 3.09, 1.0, True),
+    ]
+    for mid, short_nm, desc, p_lbl, act_b, mult_p, is_hi in inf_rows:
+        if mid not in metrics_map:
+            continue
+        mm = metrics_map[mid]
+        tf_q = 2.0 * act_b * (90.2 * mult_p + mm["avg_tokens_all"]) / 1000.0
+        qps = 4526.0 / max(1.0, mm["wall_sec"])
+        fl_red = r1_tflops / max(0.01, tf_q)
+        hi = "\\rowcolor{teal!12} " if mid == flagship_id else ("\\rowcolor{teal!6} " if is_hi else "")
+        lines3.append(
+            f"{hi}{short_nm} & {desc} & {p_lbl} & {tf_q:.2f}\\,TF & {qps:.2f}\\,QPS & {fl_red:.2f}$\\times$ \\\\"
+        )
+
+    lines3.extend([
         "\\bottomrule",
         "\\end{tabularx}",
         "\\end{table*}",
