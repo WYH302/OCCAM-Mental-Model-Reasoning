@@ -575,10 +575,10 @@ def build_occam_architecture() -> DiagramBuilder:
     db.add_box(
         8.18, 2.66, 3.56, 0.84,
         fill="#FFFFFF", edge="#0F766E", lw=1.35, rad=0.08, shadow=True,
-        title="Phase 1: Internalized <cog_router> (<12 bits, ~55t)",
+        title="Phase 1: Internalized <cog_router> / 3.5K Prefill Gate",
         body="[Topology] • [Bias Pruned] • [Primitives P_i -> P_j]\n"
-             "Autoregressive [Execution_Regime] Gate (1 GPU Engine)",
-        title_color="#0F766E", body_color="#1E293B", title_pt=7.65, body_pt=6.65, zorder=3,
+             "Native <cog_router> (~55t) or 3.5K Prefill Linear Gate",
+        title_color="#0F766E", body_color="#1E293B", title_pt=7.45, body_pt=6.55, zorder=3,
     )
 
     # Clean split arrows
@@ -590,8 +590,8 @@ def build_occam_architecture() -> DiagramBuilder:
         8.18, 1.06, 1.72, 1.26,
         fill="#0F766E", edge="#115E59", lw=1.1, rad=0.08, shadow=True,
         title="Regime I:\nStructural Framing",
-        body="OCCAM LoRA Active\nPrefix-Cached <cog_trace>\n~200t • -74% Entropy\nCures Overthinking",
-        title_color="#FFFFFF", body_color="#CCFBF1", title_pt=7.4, body_pt=6.45, zorder=3,
+        body="OCCAM / WiSE (g=0.65)\nPrefix-Cached <cog_trace>\n~256t • -74% Entropy\nCures Overthinking",
+        title_color="#FFFFFF", body_color="#CCFBF1", title_pt=7.4, body_pt=6.4, zorder=3,
     )
 
     # Regime II Branch (Rich Warm Amber Card!)
@@ -611,8 +611,8 @@ def build_occam_architecture() -> DiagramBuilder:
         8.18, 0.26, 3.56, 0.50,
         fill="#0F172A", edge="#0F172A", lw=1.0, rad=0.08,
         title="Verified Final <answer>  (#1 SOTA on 7B-Active)",
-        body="74.8% ID • 67.9% Fr4 • 76.4% All-8 • 2.1x-6.6x Fewer Tokens",
-        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=7.8, body_pt=6.7, zorder=4,
+        body="75.7% ID • 68.8% Fr4 • 77.3% All-8 • 1.9x-5.7x Fewer Tokens",
+        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=7.8, body_pt=6.65, zorder=4,
     )
 
     # Inter-Panel Connecting Arrows

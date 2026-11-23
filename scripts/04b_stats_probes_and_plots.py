@@ -83,24 +83,37 @@ MODEL_DISPLAY = {
     "Concise-CoD-7B": ("Chain-of-Draft / Concise-CoT (7B)", "G2_Scaffold"),
     "Ext-16Op-Harness-7B": ("External 16-Primitive Prompt (7B)", "G2_Scaffold"),
     "BoT-Retrieval-7B": ("Buffer of Thoughts RAG (7B, Top-2)", "G2_Scaffold"),
-    "LIMO-LongCoT-SFT-7B": ("Matched-Source Long-CoT SFT (7B)", "G3_LongCoT"),
+    "LIMO-LongCoT-SFT-7B": ("LIMO Long-CoT SFT (COLM '25)", "G3_LongCoT"),
+    "TokenSkip-50-SFT-7B": ("TokenSkip-50 Surprisal SFT (EMNLP '25)", "G3_LongCoT"),
+    "R1-NoThink-7B": ("R1-NoThink Empty Bypass (NeurIPS '25)", "G3_LongCoT"),
+    "R1-AdaptThink-Gated-7B": ("R1-AdaptThink Binary Gate (EMNLP '25)", "G3_LongCoT"),
     "R1-Budget200-7B": ("DeepSeek-R1-Distill-7B (Budget 200t)", "G3_LongCoT"),
     "R1-Distill-7B": ("DeepSeek-R1-Distill-Qwen-7B (8k)", "G3_LongCoT"),
+    "Ext-RouteLLM-7B": ("Ext-RouteLLM-7B (ICLR '25, OCCAM-Tax.)", "G3_LongCoT"),
     "Ablation-Jargon-Only-7B": ("Ablation: Surface Jargon-Only (7B)", "G4_Ablation"),
     "Ablation-wo-Router-7B": ("Ablation: w/o <cog_router> (7B)", "G4_Ablation"),
     "Ablation-Uniform-SimPO-7B": ("Ablation: Uniform SimPO (K=99, alpha_r=1.0)", "G4_Ablation"),
+    "OCCAM-Qwen-7B-v3-Direct": ("Ablation: Self-Knowledge Replay (Direct)", "G4_Ablation"),
+    "OCCAM-Qwen-7B-v3-Adaptive": ("Ablation: Self-Knowledge Replay (+380)", "G4_Ablation"),
+    "OCCAM-Qwen-7B-Attn-Direct": ("Ablation: FFN-Frozen AttnLoRA (0.13%)", "G4_Ablation"),
+    "OCCAM-Qwen-7B-Attn-Adaptive": ("Ablation: FFN-Frozen AttnLoRA (Adapt.)", "G4_Ablation"),
+    "OCCAM-Router-7B-Attn": ("Ablation: FFN-Frozen AttnLoRA + R1", "G4_Ablation"),
     "OCCAM-3B-SFT": ("OCCAM-3B-SFT (Schema Distillation)", "G5_OCCAM"),
     "OCCAM-3B-v2-Direct": ("OCCAM-3B-v2 (Direct Mental-Model)", "G5_OCCAM"),
     "OCCAM-3B-Adaptive": ("OCCAM-3B-Adaptive (Regime-Gated)", "G5_OCCAM"),
+    "OCCAM-3B-Adaptive-Seed42": ("OCCAM-3B-Adaptive (Seed 42)", "G5_Seed"),
+    "OCCAM-3B-Adaptive-Seed1337": ("OCCAM-3B-Adaptive (Seed 1337)", "G5_Seed"),
     "OCCAM-7B-SFT": ("OCCAM-7B-SFT (Schema Distillation)", "G5_OCCAM"),
     "Sweep-Scale-400-7B-SimPO": ("OCCAM-7B-SimPO (K=25, alpha_r=2.0)", "G5_OCCAM"),
     "Sweep-Alpha-1p5-7B": ("OCCAM-7B-SimPO (K=99, alpha_r=1.5)", "G5_OCCAM"),
     "OCCAM-7B-SimPO": ("OCCAM-7B-SimPO (K=99, alpha_r=2.0)", "G5_OCCAM"),
     "OCCAM-Qwen-7B-v2-Direct": ("OCCAM-Qwen-7B-v2 (Direct Mental-Model)", "G5_OCCAM"),
+    "OCCAM-Qwen-7B-WiSE-Direct": ("OCCAM-Qwen-7B-WiSE (gamma=0.65 Direct)", "G5_OCCAM"),
     "OCCAM-Qwen-7B-Adaptive": ("OCCAM-Qwen-7B-Adaptive (Single-7B Gated)", "G5_OCCAM"),
     "OCCAM-R1-7B-v2-Direct": ("OCCAM-R1-7B-v2 (Direct Mental-Model)", "G5_OCCAM"),
     "OCCAM-R1-7B-Adaptive": ("OCCAM-R1-7B-Adaptive (Single-R1 Gated)", "G5_OCCAM"),
-    "OCCAM-Router-7B": ("OCCAM-Router-7B (7B-Active Adaptive)", "G5_OCCAM"),
+    "OCCAM-Router-7B": ("OCCAM-Router-7B (Native Autoreg. Gate)", "G5_OCCAM"),
+    "OCCAM-Router-7B-Plus": ("OCCAM-Router-7B-Plus (WiSE + Prefill Gate)", "G5_OCCAM"),
 }
 
 MODEL_LATEX_LABEL = {
@@ -113,12 +126,21 @@ MODEL_LATEX_LABEL = {
     "Concise-CoD-7B": "Chain-of-Draft (7B)",
     "Ext-16Op-Harness-7B": "Ext.\\ 16-Primitive Prompt (7B)",
     "BoT-Retrieval-7B": "Buffer of Thoughts RAG (7B)",
-    "LIMO-LongCoT-SFT-7B": "Matched Long-CoT SFT (7B)",
+    "LIMO-LongCoT-SFT-7B": "LIMO Long-CoT SFT (COLM '25)",
+    "TokenSkip-50-SFT-7B": "TokenSkip-50 SFT (EMNLP '25)",
+    "R1-NoThink-7B": "R1-NoThink Bypass (NeurIPS '25)",
+    "R1-AdaptThink-Gated-7B": "R1-AdaptThink Gate (EMNLP '25)",
     "R1-Budget200-7B": "DeepSeek-R1-7B (Budget 200t)",
     "R1-Distill-7B": "DeepSeek-R1-Distill-7B (8k)",
+    "Ext-RouteLLM-7B": "Ext-RouteLLM-7B (ICLR '25)$^{\\dagger}$",
     "Ablation-Jargon-Only-7B": "Abl.\\ Jargon-Only SFT (7B)",
     "Ablation-wo-Router-7B": "Abl.\\ w/o \\texttt{<cog\\_router>} (7B)",
     "Ablation-Uniform-SimPO-7B": "Abl.\\ Uniform SimPO ($\\alpha_r{=}1.0$)",
+    "OCCAM-Qwen-7B-v3-Direct": "Abl.\\ Replay Anchor Direct (+380)",
+    "OCCAM-Qwen-7B-v3-Adaptive": "Abl.\\ Replay Anchor (+380 traces)",
+    "OCCAM-Qwen-7B-Attn-Direct": "Abl.\\ FFN-Frozen AttnLoRA (0.13\\%)",
+    "OCCAM-Qwen-7B-Attn-Adaptive": "Abl.\\ AttnLoRA Adaptive (0.13\\%)",
+    "OCCAM-Router-7B-Attn": "Abl.\\ AttnLoRA + R1 Router",
     "OCCAM-3B-SFT": "\\textbf{OCCAM-3B-SFT}",
     "OCCAM-3B-v2-Direct": "\\textbf{OCCAM-3B-v2 (Direct)}",
     "OCCAM-3B-Adaptive": "\\textbf{OCCAM-3B-Adaptive}",
@@ -127,10 +149,12 @@ MODEL_LATEX_LABEL = {
     "Sweep-Alpha-1p5-7B": "OCCAM-7B-SimPO ($K{=}99, \\alpha_r{=}1.5$)",
     "OCCAM-7B-SimPO": "OCCAM-7B-SimPO ($K{=}99, \\alpha_r{=}2.0$)",
     "OCCAM-Qwen-7B-v2-Direct": "\\textbf{OCCAM-Qwen-7B-v2 (Direct)}",
+    "OCCAM-Qwen-7B-WiSE-Direct": "\\textbf{OCCAM-Qwen-7B-WiSE ($\\gamma{=}0.65$)}",
     "OCCAM-Qwen-7B-Adaptive": "\\textbf{OCCAM-Qwen-7B-Adaptive}",
     "OCCAM-R1-7B-v2-Direct": "OCCAM-R1-7B-v2 (Direct)",
     "OCCAM-R1-7B-Adaptive": "\\textbf{OCCAM-R1-7B-Adaptive}",
-    "OCCAM-Router-7B": "\\textbf{OCCAM-Router-7B (Ours, 7B-Act.)}",
+    "OCCAM-Router-7B": "\\textbf{OCCAM-Router-7B (Native)}",
+    "OCCAM-Router-7B-Plus": "\\textbf{OCCAM-Router-7B+ (WiSE)}",
 }
 
 
@@ -290,7 +314,7 @@ def compute_all_model_metrics() -> Tuple[Dict[str, dict], Dict[str, List[dict]]]
 
 
 def select_flagship_id(metrics_map: Dict[str, dict]) -> str:
-    for cand in ("OCCAM-Router-7B", "OCCAM-Qwen-7B-Adaptive", "OCCAM-R1-7B-Adaptive", "OCCAM-7B-SFT"):
+    for cand in ("OCCAM-Router-7B-Plus", "OCCAM-Router-7B", "OCCAM-Qwen-7B-Adaptive", "OCCAM-R1-7B-Adaptive", "OCCAM-7B-SFT"):
         if cand in metrics_map:
             return cand
     return "OCCAM-7B-SFT"
@@ -385,17 +409,17 @@ def mine_real_case_studies(raw_traces: Dict[str, List[dict]]) -> dict:
 # UNIFORM-SCALE VECTOR PLOTS (LOCKED 12.00-in CANVAS, REFINED LINE WEIGHTS)
 # =========================================================================
 def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, 3.85), gridspec_kw={"width_ratios": [1.10, 1.04]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, 3.85), gridspec_kw={"width_ratios": [1.14, 1.04]})
 
     models_show = [
-        ("R1-Budget200-7B", "R1-Budget\n(200t Cap)"),
-        ("Concise-CoD-7B", "Chain-of-\nDraft"),
-        ("BoT-Retrieval-7B", "BoT-RAG\n(Top-2)"),
+        ("R1-NoThink-7B", "R1-NoThink\n(NeurIPS '25)"),
+        ("R1-AdaptThink-Gated-7B", "AdaptThink\n(EMNLP '25)"),
+        ("TokenSkip-50-SFT-7B", "TokenSkip-50\n(EMNLP '25)"),
         ("R1-Distill-7B", "DeepSeek-R1\n(8k CoT)"),
         ("Base-7B", "Qwen2.5-7B\n(Base CoT)"),
         ("SC-Maj4-7B", "Qwen2.5-7B\n(SC maj@4)"),
-        ("OCCAM-Qwen-7B-v2-Direct", "OCCAM-7B\n(Direct)"),
-        ("OCCAM-Router-7B", "OCCAM-Router\n(Ours)"),
+        ("OCCAM-Router-7B", "OCCAM-Rtr\n(Native)"),
+        ("OCCAM-Router-7B-Plus", "OCCAM-Rtr+\n(Ours #1)"),
     ]
 
     present = [(m, l) for m, l in models_show if m in metrics_map]
@@ -406,15 +430,14 @@ def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
     tok_vals = [metrics_map[m]["avg_tokens_id"] for m, _ in present]
 
     col_lookup = {
-        "R1-Budget200-7B": PAL["danger"],
-        "Concise-CoD-7B": PAL["base_light"],
-        "BoT-Retrieval-7B": PAL["scaffold"],
+        "R1-NoThink-7B": PAL["danger"],
+        "R1-AdaptThink-Gated-7B": "#F43F5E",
+        "TokenSkip-50-SFT-7B": PAL["scaffold"],
         "R1-Distill-7B": PAL["r1_long"],
         "Base-7B": PAL["base_dark"],
         "SC-Maj4-7B": "#64748B",
-        "OCCAM-Qwen-7B-v2-Direct": PAL["occam_simpo"],
-        "OCCAM-Qwen-7B-Adaptive": PAL["occam_simpo"],
-        "OCCAM-Router-7B": PAL["occam_r1"],
+        "OCCAM-Router-7B": PAL["occam_simpo"],
+        "OCCAM-Router-7B-Plus": PAL["occam_r1"],
     }
     bar_colors = [col_lookup.get(m, PAL["base_light"]) for m, _ in present]
 
@@ -426,14 +449,16 @@ def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
         ax1.annotate(
             f"{v:.1f}%", (b.get_x() + b.get_width() / 2, v),
             xytext=(0, 3), textcoords="offset points",
-            ha="center", fontsize=7.4, fontweight="bold", color=PAL["ink"]
+            ha="center", fontsize=7.3, fontweight="bold", color=PAL["ink"],
+            bbox=dict(boxstyle="round,pad=0.08", facecolor="white", edgecolor="none", alpha=0.82),
+            zorder=6,
         )
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels([l for _, l in present], fontsize=7.2)
-    ax1.set_ylim(30, 84.5)
+    ax1.set_xticklabels([l for _, l in present], fontsize=6.9)
+    ax1.set_ylim(34, 86.0)
     ax1.set_ylabel("Framing-4 Macro Accuracy (%)")
-    ax1.set_title("(a) Structural Framing Accuracy vs. Token Cost", loc="center")
+    ax1.set_title("(a) Structural Framing Accuracy vs. 2025 Baselines & Cost", loc="center")
     ax1.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.55, zorder=0)
 
     ax1_r = ax1.twinx()
@@ -446,42 +471,42 @@ def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
     ax1_r.tick_params(axis="y", labelcolor=PAL["danger"])
     ax1_r.set_ylim(0, 1740)
     for xi, (fv, tv) in enumerate(zip(f_vals, tok_vals)):
-        bar_norm = (fv - 30.0) / (ax1.get_ylim()[1] - 30.0)
+        bar_norm = (fv - 34.0) / (ax1.get_ylim()[1] - 34.0)
         tok_norm = tv / ax1_r.get_ylim()[1]
-        dy_pt = 7 if (tok_norm >= bar_norm + 0.05 or tok_norm < bar_norm - 0.14) else -13
+        dy_pt = 7 if (tok_norm >= bar_norm + 0.06 or tok_norm < bar_norm - 0.14) else -13
         ax1_r.annotate(
             f"{tv:.0f}t", (xi, tv), textcoords="offset points", xytext=(0, dy_pt),
-            ha="center", fontsize=7.0, color="#BE123C", fontweight="bold",
-            bbox=dict(boxstyle="round,pad=0.12", facecolor="white", edgecolor="none", alpha=0.80),
+            ha="center", fontsize=6.9, color="#BE123C", fontweight="bold",
+            bbox=dict(boxstyle="round,pad=0.12", facecolor="white", edgecolor="none", alpha=0.82),
             zorder=5,
         )
 
     from matplotlib.patches import Patch
     proxy_bar = Patch(facecolor=PAL["occam_r1"], edgecolor=PAL["ink"], linewidth=0.55, label="Framing-4 Macro Acc (%)")
     ax1.legend([proxy_bar, ln_tok], ["Framing-4 Macro Acc (%)", "Avg Output Tokens"],
-               loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", framealpha=0.96, fontsize=7.3)
+               loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", framealpha=0.96, fontsize=7.2)
 
-    # Panel (b): Per-Benchmark Comparison (Clean 4-Bar Grouped Chart Highlighting Regime Dominance)
+    # Panel (b): Per-Benchmark Comparison Across Reasoning Regimes
     bms = ["CLadder", "LogiQA", "BBH-Hard", "ARC-Challenge", "MATH-500"]
     bm_lbls = ["CLadder\n(Causal)", "LogiQA\n(Deductive)", "BBH-Hard\n(Comp.)", "ARC-C\n(Science)", "MATH-500\n(Algebra)"]
     xb = np.arange(len(bms))
     wb = 0.20
 
-    m3 = "OCCAM-Qwen-7B-Adaptive"
-    m4 = "OCCAM-Router-7B"
-    v_base = [metrics_map["Base-7B"]["benchmark_acc"][b] for b in bms]
+    m3 = "OCCAM-Router-7B"
+    m4 = "OCCAM-Router-7B-Plus"
+    v_ts = [metrics_map["TokenSkip-50-SFT-7B"]["benchmark_acc"][b] for b in bms]
     v_r1 = [metrics_map["R1-Distill-7B"]["benchmark_acc"][b] for b in bms]
     v_m3 = [metrics_map[m3]["benchmark_acc"][b] for b in bms]
     v_m4 = [metrics_map[m4]["benchmark_acc"][b] for b in bms]
 
-    ax2.bar(xb - 1.5 * wb, v_base, width=wb, color=PAL["base_light"], edgecolor=PAL["ink"], linewidth=0.5, zorder=3,
-            label=f"Qwen2.5-7B Base ({metrics_map['Base-7B']['avg_tokens_id']:.0f}t)")
+    ax2.bar(xb - 1.5 * wb, v_ts, width=wb, color=PAL["scaffold"], edgecolor=PAL["ink"], linewidth=0.5, zorder=3,
+            label=f"TokenSkip-50 ('25, {metrics_map['TokenSkip-50-SFT-7B']['avg_tokens_id']:.0f}t)")
     ax2.bar(xb - 0.5 * wb, v_r1, width=wb, color=PAL["r1_long"], edgecolor=PAL["ink"], linewidth=0.5, zorder=3,
             label=f"DeepSeek-R1-7B ({metrics_map['R1-Distill-7B']['avg_tokens_id']:.0f}t)")
     ax2.bar(xb + 0.5 * wb, v_m3, width=wb, color=PAL["occam_simpo"], edgecolor=PAL["ink"], linewidth=0.5, zorder=3,
-            label=f"OCCAM-Qwen-Adapt ({metrics_map[m3]['avg_tokens_id']:.0f}t)")
+            label=f"OCCAM-Router ({metrics_map[m3]['avg_tokens_id']:.0f}t)")
     ax2.bar(xb + 1.5 * wb, v_m4, width=wb, color=PAL["occam_r1"], edgecolor=PAL["ink"], linewidth=0.5, zorder=3,
-            label=f"OCCAM-Router-7B ({metrics_map[m4]['avg_tokens_id']:.0f}t)")
+            label=f"OCCAM-Router+ ({metrics_map[m4]['avg_tokens_id']:.0f}t)")
 
     ax2.axvline(3.52, color=PAL["danger"], linestyle="--", linewidth=1.2, alpha=0.80)
     ax2.axvspan(-0.5, 3.52, color="#EFF6FF", alpha=0.45, zorder=0)
@@ -494,40 +519,43 @@ def plot_fig1_dichotomy(metrics_map: Dict[str, dict]):
     ax2.set_ylabel("Benchmark Accuracy (%)")
     ax2.set_title("(b) Per-Benchmark Accuracy Across Reasoning Regimes", loc="center")
     ax2.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.55, zorder=0)
-    ax2.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="#CBD5E1", framealpha=0.95, fontsize=7.1)
+    ax2.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="#CBD5E1", framealpha=0.95, fontsize=6.9)
 
     save_locked_canvas(fig, "fig1_dichotomy_overview")
 
 
 def plot_fig2_pareto(metrics_map: Dict[str, dict]):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, 3.85), gridspec_kw={"width_ratios": [1.16, 1.0]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, 3.85), gridspec_kw={"width_ratios": [1.18, 1.0]})
 
     palette = {
         "G1_Base": (PAL["base_dark"], "o", "Unaligned CoT & Self-Consistency"),
         "G2_Scaffold": (PAL["scaffold"], "D", "Inference-Time Prompt / RAG Scaffolds"),
-        "G3_LongCoT": (PAL["r1_long"], "^", "Long-CoT SFT, Budget Cap & 8k R1"),
-        "G4_Ablation": (PAL["ablation"], "v", "Diagnostic Ablations"),
-        "G5_OCCAM": (PAL["occam_r1"], "*", "OCCAM Mental-Model Compression (Ours)"),
+        "G3_LongCoT": (PAL["r1_long"], "^", "2025 Compression, Routing & 8k R1"),
+        "G4_Ablation": (PAL["ablation"], "v", "Diagnostic & FFN-Frozen Ablations"),
+        "G5_OCCAM": (PAL["occam_r1"], "*", "OCCAM Mental-Model Models (Ours)"),
     }
     plot_specs = [
-        ("Concise-CoD-7B", "Chain-of-Draft", (6, -3)),
-        ("R1-Budget200-7B", "R1-Budget200", (6, 2)),
-        ("FewShot-3CoT-7B", "3-Shot CoT", (-52, -3)),
-        ("Ext-16Op-Harness-7B", "Ext-16Op", (7, -2)),
-        ("Base-7B", "Qwen2.5-7B", (-16, -13)),
-        ("Base-3B", "Qwen2.5-3B", (7, -4)),
-        ("BoT-Retrieval-7B", "BoT-RAG", (7, -8)),
-        ("LIMO-LongCoT-SFT-7B", "LIMO-SFT", (7, -3)),
-        ("R1-Distill-7B", "DeepSeek-R1 (8k)", (-78, -14)),
-        ("SC-Maj4-7B", "SC maj@4", (-16, 8)),
-        ("Ablation-wo-Router-7B", "w/o Router", (-54, -9)),
-        ("OCCAM-3B-Adaptive", "OCCAM-3B-Adapt", (8, -5)),
-        ("OCCAM-Qwen-7B-v2-Direct", "OCCAM-Qwen-v2", (-84, -4)),
-        ("OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-Adapt", (-96, 9)),
-        ("OCCAM-Router-7B", "OCCAM-Router-7B (Ours)", (-116, 7)),
+        ("Concise-CoD-7B", "Chain-of-Draft", (8, -3), False),
+        ("R1-Budget200-7B", "R1-Budget200", (8, -2), False),
+        ("R1-NoThink-7B", "R1-NoThink ('25)", (8, -3), False),
+        ("R1-AdaptThink-Gated-7B", "AdaptThink ('25)", (8, -3), False),
+        ("TokenSkip-50-SFT-7B", "TokenSkip-50 ('25)", (10, -14), True),
+        ("Base-7B", "Qwen2.5-7B", (-44, -22), True),
+        ("Base-3B", "Qwen2.5-3B", (8, -3), False),
+        ("BoT-Retrieval-7B", "BoT-RAG", (14, -4), True),
+        ("LIMO-LongCoT-SFT-7B", "LIMO ('25)", (10, -2), True),
+        ("R1-Distill-7B", "DeepSeek-R1 (8k)", (-34, -18), True),
+        ("SC-Maj4-7B", "SC maj@4", (10, 4), False),
+        ("Ext-RouteLLM-7B", "Ext-RouteLLM ('25)", (18, 12), True),
+        ("OCCAM-Qwen-7B-Attn-Direct", "AttnLoRA (0.13%)", (-92, -16), True),
+        ("OCCAM-3B-Adaptive", "OCCAM-3B-Adapt", (-88, -3), False),
+        ("OCCAM-Qwen-7B-v2-Direct", "OCCAM-Qwen-v2", (-98, 2), True),
+        ("OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-Adapt", (-98, 18), True),
+        ("OCCAM-Router-7B", "OCCAM-Router (Nat.)", (-108, 14), True),
+        ("OCCAM-Router-7B-Plus", "OCCAM-Router+ (#1)", (-42, 18), True),
     ]
 
-    pts = [metrics_map[k] for k, _, _ in plot_specs if k in metrics_map]
+    pts = [metrics_map[k] for k, _, _, _ in plot_specs if k in metrics_map]
     pts_sorted = sorted(pts, key=lambda r: r["avg_tokens_id"])
     frontier, best_y = [], -1.0
     for p in pts_sorted:
@@ -545,7 +573,7 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
     seen_grp = set()
     max_y = max(p["micro_id_acc"] for p in pts)
     min_y = min(p["micro_id_acc"] for p in pts)
-    for mid, short_lbl, offset in plot_specs:
+    for mid, short_lbl, offset, use_arr in plot_specs:
         if mid not in metrics_map:
             continue
         p = metrics_map[mid]
@@ -555,37 +583,42 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
             col = PAL["occam_simpo"]
         elif mid == "OCCAM-3B-Adaptive":
             col = PAL["occam_3b"]
-        elif mid == "R1-Budget200-7B":
+        elif mid in ("R1-Budget200-7B", "R1-NoThink-7B"):
             col = PAL["danger"]
-        sz = 225 if mid == "OCCAM-Router-7B" else (175 if mk == "*" else 60)
+        elif mid == "OCCAM-Router-7B":
+            col = "#0F766E"
+        sz = 235 if mid == "OCCAM-Router-7B-Plus" else (180 if mk == "*" else 54)
         lbl = glbl if grp not in seen_grp else None
         seen_grp.add(grp)
         ax1.scatter(p["avg_tokens_id"], p["micro_id_acc"], c=col, marker=mk, s=sz, edgecolors=PAL["ink"], linewidths=0.65, zorder=4, label=lbl)
+        arr_kw = dict(arrowstyle="-", color="#0F766E" if grp == "G5_OCCAM" else "#94A3B8", lw=0.65, shrinkA=0, shrinkB=5) if use_arr else None
         ax1.annotate(
             short_lbl,
             (p["avg_tokens_id"], p["micro_id_acc"]),
-            textcoords="offset points", xytext=offset, fontsize=7.2,
+            textcoords="offset points", xytext=offset, fontsize=6.7,
             fontweight="bold" if grp == "G5_OCCAM" else "normal",
             color=PAL["occam_sft"] if grp == "G5_OCCAM" else PAL["ink"],
+            arrowprops=arr_kw,
+            zorder=5,
         )
 
     ax1.set_xscale("log")
-    ax1.set_xlim(35, 2250)
-    ax1.set_ylim(max(35, min_y - 3.0), max_y + 4.8)
+    ax1.set_xlim(34, 2800)
+    ax1.set_ylim(max(35, min_y - 3.0), max_y + 6.5)
     ax1.set_xlabel("Average Output Tokens (Log Scale, Lower is Better)")
     ax1.set_ylabel("In-Distribution Overall Accuracy (%)")
     ax1.set_title("(a) Accuracy-Token Pareto Frontier (N = 3,223)", loc="center")
     ax1.grid(True, which="both", linestyle=":", color=PAL["grid"], alpha=0.55)
-    ax1.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=6.9, framealpha=0.95)
+    ax1.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=6.7, framealpha=0.95)
 
     serve_candidates = [
         ("R1-Distill-7B", "DeepSeek-R1 (8k)", PAL["danger"]),
         ("SC-Maj4-7B", "SC maj@4 (4x)", PAL["r1_long"]),
-        ("OCCAM-Router-7B", "OCCAM-Router-7B", PAL["occam_r1"]),
-        ("LIMO-LongCoT-SFT-7B", "Matched LIMO-SFT", "#F59E0B"),
-        ("Base-7B", "Qwen2.5-7B Base", PAL["base_dark"]),
-        ("OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-Adapt", PAL["occam_simpo"]),
-        ("OCCAM-Qwen-7B-v2-Direct", "OCCAM-Qwen-v2", PAL["occam_sft"]),
+        ("Ext-RouteLLM-7B", "Ext-RouteLLM ('25)", "#64748B"),
+        ("OCCAM-Router-7B-Plus", "OCCAM-Router+ (#1)", PAL["occam_r1"]),
+        ("OCCAM-Router-7B", "OCCAM-Router (Nat.)", PAL["occam_sft"]),
+        ("TokenSkip-50-SFT-7B", "TokenSkip-50 ('25)", PAL["scaffold"]),
+        ("OCCAM-Qwen-7B-v2-Direct", "OCCAM-Qwen-v2", PAL["occam_simpo"]),
     ]
     sp = [(m, l, c) for m, l, c in serve_candidates if m in metrics_map][:7]
     ys = np.arange(len(sp))
@@ -599,12 +632,12 @@ def plot_fig2_pareto(metrics_map: Dict[str, dict]):
         ax2.annotate(
             f" {kv:.1f} MB ({spd:.1f}x)",
             (kv, bar.get_y() + bar.get_height() / 2),
-            va="center", ha="left", fontsize=7.6, fontweight="bold", color=PAL["ink"],
+            va="center", ha="left", fontsize=7.5, fontweight="bold", color=PAL["ink"],
         )
     ax2.set_yticks(ys)
-    ax2.set_yticklabels([l for _, l, _ in sp], fontsize=8.0)
+    ax2.set_yticklabels([l for _, l, _ in sp], fontsize=7.8)
     ax2.invert_yaxis()
-    ax2.set_xlim(0, max(kvs) * 1.42)
+    ax2.set_xlim(0, max(kvs) * 1.44)
     ax2.set_xlabel("Dynamic bf16 KV-Cache Memory per Query (MB)")
     ax2.set_title("(b) Single-GPU KV-Cache & Decoding Speedup", loc="center")
     ax2.grid(axis="x", linestyle="--", color=PAL["grid"], alpha=0.55, zorder=0)
@@ -646,11 +679,11 @@ def plot_fig6_radar_and_distribution(metrics_map: Dict[str, dict], raw_traces: D
             return vals + vals[:1]
 
         radar_specs = [
-            ("Base-7B", "Qwen2.5-7B Base", PAL["base_dark"], "--", 1.45, 0.04),
-            ("SC-Maj4-7B", "SC maj@4 (4x)", PAL["scaffold"], ":", 1.55, 0.05),
+            ("R1-AdaptThink-Gated-7B", "AdaptThink ('25)", PAL["danger"], ":", 1.55, 0.05),
+            ("TokenSkip-50-SFT-7B", "TokenSkip-50 ('25)", PAL["scaffold"], "--", 1.55, 0.05),
             ("R1-Distill-7B", "DeepSeek-R1-7B (8k)", PAL["r1_long"], "-.", 1.65, 0.07),
-            ("OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-Adapt", PAL["occam_simpo"], "-", 1.70, 0.11),
-            ("OCCAM-Router-7B", "OCCAM-Router-7B (Ours)", PAL["occam_r1"], "-", 2.00, 0.19),
+            ("OCCAM-Router-7B", "OCCAM-Router (Nat.)", PAL["occam_simpo"], "-", 1.75, 0.11),
+            ("OCCAM-Router-7B-Plus", "OCCAM-Router+ (#1)", PAL["occam_r1"], "-", 2.05, 0.20),
         ]
 
         ax_rad.set_theta_offset(np.pi / 2)
@@ -676,17 +709,17 @@ def plot_fig6_radar_and_distribution(metrics_map: Dict[str, dict], raw_traces: D
 
         fig.legend(
             handles_top, labels_top, loc="upper center", bbox_to_anchor=(0.50, 0.99),
-            ncol=5, frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=7.6,
-            columnspacing=1.0, handlelength=2.0
+            ncol=5, frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=7.5,
+            columnspacing=0.95, handlelength=2.0
         )
-        fig.text(0.22, 0.865, "(a) Holistic 6-Axis Accuracy & Efficiency Profile", ha="center", va="center", fontsize=10.2, fontweight="bold", color=PAL["ink"])
+        fig.text(0.22, 0.865, "(a) Holistic 6-Axis Profile vs. 2025 Baselines", ha="center", va="center", fontsize=10.2, fontweight="bold", color=PAL["ink"])
         fig.text(0.74, 0.865, "(b) Bimodal Regime-Adaptive Token Distribution", ha="center", va="center", fontsize=10.2, fontweight="bold", color=PAL["ink"])
 
         dist_cands = [
             ("R1-Distill-7B", "DeepSeek-R1-7B", PAL["r1_long"], 0.16),
-            ("Base-7B", "Qwen2.5-7B Base", PAL["base_dark"], 0.13),
+            ("TokenSkip-50-SFT-7B", "TokenSkip-50 ('25)", PAL["scaffold"], 0.13),
             ("OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-Adapt", PAL["occam_simpo"], 0.18),
-            ("OCCAM-Router-7B", "OCCAM-Router-7B (Ours)", PAL["occam_r1"], 0.24),
+            ("OCCAM-Router-7B-Plus", "OCCAM-Router+ (#1)", PAL["occam_r1"], 0.24),
         ]
         log_grid = np.linspace(np.log10(25), np.log10(7200), 320)
         x_grid = 10.0 ** log_grid
@@ -700,7 +733,7 @@ def plot_fig6_radar_and_distribution(metrics_map: Dict[str, dict], raw_traces: D
             p95 = float(np.percentile(toks, 95))
             kde = gaussian_kde(np.log10(toks), bw_method=0.18)
             dens = kde(log_grid)
-            ax_dist.plot(x_grid, dens, color=col, linewidth=1.75 if mid == "OCCAM-Router-7B" else 1.55, label=f"{lbl} (med={med:.0f}t, p95={p95:.0f}t)")
+            ax_dist.plot(x_grid, dens, color=col, linewidth=1.80 if mid == "OCCAM-Router-7B-Plus" else 1.55, label=f"{lbl} (med={med:.0f}t, p95={p95:.0f}t)")
             ax_dist.fill_between(x_grid, 0, dens, color=col, alpha=fill_a)
             ax_dist.axvline(med, color=col, linestyle="--", linewidth=0.95, alpha=0.80)
 
@@ -809,16 +842,16 @@ def plot_fig4_blind_heatmap(delta_mat: np.ndarray, prim_labels: List[str], cv_f1
 
 
 def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, 3.70), gridspec_kw={"width_ratios": [1.16, 1.0]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, 3.70), gridspec_kw={"width_ratios": [1.20, 1.0]})
 
     abl_specs = [
         ("Ablation-wo-Router-7B", "w/o Router"),
         ("Ablation-Uniform-SimPO-7B", "Uniform\n($\\alpha_r{=}1.0$)"),
-        ("OCCAM-7B-SimPO", "SimPO\n($\\alpha_r{=}2.0$)"),
-        ("Sweep-Scale-400-7B-SimPO", "Calib. SimPO\n($K{=}25$)"),
-        ("OCCAM-7B-SFT", "OCCAM-SFT"),
+        ("OCCAM-Qwen-7B-v3-Adaptive", "Replay\n(+380)"),
+        ("OCCAM-Qwen-7B-Attn-Direct", "AttnLoRA\n(0.13%)"),
         ("OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen\n(Adaptive)"),
-        ("OCCAM-Router-7B", "OCCAM-Router\n(Ours)"),
+        ("OCCAM-Router-7B", "OCCAM-Router\n(Native)"),
+        ("OCCAM-Router-7B-Plus", "OCCAM-Router+\n(WiSE+Gate)"),
     ]
 
     present = [(m, l) for m, l in abl_specs if m in metrics_map]
@@ -832,15 +865,15 @@ def plot_fig5_ablation_and_horizon(metrics_map: Dict[str, dict]):
     b2 = ax1.bar(x + w / 2, ood_v, width=w, color=PAL["occam_r1"], edgecolor=PAL["ink"], linewidth=0.55, zorder=3, label="Zero-Shot OOD (%)")
     for r in list(b1) + list(b2):
         h = r.get_height()
-        ax1.annotate(f"{h:.1f}", (r.get_x() + r.get_width() / 2, h), xytext=(0, 2.5), textcoords="offset points", ha="center", fontsize=7.1, fontweight="bold")
+        ax1.annotate(f"{h:.1f}", (r.get_x() + r.get_width() / 2, h), xytext=(0, 2.5), textcoords="offset points", ha="center", fontsize=7.0, fontweight="bold")
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels([l for _, l in present], fontsize=7.1)
-    ax1.set_ylim(58, max(79.5, max(id_v + ood_v) + 5.5))
+    ax1.set_xticklabels([l for _, l in present], fontsize=6.9)
+    ax1.set_ylim(58, max(81.0, max(id_v + ood_v) + 6.2))
     ax1.set_ylabel("Accuracy (%)")
-    ax1.set_title("(a) Router Credit Weighting & Regime-Adaptive Ablation", loc="center")
+    ax1.set_title("(a) Router Weighting & FFN-Memory Preservation Ablations", loc="center")
     ax1.grid(axis="y", linestyle="--", color=PAL["grid"], alpha=0.55, zorder=0)
-    ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.4, framealpha=0.95)
+    ax1.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=7.3, framealpha=0.95)
 
     horizon_specs = [
         (0, "OCCAM-7B-SFT"),
@@ -959,15 +992,17 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         "Direct-0CoT-3B", "Base-3B", "Direct-0CoT-7B", "Base-7B", "FewShot-3CoT-7B", "SC-Maj4-7B",
         ("HEADER", "Group 2: Inference-Time Brevity, Prompt & Retrieval Scaffolds"),
         "Concise-CoD-7B", "Ext-16Op-Harness-7B", "BoT-Retrieval-7B",
-        ("HEADER", "Group 3: Long-CoT Distillation, Budget Forcing & 8k RL Scaling"),
-        "LIMO-LongCoT-SFT-7B", "R1-Budget200-7B", "R1-Distill-7B",
-        ("HEADER", "Group 4: Diagnostic Component & Alignment Ablations (7B)"),
+        ("HEADER", "Group 3: 2025 Compression, Adaptive-Thinking, Routing & 8k RL Baselines"),
+        "LIMO-LongCoT-SFT-7B", "TokenSkip-50-SFT-7B", "R1-NoThink-7B", "R1-AdaptThink-Gated-7B",
+        "R1-Budget200-7B", "R1-Distill-7B", "Ext-RouteLLM-7B",
+        ("HEADER", "Group 4: Diagnostic Component & FFN-Memory Preservation Ablations (7B)"),
         "Ablation-Jargon-Only-7B", "Ablation-wo-Router-7B", "Ablation-Uniform-SimPO-7B",
+        "OCCAM-Qwen-7B-v3-Adaptive", "OCCAM-Qwen-7B-Attn-Direct", "OCCAM-Router-7B-Attn",
         ("HEADER", "Group 5: OCCAM Zero-Prompt Internalized & Regime-Adaptive Models (Ours)"),
         "OCCAM-3B-SFT", "OCCAM-3B-Adaptive",
-        "Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SFT",
-        "OCCAM-Qwen-7B-v2-Direct", "OCCAM-Qwen-7B-Adaptive",
-        "OCCAM-R1-7B-Adaptive", "OCCAM-Router-7B",
+        "Sweep-Scale-400-7B-SimPO", "OCCAM-Qwen-7B-v2-Direct",
+        "OCCAM-Qwen-7B-WiSE-Direct", "OCCAM-Qwen-7B-Adaptive",
+        "OCCAM-R1-7B-Adaptive", "OCCAM-Router-7B", "OCCAM-Router-7B-Plus",
     ]
     present_ids = [x for x in t1_order if isinstance(x, str) and x in metrics_map]
     non_0cot = [x for x in present_ids if "Direct-0CoT" not in x]
@@ -985,9 +1020,9 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         "\\begin{table*}[t]",
         "\\centering",
         "\\occamtabfont",
-        "\\renewcommand{\\arraystretch}{1.13}",
+        "\\renewcommand{\\arraystretch}{1.04}",
         "\\setlength{\\tabcolsep}{\\occamtabsep}",
-        "\\caption{\\textbf{Main In-Distribution Evaluation Across Five Public Reasoning Benchmarks ($N=3,223$ Official Test Problems, $0.00\\%$ 13-Gram Overlap).} \\textbf{Frame-4} averages causal, compositional, scientific, and deductive suites ($N=2,723$); \\textbf{ID Micro} reports overall micro-accuracy ($\\pm 95\\%$ bootstrap CI); \\textbf{KV} denotes dynamic \\texttt{bf16} KV-cache memory per query (MB). \\texttt{OCCAM-Router-7B} executes a single 7B active model per query by dispatching only \\texttt{Symbolic\\_Rollout} queries to \\texttt{DeepSeek-R1-7B}, with summed router+rollout tokens reported transparently. Best values are in \\textbf{bold}; second-best are \\underline{underlined}; our OCCAM models are shaded in pale teal.}",
+        "\\caption{\\textbf{Main In-Distribution Evaluation Across Five Public Reasoning Benchmarks ($N=3,223$ Official Test Problems, $0.00\\%$ 13-Gram Overlap).} \\textbf{Frame-4} averages causal, compositional, scientific, and deductive suites ($N=2,723$); \\textbf{ID Micro} reports overall micro-accuracy ($\\pm 95\\%$ bootstrap CI); \\textbf{KV} denotes dynamic \\texttt{bf16} KV-cache memory per query (MB). $^{\\dagger}$\\texttt{Ext-RouteLLM-7B} is trained on our \\texttt{OCCAM-2K} regime labels using frozen query embeddings ($+272.7$\\,s external encoder pass) to dispatch unmodified \\texttt{Base-7B} vs.\\ \\texttt{DeepSeek-R1-7B}. Both \\texttt{OCCAM-Router-7B} (native \\texttt{<cog\\_router>}) and \\texttt{OCCAM-Router-7B-Plus} (WiSE-FT $\\gamma{=}0.65$ + $3.5$\\,K prefill gate) execute a single 7B active model per query with transparent summed tokens. Best values are \\textbf{bold}; second-best are \\underline{underlined}; our models are shaded in pale teal.}",
         "\\label{tab:main_results}",
         "\\begin{tabularx}{\\textwidth}{l Y Y Y Y Y c c Y Y}",
         "\\toprule",
@@ -1012,21 +1047,22 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         t_cell = tok_fmt.get(entry, f"{m['avg_tokens_id']:.1f}")
         k_cell = kv_fmt.get(entry, f"{m['kv_cache_mb']:.1f}")
         lines1.append(f"{row_pref}{nm} & {' & '.join(bm_cells)} & {f4_cell} & {mic_cell} & {t_cell} & {k_cell} \\\\")
-        if entry in ("SC-Maj4-7B", "BoT-Retrieval-7B", "R1-Distill-7B", "Ablation-Uniform-SimPO-7B"):
+        if entry in ("SC-Maj4-7B", "BoT-Retrieval-7B", "Ext-RouteLLM-7B", "OCCAM-Router-7B-Attn"):
             lines1.append("\\midrule")
     lines1.extend(["\\bottomrule", "\\end{tabularx}", "\\end{table*}"])
     (ASSETS_DIR / "table1_main_results.tex").write_text("\n".join(lines1), encoding="utf-8")
 
     # Table 2: Zero-Shot OOD Generalization, All-8 Overall Micro, Speedup & Paired Significance
     ood_models = [
-        "Base-3B", "OCCAM-3B-SFT", "OCCAM-3B-Adaptive",
-        "Base-7B", "FewShot-3CoT-7B", "SC-Maj4-7B",
-        "Concise-CoD-7B", "Ext-16Op-Harness-7B", "BoT-Retrieval-7B",
-        "LIMO-LongCoT-SFT-7B", "R1-Budget200-7B", "R1-Distill-7B",
+        "Base-3B", "OCCAM-3B-Adaptive",
+        "Base-7B", "SC-Maj4-7B",
+        "Concise-CoD-7B", "BoT-Retrieval-7B",
+        "LIMO-LongCoT-SFT-7B", "TokenSkip-50-SFT-7B", "R1-NoThink-7B", "R1-AdaptThink-Gated-7B",
+        "R1-Budget200-7B", "R1-Distill-7B", "Ext-RouteLLM-7B",
         "Ablation-wo-Router-7B", "Ablation-Uniform-SimPO-7B",
-        "Sweep-Scale-400-7B-SimPO", "OCCAM-7B-SFT",
-        "OCCAM-Qwen-7B-v2-Direct", "OCCAM-Qwen-7B-Adaptive",
-        "OCCAM-R1-7B-Adaptive", "OCCAM-Router-7B",
+        "OCCAM-Qwen-7B-v3-Adaptive", "OCCAM-Qwen-7B-Attn-Direct", "OCCAM-Router-7B-Attn",
+        "Sweep-Scale-400-7B-SimPO", "OCCAM-Qwen-7B-v2-Direct", "OCCAM-Qwen-7B-Adaptive",
+        "OCCAM-R1-7B-Adaptive", "OCCAM-Router-7B", "OCCAM-Router-7B-Plus",
     ]
     ood_present = [x for x in ood_models if x in metrics_map]
     ood_bm_fmt = {bm: format_rank_cells({m: metrics_map[m]["benchmark_acc"][bm] for m in ood_present}, True) for bm in OOD_BENCHMARKS}
@@ -1039,7 +1075,7 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         "\\begin{table*}[t]",
         "\\centering",
         "\\occamtabfont",
-        "\\renewcommand{\\arraystretch}{1.13}",
+        "\\renewcommand{\\arraystretch}{1.05}",
         "\\setlength{\\tabcolsep}{\\occamtabsep}",
         f"\\caption{{\\textbf{{Zero-Shot Out-of-Distribution (OOD) Generalization ($N=1,303$), Eight-Benchmark Overall Accuracy ($N=4,526$), Decoding Speedup, and Paired McNemar Significance.}} None of GSM8K ($N=800$), FOLIO ($N=203$), or StrategyQA ($N=300$) appear in training. \\textbf{{All-8}} reports micro-accuracy across all $4,526$ official items; speedup is relative to unconstrained \\texttt{{DeepSeek-R1-Distill-7B}} wall-clock time on one RTX 3090; exact two-sided paired McNemar $p$-values compare {ref_label} against each model across all $N=4,526$ items.}}",
         "\\label{tab:ood_results}",
@@ -1065,8 +1101,9 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
             p_str = "$<10^{-4}$" if pv < 1e-4 else f"${pv:.4f}$"
         else:
             p_str = "---"
-        lines2.append(f"{row_pref}{nm} & {' & '.join(c_ood)} & {mac_c} & {all8_c} & {m['avg_tokens_all']:.1f} & {spd:.2f}$\\times$ & {p_str} \\\\")
-        if mid in ("OCCAM-3B-Adaptive", "SC-Maj4-7B", "BoT-Retrieval-7B", "R1-Distill-7B", "Ablation-Uniform-SimPO-7B"):
+        spd_str = f"{spd:.2f}$\\times$" if mid != "OCCAM-Qwen-7B-v3-Adaptive" else "---"
+        lines2.append(f"{row_pref}{nm} & {' & '.join(c_ood)} & {mac_c} & {all8_c} & {m['avg_tokens_all']:.1f} & {spd_str} & {p_str} \\\\")
+        if mid in ("OCCAM-3B-Adaptive", "SC-Maj4-7B", "BoT-Retrieval-7B", "Ext-RouteLLM-7B", "OCCAM-Router-7B-Attn"):
             lines2.append("\\midrule")
     lines2.extend(["\\bottomrule", "\\end{tabularx}", "\\end{table*}"])
     (ASSETS_DIR / "table2_ood_generalization.tex").write_text("\n".join(lines2), encoding="utf-8")
@@ -1079,7 +1116,7 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
 
     extra_tr_sec = sum(float(v.get("wall_time_sec", 0.0)) for v in sota_up.get("train_runs", {}).values())
     extra_tr_h = extra_tr_sec / 3600.0
-    n_adapters_total = 22 + len(sota_up.get("train_runs", {}))
+    n_adapters_total = len(train_sum["runs"]) + len(sota_up.get("train_runs", {}))
 
     eval_wall_sec = 0.0
     n_eval_configs = 0
@@ -1100,7 +1137,7 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         "\\begin{table*}[t]",
         "\\centering",
         "\\occamtabfont",
-        "\\renewcommand{\\arraystretch}{1.04}",
+        "\\renewcommand{\\arraystretch}{1.03}",
         "\\setlength{\\tabcolsep}{\\occamtabsep}",
         "\\caption{\\textbf{End-to-End Hardware Reproducibility, Model Complexity (Params / FLOPs / Throughput), and RTX 3090 Compute Ledger (24\\,GB GDDR6X VRAM, 350\\,W TDP).} Every training duration and peak VRAM is programmatically logged via \\texttt{time.perf\\_counter()} and \\texttt{torch.cuda.max\\_memory\\_allocated()} under \\texttt{bf16} (\\$0 API cost). Inference compute uses $2N_{\\text{act}}(L_{\\text{in}} + L_{\\text{out}})$ with $L_{\\text{in}} \\approx 90$ tokens; QPS denotes measured queries/second across all $N=4,526$ items.}",
         "\\label{tab:compute_ledger}",
@@ -1114,13 +1151,13 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
     all_runs = dict(train_sum["runs"])
     all_runs.update(sota_up.get("train_runs", {}))
     core_runs = [
-        ("OCCAM-3B-v2-SFT", "LoRA $r{=}16$ (14.97M, 0.48\\%), 8-bit AdamW, $\\text{lr}{=}8{\\times}10^{-5}$"),
-        ("OCCAM-7B-SFT", "LoRA $r{=}32$ (80.74M, 1.05\\%), 8-bit AdamW, $\\text{lr}{=}1.5{\\times}10^{-4}$"),
+        ("OCCAM-3B-v2-SFT", "LoRA $r{=}16$ (14.97M, 0.48\\%), 8-bit AdamW, 3 seeds $\\in\\{2026,42,1337\\}$"),
+        ("OCCAM-Qwen-7B-v2-SFT", "Full-MLP LoRA $r{=}16$ (40.37M, 0.53\\%), $\\text{lr}{=}6{\\times}10^{-5}$"),
+        ("OCCAM-Qwen-7B-AttnLoRA", "FFN-Frozen AttnLoRA $r{=}16$ (10.09M, 0.13\\%), $\\text{lr}{=}8{\\times}10^{-5}$"),
         ("Sweep-Scale-400-7B-SimPO", "Calib.\\ SimPO $K{=}25, \\alpha_r{=}2.0$, chunked \\texttt{lm\\_head}"),
-        ("OCCAM-Qwen-7B-v2-SFT", "Router LoRA $r{=}16$ (40.37M, 0.53\\%), $\\text{lr}{=}6{\\times}10^{-5}$"),
         ("OCCAM-R1-7B-v2-SFT", "Native \\texttt{<think>} LoRA $r{=}32$ (80.74M), $\\text{lr}{=}8{\\times}10^{-5}$"),
-        ("OCCAM-R1-7B-v2-SimPO-K25", "Native \\texttt{<think>} SimPO $K{=}25, \\alpha_r{=}2.0, \\eta_{\\text{nll}}{=}0.25$"),
-        ("LIMO-LongCoT-SFT-7B", "Matched-Source Unstructured Long-CoT Control ($r{=}32$)"),
+        ("TokenSkip-50-SFT-7B", "EMNLP '25 Surprisal 50\\% Pruning + Matched LoRA ($r{=}16$)"),
+        ("LIMO-LongCoT-SFT-7B", "COLM '25 Matched-Source Unstructured Long-CoT Control ($r{=}32$)"),
     ]
     for rk, cfg_desc in core_runs:
         rv = all_runs.get(rk)
@@ -1133,7 +1170,7 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
         )
 
     lines3.extend([
-        f"Stage 2 Total ({n_adapters_total} Adapters) & Core + Regime-Adaptive + Ablations + Sweeps & {n_adapters_total} Adapters & {train_sum['overall_peak_vram_gb']:.2f}\\,GB & {tot_tr_sec/60.0:.1f}\\,m & {tot_tr_h:.3f}\\,h \\\\",
+        f"Stage 2 Total ({n_adapters_total} Adapters) & Core + 2025 Baselines + FFN Ablations + 3 Seeds & {n_adapters_total} Adapters & {train_sum['overall_peak_vram_gb']:.2f}\\,GB & {tot_tr_sec/60.0:.1f}\\,m & {tot_tr_h:.3f}\\,h \\\\",
         f"Stage 3 Eval \\& Probes & \\texttt{{vLLM}} Prefix-Cached ({n_eval_configs} configs $\\times$ 4,526) & {n_eval_configs * 4526:,} traces & 20.80\\,GB & {eval_wall_sec/60.0:.1f}\\,m & {eval_gpu_h:.3f}\\,h \\\\",
         f"\\rowcolor{{teal!12}} \\textbf{{Grand Total Compute}} & \\textbf{{Single RTX 3090 ($\\approx {kwh_est:.2f}$\\,kWh, \\$0 API)}} & \\textbf{{Full Study}} & \\textbf{{20.80\\,GB}} & \\textbf{{{grand_tot_min:.1f}\\,m}} & \\textbf{{{grand_tot_h:.2f}\\,h}} \\\\",
         "\\midrule",
@@ -1145,10 +1182,12 @@ def write_latex_tables(metrics_map: Dict[str, dict], mcnemar_results: dict, flag
     inf_rows = [
         ("R1-Distill-7B", "DeepSeek-R1-7B (8k)", "Unconstrained 8k Long-CoT Baseline", "7.62B act.", 7.62, 1.0, False),
         ("SC-Maj4-7B", "Qwen2.5-7B (SC maj@4)", "4-Chain Self-Consistency Voting", "7.62B ($4\\times$)", 7.62, 4.0, False),
-        ("OCCAM-Router-7B", "\\textbf{OCCAM-Router-7B}", "Zero-Prompt Regime Router (\\#1 SOTA)", "7.62B act.", 7.62, 1.0, True),
+        ("Ext-RouteLLM-7B", "Ext-RouteLLM ('25)", "External Embed Classifier (+273\\,s pass)", "7.62B + Enc.", 7.62, 1.0, False),
+        ("TokenSkip-50-SFT-7B", "TokenSkip-50 ('25)", "Surprisal 50\\% Token Pruning SFT", "7.62B + 0.5\\%", 7.62, 1.0, False),
+        ("OCCAM-Router-7B-Plus", "\\textbf{OCCAM-Router+}", "WiSE ($\\gamma{=}0.65$) + 3.5K Gate (\\#1 ID/Fr4)", "7.62B act.", 7.62, 1.0, True),
+        ("OCCAM-Router-7B", "\\textbf{OCCAM-Router}", "Native Zero-Prompt \\texttt{<cog\\_router>}", "7.62B act.", 7.62, 1.0, True),
         ("OCCAM-Qwen-7B-v2-Direct", "\\textbf{OCCAM-Qwen-v2}", "Single-Backbone Direct (\\#1 LogiQA)", "7.62B + 0.5\\%", 7.62, 1.0, True),
-        ("Sweep-Scale-400-7B-SimPO", "\\textbf{OCCAM-SimPO ($K{=}25$)}", "Single-Backbone Calibrated SimPO", "7.62B + 1.1\\%", 7.62, 1.0, True),
-        ("OCCAM-3B-Adaptive", "\\textbf{OCCAM-3B-Adaptive}", "Single-3B Gated (+2.9\\% ID vs.\\ Base)", "3.09B + 0.5\\%", 3.09, 1.0, True),
+        ("OCCAM-3B-Adaptive", "\\textbf{OCCAM-3B-Adapt.}", "Single-3B Gated (3-Seed $\\sigma{=}0.14\\%$)", "3.09B + 0.5\\%", 3.09, 1.0, True),
     ]
     for mid, short_nm, desc, p_lbl, act_b, mult_p, is_hi in inf_rows:
         if mid not in metrics_map:
@@ -1232,7 +1271,7 @@ def main():
     mcnemar_results = {}
     ref_candidates = [
         x for x in (
-            flagship_id, "OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-7B-v2-Direct",
+            flagship_id, "OCCAM-Router-7B", "OCCAM-Qwen-7B-Adaptive", "OCCAM-Qwen-7B-v2-Direct",
             "OCCAM-3B-Adaptive", "OCCAM-7B-SFT", "Sweep-Scale-400-7B-SimPO"
         ) if x in raw_traces
     ]
@@ -1245,9 +1284,21 @@ def main():
             mcnemar_results[f"{ref_id}_vs_{comp_id}_ID"] = paired_mcnemar_test(ref_tr, comp_tr, "ID")
             mcnemar_results[f"{ref_id}_vs_{comp_id}_OOD"] = paired_mcnemar_test(ref_tr, comp_tr, "OOD")
 
+    # Compute exact 3-Seed Reproducibility Proof (OCCAM-3B-Adaptive across seeds {2026, 42, 1337})
+    seed_ids = ["OCCAM-3B-Adaptive", "OCCAM-3B-Adaptive-Seed42", "OCCAM-3B-Adaptive-Seed1337"]
+    seed_stability_3b = {}
+    if all(s in metrics_map for s in seed_ids):
+        for mk_key in ("framing_macro_acc", "macro_id_acc", "micro_id_acc", "macro_ood_acc", "micro_all_acc", "avg_tokens_id", "avg_tokens_all"):
+            vals = [float(metrics_map[s][mk_key]) for s in seed_ids]
+            seed_stability_3b[mk_key] = {
+                "values": vals,
+                "mean": round(float(np.mean(vals)), 2),
+                "std": round(float(np.std(vals, ddof=1)), 2),
+            }
+
     # Compute exact zero-prompt <cog_router> XML compliance and per-benchmark Symbolic_Rollout routing rates
     routing_summary = {}
-    for mid in ("OCCAM-Router-7B", "OCCAM-Qwen-7B-Adaptive", "OCCAM-3B-Adaptive", "OCCAM-R1-7B-Adaptive"):
+    for mid in ("OCCAM-Router-7B-Plus", "OCCAM-Router-7B", "OCCAM-Router-7B-Attn", "OCCAM-Qwen-7B-Adaptive", "OCCAM-3B-Adaptive", "OCCAM-R1-7B-Adaptive", "Ext-RouteLLM-7B"):
         if mid not in raw_traces:
             continue
         rows = raw_traces[mid]
@@ -1281,6 +1332,7 @@ def main():
         "flagship_id": flagship_id,
         "models": metrics_map,
         "mcnemar_tests": mcnemar_results,
+        "seed_stability_3b": seed_stability_3b,
         "routing_summary": routing_summary,
         "blind_probe_cv_f1_pct": blind_cv_f1,
         "eval_gpu_hours": round(eval_gpu_h, 4),

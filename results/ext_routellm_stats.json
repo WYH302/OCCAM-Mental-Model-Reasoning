@@ -1,0 +1,15 @@
+{
+  "train_5fold_cv_f1_pct": 99.79,
+  "best_C": 0.05,
+  "embed_eval_wall_sec": 272.68,
+  "symbolic_rate_by_benchmark": {
+    "CLadder": 0.0,
+    "BBH-Hard": 45.1,
+    "ARC-Challenge": 3.6,
+    "LogiQA": 6.0,
+    "MATH-500": 98.8,
+    "GSM8K": 92.0,
+    "FOLIO": 98.5,
+    "StrategyQA": 0.3
+  }
+}
