@@ -3,6 +3,7 @@
 
 <p align="center">
   <a href="#english-overview"><b>English Overview</b></a> •
+  <a href="#engineering-reflections-pitfalls--observations"><b>Pitfalls &amp; Notes</b></a> •
   <a href="#中文简介"><b>中文简介</b></a> •
   <a href="#dataset-occam-2k--数据集说明"><b>OCCAM-2K Dataset</b></a> •
   <a href="#quickstart--快速复现"><b>Quickstart</b></a>
@@ -54,7 +55,7 @@ All evaluations were conducted locally on one `RTX 3090 (24 GB)` GPU with determ
 | `Ext-RouteLLM-7B` (ICLR '25, OCCAM-Tax.) | 68.47% | 75.55% | **87.6%** | **78.08%** | 795.0 | 43.5 MB | 1.9x |
 | `Abl. FFN-Frozen AttnLoRA` (`0.13%` params) | 64.29% | 70.00% | 69.4% | 72.38% | 262.9 | 14.4 MB | 5.5x |
 | **`OCCAM-Qwen-7B-SimPO` (Calibrated `K=25`)** | 65.91% | 70.09% | 63.0% | 71.76% | **220.2** (`-84.9%`) | **12.0 MB** | **10.0x** |
-| **`OCCAM-Qwen-7B-v2` (Direct, Zero-Prompt)** | 67.10% (`57.1%` LogiQA) | 71.67% | 68.6% | 73.35% | 262.5 (`-82.0%`) | 14.4 MB | 9.3x |
+| **`OCCAM-Qwen-7B (Direct, Zero-Prompt)`** | 67.10% (`57.1%` LogiQA) | 71.67% | 68.6% | 73.35% | 262.5 (`-82.0%`) | 14.4 MB | 9.3x |
 | **`OCCAM-Qwen-7B-Adaptive` (Single-7B Gated)** | 66.62% | 71.89% | 73.0% | 74.17% | 294.0 (`-79.8%`) | 16.1 MB | 6.5x |
 | **`OCCAM-Router-7B` (Native `<cog_router>`)** | 67.90% | 74.84% | **87.4%** | 76.38% | **699.1** (`-52.0%`) | **38.2 MB** | **2.0x** |
 | **`OCCAM-Router-7B+` (WiSE γ=0.65 + Gate)** | **68.83%** | **75.71%** (`+5.15%` vs. R1) | **87.4%** | **77.33%** | 755.7 (`-48.2%`) | 41.3 MB | **2.0x** |
@@ -71,6 +72,19 @@ All evaluations were conducted locally on one `RTX 3090 (24 GB)` GPU with determ
   <img src="assets/fig3_mechanistic_probes.png" width="100%" alt="Mechanistic Entropy Collapse and Router Intervention"/>
 </p>
 
+<p align="center">
+  <img src="assets/fig7_qualitative_comparison.png" width="100%" alt="Side-by-Side SOTA Qualitative Comparison with Ground Truth"/>
+</p>
+
+### Engineering Reflections, Pitfalls & Observations
+
+Building and verifying all 47 configurations (`212,722` trajectories, `31` LoRA adapters) on a single `24 GB` RTX 3090 surfaced several practical failure modes that rarely appear in polished papers:
+
+1. **Bit-Aligning Native Thinking Templates Matters More Than Expected**: When adapting `DeepSeek-R1-Distill-Qwen-7B`, our first SFT run trained targets outside its native `<think>...</think>` boundary and collapsed accuracy by `-13.2%`. Aligning `<cog_router>` and `<cog_trace>` strictly inside the backbone's pre-existing `<think>` header resolved the format clash immediately.
+2. **Why Reference-Free SimPO Peaks Early (`K=25` vs. `K=99`)**: Standard SimPO averages log-probabilities uniformly across all tokens, diluting gradients on the short (~14% length) `<cog_router>` prefix (`1:6` dilution). Upweighting router tokens (`alpha_r > 1`) recovered up to `+2.93%` unseen OOD accuracy, while sweeping training steps revealed that pushing past `K=25` triggers likelihood displacement on out-of-distribution suites.
+3. **Diagnosing FFN Factual Drift on `StrategyQA` (`0.13%` Attention-LoRA → Zero-Cost WiSE-FT)**: Full-MLP LoRA (`0.53%` params) pushed `LogiQA` to `#1` (`57.1%`) but nudged zero-shot `StrategyQA` down (`67.3% → 56.3%`). Mixing `380` replay traces only partially helped and weakened `MATH` routing (`99.0% → 74.2%`). Freezing all FFN layers (`q,k,v,o_proj` only, `0.13%` params) immediately restored `+4.3%` on `StrategyQA`, empirically confirming Geva et al.'s key-value FFN memory hypothesis. Combining weight-space interpolation (`WiSE-FT`, `γ=0.65`) with a `3.5K`-parameter prefill linear head then unified both regimes with `0` extra GPU training seconds (`90.8%` ARC-C, `76.4%` FOLIO, `75.10%` OOD, `77.33%` All-8).
+4. **Fitting `152,064`-Vocab `bf16` SimPO on One `24 GB` Card**: Materializing full `[B, L, 152064]` logit tensors OOMs a `24 GB` GPU during paired preference optimization. Computing cross-entropy over `lm_head` in `256`-token activation-checkpointed slices cut peak SimPO VRAM to `7.51 GB` (`3B`) and `16.78 GB` (`7B`) with zero mathematical approximation.
+
 ---
 
 ## 中文简介
@@ -81,11 +95,20 @@ All evaluations were conducted locally on one `RTX 3090 (24 GB)` GPU with determ
 
 1. **区分“结构建构型任务”与“符号展开型任务”的率失真边界与零提示自适应路由**：
    - 在因果推断（`CLadder`）、演绎逻辑（`LogiQA`）、复合推理（`BBH-Hard`）与科学推理（`ARC-Challenge`）等结构建构任务上，通过 `<cog_router>` 付出不到 12 比特的前置结构选择代价，即可显著裁剪后续无效搜索分支（在 250 条测试轨迹探针中，下游 Token 条件香农熵下降 `74.4%`）。
-   - 在 7B 激活参数预算下，`OCCAM-Router-7B+`（WiSE-FT $\gamma=0.65$ 权重插值 + 3.5K 预填充线性门控）与原生零提示 `OCCAM-Router-7B`（`100.0%` XML 合规）在全部 `4,526` 道官方去污测试题上分别取得 **`75.71%` / `74.84%` 分布内总准确率**（超越 8k `DeepSeek-R1-Distill-7B` `+5.15%`，超越 EMNLP '25 `TokenSkip-50` `+6.77%`，超越 EMNLP '25 `R1-AdaptThink` `+17.10%`）、**`68.83%` / `67.90%` 结构建构均分** 与 **`77.33%` / `76.38%` 八基准总准确率**，同时较 R1-7B 减少 `1.93×–2.09×` Token；单骨干 `OCCAM-3B-Adaptive` 在 3 组独立随机种子（`{2026, 42, 1337}`）上实现 `62.68 ± 0.14%` ID 与 `66.40 ± 0.16%` All-8 极低方差复现。
+   - 在 7B 激活参数预算下，`OCCAM-Router-7B+`（WiSE-FT `γ=0.65` 权重插值 + 3.5K 预填充线性门控）与原生零提示 `OCCAM-Router-7B`（`100.0%` XML 合规）在全部 `4,526` 道官方去污测试题上分别取得 **`75.71%` / `74.84%` 分布内总准确率**（超越 8k `DeepSeek-R1-Distill-7B` `+5.15%`，超越 EMNLP '25 `TokenSkip-50` `+6.77%`，超越 EMNLP '25 `R1-AdaptThink` `+17.10%`）、**`68.83%` / `67.90%` 结构建构均分** 与 **`77.33%` / `76.38%` 八基准总准确率**，同时较 R1-7B 减少 `1.93×–2.09×` Token；单骨干 `OCCAM-3B-Adaptive` 在 3 组独立随机种子（`{2026, 42, 1337}`）上实现 `62.68 ± 0.14%` ID 与 `66.40 ± 0.16%` All-8 极低方差复现。
 2. **纯本地自蒸馏与严格去污的数据集 `OCCAM-2K`**：
    - 全流程仅使用本地开源模型配合 `SymPy` 符号与逻辑确定性校验，从 1,600 道种子题中合成 1,570 对结构化偏好样本（正样本平均 `232.7` tokens，无结构负样本平均 `544.1` tokens），并与全部 `4,526` 道官方测试题保持 `0.00%` SHA-256 及 13-gram 重合。
 3. **显式路由加权对齐（`OCCAM-SimPO`）与单卡显存优化**：
    - 针对简短路由前缀梯度易被长序列稀释的问题，对 `<cog_router>` 赋予更高信用权重，并在无参考模型对齐中结合 256-Token 词表分块激活重计算技术，使 `152k` 大词表模型的训练显存保持在 `7.5–17.8 GB` 以内。
+
+### 真实思考过程、踩坑记录与工程观察
+
+在单张 `RTX 3090 (24 GB)` 上跑通 31 个 LoRA 权重与 47 组全量评测的过程中，我们遇到了几个很有启发性的真实“深坑”，特此整理供复现与后续研究参考：
+
+- **坑一：忽视推理模型原生 `<think>` 模板边界会直接掉点 `-13.2%`**。早期微调 `DeepSeek-R1-Distill-7B` 时，我们将结构化标签直接写在原生 `<think>` 之外，导致模型模板分布冲突；将 `<cog_router>` 与 `<cog_trace>` 逐字节对齐放回 `<think>...</think>` 内部后，路由与推理能力才恢复正常。
+- **坑二：无参考偏好优化（SimPO）并非步数越多越好**。由于 `<cog_router>` 仅占全序列约 `14%` 的长度，均匀平均会严重稀释路由梯度；加入路由加权（`alpha_r > 1`）后 OOD 精度提升最高 `+2.93%`，同时扫步发现 `K=25` 是最优压缩拐点（`220.2` tokens、`10.0×` 提速），继续拉长到 `K=99` 反而会触发似然位移（Likelihood Displacement）导致泛化回落。
+- **坑三：从 `StrategyQA` 常识漂移中验证 FFN 键值记忆假说，并用零成本 WiSE-FT 破局**。全 MLP LoRA 虽然把 `LogiQA` 拉到了全榜第一（`57.1%`），却让零样本百科常识 `StrategyQA` 从 `67.3%` 降到 `56.3%`。我们没有盲目调参，而是做了三路消融：加入 `380` 条自回放数据虽略有回升但稀释了数学路由；**冻结全部 FFN 层、仅微调注意力 `q,k,v,o_proj`（仅 `0.13%` 参数）** 后 `StrategyQA` 立刻回弹 `+4.3%`，直接验证了 FFN 作为事实记忆体的机理；最终通过零额外训练成本的 **WiSE-FT 权重插值（`γ=0.65`）+ 3.5K 预填充线性门控**，在零增训开销下将 `ARC-Challenge` 推至 `90.8%`、`FOLIO` 推至 `76.4%`、All-8 推至 `77.33%`。
+- **坑四：单卡 `24 GB` 训 `152,064` 大词表 SimPO 的显存墙**。原生计算整段 Logits 矩阵会直接触发 OOM；通过将 `lm_head` 交叉熵切分为 `256`-Token 激活检查点分块计算，在严格零数学近似的前提下将峰值显存压至 `7.51 GB (3B)` / `16.78 GB (7B)`，并在 Windows WDDM 下配合分段批量推理防止 TDR 超时。
 
 <p align="center">
   <img src="assets/fig5_ablation_and_horizon.png" width="100%" alt="Ablation Studies and Preference Optimization Horizon"/>

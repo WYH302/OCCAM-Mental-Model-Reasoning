@@ -610,9 +610,9 @@ def build_occam_architecture() -> DiagramBuilder:
     db.add_box(
         8.18, 0.26, 3.56, 0.50,
         fill="#0F172A", edge="#0F172A", lw=1.0, rad=0.08,
-        title="Verified Final <answer>  (#1 SOTA on 7B-Active)",
+        title="OCCAM-Router-7B+  (#1 ID / Framing-4 SOTA)",
         body="75.7% ID • 68.8% Fr4 • 77.3% All-8 • 1.9x-5.7x Fewer Tokens",
-        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=7.8, body_pt=6.65, zorder=4,
+        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=7.75, body_pt=6.65, zorder=4,
     )
 
     # Inter-Panel Connecting Arrows

@@ -1,5 +1,6 @@
 __pycache__/
 *.py[cod]
+.pytest_cache/
 .venv/
 outputs/checkpoints_occam/
 outputs/eval_traces/*.jsonl
