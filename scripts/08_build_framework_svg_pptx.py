@@ -537,16 +537,16 @@ def build_occam_architecture() -> DiagramBuilder:
 
     db.add_arrow(5.63, 1.72, 5.63, 1.50, color="#1D4ED8", lw=1.65)
 
-    # B3: Strip-Prompt Anchored LoRA + OCCAM-SimPO
+    # B3: Strip-Prompt Layer-Selective LoRA + On-Policy OCCAM-SimPO + DecWiSE
     db.add_box(
         3.68, 0.26, 3.90, 1.22,
         fill="#FFFFFF", edge="#1D4ED8", lw=1.35, rad=0.08, shadow=True,
-        title="Stage 2: Strip-Prompt Anchored LoRA + OCCAM-SimPO",
-        body="• Strip M16 prompt -> Native <think>-aligned SFT (0 prompt cost)\n"
-             "• Router credit weighting (alpha_r > 1 on <cog_router> span)\n"
-             "• Dynamic penalty lambda_len(Z) + calibrated horizon K = 25\n"
-             "• 256-tok chunked lm_head: <=17.8 GB peak bf16 VRAM",
-        title_color="#1D4ED8", body_color="#1E293B", title_pt=7.7, body_pt=6.65,
+        title="Stage 2: Layer-Selective LoRA, On-Policy SimPO & DecWiSE",
+        body="• Strip M16 prompt -> Layer-Selective LoRA (0.25%-0.28% params)\n"
+             "• On-policy OCCAM-SimPO (alpha_r=2.0, NLL anchor) cures drift\n"
+             "• Zero-train Decoupled WiSE-FT (attn=1.0, ffn=0.25) saves facts\n"
+             "• Single 24 GB GPU: <=18.1 GB bf16 VRAM (N=1,570, $0 API)",
+        title_color="#1D4ED8", body_color="#1E293B", title_pt=7.45, body_pt=6.55,
         align="left", zorder=3,
     )
 
@@ -590,8 +590,8 @@ def build_occam_architecture() -> DiagramBuilder:
         8.18, 1.06, 1.72, 1.26,
         fill="#0F766E", edge="#115E59", lw=1.1, rad=0.08, shadow=True,
         title="Regime I:\nStructural Framing",
-        body="OCCAM / WiSE (g=0.65)\nPrefix-Cached <cog_trace>\n~256t • -74% Entropy\nCures Overthinking",
-        title_color="#FFFFFF", body_color="#CCFBF1", title_pt=7.4, body_pt=6.4, zorder=3,
+        body="OCCAM DecWiSE (a1/f.25)\nCompact <cog_trace> (180t)\n-74% Token Entropy\nCures Overthinking",
+        title_color="#FFFFFF", body_color="#CCFBF1", title_pt=7.35, body_pt=6.35, zorder=3,
     )
 
     # Regime II Branch (Rich Warm Amber Card!)
@@ -599,8 +599,8 @@ def build_occam_architecture() -> DiagramBuilder:
         10.02, 1.06, 1.72, 1.26,
         fill="#D97706", edge="#B45309", lw=1.1, rad=0.08, shadow=True,
         title="Regime II:\nSymbolic Rollout",
-        body="Uncompressed Rollout\n(Base / R1 Specialist)\nRespects Fano Floor\n87.4% MATH-500",
-        title_color="#FFFFFF", body_color="#FEF3C7", title_pt=7.4, body_pt=6.45, zorder=3,
+        body="Uncompressed Rollout\n(R1 / Qwen3 + Early Exit)\nRespects Fano Floor\n87.6% MATH • 85% AMC23",
+        title_color="#FFFFFF", body_color="#FEF3C7", title_pt=7.35, body_pt=6.35, zorder=3,
     )
 
     # Merge arrows into Final Answer Banner
@@ -610,9 +610,9 @@ def build_occam_architecture() -> DiagramBuilder:
     db.add_box(
         8.18, 0.26, 3.56, 0.50,
         fill="#0F172A", edge="#0F172A", lw=1.0, rad=0.08,
-        title="OCCAM-Router-7B+  (#1 ID / Framing-4 SOTA)",
-        body="75.7% ID • 68.8% Fr4 • 77.3% All-8 • 1.9x-5.7x Fewer Tokens",
-        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=7.75, body_pt=6.65, zorder=4,
+        title="OCCAM-Router-7B+ (DecWiSE) & Qwen3-8B Single-Engine",
+        body="75.9% ID • 68.9% Fr4 • 77.6% All-8 (-54% Tok) • 33.8% GPQA-D",
+        title_color="#FFFFFF", body_color="#E2E8F0", title_pt=7.25, body_pt=6.40, zorder=4,
     )
 
     # Inter-Panel Connecting Arrows

@@ -128,8 +128,8 @@ def extract_final_answer(
     for pat in phrase_patterns:
         m_list = re.findall(pat, tail, flags=re.IGNORECASE)
         if m_list:
-            cand = m_list[-1].strip().strip("*").strip()
-            if cand:
+            cand = m_list[-1].strip().strip("*:# ").strip()
+            if cand and re.search(r"[a-zA-Z0-9]", cand):
                 return cand
 
     gt_clean = ground_truth.strip()
@@ -166,7 +166,7 @@ def extract_final_answer(
             return v_matches[-1]
 
     # 5c. Numeric / Math fallback: last number or fraction in concluding lines
-    if benchmark in ("MATH-500", "GSM8K") or re.search(r"\d", gt_clean):
+    if benchmark in ("MATH-500", "GSM8K", "AIME-2024", "AMC-2023") or re.search(r"\d", gt_clean):
         num_matches = re.findall(r"-?\d+(?:,\d{3})*(?:\.\d+)?(?:/\d+)?", last_lines)
         if num_matches:
             return num_matches[-1]
@@ -273,6 +273,7 @@ def grade_prediction(
     extracted = extract_final_answer(raw_output, benchmark=benchmark, ground_truth=ground_truth, metadata=metadata)
     if not extracted:
         return False, ""
+    extracted = re.sub(r"\\(?:text|mathrm|textbf|mbox|mathbf)\{([^}]*)\}", r"\1", extracted).strip()
 
     gt = ground_truth.strip()
 

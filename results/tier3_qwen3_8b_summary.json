@@ -1,0 +1,830 @@
+{
+  "qwen3_prefill_gate": {
+    "train_5fold_cv_f1_pct": 99.79,
+    "best_C": 0.05,
+    "extract_sec": 1666.5,
+    "sym_rate_8bm": {
+      "ARC-Challenge": 7.3,
+      "BBH-Hard": 77.3,
+      "CLadder": 0.0,
+      "FOLIO": 93.1,
+      "GSM8K": 100.0,
+      "LogiQA": 24.9,
+      "MATH-500": 100.0,
+      "StrategyQA": 1.3
+    },
+    "sym_rate_hard": {
+      "AIME-2024": 100.0,
+      "AMC-2023": 100.0,
+      "GPQA-Diamond": 54.5
+    }
+  },
+  "qwen3_native_baselines": {
+    "8bm": {
+      "Qwen3-8B-NoThink": {
+        "n_items": 4526,
+        "micro_id_acc": 68.6,
+        "framing_macro_acc": 61.09,
+        "macro_ood_acc": 66.45,
+        "micro_all_acc": 70.26,
+        "avg_tokens_id": 381.3,
+        "avg_tokens_all": 346.5,
+        "benchmark_acc": {
+          "CLadder": 50.22,
+          "BBH-Hard": 58.44,
+          "ARC-Challenge": 90.87,
+          "LogiQA": 44.85,
+          "MATH-500": 73.0,
+          "GSM8K": 83.75,
+          "FOLIO": 49.26,
+          "StrategyQA": 66.33
+        }
+      },
+      "Qwen3-8B-Think": {
+        "n_items": 4526,
+        "micro_id_acc": 55.85,
+        "framing_macro_acc": 53.06,
+        "macro_ood_acc": 79.79,
+        "micro_all_acc": 64.21,
+        "avg_tokens_id": 2032.8,
+        "avg_tokens_all": 1961.6,
+        "benchmark_acc": {
+          "CLadder": 47.33,
+          "BBH-Hard": 62.44,
+          "ARC-Challenge": 60.07,
+          "LogiQA": 42.4,
+          "MATH-500": 65.2,
+          "GSM8K": 92.0,
+          "FOLIO": 74.38,
+          "StrategyQA": 73.0
+        }
+      },
+      "Qwen3-8B-HybridGate": {
+        "n_items": 4526,
+        "micro_id_acc": 67.83,
+        "framing_macro_acc": 61.88,
+        "macro_ood_acc": 77.74,
+        "micro_all_acc": 72.32,
+        "avg_tokens_id": 1155.0,
+        "avg_tokens_all": 1305.4,
+        "benchmark_acc": {
+          "CLadder": 50.22,
+          "BBH-Hard": 59.33,
+          "ARC-Challenge": 90.02,
+          "LogiQA": 47.93,
+          "MATH-500": 65.2,
+          "GSM8K": 92.0,
+          "FOLIO": 74.88,
+          "StrategyQA": 66.33
+        }
+      }
+    },
+    "hard": {
+      "Qwen3-8B-NoThink": {
+        "AIME-2024": {
+          "acc": 16.67,
+          "avg_tokens": 1444.1
+        },
+        "AMC-2023": {
+          "acc": 67.5,
+          "avg_tokens": 1108.1
+        },
+        "GPQA-Diamond": {
+          "acc": 16.67,
+          "avg_tokens": 1131.0
+        },
+        "overall_acc": 24.25,
+        "overall_tokens": 1162.6
+      },
+      "Qwen3-8B-Think": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 5118.8
+        },
+        "AMC-2023": {
+          "acc": 52.5,
+          "avg_tokens": 4510.9
+        },
+        "GPQA-Diamond": {
+          "acc": 25.76,
+          "avg_tokens": 4774.7
+        },
+        "overall_acc": 29.1,
+        "overall_tokens": 4773.9
+      },
+      "Qwen3-8B-HybridGate": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 5118.8
+        },
+        "AMC-2023": {
+          "acc": 52.5,
+          "avg_tokens": 4510.9
+        },
+        "GPQA-Diamond": {
+          "acc": 27.78,
+          "avg_tokens": 3159.8
+        },
+        "overall_acc": 30.6,
+        "overall_tokens": 3580.8
+      }
+    }
+  },
+  "qwen3_sft_train": {
+    "checkpoint_name": "OCCAM-Qwen3-8B-LayerLoRA-SFT",
+    "base_model": "Qwen3-8B",
+    "trainable_params": 23199744,
+    "ffn_unfreeze_start": 26,
+    "num_samples": 1570,
+    "opt_steps": 100,
+    "final_loss": 0.6349,
+    "peak_vram_gb": 16.94,
+    "wall_time_sec": 1753.91,
+    "gpu_hours": 0.4872
+  },
+  "qwen3_simpo_train": {
+    "checkpoint_name": "OCCAM-Qwen3-8B-SingleKing-SimPO",
+    "num_pairs": 914,
+    "opt_steps": 35,
+    "alpha_r": 2.0,
+    "eta_nll": 0.65,
+    "peak_vram_gb": 16.71,
+    "wall_time_sec": 678.55,
+    "gpu_hours": 0.1885
+  },
+  "qwen3_occam_singleking": {
+    "8bm": {
+      "OCCAM-Qwen3-8B-SFT-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 66.58,
+        "framing_macro_acc": 58.18,
+        "macro_ood_acc": 65.84,
+        "micro_all_acc": 69.31,
+        "avg_tokens_id": 321.1,
+        "avg_tokens_all": 298.3,
+        "benchmark_acc": {
+          "CLadder": 44.44,
+          "BBH-Hard": 55.11,
+          "ARC-Challenge": 89.25,
+          "LogiQA": 43.93,
+          "MATH-500": 73.2,
+          "GSM8K": 87.62,
+          "FOLIO": 40.89,
+          "StrategyQA": 69.0
+        }
+      },
+      "OCCAM-Qwen3-8B-SFT-SingleKing": {
+        "n_items": 4526,
+        "micro_id_acc": 66.3,
+        "framing_macro_acc": 59.97,
+        "macro_ood_acc": 77.69,
+        "micro_all_acc": 71.28,
+        "avg_tokens_id": 1112.3,
+        "avg_tokens_all": 1274.4,
+        "benchmark_acc": {
+          "CLadder": 44.44,
+          "BBH-Hard": 60.22,
+          "ARC-Challenge": 88.23,
+          "LogiQA": 47.0,
+          "MATH-500": 65.2,
+          "GSM8K": 92.0,
+          "FOLIO": 72.41,
+          "StrategyQA": 68.67
+        }
+      },
+      "OCCAM-Qwen3-8B-SimPO-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 66.49,
+        "framing_macro_acc": 58.35,
+        "macro_ood_acc": 65.81,
+        "micro_all_acc": 69.22,
+        "avg_tokens_id": 316.0,
+        "avg_tokens_all": 294.1,
+        "benchmark_acc": {
+          "CLadder": 44.0,
+          "BBH-Hard": 54.89,
+          "ARC-Challenge": 87.8,
+          "LogiQA": 46.7,
+          "MATH-500": 73.0,
+          "GSM8K": 87.38,
+          "FOLIO": 40.39,
+          "StrategyQA": 69.67
+        }
+      },
+      "OCCAM-Qwen3-8B-SimPO-SingleKing": {
+        "n_items": 4526,
+        "micro_id_acc": 66.15,
+        "framing_macro_acc": 59.94,
+        "macro_ood_acc": 78.08,
+        "micro_all_acc": 71.23,
+        "avg_tokens_id": 1108.5,
+        "avg_tokens_all": 1271.7,
+        "benchmark_acc": {
+          "CLadder": 44.0,
+          "BBH-Hard": 59.56,
+          "ARC-Challenge": 87.03,
+          "LogiQA": 49.16,
+          "MATH-500": 65.2,
+          "GSM8K": 92.0,
+          "FOLIO": 72.91,
+          "StrategyQA": 69.33
+        }
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 67.2,
+        "framing_macro_acc": 59.38,
+        "macro_ood_acc": 66.47,
+        "micro_all_acc": 69.75,
+        "avg_tokens_id": 319.7,
+        "avg_tokens_all": 296.5,
+        "benchmark_acc": {
+          "CLadder": 44.67,
+          "BBH-Hard": 57.11,
+          "ARC-Challenge": 87.97,
+          "LogiQA": 47.77,
+          "MATH-500": 73.2,
+          "GSM8K": 86.88,
+          "FOLIO": 42.86,
+          "StrategyQA": 69.67
+        }
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-SingleKing": {
+        "n_items": 4526,
+        "micro_id_acc": 66.24,
+        "framing_macro_acc": 60.14,
+        "macro_ood_acc": 78.08,
+        "micro_all_acc": 71.3,
+        "avg_tokens_id": 1111.2,
+        "avg_tokens_all": 1273.6,
+        "benchmark_acc": {
+          "CLadder": 44.67,
+          "BBH-Hard": 59.56,
+          "ARC-Challenge": 86.86,
+          "LogiQA": 49.46,
+          "MATH-500": 65.2,
+          "GSM8K": 92.0,
+          "FOLIO": 72.91,
+          "StrategyQA": 69.33
+        }
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 67.14,
+        "framing_macro_acc": 59.22,
+        "macro_ood_acc": 67.97,
+        "micro_all_acc": 69.97,
+        "avg_tokens_id": 331.6,
+        "avg_tokens_all": 306.1,
+        "benchmark_acc": {
+          "CLadder": 46.44,
+          "BBH-Hard": 57.11,
+          "ARC-Challenge": 88.65,
+          "LogiQA": 44.7,
+          "MATH-500": 73.6,
+          "GSM8K": 87.62,
+          "FOLIO": 48.28,
+          "StrategyQA": 68.0
+        }
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-SingleKing": {
+        "n_items": 4526,
+        "micro_id_acc": 66.61,
+        "framing_macro_acc": 60.63,
+        "macro_ood_acc": 77.8,
+        "micro_all_acc": 71.5,
+        "avg_tokens_id": 1121.5,
+        "avg_tokens_all": 1281.0,
+        "benchmark_acc": {
+          "CLadder": 46.44,
+          "BBH-Hard": 60.44,
+          "ARC-Challenge": 87.71,
+          "LogiQA": 47.93,
+          "MATH-500": 65.2,
+          "GSM8K": 92.0,
+          "FOLIO": 73.4,
+          "StrategyQA": 68.0
+        }
+      }
+    },
+    "hard": {
+      "OCCAM-Qwen3-8B-SFT-Direct": {
+        "AIME-2024": {
+          "acc": 16.67,
+          "avg_tokens": 1335.5
+        },
+        "AMC-2023": {
+          "acc": 55.0,
+          "avg_tokens": 997.2
+        },
+        "GPQA-Diamond": {
+          "acc": 28.79,
+          "avg_tokens": 973.5
+        },
+        "overall_acc": 31.34,
+        "overall_tokens": 1017.5
+      },
+      "OCCAM-Qwen3-8B-SFT-SingleKing": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 5118.8
+        },
+        "AMC-2023": {
+          "acc": 52.5,
+          "avg_tokens": 4510.9
+        },
+        "GPQA-Diamond": {
+          "acc": 28.28,
+          "avg_tokens": 3067.9
+        },
+        "overall_acc": 30.97,
+        "overall_tokens": 3512.9
+      },
+      "OCCAM-Qwen3-8B-SimPO-Direct": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 1339.8
+        },
+        "AMC-2023": {
+          "acc": 60.0,
+          "avg_tokens": 994.5
+        },
+        "GPQA-Diamond": {
+          "acc": 33.84,
+          "avg_tokens": 971.2
+        },
+        "overall_acc": 36.19,
+        "overall_tokens": 1016.0
+      },
+      "OCCAM-Qwen3-8B-SimPO-SingleKing": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 5118.8
+        },
+        "AMC-2023": {
+          "acc": 52.5,
+          "avg_tokens": 4510.9
+        },
+        "GPQA-Diamond": {
+          "acc": 28.79,
+          "avg_tokens": 3072.1
+        },
+        "overall_acc": 31.34,
+        "overall_tokens": 3516.0
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-Direct": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 1358.5
+        },
+        "AMC-2023": {
+          "acc": 57.5,
+          "avg_tokens": 1016.0
+        },
+        "GPQA-Diamond": {
+          "acc": 30.3,
+          "avg_tokens": 1017.8
+        },
+        "overall_acc": 33.21,
+        "overall_tokens": 1055.7
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-SingleKing": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 5118.8
+        },
+        "AMC-2023": {
+          "acc": 52.5,
+          "avg_tokens": 4510.9
+        },
+        "GPQA-Diamond": {
+          "acc": 28.28,
+          "avg_tokens": 3088.3
+        },
+        "overall_acc": 30.97,
+        "overall_tokens": 3527.9
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-Direct": {
+        "AIME-2024": {
+          "acc": 16.67,
+          "avg_tokens": 1346.1
+        },
+        "AMC-2023": {
+          "acc": 67.5,
+          "avg_tokens": 1023.1
+        },
+        "GPQA-Diamond": {
+          "acc": 29.8,
+          "avg_tokens": 1013.9
+        },
+        "overall_acc": 33.96,
+        "overall_tokens": 1052.5
+      },
+      "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-SingleKing": {
+        "AIME-2024": {
+          "acc": 20.0,
+          "avg_tokens": 5118.8
+        },
+        "AMC-2023": {
+          "acc": 52.5,
+          "avg_tokens": 4510.9
+        },
+        "GPQA-Diamond": {
+          "acc": 29.29,
+          "avg_tokens": 3089.6
+        },
+        "overall_acc": 31.72,
+        "overall_tokens": 3528.9
+      }
+    }
+  },
+  "unified_regraded_8bm": {
+    "Qwen3-8B-NoThink": {
+      "n_items": 4526,
+      "micro_id_acc": 68.57,
+      "framing_macro_acc": 61.07,
+      "macro_ood_acc": 66.45,
+      "micro_all_acc": 70.24,
+      "avg_tokens_id": 381.3,
+      "avg_tokens_all": 346.5,
+      "benchmark_acc": {
+        "CLadder": 50.22,
+        "BBH-Hard": 58.44,
+        "ARC-Challenge": 90.78,
+        "LogiQA": 44.85,
+        "MATH-500": 73.0,
+        "GSM8K": 83.75,
+        "FOLIO": 49.26,
+        "StrategyQA": 66.33
+      }
+    },
+    "Qwen3-8B-Think": {
+      "n_items": 4526,
+      "micro_id_acc": 73.84,
+      "framing_macro_acc": 69.45,
+      "macro_ood_acc": 79.79,
+      "micro_all_acc": 77.02,
+      "avg_tokens_id": 2032.8,
+      "avg_tokens_all": 1961.6,
+      "benchmark_acc": {
+        "CLadder": 47.33,
+        "BBH-Hard": 75.56,
+        "ARC-Challenge": 94.54,
+        "LogiQA": 60.37,
+        "MATH-500": 65.2,
+        "GSM8K": 92.0,
+        "FOLIO": 74.38,
+        "StrategyQA": 73.0
+      }
+    },
+    "Qwen3-8B-HybridGate": {
+      "n_items": 4526,
+      "micro_id_acc": 70.52,
+      "framing_macro_acc": 66.04,
+      "macro_ood_acc": 77.74,
+      "micro_all_acc": 74.24,
+      "avg_tokens_id": 1155.0,
+      "avg_tokens_all": 1305.4,
+      "benchmark_acc": {
+        "CLadder": 50.22,
+        "BBH-Hard": 72.44,
+        "ARC-Challenge": 90.96,
+        "LogiQA": 50.54,
+        "MATH-500": 65.2,
+        "GSM8K": 92.0,
+        "FOLIO": 74.88,
+        "StrategyQA": 66.33
+      }
+    },
+    "OCCAM-Qwen3-8B-SFT-Direct": {
+      "n_items": 4526,
+      "micro_id_acc": 66.49,
+      "framing_macro_acc": 58.12,
+      "macro_ood_acc": 65.84,
+      "micro_all_acc": 69.24,
+      "avg_tokens_id": 321.1,
+      "avg_tokens_all": 298.3,
+      "benchmark_acc": {
+        "CLadder": 44.44,
+        "BBH-Hard": 55.11,
+        "ARC-Challenge": 88.99,
+        "LogiQA": 43.93,
+        "MATH-500": 73.2,
+        "GSM8K": 87.62,
+        "FOLIO": 40.89,
+        "StrategyQA": 69.0
+      }
+    },
+    "OCCAM-Qwen3-8B-SFT-SingleKing": {
+      "n_items": 4526,
+      "micro_id_acc": 68.94,
+      "framing_macro_acc": 64.09,
+      "macro_ood_acc": 77.69,
+      "micro_all_acc": 73.16,
+      "avg_tokens_id": 1112.3,
+      "avg_tokens_all": 1274.4,
+      "benchmark_acc": {
+        "CLadder": 44.44,
+        "BBH-Hard": 73.33,
+        "ARC-Challenge": 88.99,
+        "LogiQA": 49.62,
+        "MATH-500": 65.2,
+        "GSM8K": 92.0,
+        "FOLIO": 72.41,
+        "StrategyQA": 68.67
+      }
+    },
+    "OCCAM-Qwen3-8B-SimPO-Direct": {
+      "n_items": 4526,
+      "micro_id_acc": 66.3,
+      "framing_macro_acc": 58.2,
+      "macro_ood_acc": 65.81,
+      "micro_all_acc": 69.09,
+      "avg_tokens_id": 316.0,
+      "avg_tokens_all": 294.1,
+      "benchmark_acc": {
+        "CLadder": 44.0,
+        "BBH-Hard": 54.89,
+        "ARC-Challenge": 87.37,
+        "LogiQA": 46.54,
+        "MATH-500": 73.0,
+        "GSM8K": 87.38,
+        "FOLIO": 40.39,
+        "StrategyQA": 69.67
+      }
+    },
+    "OCCAM-Qwen3-8B-SimPO-SingleKing": {
+      "n_items": 4526,
+      "micro_id_acc": 68.72,
+      "framing_macro_acc": 64.02,
+      "macro_ood_acc": 78.08,
+      "micro_all_acc": 73.07,
+      "avg_tokens_id": 1108.5,
+      "avg_tokens_all": 1271.7,
+      "benchmark_acc": {
+        "CLadder": 44.0,
+        "BBH-Hard": 72.67,
+        "ARC-Challenge": 87.63,
+        "LogiQA": 51.77,
+        "MATH-500": 65.2,
+        "GSM8K": 92.0,
+        "FOLIO": 72.91,
+        "StrategyQA": 69.33
+      }
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-Direct": {
+      "n_items": 4526,
+      "micro_id_acc": 67.05,
+      "framing_macro_acc": 59.27,
+      "macro_ood_acc": 66.47,
+      "micro_all_acc": 69.64,
+      "avg_tokens_id": 319.7,
+      "avg_tokens_all": 296.5,
+      "benchmark_acc": {
+        "CLadder": 44.67,
+        "BBH-Hard": 57.11,
+        "ARC-Challenge": 87.54,
+        "LogiQA": 47.77,
+        "MATH-500": 73.2,
+        "GSM8K": 86.88,
+        "FOLIO": 42.86,
+        "StrategyQA": 69.67
+      }
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-SingleKing": {
+      "n_items": 4526,
+      "micro_id_acc": 68.82,
+      "framing_macro_acc": 64.22,
+      "macro_ood_acc": 78.08,
+      "micro_all_acc": 73.13,
+      "avg_tokens_id": 1111.2,
+      "avg_tokens_all": 1273.6,
+      "benchmark_acc": {
+        "CLadder": 44.67,
+        "BBH-Hard": 72.67,
+        "ARC-Challenge": 87.46,
+        "LogiQA": 52.07,
+        "MATH-500": 65.2,
+        "GSM8K": 92.0,
+        "FOLIO": 72.91,
+        "StrategyQA": 69.33
+      }
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-Direct": {
+      "n_items": 4526,
+      "micro_id_acc": 67.08,
+      "framing_macro_acc": 59.18,
+      "macro_ood_acc": 67.97,
+      "micro_all_acc": 69.93,
+      "avg_tokens_id": 331.6,
+      "avg_tokens_all": 306.1,
+      "benchmark_acc": {
+        "CLadder": 46.44,
+        "BBH-Hard": 57.11,
+        "ARC-Challenge": 88.48,
+        "LogiQA": 44.7,
+        "MATH-500": 73.6,
+        "GSM8K": 87.62,
+        "FOLIO": 48.28,
+        "StrategyQA": 68.0
+      }
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-SingleKing": {
+      "n_items": 4526,
+      "micro_id_acc": 69.28,
+      "framing_macro_acc": 64.78,
+      "macro_ood_acc": 77.8,
+      "micro_all_acc": 73.4,
+      "avg_tokens_id": 1121.5,
+      "avg_tokens_all": 1281.0,
+      "benchmark_acc": {
+        "CLadder": 46.44,
+        "BBH-Hard": 73.56,
+        "ARC-Challenge": 88.57,
+        "LogiQA": 50.54,
+        "MATH-500": 65.2,
+        "GSM8K": 92.0,
+        "FOLIO": 73.4,
+        "StrategyQA": 68.0
+      }
+    }
+  },
+  "unified_regraded_hard": {
+    "Qwen3-8B-NoThink": {
+      "AIME-2024": {
+        "acc": 16.67,
+        "avg_tokens": 1444.1
+      },
+      "AMC-2023": {
+        "acc": 67.5,
+        "avg_tokens": 1108.1
+      },
+      "GPQA-Diamond": {
+        "acc": 24.75,
+        "avg_tokens": 1131.0
+      },
+      "overall_acc": 30.22,
+      "overall_tokens": 1162.6
+    },
+    "Qwen3-8B-Think": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 5118.8
+      },
+      "AMC-2023": {
+        "acc": 52.5,
+        "avg_tokens": 4510.9
+      },
+      "GPQA-Diamond": {
+        "acc": 28.28,
+        "avg_tokens": 4774.7
+      },
+      "overall_acc": 30.97,
+      "overall_tokens": 4773.9
+    },
+    "Qwen3-8B-HybridGate": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 5118.8
+      },
+      "AMC-2023": {
+        "acc": 52.5,
+        "avg_tokens": 4510.9
+      },
+      "GPQA-Diamond": {
+        "acc": 27.78,
+        "avg_tokens": 3159.8
+      },
+      "overall_acc": 30.6,
+      "overall_tokens": 3580.8
+    },
+    "OCCAM-Qwen3-8B-SFT-Direct": {
+      "AIME-2024": {
+        "acc": 16.67,
+        "avg_tokens": 1335.5
+      },
+      "AMC-2023": {
+        "acc": 55.0,
+        "avg_tokens": 997.2
+      },
+      "GPQA-Diamond": {
+        "acc": 28.79,
+        "avg_tokens": 973.5
+      },
+      "overall_acc": 31.34,
+      "overall_tokens": 1017.5
+    },
+    "OCCAM-Qwen3-8B-SFT-SingleKing": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 5118.8
+      },
+      "AMC-2023": {
+        "acc": 52.5,
+        "avg_tokens": 4510.9
+      },
+      "GPQA-Diamond": {
+        "acc": 28.28,
+        "avg_tokens": 3067.9
+      },
+      "overall_acc": 30.97,
+      "overall_tokens": 3512.9
+    },
+    "OCCAM-Qwen3-8B-SimPO-Direct": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 1339.8
+      },
+      "AMC-2023": {
+        "acc": 60.0,
+        "avg_tokens": 994.5
+      },
+      "GPQA-Diamond": {
+        "acc": 33.84,
+        "avg_tokens": 971.2
+      },
+      "overall_acc": 36.19,
+      "overall_tokens": 1016.0
+    },
+    "OCCAM-Qwen3-8B-SimPO-SingleKing": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 5118.8
+      },
+      "AMC-2023": {
+        "acc": 52.5,
+        "avg_tokens": 4510.9
+      },
+      "GPQA-Diamond": {
+        "acc": 28.79,
+        "avg_tokens": 3072.1
+      },
+      "overall_acc": 31.34,
+      "overall_tokens": 3516.0
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-Direct": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 1358.5
+      },
+      "AMC-2023": {
+        "acc": 57.5,
+        "avg_tokens": 1016.0
+      },
+      "GPQA-Diamond": {
+        "acc": 30.3,
+        "avg_tokens": 1017.8
+      },
+      "overall_acc": 33.21,
+      "overall_tokens": 1055.7
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f35-SingleKing": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 5118.8
+      },
+      "AMC-2023": {
+        "acc": 52.5,
+        "avg_tokens": 4510.9
+      },
+      "GPQA-Diamond": {
+        "acc": 28.28,
+        "avg_tokens": 3088.3
+      },
+      "overall_acc": 30.97,
+      "overall_tokens": 3527.9
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-Direct": {
+      "AIME-2024": {
+        "acc": 16.67,
+        "avg_tokens": 1346.1
+      },
+      "AMC-2023": {
+        "acc": 67.5,
+        "avg_tokens": 1023.1
+      },
+      "GPQA-Diamond": {
+        "acc": 29.8,
+        "avg_tokens": 1013.9
+      },
+      "overall_acc": 33.96,
+      "overall_tokens": 1052.5
+    },
+    "OCCAM-Qwen3-8B-SimPO-DecWiSE-f15-SingleKing": {
+      "AIME-2024": {
+        "acc": 20.0,
+        "avg_tokens": 5118.8
+      },
+      "AMC-2023": {
+        "acc": 52.5,
+        "avg_tokens": 4510.9
+      },
+      "GPQA-Diamond": {
+        "acc": 29.29,
+        "avg_tokens": 3089.6
+      },
+      "overall_acc": 31.72,
+      "overall_tokens": 3528.9
+    }
+  }
+}

@@ -1,0 +1,540 @@
+{
+  "surgery1_decoupled_wise": {
+    "winner": "OCCAM-Router-7B-DecWiSE-a90-f10",
+    "models": {
+      "OCCAM-Qwen-7B-DecWiSE-a100-f15-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 71.21,
+        "framing_macro_acc": 64.56,
+        "macro_ood_acc": 73.67,
+        "micro_all_acc": 73.4,
+        "avg_tokens_id": 200.3,
+        "avg_tokens_all": 189.0,
+        "benchmark_acc": {
+          "CLadder": 45.56,
+          "BBH-Hard": 70.44,
+          "ARC-Challenge": 92.32,
+          "LogiQA": 49.92,
+          "MATH-500": 73.2,
+          "GSM8K": 86.75,
+          "FOLIO": 71.92,
+          "StrategyQA": 62.33
+        }
+      },
+      "OCCAM-Router-7B-DecWiSE-a100-f15": {
+        "n_items": 4526,
+        "micro_id_acc": 74.81,
+        "framing_macro_acc": 66.99,
+        "macro_ood_acc": 76.98,
+        "micro_all_acc": 77.13,
+        "avg_tokens_id": 679.1,
+        "avg_tokens_all": 753.4,
+        "benchmark_acc": {
+          "CLadder": 45.56,
+          "BBH-Hard": 80.22,
+          "ARC-Challenge": 92.41,
+          "LogiQA": 49.77,
+          "MATH-500": 87.6,
+          "GSM8K": 92.25,
+          "FOLIO": 76.35,
+          "StrategyQA": 62.33
+        }
+      },
+      "OCCAM-Qwen-7B-DecWiSE-a100-f25-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 72.11,
+        "framing_macro_acc": 66.38,
+        "macro_ood_acc": 67.74,
+        "micro_all_acc": 71.5,
+        "avg_tokens_id": 179.9,
+        "avg_tokens_all": 161.6,
+        "benchmark_acc": {
+          "CLadder": 53.11,
+          "BBH-Hard": 68.44,
+          "ARC-Challenge": 92.06,
+          "LogiQA": 51.92,
+          "MATH-500": 72.0,
+          "GSM8K": 73.38,
+          "FOLIO": 66.5,
+          "StrategyQA": 63.33
+        }
+      },
+      "OCCAM-Router-7B-DecWiSE-a100-f25": {
+        "n_items": 4526,
+        "micro_id_acc": 75.89,
+        "framing_macro_acc": 68.93,
+        "macro_ood_acc": 76.64,
+        "micro_all_acc": 77.62,
+        "avg_tokens_id": 664.8,
+        "avg_tokens_all": 741.5,
+        "benchmark_acc": {
+          "CLadder": 53.11,
+          "BBH-Hard": 79.33,
+          "ARC-Challenge": 91.98,
+          "LogiQA": 51.31,
+          "MATH-500": 87.6,
+          "GSM8K": 90.25,
+          "FOLIO": 76.35,
+          "StrategyQA": 63.33
+        }
+      },
+      "OCCAM-Qwen-7B-DecWiSE-a100-f35-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 69.97,
+        "framing_macro_acc": 64.28,
+        "macro_ood_acc": 61.71,
+        "micro_all_acc": 67.12,
+        "avg_tokens_id": 215.1,
+        "avg_tokens_all": 179.3,
+        "benchmark_acc": {
+          "CLadder": 51.78,
+          "BBH-Hard": 64.67,
+          "ARC-Challenge": 90.27,
+          "LogiQA": 50.38,
+          "MATH-500": 69.0,
+          "GSM8K": 58.63,
+          "FOLIO": 67.49,
+          "StrategyQA": 59.0
+        }
+      },
+      "OCCAM-Router-7B-DecWiSE-a100-f35": {
+        "n_items": 4526,
+        "micro_id_acc": 74.68,
+        "framing_macro_acc": 67.4,
+        "macro_ood_acc": 74.82,
+        "micro_all_acc": 76.27,
+        "avg_tokens_id": 707.5,
+        "avg_tokens_all": 770.1,
+        "benchmark_acc": {
+          "CLadder": 51.78,
+          "BBH-Hard": 76.44,
+          "ARC-Challenge": 90.53,
+          "LogiQA": 50.84,
+          "MATH-500": 87.6,
+          "GSM8K": 89.12,
+          "FOLIO": 76.35,
+          "StrategyQA": 59.0
+        }
+      },
+      "OCCAM-Qwen-7B-DecWiSE-a90-f10-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 71.67,
+        "framing_macro_acc": 65.21,
+        "macro_ood_acc": 75.24,
+        "micro_all_acc": 74.5,
+        "avg_tokens_id": 207.9,
+        "avg_tokens_all": 198.0,
+        "benchmark_acc": {
+          "CLadder": 48.89,
+          "BBH-Hard": 69.56,
+          "ARC-Challenge": 91.38,
+          "LogiQA": 51.0,
+          "MATH-500": 74.8,
+          "GSM8K": 90.62,
+          "FOLIO": 70.44,
+          "StrategyQA": 64.67
+        }
+      },
+      "OCCAM-Router-7B-DecWiSE-a90-f10": {
+        "n_items": 4526,
+        "micro_id_acc": 75.21,
+        "framing_macro_acc": 67.98,
+        "macro_ood_acc": 77.88,
+        "micro_all_acc": 77.64,
+        "avg_tokens_id": 686.2,
+        "avg_tokens_all": 759.3,
+        "benchmark_acc": {
+          "CLadder": 48.89,
+          "BBH-Hard": 80.44,
+          "ARC-Challenge": 91.3,
+          "LogiQA": 51.31,
+          "MATH-500": 87.6,
+          "GSM8K": 92.62,
+          "FOLIO": 76.35,
+          "StrategyQA": 64.67
+        }
+      },
+      "OCCAM-Qwen-7B-LayerWiSE-top8-Direct": {
+        "n_items": 4526,
+        "micro_id_acc": 69.07,
+        "framing_macro_acc": 62.56,
+        "macro_ood_acc": 73.19,
+        "micro_all_acc": 72.23,
+        "avg_tokens_id": 355.9,
+        "avg_tokens_all": 315.5,
+        "benchmark_acc": {
+          "CLadder": 44.22,
+          "BBH-Hard": 69.33,
+          "ARC-Challenge": 86.77,
+          "LogiQA": 49.92,
+          "MATH-500": 74.6,
+          "GSM8K": 89.75,
+          "FOLIO": 66.5,
+          "StrategyQA": 63.33
+        }
+      },
+      "OCCAM-Router-7B-LayerWiSE-top8": {
+        "n_items": 4526,
+        "micro_id_acc": 72.35,
+        "framing_macro_acc": 64.77,
+        "macro_ood_acc": 77.27,
+        "micro_all_acc": 75.5,
+        "avg_tokens_id": 830.8,
+        "avg_tokens_all": 868.5,
+        "benchmark_acc": {
+          "CLadder": 44.22,
+          "BBH-Hard": 78.22,
+          "ARC-Challenge": 87.03,
+          "LogiQA": 49.62,
+          "MATH-500": 87.6,
+          "GSM8K": 92.62,
+          "FOLIO": 75.86,
+          "StrategyQA": 63.33
+        }
+      }
+    }
+  },
+  "surgery2_sot_and_throughput": {
+    "sot_metrics": {
+      "n_items": 4526,
+      "micro_id_acc": 62.64,
+      "framing_macro_acc": 58.75,
+      "macro_ood_acc": 48.68,
+      "micro_all_acc": 59.46,
+      "avg_tokens_id": 33.3,
+      "avg_tokens_all": 38.2,
+      "benchmark_acc": {
+        "CLadder": 53.78,
+        "BBH-Hard": 43.78,
+        "ARC-Challenge": 87.37,
+        "LogiQA": 50.08,
+        "MATH-500": 46.0,
+        "GSM8K": 54.12,
+        "FOLIO": 37.93,
+        "StrategyQA": 54.0
+      }
+    },
+    "cuda_graph_benchmark": {
+      "n_stratified": 400,
+      "cuda_graph_enabled": true,
+      "base_7b_sec": 85.54,
+      "base_7b_qps": 4.68,
+      "base_7b_tok_per_sec": 1100.8,
+      "occam_7b_sec": 117.88,
+      "occam_7b_qps": 3.39,
+      "occam_7b_tok_per_sec": 827.9,
+      "qps_speedup_vs_base": 0.73
+    }
+  },
+  "surgery3_r1_singleking_sft": {
+    "train_metrics": {
+      "checkpoint_name": "OCCAM-R1-7B-LayerLoRA-SFT",
+      "base_model": "DeepSeek-R1-Distill-Qwen-7B",
+      "stage": "Tier2_LayerSelective_LoRA_SFT",
+      "ffn_unfreeze_start": 20,
+      "trainable_params": 18743296,
+      "lora_r": 16,
+      "lr": 6e-05,
+      "num_samples": 1570,
+      "epochs": 2,
+      "opt_steps": 100,
+      "final_loss": 0.6014,
+      "peak_vram_gb": 18.08,
+      "wall_time_sec": 8056.7,
+      "gpu_hours": 2.238
+    },
+    "eval_metrics": {
+      "n_items": 4526,
+      "micro_id_acc": 52.87,
+      "framing_macro_acc": 53.45,
+      "macro_ood_acc": 55.76,
+      "micro_all_acc": 53.27,
+      "avg_tokens_id": 354.5,
+      "avg_tokens_all": 363.7,
+      "benchmark_acc": {
+        "CLadder": 47.33,
+        "BBH-Hard": 50.44,
+        "ARC-Challenge": 75.17,
+        "LogiQA": 40.86,
+        "MATH-500": 23.4,
+        "GSM8K": 52.88,
+        "FOLIO": 61.08,
+        "StrategyQA": 53.33
+      }
+    }
+  },
+  "surgery4_onpolicy_simpo": {
+    "eval_metrics": {
+      "n_items": 4526,
+      "micro_id_acc": 52.71,
+      "framing_macro_acc": 53.06,
+      "macro_ood_acc": 55.81,
+      "micro_all_acc": 53.65,
+      "avg_tokens_id": 300.0,
+      "avg_tokens_all": 314.0,
+      "benchmark_acc": {
+        "CLadder": 49.33,
+        "BBH-Hard": 47.78,
+        "ARC-Challenge": 75.34,
+        "LogiQA": 39.78,
+        "MATH-500": 24.0,
+        "GSM8K": 56.62,
+        "FOLIO": 58.13,
+        "StrategyQA": 52.67
+      }
+    }
+  },
+  "surgery5_entropy_early_exit": {
+    "n_symbolic": 1715,
+    "r1_acc": 87.35,
+    "entropy_exit_acc": 82.8,
+    "r1_avg_tokens": 1764.4,
+    "entropy_exit_avg_tokens": 1150.0,
+    "token_saving_pct": 34.8,
+    "early_exit_trigger_rate_pct": 4.2,
+    "by_benchmark": {
+      "ARC-Challenge": {
+        "n": 42,
+        "r1_acc": 92.86,
+        "ee_acc": 95.24,
+        "r1_tok": 905.0,
+        "ee_tok": 692.9
+      },
+      "BBH-Hard": {
+        "n": 203,
+        "r1_acc": 88.18,
+        "ee_acc": 81.77,
+        "r1_tok": 1464.0,
+        "ee_tok": 995.8
+      },
+      "FOLIO": {
+        "n": 200,
+        "r1_acc": 76.0,
+        "ee_acc": 69.0,
+        "r1_tok": 1884.7,
+        "ee_tok": 1140.0
+      },
+      "GSM8K": {
+        "n": 736,
+        "r1_acc": 92.8,
+        "ee_acc": 91.3,
+        "r1_tok": 1100.3,
+        "ee_tok": 881.8
+      },
+      "LogiQA": {
+        "n": 39,
+        "r1_acc": 33.33,
+        "ee_acc": 33.33,
+        "r1_tok": 4745.8,
+        "ee_tok": 1991.5
+      },
+      "MATH-500": {
+        "n": 494,
+        "r1_acc": 87.45,
+        "ee_acc": 78.95,
+        "r1_tok": 2668.1,
+        "ee_tok": 1590.2
+      },
+      "StrategyQA": {
+        "n": 1,
+        "r1_acc": 0.0,
+        "ee_acc": 100.0,
+        "r1_tok": 851.0,
+        "ee_tok": 758.0
+      }
+    }
+  },
+  "surgery6_cardinality_ablation": {
+    "train": {
+      "m4": {
+        "checkpoint_name": "OCCAM-Qwen-7B-Card-M4",
+        "base_model": "Qwen2.5-7B-Instruct",
+        "stage": "Tier2_LayerSelective_LoRA_SFT",
+        "ffn_unfreeze_start": 20,
+        "trainable_params": 18743296,
+        "lora_r": 16,
+        "lr": 6e-05,
+        "num_samples": 1570,
+        "epochs": 2,
+        "opt_steps": 100,
+        "final_loss": 0.4094,
+        "peak_vram_gb": 18.0,
+        "wall_time_sec": 1392.13,
+        "gpu_hours": 0.3867
+      },
+      "m8": {
+        "checkpoint_name": "OCCAM-Qwen-7B-Card-M8",
+        "base_model": "Qwen2.5-7B-Instruct",
+        "stage": "Tier2_LayerSelective_LoRA_SFT",
+        "ffn_unfreeze_start": 20,
+        "trainable_params": 18743296,
+        "lora_r": 16,
+        "lr": 6e-05,
+        "num_samples": 1570,
+        "epochs": 2,
+        "opt_steps": 100,
+        "final_loss": 0.4049,
+        "peak_vram_gb": 18.0,
+        "wall_time_sec": 1224.55,
+        "gpu_hours": 0.3402
+      },
+      "m16": {
+        "checkpoint_name": "OCCAM-Qwen-7B-Card-M16",
+        "base_model": "Qwen2.5-7B-Instruct",
+        "stage": "Tier2_LayerSelective_LoRA_SFT",
+        "ffn_unfreeze_start": 20,
+        "trainable_params": 18743296,
+        "lora_r": 16,
+        "lr": 6e-05,
+        "num_samples": 1570,
+        "epochs": 2,
+        "opt_steps": 100,
+        "final_loss": 0.4049,
+        "peak_vram_gb": 18.0,
+        "wall_time_sec": 1231.86,
+        "gpu_hours": 0.3422
+      }
+    },
+    "eval": {
+      "m4": {
+        "n_items": 4526,
+        "micro_id_acc": 71.11,
+        "framing_macro_acc": 65.66,
+        "macro_ood_acc": 71.8,
+        "micro_all_acc": 73.29,
+        "avg_tokens_id": 212.4,
+        "avg_tokens_all": 194.4,
+        "benchmark_acc": {
+          "CLadder": 49.56,
+          "BBH-Hard": 69.78,
+          "ARC-Challenge": 89.08,
+          "LogiQA": 54.22,
+          "MATH-500": 71.6,
+          "GSM8K": 88.38,
+          "FOLIO": 65.02,
+          "StrategyQA": 62.0
+        }
+      },
+      "m8": {
+        "n_items": 4526,
+        "micro_id_acc": 71.61,
+        "framing_macro_acc": 65.75,
+        "macro_ood_acc": 72.28,
+        "micro_all_acc": 73.71,
+        "avg_tokens_id": 211.8,
+        "avg_tokens_all": 193.9,
+        "benchmark_acc": {
+          "CLadder": 48.67,
+          "BBH-Hard": 69.11,
+          "ARC-Challenge": 90.7,
+          "LogiQA": 54.53,
+          "MATH-500": 72.0,
+          "GSM8K": 88.5,
+          "FOLIO": 67.0,
+          "StrategyQA": 61.33
+        }
+      },
+      "m16": {
+        "n_items": 4526,
+        "micro_id_acc": 71.21,
+        "framing_macro_acc": 65.7,
+        "macro_ood_acc": 72.69,
+        "micro_all_acc": 73.46,
+        "avg_tokens_id": 211.9,
+        "avg_tokens_all": 193.8,
+        "benchmark_acc": {
+          "CLadder": 50.0,
+          "BBH-Hard": 70.44,
+          "ARC-Challenge": 89.68,
+          "LogiQA": 52.69,
+          "MATH-500": 71.8,
+          "GSM8K": 88.62,
+          "FOLIO": 69.46,
+          "StrategyQA": 60.0
+        }
+      }
+    }
+  },
+  "surgery7_hard_frontier": {
+    "OCCAM-Router-7B-DecWiSE": {
+      "AIME-2024": {
+        "acc": 23.33,
+        "avg_tokens": 4800.7
+      },
+      "AMC-2023": {
+        "acc": 85.0,
+        "avg_tokens": 3373.0
+      },
+      "GPQA-Diamond": {
+        "acc": 29.8,
+        "avg_tokens": 1643.0
+      },
+      "overall_acc": 37.31,
+      "overall_tokens": 2254.7
+    },
+    "Base-7B": {
+      "AIME-2024": {
+        "acc": 13.33,
+        "avg_tokens": 1112.0
+      },
+      "AMC-2023": {
+        "acc": 45.0,
+        "avg_tokens": 874.4
+      },
+      "GPQA-Diamond": {
+        "acc": 26.26,
+        "avg_tokens": 694.9
+      },
+      "overall_acc": 27.61,
+      "overall_tokens": 768.4
+    },
+    "OCCAM-Qwen-DecWiSE": {
+      "AIME-2024": {
+        "acc": 16.67,
+        "avg_tokens": 990.6
+      },
+      "AMC-2023": {
+        "acc": 52.5,
+        "avg_tokens": 881.1
+      },
+      "GPQA-Diamond": {
+        "acc": 28.79,
+        "avg_tokens": 681.5
+      },
+      "overall_acc": 30.97,
+      "overall_tokens": 745.9
+    },
+    "R1-Distill-7B-8k": {
+      "AIME-2024": {
+        "acc": 23.33,
+        "avg_tokens": 4800.7
+      },
+      "AMC-2023": {
+        "acc": 85.0,
+        "avg_tokens": 3373.0
+      },
+      "GPQA-Diamond": {
+        "acc": 30.3,
+        "avg_tokens": 4072.0
+      },
+      "overall_acc": 37.69,
+      "overall_tokens": 4049.3
+    },
+    "R1-NoThink-7B": {
+      "AIME-2024": {
+        "acc": 3.33,
+        "avg_tokens": 495.0
+      },
+      "AMC-2023": {
+        "acc": 27.5,
+        "avg_tokens": 452.6
+      },
+      "GPQA-Diamond": {
+        "acc": 11.11,
+        "avg_tokens": 460.0
+      },
+      "overall_acc": 12.69,
+      "overall_tokens": 462.9
+    }
+  }
+}
