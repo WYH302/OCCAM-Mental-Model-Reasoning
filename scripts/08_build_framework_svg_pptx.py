@@ -420,17 +420,17 @@ def build_occam_architecture() -> DiagramBuilder:
     # Clean Title Strip
     db.add_text(
         6.00, 5.02,
-        "OCCAM: Regime-Adaptive Mental-Model Cognitive Compression for Language Models",
+        "OCCAM: Three-Pillar Regime-Adaptive Cognitive Compression for Language Models",
         pt=11.4, color="#0F172A", bold=True, zorder=5,
     )
 
     # =========================================================================
     # PANEL (a): PROBLEM MOTIVATION (x = 0.12 .. 3.22, w = 3.10)
     # =========================================================================
-    db.add_box(0.12, 0.14, 3.10, 4.66, fill="#FFF1F2", edge="#F43F5E", lw=1.35, rad=0.11, shadow=True, zorder=1)
+    db.add_box(0.12, 0.14, 3.10, 4.66, fill="#FFF1F2", edge="#EA580C", lw=1.35, rad=0.11, shadow=True, zorder=1)
     db.add_box(
         0.12, 4.32, 3.10, 0.48,
-        fill="#E11D48", edge="#E11D48", lw=1.0, rad=0.09,
+        fill="#C2410C", edge="#C2410C", lw=1.0, rad=0.09,
         title="(a) Bottleneck: Long-CoT Overthinking",
         title_color="#FFFFFF", title_pt=8.8, zorder=3,
     )
@@ -442,7 +442,7 @@ def build_occam_architecture() -> DiagramBuilder:
         body="Causal / Deductive / Math Problem",
         title_pt=8.0, body_pt=6.8, zorder=3,
     )
-    db.add_arrow(1.67, 3.74, 1.67, 3.52, color="#E11D48", lw=1.55)
+    db.add_arrow(1.67, 3.74, 1.67, 3.52, color="#C2410C", lw=1.55)
 
     # Tangle Overthinking Card
     db.add_box(
@@ -450,23 +450,23 @@ def build_occam_architecture() -> DiagramBuilder:
         fill="#FFFFFF", edge="#FB7185", lw=1.2, rad=0.08, linestyle="dashed",
         title="", body="", zorder=3,
     )
-    db.add_text(1.67, 3.32, '"Wait, let me re-check..." (1,458 tokens)', pt=7.6, color="#BE123C", bold=True, zorder=5)
+    db.add_text(1.67, 3.32, '"Wait, let me re-check..." (1,458 tokens)', pt=7.6, color="#9A3412", bold=True, zorder=5)
     db.add_scribble_loop(1.67, 2.74, 0.72, 0.36, color="#1E293B", lw=1.15, zorder=5)
     db.add_text(1.67, 2.22, "Repetitive self-doubt loops (p95 = 5,821t)", pt=6.9, color="#475569", italic=True, zorder=5)
 
     # Two solid Crimson diagnostic pills
-    db.add_arrow(1.02, 2.04, 1.02, 1.80, color="#E11D48", lw=1.45)
-    db.add_arrow(2.32, 2.04, 2.32, 1.80, color="#E11D48", lw=1.45)
+    db.add_arrow(1.02, 2.04, 1.02, 1.80, color="#C2410C", lw=1.45)
+    db.add_arrow(2.32, 2.04, 2.32, 1.80, color="#C2410C", lw=1.45)
     db.add_box(
         0.26, 1.12, 1.36, 0.66,
-        fill="#E11D48", edge="#BE123C", lw=0.9, rad=0.07,
+        fill="#C2410C", edge="#9A3412", lw=0.9, rad=0.07,
         title="Heavy KV-Cache",
         body="79.7 MB / query",
         title_color="#FFFFFF", body_color="#FFE4E6", title_pt=7.7, body_pt=6.8, zorder=3,
     )
     db.add_box(
         1.72, 1.12, 1.36, 0.66,
-        fill="#E11D48", edge="#BE123C", lw=0.9, rad=0.07,
+        fill="#C2410C", edge="#9A3412", lw=0.9, rad=0.07,
         title="Framing Collapse",
         body="-12.6% ARC-C",
         title_color="#FFFFFF", body_color="#FFE4E6", title_pt=7.7, body_pt=6.8, zorder=3,
@@ -478,17 +478,17 @@ def build_occam_architecture() -> DiagramBuilder:
         fill="#FFFFFF", edge="#FDA4AF", lw=1.0, rad=0.07,
         title="Rate-Distortion Dichotomy (Prop. 1)",
         body="Naive 200t budget cap crashes R1 (-30.9%).\nCompression must adapt to task regime!",
-        title_color="#9F1239", body_color="#334155", title_pt=7.6, body_pt=6.7, zorder=3,
+        title_color="#9A3412", body_color="#334155", title_pt=7.6, body_pt=6.7, zorder=3,
     )
 
     # =========================================================================
     # PANEL (b): COMPILE-TIME INTERNALIZATION (x = 3.54 .. 7.72, w = 4.18)
     # =========================================================================
-    db.add_box(3.54, 0.14, 4.18, 4.66, fill="#EFF6FF", edge="#3B82F6", lw=1.35, rad=0.11, shadow=True, zorder=1)
+    db.add_box(3.54, 0.14, 4.18, 4.66, fill="#EFF6FF", edge="#0072B2", lw=1.35, rad=0.11, shadow=True, zorder=1)
     db.add_box(
         3.54, 4.32, 4.18, 0.48,
-        fill="#1D4ED8", edge="#1D4ED8", lw=1.0, rad=0.09,
-        title="(b) Compile-Time Internalization (Single 24 GB GPU)",
+        fill="#0072B2", edge="#0072B2", lw=1.0, rad=0.09,
+        title="(b) Pillars I & II: M16 Basis & MemComp (1 GPU)",
         title_color="#FFFFFF", title_pt=8.6, zorder=3,
     )
 
@@ -510,21 +510,21 @@ def build_occam_architecture() -> DiagramBuilder:
                    title=ct, body=cb, title_color="#0F172A", body_color="#334155",
                    title_pt=6.65, body_pt=6.05, zorder=4)
 
-    db.add_arrow(5.63, 2.98, 5.63, 2.76, color="#1D4ED8", lw=1.65)
+    db.add_arrow(5.63, 2.98, 5.63, 2.76, color="#0072B2", lw=1.65)
 
     # B2: Local Self-Distillation & SymPy Gate
     db.add_box(3.68, 1.72, 3.90, 1.02, fill="#FFFFFF", edge="#93C5FD", lw=1.05, rad=0.08, shadow=True, zorder=2)
     db.add_text(
         5.63, 2.60,
-        "Stage 1: Local Self-Distillation & SymPy Gate (OCCAM-2K, $0 API)",
+        "Pillar II-A: Local Self-Distillation & SymPy Gate (OCCAM-2K, $0 API)",
         pt=7.45, color="#1E3A8A", bold=True, zorder=4,
     )
     db.add_box(
         3.78, 1.82, 1.74, 0.62,
-        fill="#CCFBF1", edge="#0F766E", lw=0.95, rad=0.06,
+        fill="#CCFBF1", edge="#007A5A", lw=0.95, rad=0.06,
         title="Verified Chosen y+ (233t)",
         body="<cog_router> + <cog_trace>\nRegime Tag • 0.00% Overlap",
-        title_color="#0F766E", body_color="#134E4A", title_pt=7.0, body_pt=6.2, zorder=4,
+        title_color="#007A5A", body_color="#134E4A", title_pt=7.0, body_pt=6.2, zorder=4,
     )
     db.add_box(
         5.74, 1.82, 1.74, 0.62,
@@ -535,29 +535,29 @@ def build_occam_architecture() -> DiagramBuilder:
     )
     db.add_text(5.63, 2.13, "vs.", pt=7.3, color="#475569", bold=True, zorder=5)
 
-    db.add_arrow(5.63, 1.72, 5.63, 1.50, color="#1D4ED8", lw=1.65)
+    db.add_arrow(5.63, 1.72, 5.63, 1.50, color="#0072B2", lw=1.65)
 
     # B3: Strip-Prompt Layer-Selective LoRA + On-Policy OCCAM-SimPO + DecWiSE
     db.add_box(
         3.68, 0.26, 3.90, 1.22,
-        fill="#FFFFFF", edge="#1D4ED8", lw=1.35, rad=0.08, shadow=True,
-        title="Stage 2: Layer-Selective LoRA, On-Policy SimPO & DecWiSE",
+        fill="#FFFFFF", edge="#0072B2", lw=1.35, rad=0.08, shadow=True,
+        title="Pillar II-B (MemComp): Layer-LoRA, On-Policy SimPO & DecWiSE",
         body="• Strip M16 prompt -> Layer-Selective LoRA (0.25%-0.28% params)\n"
              "• On-policy OCCAM-SimPO (alpha_r=2.0, NLL anchor) cures drift\n"
              "• Zero-train Decoupled WiSE-FT (attn=1.0, ffn=0.25) saves facts\n"
              "• Single 24 GB GPU: <=18.1 GB bf16 VRAM (N=1,570, $0 API)",
-        title_color="#1D4ED8", body_color="#1E293B", title_pt=7.45, body_pt=6.55,
+        title_color="#0072B2", body_color="#1E293B", title_pt=7.45, body_pt=6.55,
         align="left", zorder=3,
     )
 
     # =========================================================================
     # PANEL (c): ZERO-PROMPT REGIME-ADAPTIVE INFERENCE (x = 8.04 .. 11.88, w = 3.84)
     # =========================================================================
-    db.add_box(8.04, 0.14, 3.84, 4.66, fill="#F0FDFA", edge="#14B8A6", lw=1.35, rad=0.11, shadow=True, zorder=1)
+    db.add_box(8.04, 0.14, 3.84, 4.66, fill="#F0FDFA", edge="#009E73", lw=1.35, rad=0.11, shadow=True, zorder=1)
     db.add_box(
         8.04, 4.32, 3.84, 0.48,
-        fill="#0F766E", edge="#0F766E", lw=1.0, rad=0.09,
-        title="(c) Zero-Prompt Regime-Adaptive Inference",
+        fill="#007A5A", edge="#007A5A", lw=1.0, rad=0.09,
+        title="(c) Pillar III: Zero-Prompt Adaptive Execution",
         title_color="#FFFFFF", title_pt=8.6, zorder=3,
     )
 
@@ -569,26 +569,26 @@ def build_occam_architecture() -> DiagramBuilder:
         body="No External Schema • No Benchmark Tag",
         title_pt=7.75, body_pt=6.65, zorder=3,
     )
-    db.add_arrow(9.96, 3.74, 9.96, 3.52, color="#0F766E", lw=1.55)
+    db.add_arrow(9.96, 3.74, 9.96, 3.52, color="#007A5A", lw=1.55)
 
     # Phase 1 Router Switch
     db.add_box(
         8.18, 2.66, 3.56, 0.84,
-        fill="#FFFFFF", edge="#0F766E", lw=1.35, rad=0.08, shadow=True,
+        fill="#FFFFFF", edge="#007A5A", lw=1.35, rad=0.08, shadow=True,
         title="Phase 1: Internalized <cog_router> / 3.5K Prefill Gate",
         body="[Topology] • [Bias Pruned] • [Primitives P_i -> P_j]\n"
              "Native <cog_router> (~55t) or 3.5K Prefill Linear Gate",
-        title_color="#0F766E", body_color="#1E293B", title_pt=7.45, body_pt=6.55, zorder=3,
+        title_color="#007A5A", body_color="#1E293B", title_pt=7.45, body_pt=6.55, zorder=3,
     )
 
     # Clean split arrows
-    db.add_arrow(9.18, 2.66, 9.04, 2.34, color="#0F766E", lw=1.7)
+    db.add_arrow(9.18, 2.66, 9.04, 2.34, color="#007A5A", lw=1.7)
     db.add_arrow(10.74, 2.66, 10.88, 2.34, color="#D97706", lw=1.7)
 
     # Regime I Branch (Rich Deep Emerald-Teal Card matching high-contrast academic style!)
     db.add_box(
         8.18, 1.06, 1.72, 1.26,
-        fill="#0F766E", edge="#115E59", lw=1.1, rad=0.08, shadow=True,
+        fill="#007A5A", edge="#115E59", lw=1.1, rad=0.08, shadow=True,
         title="Regime I:\nStructural Framing",
         body="OCCAM DecWiSE (a1/f.25)\nCompact <cog_trace> (180t)\n-74% Token Entropy\nCures Overthinking",
         title_color="#FFFFFF", body_color="#CCFBF1", title_pt=7.35, body_pt=6.35, zorder=3,
@@ -604,7 +604,7 @@ def build_occam_architecture() -> DiagramBuilder:
     )
 
     # Merge arrows into Final Answer Banner
-    db.add_arrow(9.04, 1.06, 9.54, 0.78, color="#0F766E", lw=1.7)
+    db.add_arrow(9.04, 1.06, 9.54, 0.78, color="#007A5A", lw=1.7)
     db.add_arrow(10.88, 1.06, 10.38, 0.78, color="#D97706", lw=1.7)
 
     db.add_box(
@@ -619,8 +619,8 @@ def build_occam_architecture() -> DiagramBuilder:
     db.add_arrow(3.22, 2.48, 3.54, 2.48, color="#1E293B", lw=2.1, zorder=7)
     db.add_text(3.38, 2.70, "Solve", pt=7.1, color="#1E293B", bold=True, zorder=8)
 
-    db.add_arrow(7.72, 2.48, 8.04, 2.48, color="#0F766E", lw=2.1, zorder=7)
-    db.add_text(7.88, 2.70, "Deploy", pt=7.1, color="#0F766E", bold=True, zorder=8)
+    db.add_arrow(7.72, 2.48, 8.04, 2.48, color="#007A5A", lw=2.1, zorder=7)
+    db.add_text(7.88, 2.70, "Deploy", pt=7.1, color="#007A5A", bold=True, zorder=8)
 
     return db
 

@@ -88,7 +88,7 @@ All evaluations were conducted locally on one `RTX 3090 (24 GB)` GPU under unifi
 
 ### Engineering Reflections, Pitfalls & Observations
 
-Building and verifying all 47 configurations (`212,722` trajectories, `31` LoRA adapters) on a single `24 GB` RTX 3090 surfaced several practical failure modes that rarely appear in polished papers:
+Building and verifying all 74 core + 16 frontier configurations (`339,212` trajectories, `37` LoRA adapters) on a single `24 GB` RTX 3090 surfaced several practical failure modes that rarely appear in polished papers:
 
 1. **Bit-Aligning Native Thinking Templates Matters More Than Expected**: When adapting `DeepSeek-R1-Distill-Qwen-7B`, our first SFT run trained targets outside its native `<think>...</think>` boundary and collapsed accuracy by `-13.2%`. Aligning `<cog_router>` and `<cog_trace>` strictly inside the backbone's pre-existing `<think>` header resolved the format clash immediately.
 2. **Why Reference-Free SimPO Peaks Early (`K=25` vs. `K=99`)**: Standard SimPO averages log-probabilities uniformly across all tokens, diluting gradients on the short (~14% length) `<cog_router>` prefix (`1:6` dilution). Upweighting router tokens (`alpha_r > 1`) recovered up to `+2.93%` unseen OOD accuracy, while sweeping training steps revealed that pushing past `K=25` triggers likelihood displacement on out-of-distribution suites.
